@@ -1,0 +1,97 @@
+/* 
+  Localizable.strings
+  solocoin
+
+  Created by indie dev on 27/03/20.
+  
+*/
+
+APP_NAME = "Solo Coin";
+
+//Webservice
+REQUESTING = "";
+PLEASE_WAIT = "Please Wait";
+NO_INTERNET = "No Internet Connection";
+PLEASE_ENTER = "Please enter";
+PLEASE_SELECT = "Please select";
+SOMETHING_WRONG = "Something Went Wrong";
+
+//MARK:- Buttons
+GET_STARTED = "GET STARTED";
+SKIP = "Skip";
+NEXT = "NEXT";
+CONTINUE = "CONTINUE";
+CANCEL = "Cancel";
+
+//MARK:- General words
+AND = "and";
+DOB = "DD/MM/YYYY";
+TO = "to";
+LOAD_MORE = "Load more...";
+UPLOAD_IMAGE = "Upload an image";
+CHOOSE_PHOTOS = "Choose from Photos";
+CLICK_PICTURE = "Click picture";
+
+//MARK:- Splash Screen
+PRACTISE_SOCIAL_DISTANCING = "PRACTISE SOCIAL DISTANCING";
+EARN_REAL_WORLD_REWARDS = "EARN REAL WORLD REWARDS";
+STAY_SAFE = "STAY SAFE";
+
+//MARK:- Sign-Up
+SIGN_UP = "SIGN UP";
+ENTER_MOBILE_NUMBER = "Enter Mobile number";
+RECEIVE_AN_OTP = "You will receive an OTP";
+MALE = "MALE";
+FEMALE = "FEMALE";
+
+//MARK:- OTP
+OTP_SUCCESS = "OTP sent successfully!";
+RESEND_OTP = "Resent OTP?";
+CREATE_ACCOUNT = "CREATE ACCOUNT";
+GUIDE_TEXT = "By creating an account you agree to our ";
+TERMS_OF_SERVICE = "Terms of Service";
+TERMS_AND_CONDITIONS = "Terms & Conditions";
+PRIVACY_POLICY = "Privacy Policy";
+SKIP_FOR_NOW = "Skip for now";
+
+//MARK:- Welcome Page
+WELCOME = "WELCOME TO";
+SET_PERMISSIONS = "SET PERMISSIONS";
+PERMISSIONS = "PERMISSIONS";
+PROFILE_IMAGE = "PROFILE IMAGE";
+ACCESS_LOCATION = "ACCESS LOCATION";
+ALLOW_NOTIFICATIONS = "ALLOW NOTIFICATIONS";
+SECURED_DATA = "Your data is encrypted and secure and is not shared with anyone.";
+
+//MARK:- Tab Bar
+HOME = "Home";
+WALLET = "Wallet";
+LEADERBOARD = "Leaderboard";
+PROFILE = "Profile";
+
+//MARK:- Home Tab
+ENGLISH = "English";
+MAP = "Map";
+SOCIAL_DISTANCING = "of Social Distancing";
+CONFIRMED_CASES = "Confirmed Cases";
+CURD_CASES = "Cured Cases";
+CONFIRMED_DEATHS = "Confirmed Deaths";
+SAFETY_PRECAUTIONS = "Safety Precautions";
+WEAR_FACE = "Wear face protection";
+WASH_HANDS = "Wash hands thoroughly";
+USE_RAG = "Use nose rag";
+LATEST_NEWS = "Latest News";
+HEADLINE = "Headline";
+
+//MARK:- Wallet Tab
+COINS_IN_WALLET = "Coins in Wallet";
+
+//MARK:- Leaderboard Tab
+LEVEL = "LEVEL ";
+NEXT_LEVEL_COINS = " coins to move to next level!";
+AWARDS_UNLOCKED = "Awards Unlocked";
+
+//MARK:- Profile Tab
+INVITE = "Invite";
+PERMISSION = "Permission";
+SETTINGS = "Settings";
