@@ -73,6 +73,7 @@
 		2FDF23D4242E499000374832 /* SCFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF23D3242E498C00374832 /* SCFonts.swift */; };
 		2FDF23D6242E4A3200374832 /* SCColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF23D5242E4A3200374832 /* SCColorUtil.swift */; };
 		680C15BA24535BA3006D1DAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 680C15B924535BA3006D1DAE /* Main.storyboard */; };
+		680C15BF24538E2F006D1DAE /* LandingPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680C15BE24538E2F006D1DAE /* LandingPageController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,7 @@
 		2FDF23D3242E498C00374832 /* SCFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCFonts.swift; sourceTree = "<group>"; };
 		2FDF23D5242E4A3200374832 /* SCColorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCColorUtil.swift; sourceTree = "<group>"; };
 		680C15B924535BA3006D1DAE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		680C15BE24538E2F006D1DAE /* LandingPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -434,7 +436,7 @@
 		2FDF23B9242E13D800374832 /* corona-go */ = {
 			isa = PBXGroup;
 			children = (
-				680C15B924535BA3006D1DAE /* Main.storyboard */,
+				680C15BB24538DCC006D1DAE /* Storyboard */,
 				2FDF23BA242E13D800374832 /* AppDelegate.swift */,
 				2F07F529242E57EF00C601E3 /* Localizable.strings */,
 				2F5FB51F2430F679008B5C8B /* Phase 1 */,
@@ -461,6 +463,15 @@
 				2F2868EB24360F6300EDD251 /* Constant.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		680C15BB24538DCC006D1DAE /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				680C15B924535BA3006D1DAE /* Main.storyboard */,
+				680C15BE24538E2F006D1DAE /* LandingPageController.swift */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -587,6 +598,7 @@
 				2F2868D82435C76200EDD251 /* OpenWebURLVC.swift in Sources */,
 				2FDF23D1242E485000374832 /* SCStringExtension.swift in Sources */,
 				2FDF23D6242E4A3200374832 /* SCColorUtil.swift in Sources */,
+				680C15BF24538E2F006D1DAE /* LandingPageController.swift in Sources */,
 				2F5D8D0E243A150F006D8CEC /* HomeViewController.swift in Sources */,
 				2F242ECD24333B5E00F3EF1E /* SignUpModel.swift in Sources */,
 				2F86DF5424338D0000563D7A /* SCDateUtils.swift in Sources */,

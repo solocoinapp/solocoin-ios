@@ -77,7 +77,7 @@ class OpenUrlWithWKWebViewVC: UIViewController {
         }
         
         activityIndicator = UIActivityIndicatorView(frame: CGRect(x: (UIScreen.main.bounds.width - 30)/2, y: (UIScreen.main.bounds.height - 64 - 30)/2, width: 30, height: 30))
-        activityIndicator.style = .gray
+        activityIndicator.style = UIActivityIndicatorView.Style.medium
         webView.addSubview(activityIndicator)
         activityIndicator.hidesWhenStopped = true
         
