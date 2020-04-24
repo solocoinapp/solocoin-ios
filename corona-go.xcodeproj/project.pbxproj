@@ -72,6 +72,7 @@
 		2FDF23D1242E485000374832 /* SCStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF23D0242E485000374832 /* SCStringExtension.swift */; };
 		2FDF23D4242E499000374832 /* SCFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF23D3242E498C00374832 /* SCFonts.swift */; };
 		2FDF23D6242E4A3200374832 /* SCColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDF23D5242E4A3200374832 /* SCColorUtil.swift */; };
+		680C15BA24535BA3006D1DAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 680C15B924535BA3006D1DAE /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +143,7 @@
 		2FDF23D0242E485000374832 /* SCStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCStringExtension.swift; sourceTree = "<group>"; };
 		2FDF23D3242E498C00374832 /* SCFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCFonts.swift; sourceTree = "<group>"; };
 		2FDF23D5242E4A3200374832 /* SCColorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCColorUtil.swift; sourceTree = "<group>"; };
+		680C15B924535BA3006D1DAE /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -432,6 +434,7 @@
 		2FDF23B9242E13D800374832 /* corona-go */ = {
 			isa = PBXGroup;
 			children = (
+				680C15B924535BA3006D1DAE /* Main.storyboard */,
 				2FDF23BA242E13D800374832 /* AppDelegate.swift */,
 				2F07F529242E57EF00C601E3 /* Localizable.strings */,
 				2F5FB51F2430F679008B5C8B /* Phase 1 */,
@@ -534,6 +537,7 @@
 				2FAB508F2430CF8200672D4D /* Roboto-Light.ttf in Resources */,
 				2FBE05B32430FFAA00807DF8 /* SCCustomTextFieldView.xib in Resources */,
 				2FAB509A2430CF8200672D4D /* Roboto-Italic.ttf in Resources */,
+				680C15BA24535BA3006D1DAE /* Main.storyboard in Resources */,
 				2FAB509D2430CF8200672D4D /* Roboto-Thin.ttf in Resources */,
 				2FAB50912430CF8200672D4D /* Roboto-MediumItalic.ttf in Resources */,
 				2FAB50952430CF8200672D4D /* Roboto-Condensed.ttf in Resources */,
