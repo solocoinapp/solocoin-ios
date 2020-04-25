@@ -24,7 +24,7 @@
 		68B1D8AF24541A82007ECC01 /* SCViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89524541A82007ECC01 /* SCViewUtils.swift */; };
 		68B1D8B024541A82007ECC01 /* SCCameraGalleryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89624541A82007ECC01 /* SCCameraGalleryHandler.swift */; };
 		68B1D8C224541A82007ECC01 /* SCColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8A924541A82007ECC01 /* SCColorUtil.swift */; };
-		68B1D8C424541B32007ECC01 /* OTP2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8C324541B32007ECC01 /* OTP2Controller.swift */; };
+		68B1D8C6245425FA007ECC01 /* OTP2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +47,7 @@
 		68B1D89524541A82007ECC01 /* SCViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCViewUtils.swift; sourceTree = "<group>"; };
 		68B1D89624541A82007ECC01 /* SCCameraGalleryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCameraGalleryHandler.swift; sourceTree = "<group>"; };
 		68B1D8A924541A82007ECC01 /* SCColorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCColorUtil.swift; sourceTree = "<group>"; };
-		68B1D8C324541B32007ECC01 /* OTP2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTP2Controller.swift; sourceTree = "<group>"; };
+		68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTP2Controller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,10 +83,10 @@
 				68B1D8702453ACDC007ECC01 /* AppDelegate.swift */,
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
 				68B1D8762453ACDC007ECC01 /* Main.storyboard */,
-				68B1D8C324541B32007ECC01 /* OTP2Controller.swift */,
+				68B1D88924540C5F007ECC01 /* OTPController.swift */,
+				68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */,
 				68B1D88D24541A4F007ECC01 /* TextField.swift */,
 				68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */,
-				68B1D88924540C5F007ECC01 /* OTPController.swift */,
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
 				68B1D8812453ACDE007ECC01 /* Info.plist */,
@@ -188,7 +188,7 @@
 				68B1D8AF24541A82007ECC01 /* SCViewUtils.swift in Sources */,
 				68B1D8732453ACDC007ECC01 /* SceneDelegate.swift in Sources */,
 				68B1D88A24540C5F007ECC01 /* OTPController.swift in Sources */,
-				68B1D8C424541B32007ECC01 /* OTP2Controller.swift in Sources */,
+				68B1D8C6245425FA007ECC01 /* OTP2Controller.swift in Sources */,
 				68B1D8C224541A82007ECC01 /* SCColorUtil.swift in Sources */,
 				68B1D8AB24541A82007ECC01 /* SCStringExtension.swift in Sources */,
 				68B1D8AC24541A82007ECC01 /* SCDateUtils.swift in Sources */,
