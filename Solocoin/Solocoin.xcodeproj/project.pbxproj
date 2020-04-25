@@ -9,25 +9,45 @@
 /* Begin PBXBuildFile section */
 		68B1D8712453ACDC007ECC01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8702453ACDC007ECC01 /* AppDelegate.swift */; };
 		68B1D8732453ACDC007ECC01 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */; };
-		68B1D8752453ACDC007ECC01 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8742453ACDC007ECC01 /* ViewController.swift */; };
 		68B1D8782453ACDC007ECC01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68B1D8762453ACDC007ECC01 /* Main.storyboard */; };
 		68B1D87B2453ACDC007ECC01 /* Solocoin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8792453ACDC007ECC01 /* Solocoin.xcdatamodeld */; };
 		68B1D87D2453ACDE007ECC01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68B1D87C2453ACDE007ECC01 /* Assets.xcassets */; };
 		68B1D8802453ACDE007ECC01 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */; };
 		68B1D8882453B4BA007ECC01 /* LandingPagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */; };
+		68B1D88A24540C5F007ECC01 /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D88924540C5F007ECC01 /* OTPController.swift */; };
+		68B1D88E24541A4F007ECC01 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D88D24541A4F007ECC01 /* TextField.swift */; };
+		68B1D8AA24541A82007ECC01 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89024541A82007ECC01 /* Constant.swift */; };
+		68B1D8AB24541A82007ECC01 /* SCStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89124541A82007ECC01 /* SCStringExtension.swift */; };
+		68B1D8AC24541A82007ECC01 /* SCDateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89224541A82007ECC01 /* SCDateUtils.swift */; };
+		68B1D8AD24541A82007ECC01 /* SCFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89324541A82007ECC01 /* SCFonts.swift */; };
+		68B1D8AE24541A82007ECC01 /* SCNavigationBarUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89424541A82007ECC01 /* SCNavigationBarUtil.swift */; };
+		68B1D8AF24541A82007ECC01 /* SCViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89524541A82007ECC01 /* SCViewUtils.swift */; };
+		68B1D8B024541A82007ECC01 /* SCCameraGalleryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89624541A82007ECC01 /* SCCameraGalleryHandler.swift */; };
+		68B1D8C224541A82007ECC01 /* SCColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8A924541A82007ECC01 /* SCColorUtil.swift */; };
+		68B1D8C424541B32007ECC01 /* OTP2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8C324541B32007ECC01 /* OTP2Controller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		68B1D86D2453ACDC007ECC01 /* Solocoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Solocoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68B1D8702453ACDC007ECC01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		68B1D8742453ACDC007ECC01 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		68B1D8772453ACDC007ECC01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		68B1D87A2453ACDC007ECC01 /* Solocoin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Solocoin.xcdatamodel; sourceTree = "<group>"; };
 		68B1D87C2453ACDE007ECC01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		68B1D87F2453ACDE007ECC01 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68B1D8812453ACDE007ECC01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPagesController.swift; sourceTree = "<group>"; };
+		68B1D88924540C5F007ECC01 /* OTPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
+		68B1D88D24541A4F007ECC01 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		68B1D89024541A82007ECC01 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		68B1D89124541A82007ECC01 /* SCStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCStringExtension.swift; sourceTree = "<group>"; };
+		68B1D89224541A82007ECC01 /* SCDateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDateUtils.swift; sourceTree = "<group>"; };
+		68B1D89324541A82007ECC01 /* SCFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCFonts.swift; sourceTree = "<group>"; };
+		68B1D89424541A82007ECC01 /* SCNavigationBarUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNavigationBarUtil.swift; sourceTree = "<group>"; };
+		68B1D89524541A82007ECC01 /* SCViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCViewUtils.swift; sourceTree = "<group>"; };
+		68B1D89624541A82007ECC01 /* SCCameraGalleryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCameraGalleryHandler.swift; sourceTree = "<group>"; };
+		68B1D8A924541A82007ECC01 /* SCColorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCColorUtil.swift; sourceTree = "<group>"; };
+		68B1D8C324541B32007ECC01 /* OTP2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTP2Controller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,15 +82,34 @@
 			children = (
 				68B1D8702453ACDC007ECC01 /* AppDelegate.swift */,
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
-				68B1D8742453ACDC007ECC01 /* ViewController.swift */,
-				68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */,
 				68B1D8762453ACDC007ECC01 /* Main.storyboard */,
+				68B1D8C324541B32007ECC01 /* OTP2Controller.swift */,
+				68B1D88D24541A4F007ECC01 /* TextField.swift */,
+				68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */,
+				68B1D88924540C5F007ECC01 /* OTPController.swift */,
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
 				68B1D8812453ACDE007ECC01 /* Info.plist */,
 				68B1D8792453ACDC007ECC01 /* Solocoin.xcdatamodeld */,
+				68B1D88F24541A81007ECC01 /* Utils */,
 			);
 			path = Solocoin;
+			sourceTree = "<group>";
+		};
+		68B1D88F24541A81007ECC01 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				68B1D89024541A82007ECC01 /* Constant.swift */,
+				68B1D89124541A82007ECC01 /* SCStringExtension.swift */,
+				68B1D89224541A82007ECC01 /* SCDateUtils.swift */,
+				68B1D89324541A82007ECC01 /* SCFonts.swift */,
+				68B1D89424541A82007ECC01 /* SCNavigationBarUtil.swift */,
+				68B1D89524541A82007ECC01 /* SCViewUtils.swift */,
+				68B1D89624541A82007ECC01 /* SCCameraGalleryHandler.swift */,
+				68B1D8A924541A82007ECC01 /* SCColorUtil.swift */,
+			);
+			name = Utils;
+			path = "../../corona-go/Utils";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,10 +183,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68B1D8752453ACDC007ECC01 /* ViewController.swift in Sources */,
+				68B1D8AA24541A82007ECC01 /* Constant.swift in Sources */,
 				68B1D8712453ACDC007ECC01 /* AppDelegate.swift in Sources */,
+				68B1D8AF24541A82007ECC01 /* SCViewUtils.swift in Sources */,
 				68B1D8732453ACDC007ECC01 /* SceneDelegate.swift in Sources */,
+				68B1D88A24540C5F007ECC01 /* OTPController.swift in Sources */,
+				68B1D8C424541B32007ECC01 /* OTP2Controller.swift in Sources */,
+				68B1D8C224541A82007ECC01 /* SCColorUtil.swift in Sources */,
+				68B1D8AB24541A82007ECC01 /* SCStringExtension.swift in Sources */,
+				68B1D8AC24541A82007ECC01 /* SCDateUtils.swift in Sources */,
+				68B1D88E24541A4F007ECC01 /* TextField.swift in Sources */,
+				68B1D8AE24541A82007ECC01 /* SCNavigationBarUtil.swift in Sources */,
 				68B1D87B2453ACDC007ECC01 /* Solocoin.xcdatamodeld in Sources */,
+				68B1D8B024541A82007ECC01 /* SCCameraGalleryHandler.swift in Sources */,
+				68B1D8AD24541A82007ECC01 /* SCFonts.swift in Sources */,
 				68B1D8882453B4BA007ECC01 /* LandingPagesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
