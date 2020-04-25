@@ -28,14 +28,14 @@ class LandingPageController: UIPageViewController, UIPageViewControllerDataSourc
         self.dataSource = self
 
         if let firstViewController = viewControllerList.first {
-            self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)
+        self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)
         }
     }
     
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        guard let vcIndex = viewControllerList.index(of: viewController) else {return nil}
+        guard let vcIndex = viewControllerList.firstIndex(of: viewController) else {return nil}
         
         let previousIndex = vcIndex - 1
         
@@ -48,7 +48,7 @@ class LandingPageController: UIPageViewController, UIPageViewControllerDataSourc
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        guard let vcIndex = viewControllerList.index(of: viewController) else {return nil}
+        guard let vcIndex = viewControllerList.firstIndex(of: viewController) else {return nil}
         
         let nextIndex = vcIndex + 1
         
