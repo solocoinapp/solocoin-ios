@@ -15,7 +15,6 @@
 		68B1D8802453ACDE007ECC01 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */; };
 		68B1D8882453B4BA007ECC01 /* LandingPagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */; };
 		68B1D88A24540C5F007ECC01 /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D88924540C5F007ECC01 /* OTPController.swift */; };
-		68B1D88E24541A4F007ECC01 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D88D24541A4F007ECC01 /* TextField.swift */; };
 		68B1D8AA24541A82007ECC01 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89024541A82007ECC01 /* Constant.swift */; };
 		68B1D8AB24541A82007ECC01 /* SCStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89124541A82007ECC01 /* SCStringExtension.swift */; };
 		68B1D8AC24541A82007ECC01 /* SCDateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89224541A82007ECC01 /* SCDateUtils.swift */; };
@@ -25,6 +24,8 @@
 		68B1D8B024541A82007ECC01 /* SCCameraGalleryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89624541A82007ECC01 /* SCCameraGalleryHandler.swift */; };
 		68B1D8C224541A82007ECC01 /* SCColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8A924541A82007ECC01 /* SCColorUtil.swift */; };
 		68B1D8C6245425FA007ECC01 /* OTP2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */; };
+		68B1D8C82454A213007ECC01 /* SignInValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8C72454A213007ECC01 /* SignInValidation.swift */; };
+		68B1D8CB2454AC29007ECC01 /* SignInWithAppleID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8CA2454AC29007ECC01 /* SignInWithAppleID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +39,6 @@
 		68B1D8812453ACDE007ECC01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPagesController.swift; sourceTree = "<group>"; };
 		68B1D88924540C5F007ECC01 /* OTPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
-		68B1D88D24541A4F007ECC01 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		68B1D89024541A82007ECC01 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		68B1D89124541A82007ECC01 /* SCStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCStringExtension.swift; sourceTree = "<group>"; };
 		68B1D89224541A82007ECC01 /* SCDateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDateUtils.swift; sourceTree = "<group>"; };
@@ -48,6 +48,9 @@
 		68B1D89624541A82007ECC01 /* SCCameraGalleryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCameraGalleryHandler.swift; sourceTree = "<group>"; };
 		68B1D8A924541A82007ECC01 /* SCColorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCColorUtil.swift; sourceTree = "<group>"; };
 		68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTP2Controller.swift; sourceTree = "<group>"; };
+		68B1D8C72454A213007ECC01 /* SignInValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInValidation.swift; sourceTree = "<group>"; };
+		68B1D8C92454A818007ECC01 /* Solocoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Solocoin.entitlements; sourceTree = "<group>"; };
+		68B1D8CA2454AC29007ECC01 /* SignInWithAppleID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +83,14 @@
 		68B1D86F2453ACDC007ECC01 /* Solocoin */ = {
 			isa = PBXGroup;
 			children = (
+				68B1D8C92454A818007ECC01 /* Solocoin.entitlements */,
+				68B1D8C72454A213007ECC01 /* SignInValidation.swift */,
 				68B1D8702453ACDC007ECC01 /* AppDelegate.swift */,
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
 				68B1D8762453ACDC007ECC01 /* Main.storyboard */,
 				68B1D88924540C5F007ECC01 /* OTPController.swift */,
 				68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */,
-				68B1D88D24541A4F007ECC01 /* TextField.swift */,
+				68B1D8CA2454AC29007ECC01 /* SignInWithAppleID.swift */,
 				68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */,
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
@@ -187,12 +192,13 @@
 				68B1D8712453ACDC007ECC01 /* AppDelegate.swift in Sources */,
 				68B1D8AF24541A82007ECC01 /* SCViewUtils.swift in Sources */,
 				68B1D8732453ACDC007ECC01 /* SceneDelegate.swift in Sources */,
+				68B1D8CB2454AC29007ECC01 /* SignInWithAppleID.swift in Sources */,
+				68B1D8C82454A213007ECC01 /* SignInValidation.swift in Sources */,
 				68B1D88A24540C5F007ECC01 /* OTPController.swift in Sources */,
 				68B1D8C6245425FA007ECC01 /* OTP2Controller.swift in Sources */,
 				68B1D8C224541A82007ECC01 /* SCColorUtil.swift in Sources */,
 				68B1D8AB24541A82007ECC01 /* SCStringExtension.swift in Sources */,
 				68B1D8AC24541A82007ECC01 /* SCDateUtils.swift in Sources */,
-				68B1D88E24541A4F007ECC01 /* TextField.swift in Sources */,
 				68B1D8AE24541A82007ECC01 /* SCNavigationBarUtil.swift in Sources */,
 				68B1D87B2453ACDC007ECC01 /* Solocoin.xcdatamodeld in Sources */,
 				68B1D8B024541A82007ECC01 /* SCCameraGalleryHandler.swift in Sources */,
@@ -341,6 +347,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Solocoin/Solocoin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Solocoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -350,7 +357,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.Solocoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -358,6 +365,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Solocoin/Solocoin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = Solocoin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -367,7 +375,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = app.Solocoin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
