@@ -29,7 +29,7 @@ class OTPController: UIViewController {
     @IBAction func OTPNext(_ sender: Any) {
         mobileNum = mobileNumber.text!
         guard let _mobileNumber = mobileNumber else {return}
-        if isValidMobile(phone: _mobileNumber) == true {
+        if isValidMobile(phone: mobileNum) == true {
             performSegue(withIdentifier: "OTP2", sender: self)
             mobileNum = mobileNumber.text!
            }
@@ -38,11 +38,13 @@ class OTPController: UIViewController {
     
     // MARK: FUNCTIONS
     // Checks to see if an phone is valid
-    func isValidMobile(phone: UITextField) -> Bool {
-        let PHONE_REGEX = "^((\\+)|(00))[0-9]{6,14}$"
-        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
-        let result =  phoneTest.evaluate(with: phone)
-        return result
+    func isValidMobile(phone: String) -> Bool {
+        if mobileNum.count == 10 {
+            return true
+        }
+        else {
+            return false
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
