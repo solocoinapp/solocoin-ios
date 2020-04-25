@@ -14,3 +14,4 @@ struct SignUpModel {
     var gender: String?
     var signUpType: String?
 }
+

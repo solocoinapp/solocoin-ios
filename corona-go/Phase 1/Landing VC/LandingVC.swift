@@ -157,4 +157,3 @@ class LandingVC: UIViewController, UIGestureRecognizerDelegate {
         self.navigationController?.pushViewController(otpVc, animated: true)
     }
 }
-

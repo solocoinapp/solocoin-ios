@@ -1,9 +1,9 @@
-/* 
-  Localizable.strings
-  solocoin
+//
+//  Localizable.strings
+//  solocoin
+//
+//  Created by indie dev on 27/03/20.
 
-  Created by indie dev on 27/03/20.
-*/
 
 APP_NAME = "Solo Coin";
 
@@ -94,3 +94,4 @@ AWARDS_UNLOCKED = "Awards Unlocked";
 INVITE = "Invite";
 PERMISSION = "Permission";
 SETTINGS = "Settings";
+

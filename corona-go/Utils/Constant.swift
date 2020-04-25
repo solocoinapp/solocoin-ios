@@ -16,3 +16,4 @@ enum UserDefaultsUtilsKey: String {
     case APP_NOTIFICATION = "app_notification"
     case APP_LOCATION = "app_location"
     }
+
