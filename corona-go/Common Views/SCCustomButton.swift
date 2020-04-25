@@ -23,3 +23,4 @@ class SCCustomButton: UIButton {
         self.setRoundedCorners(withRadius: 14.0)
     }
 }
+

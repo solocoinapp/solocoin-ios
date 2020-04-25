@@ -75,3 +75,4 @@ class CreateTVCell: UITableViewCell {
         skipNowBtnTapped?()
     }
 }
+
