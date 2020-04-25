@@ -87,9 +87,6 @@
                                 <state key="normal" title="Skip">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <connections>
-                                    <segue destination="MQ7-Nq-KwE" kind="show" id="9SF-LG-GNB"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -193,10 +190,10 @@
             </objects>
             <point key="canvasLocation" x="2009" y="-272"/>
         </scene>
-        <!--MobileOTPVerification-->
+        <!--EnterMobile-->
         <scene sceneID="nZb-1s-4Kx">
             <objects>
-                <viewController id="rUf-OE-RGO" userLabel="MobileOTPVerification" customClass="OTPController" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rUf-OE-RGO" userLabel="EnterMobile" customClass="OTPController" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t7a-bA-roF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -267,6 +264,7 @@
                     <navigationItem key="navigationItem" id="7Jy-gY-0DR"/>
                     <connections>
                         <outlet property="mobileNumber" destination="fxt-5J-Y86" id="3mJ-vi-Uzr"/>
+                        <segue destination="nKJ-vj-YRS" kind="show" identifier="OTP2" id="n2v-us-QrM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BcN-o6-VLn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -276,25 +274,25 @@
         <!--MobileOTPVerification-->
         <scene sceneID="e8l-Ei-D0N">
             <objects>
-                <viewController id="nKJ-vj-YRS" userLabel="MobileOTPVerification" customClass="OTPController" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nKJ-vj-YRS" userLabel="MobileOTPVerification" customClass="OTP2Controller" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fND-EV-ucs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN UP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sP-q4-xpJ">
-                                <rect key="frame" x="150" y="79" width="114" height="36"/>
+                                <rect key="frame" x="150" y="35" width="114" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="1" green="0.14117647059999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Mobile Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvf-6E-7FR">
-                                <rect key="frame" x="93" y="165" width="228" height="30"/>
+                                <rect key="frame" x="93" y="146" width="228" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PT9-EM-3Jz">
-                                <rect key="frame" x="78.5" y="245" width="257" height="34"/>
+                                <rect key="frame" x="78.5" y="226" width="257" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="279-Jb-Fxy"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="257" id="qxc-kv-p7x"/>
@@ -303,7 +301,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6eD-Lu-saO">
-                                <rect key="frame" x="57" y="521" width="300" height="50"/>
+                                <rect key="frame" x="57" y="502" width="300" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.14117647059999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ew3-Uu-YKz"/>
@@ -319,20 +317,20 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="OTPNext:" destination="nKJ-vj-YRS" eventType="touchUpInside" id="7yd-HX-z2P"/>
+                                    <action selector="Next:" destination="nKJ-vj-YRS" eventType="touchUpInside" id="28L-kE-7af"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aT8-4K-8En">
-                                <rect key="frame" x="78" y="379" width="258" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter OTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aT8-4K-8En">
+                                <rect key="frame" x="78" y="360" width="258" height="34"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="258" id="3i8-Jm-5Bd"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="258" id="3i8-Jm-5Bd"/>
                                     <constraint firstAttribute="height" constant="34" id="WvW-r8-eFW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resend OTP?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGu-61-ZdA">
-                                <rect key="frame" x="161" y="428" width="92.5" height="18"/>
+                                <rect key="frame" x="161" y="409" width="92.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -353,13 +351,14 @@
                             <constraint firstItem="vvf-6E-7FR" firstAttribute="centerX" secondItem="fND-EV-ucs" secondAttribute="centerX" id="hQR-a9-rCQ"/>
                             <constraint firstItem="aT8-4K-8En" firstAttribute="top" secondItem="PT9-EM-3Jz" secondAttribute="bottom" constant="100" id="nrm-Ba-oXq"/>
                             <constraint firstItem="6eD-Lu-saO" firstAttribute="top" secondItem="mGu-61-ZdA" secondAttribute="bottom" constant="75" id="veP-XC-hzm"/>
-                            <constraint firstItem="vvf-6E-7FR" firstAttribute="top" secondItem="0sP-q4-xpJ" secondAttribute="bottom" constant="50" id="vnb-2h-ivD"/>
+                            <constraint firstItem="vvf-6E-7FR" firstAttribute="top" secondItem="0sP-q4-xpJ" secondAttribute="bottom" constant="75" id="vnb-2h-ivD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="haY-FA-JbH"/>
                     </view>
                     <navigationItem key="navigationItem" id="ngf-28-JSw"/>
                     <connections>
-                        <outlet property="mobileNumber" destination="PT9-EM-3Jz" id="1D3-ca-DXo"/>
+                        <outlet property="OTP" destination="aT8-4K-8En" id="kbJ-MD-Utp"/>
+                        <outlet property="mobileNumber" destination="PT9-EM-3Jz" id="SOz-f2-cJg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SQr-jV-9cV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -430,6 +429,9 @@
                                         <integer key="value" value="30"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="zZ2-fj-TJB" kind="show" id="jKO-TH-dbi"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -453,16 +455,16 @@
             </objects>
             <point key="canvasLocation" x="2009" y="382"/>
         </scene>
-        <!--View Controller-->
+        <!--SignIn1-->
         <scene sceneID="xzv-hS-9UG">
             <objects>
-                <viewController id="zZ2-fj-TJB" sceneMemberID="viewController">
+                <viewController id="zZ2-fj-TJB" userLabel="SignIn1" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SJh-PI-7b4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRF-r0-Gl5">
-                                <rect key="frame" x="186" y="96" width="95" height="21"/>
+                                <rect key="frame" x="159.5" y="411" width="95" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -470,15 +472,18 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="oRF-r0-Gl5" firstAttribute="leading" secondItem="JJC-2T-vSk" secondAttribute="leading" constant="186" id="Upw-Nq-2QG"/>
-                            <constraint firstItem="oRF-r0-Gl5" firstAttribute="top" secondItem="JJC-2T-vSk" secondAttribute="top" constant="52" id="ZSB-Ym-7WF"/>
+                            <constraint firstItem="oRF-r0-Gl5" firstAttribute="centerY" secondItem="SJh-PI-7b4" secondAttribute="centerY" id="09w-KK-BNJ"/>
+                            <constraint firstItem="oRF-r0-Gl5" firstAttribute="centerX" secondItem="SJh-PI-7b4" secondAttribute="centerX" id="9Sg-TU-quh"/>
+                            <constraint firstItem="oRF-r0-Gl5" firstAttribute="centerX" secondItem="SJh-PI-7b4" secondAttribute="centerX" id="Fg1-gT-DYX"/>
+                            <constraint firstItem="oRF-r0-Gl5" firstAttribute="centerY" secondItem="SJh-PI-7b4" secondAttribute="centerY" id="TDY-0z-eJp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JJC-2T-vSk"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ICG-9e-97j"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Np1-3k-l9G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2776" y="699"/>
+            <point key="canvasLocation" x="2775.36231884058" y="698.4375"/>
         </scene>
     </scenes>
     <resources>

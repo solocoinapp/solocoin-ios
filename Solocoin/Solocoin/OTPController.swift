@@ -10,11 +10,9 @@ import UIKit
 
 class OTPController: UIViewController {
 
+    var mobileNum = ""
+    
     @IBOutlet weak var mobileNumber: UITextField!
-    
-   
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +25,10 @@ class OTPController: UIViewController {
     
     
     @IBAction func OTPNext(_ sender: Any) {
-
-           guard let _mobileNumber = mobileNumber else {return}
-           if isValidMobile(phone: _mobileNumber) {
-               
-               self.navigationController?.pushViewController(otpSuccessVC, animated: true)
+        guard let _mobileNumber = mobileNumber else {return}
+        if isValidMobile(phone: _mobileNumber) == true {
+            performSegue(withIdentifier: "OTP2", sender: self)
+            mobileNum = mobileNumber.text!
            }
        }
 
@@ -45,18 +42,12 @@ class OTPController: UIViewController {
         return result
     }
     
-   /*
-    func isValidMobile(object:UITextField) -> Bool{
-        if object.count == 10 {
-            return true
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         if segue.identifier == "OTP2" {
+            let vc = segue.destination as! OTP2Controller
+            vc.mobile = mobileNum
         }
-        else {
-            return
-        }
-        
-        
-    }
-    */
+     }
     
     /*
     // MARK: - Navigation
