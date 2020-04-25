@@ -25,11 +25,12 @@ class OTPController: UIViewController {
     
     
     @IBAction func OTPNext(_ sender: Any) {
+        mobileNum = mobileNumber.text!
         guard let _mobileNumber = mobileNumber else {return}
-        if isValidMobile(phone: _mobileNumber) == true {
+  //      if isValidMobile(phone: _mobileNumber) == true {
             performSegue(withIdentifier: "OTP2", sender: self)
             mobileNum = mobileNumber.text!
-           }
+      //     }
        }
 
     
