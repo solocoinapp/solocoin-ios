@@ -225,12 +225,12 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2o-LN-QM6">
-                                <rect key="frame" x="57" y="318" width="300" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36K-Or-z9n">
+                                <rect key="frame" x="57" y="343" width="300" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.14117647059999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="T9n-ek-iKO"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="vsu-aY-gpN"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="DoO-6M-MHe"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="rK2-V2-6jf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Next">
@@ -242,21 +242,21 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="OTPNext:" destination="rUf-OE-RGO" eventType="touchUpInside" id="yc9-vD-gbF"/>
+                                    <action selector="OTPNext:" destination="rUf-OE-RGO" eventType="touchUpInside" id="uz2-AS-Xze"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="hsp-69-x18" firstAttribute="top" secondItem="GnK-ml-Et4" secondAttribute="top" constant="35" id="9Xa-Ue-oLd"/>
+                            <constraint firstItem="36K-Or-z9n" firstAttribute="top" secondItem="DXi-je-GFj" secondAttribute="bottom" constant="75" id="A8q-JZ-nHf"/>
                             <constraint firstItem="fxt-5J-Y86" firstAttribute="top" secondItem="iIv-J3-hlk" secondAttribute="bottom" constant="50" id="RUL-Ju-UqO"/>
-                            <constraint firstItem="A2o-LN-QM6" firstAttribute="centerX" secondItem="t7a-bA-roF" secondAttribute="centerX" id="UxG-9M-fSw"/>
                             <constraint firstItem="iIv-J3-hlk" firstAttribute="centerX" secondItem="t7a-bA-roF" secondAttribute="centerX" id="aTb-8l-XFT"/>
                             <constraint firstItem="hsp-69-x18" firstAttribute="centerX" secondItem="t7a-bA-roF" secondAttribute="centerX" id="aXz-38-tv9"/>
+                            <constraint firstItem="36K-Or-z9n" firstAttribute="centerX" secondItem="t7a-bA-roF" secondAttribute="centerX" id="dID-uL-eqL"/>
                             <constraint firstItem="fxt-5J-Y86" firstAttribute="centerX" secondItem="t7a-bA-roF" secondAttribute="centerX" id="elI-DG-KYp"/>
                             <constraint firstItem="iIv-J3-hlk" firstAttribute="top" secondItem="hsp-69-x18" secondAttribute="bottom" constant="50" id="h5B-ta-IQC"/>
                             <constraint firstItem="DXi-je-GFj" firstAttribute="top" secondItem="fxt-5J-Y86" secondAttribute="bottom" constant="15" id="rEm-wj-446"/>
-                            <constraint firstItem="A2o-LN-QM6" firstAttribute="top" secondItem="DXi-je-GFj" secondAttribute="bottom" constant="50" id="s5f-BG-s6d"/>
                             <constraint firstItem="DXi-je-GFj" firstAttribute="centerX" secondItem="t7a-bA-roF" secondAttribute="centerX" id="zhX-kh-FIJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GnK-ml-Et4"/>
@@ -320,7 +320,7 @@
                                     <action selector="Next:" destination="nKJ-vj-YRS" eventType="touchUpInside" id="28L-kE-7af"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter OTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aT8-4K-8En">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter OTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aT8-4K-8En">
                                 <rect key="frame" x="78" y="360" width="258" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="258" id="3i8-Jm-5Bd"/>

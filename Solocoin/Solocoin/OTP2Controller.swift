@@ -16,7 +16,7 @@ class OTP2Controller: UIViewController {
     @IBOutlet weak var mobileNumber: UITextField!
 
     @IBOutlet weak var OTP: UITextField!
-    
+    //OTP.textContentType = .oneTimeCode
     
     override func viewDidLoad() {
         super.viewDidLoad()
