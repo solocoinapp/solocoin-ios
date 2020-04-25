@@ -9,10 +9,9 @@
 import UIKit
 
 class OTP2Controller: UIViewController {
-
+ 
     //VARIABLES
     var mobile = ""
-    var TypeOTP = ""
     // OUTLETS
     @IBOutlet weak var mobileNumber: UITextField!
 
@@ -21,14 +20,12 @@ class OTP2Controller: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        mobileNumber.text! = mobile
         // Do any additional setup after loading the view.
     }
     
     @IBAction func Next(_ sender: Any) {
-        mobile = mobileNumber.text!
-        TypeOTP = OTP.text!
+        
     }
     
     /*
