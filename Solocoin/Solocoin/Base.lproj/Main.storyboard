@@ -377,7 +377,7 @@
         <!--SignUpMain-->
         <scene sceneID="F7y-WT-f7p">
             <objects>
-                <viewController id="5hU-Hj-CPJ" userLabel="SignUpMain" sceneMemberID="viewController">
+                <viewController id="5hU-Hj-CPJ" userLabel="SignUpMain" customClass="SignUpController" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gJi-Af-f4V">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -450,7 +450,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CalendarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YVi-Ru-Hvg">
-                                        <rect key="frame" x="0.0" y="186" width="50.000000000000057" height="50"/>
+                                        <rect key="frame" x="0.0" y="186" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="E1c-IB-Hr4"/>
                                             <constraint firstAttribute="width" constant="50" id="zUY-dh-g1X"/>
@@ -483,6 +483,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="Next:" destination="nKJ-vj-YRS" eventType="touchUpInside" id="vvL-R3-BuM"/>
+                                    <action selector="accountCreated:" destination="5hU-Hj-CPJ" eventType="touchUpInside" id="UWb-eU-gVY"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="8jQ-wk-O8N">
@@ -521,6 +522,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YVt-Ef-o9h"/>
                     </view>
+                    <connections>
+                        <outlet property="fullName" destination="H1C-dP-h91" id="O2d-MO-4zL"/>
+                        <outlet property="signUpBirth" destination="q2u-eC-wJk" id="naC-c7-zEJ"/>
+                        <outlet property="signUpEmail" destination="x6R-1C-MMz" id="HuJ-hD-AQa"/>
+                        <outlet property="signUpGender" destination="INQ-07-tJv" id="fMW-Db-ZWy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Moz-zn-7WV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

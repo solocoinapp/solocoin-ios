@@ -21,10 +21,7 @@ class OTPController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
 
-    
-    
     
     @IBAction func OTPNext(_ sender: Any) {
         mobileNum = mobileNumber.text!
