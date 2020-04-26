@@ -12,7 +12,6 @@ import AuthenticationServices
 class OTPController: UIViewController {
 
     var mobileNum = ""
-
     
     @IBOutlet weak var mobileNumber: UITextField!
     
@@ -32,7 +31,6 @@ class OTPController: UIViewController {
            }
        }
 
-    
     // MARK: FUNCTIONS
     // Checks to see if an phone is valid
     func isValidMobile(phone: String) -> Bool {
