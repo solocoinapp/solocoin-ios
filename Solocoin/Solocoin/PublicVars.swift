@@ -10,9 +10,10 @@ import Foundation
 import UIKit
 
 struct publicVars {
-    var fullNameSignUp: String
-    var emailSignUp: String
-    var genderSignUp: String
-    var birthSignUp: String
+    //MARK: -
+    static var fullNameSignUp: String = ""
+    static var emailSignUp: String = ""
+    static var genderSignUp: String = ""
+    static var birthSignUp: String = ""
+    static var hasGender: Bool = false
 }
-
