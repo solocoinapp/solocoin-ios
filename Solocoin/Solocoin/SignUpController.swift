@@ -31,6 +31,7 @@ class SignUpController: UIViewController {
     
     @IBAction func genderClicked(_ sender: Any) {
         publicVars.hasGender = true
+        publicVars.whichGenderSegment = signUpGender.selectedSegmentIndex
         }
     
     
@@ -40,7 +41,7 @@ class SignUpController: UIViewController {
         //publicVars.genderSignUp = signUpGender
         publicVars.birthSignUp = signUpBirth.text!
         if publicVars.hasGender == true {
-            publicVars.genderSignUp = signUpGender.titleForSegment(at: 0) ?? "error"
+            publicVars.genderSignUp = signUpGender.titleForSegment(at: publicVars.whichGenderSegment) ?? "error"
             print(publicVars.genderSignUp)
         }
     }
