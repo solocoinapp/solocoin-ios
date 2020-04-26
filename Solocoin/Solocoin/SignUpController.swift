@@ -22,13 +22,27 @@ class SignUpController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        if signUpGender.selectedSegmentIndex == 0 {
+            publicVars.genderSignUp = signUpGender.titleForSegment(at: 0) ?? "error"
+        }
         // Do any additional setup after loading the view.
     }
     
     
+    @IBAction func genderClicked(_ sender: Any) {
+        publicVars.hasGender = true
+        }
+    
+    
     @IBAction func accountCreated(_ sender: Any) {
-        
+        publicVars.fullNameSignUp = fullName.text!
+        publicVars.emailSignUp = signUpEmail.text!
+        //publicVars.genderSignUp = signUpGender
+        publicVars.birthSignUp = signUpBirth.text!
+        if publicVars.hasGender == true {
+            publicVars.genderSignUp = signUpGender.titleForSegment(at: 0) ?? "error"
+            print(publicVars.genderSignUp)
+        }
     }
 
     /*

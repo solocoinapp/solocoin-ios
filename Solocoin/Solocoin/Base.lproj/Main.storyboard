@@ -429,6 +429,9 @@
                                             <segment title="Female"/>
                                             <segment title="Other"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="genderClicked:" destination="5hU-Hj-CPJ" eventType="valueChanged" id="C0s-Ov-hxd"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                             </stackView>

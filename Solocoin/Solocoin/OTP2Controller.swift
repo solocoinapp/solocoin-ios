@@ -20,12 +20,12 @@ class OTP2Controller: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mobileNumber.text! = mobile
+        
         // Do any additional setup after loading the view.
     }
     
     @IBAction func Next(_ sender: Any) {
-        
+        mobileNumber.text! = mobile
     }
     
     /*
