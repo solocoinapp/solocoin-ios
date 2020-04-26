@@ -374,10 +374,10 @@
             </objects>
             <point key="canvasLocation" x="3540.579710144928" y="-291.29464285714283"/>
         </scene>
-        <!--View Controller-->
+        <!--SignUpMain-->
         <scene sceneID="F7y-WT-f7p">
             <objects>
-                <viewController id="5hU-Hj-CPJ" sceneMemberID="viewController">
+                <viewController id="5hU-Hj-CPJ" userLabel="SignUpMain" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gJi-Af-f4V">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -466,14 +466,14 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uJE-XA-FHh">
-                                <rect key="frame" x="57" y="658" width="300" height="50"/>
+                                <rect key="frame" x="57" y="668" width="300" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.14117647059999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="NQl-al-EP3"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Vjn-6E-vCN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Create An Account">
+                                <state key="normal" title="Create An Account!">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -486,7 +486,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="41" translatesAutoresizingMaskIntoConstraints="NO" id="8jQ-wk-O8N">
-                                <rect key="frame" x="116.66666666666669" y="748" width="181" height="70"/>
+                                <rect key="frame" x="116.66666666666669" y="758" width="181" height="70"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_gPlus_logo" translatesAutoresizingMaskIntoConstraints="NO" id="L8u-ln-AvF">
                                         <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
@@ -495,7 +495,7 @@
                                             <constraint firstAttribute="height" constant="70" id="fcD-bx-puF"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_fb_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Chd-ek-LXv">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FacebookLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Chd-ek-LXv">
                                         <rect key="frame" x="111" y="0.0" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="4SX-OU-JED"/>
@@ -512,7 +512,7 @@
                             <constraint firstItem="1cb-sg-M0y" firstAttribute="leading" secondItem="jrB-g9-o0h" secondAttribute="trailing" constant="10" id="7KK-Va-ocQ"/>
                             <constraint firstItem="uJE-XA-FHh" firstAttribute="centerX" secondItem="gJi-Af-f4V" secondAttribute="centerX" id="Dx2-Po-jJW"/>
                             <constraint firstItem="Dw0-bz-p8f" firstAttribute="top" secondItem="YVt-Ef-o9h" secondAttribute="top" constant="30" id="LIp-0W-UiE"/>
-                            <constraint firstItem="uJE-XA-FHh" firstAttribute="top" secondItem="1cb-sg-M0y" secondAttribute="bottom" constant="60" id="NAz-1t-Zca"/>
+                            <constraint firstItem="uJE-XA-FHh" firstAttribute="top" secondItem="1cb-sg-M0y" secondAttribute="bottom" constant="70" id="NAz-1t-Zca"/>
                             <constraint firstItem="YVt-Ef-o9h" firstAttribute="trailing" secondItem="1cb-sg-M0y" secondAttribute="trailing" constant="20" id="gS2-zs-y98"/>
                             <constraint firstItem="jrB-g9-o0h" firstAttribute="leading" secondItem="YVt-Ef-o9h" secondAttribute="leading" constant="10" id="jKN-nG-cvy"/>
                             <constraint firstItem="8jQ-wk-O8N" firstAttribute="top" secondItem="uJE-XA-FHh" secondAttribute="bottom" constant="40" id="jeP-O8-IBy"/>
@@ -525,6 +525,90 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Moz-zn-7WV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4337.68115942029" y="-291.29464285714283"/>
+        </scene>
+        <!--Set Permissions-->
+        <scene sceneID="aIu-Yc-CM0">
+            <objects>
+                <viewController id="a4n-01-Jgb" userLabel="Set Permissions" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eN0-fM-s3z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_app_logo_with_name" translatesAutoresizingMaskIntoConstraints="NO" id="pcb-aN-7Tx">
+                                <rect key="frame" x="139.66666666666666" y="115" width="134.99999999999997" height="135"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="135" id="GTS-Wx-pHW"/>
+                                    <constraint firstAttribute="width" constant="135" id="gZc-dJ-Q9C"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome To" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bK2-Bf-thm">
+                                <rect key="frame" x="128" y="64" width="158" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="1" green="0.14117647059999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_permissions" translatesAutoresizingMaskIntoConstraints="NO" id="7MK-iO-xgj">
+                                <rect key="frame" x="0.0" y="235" width="414" height="414"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="414" id="Afk-7R-oJs"/>
+                                    <constraint firstAttribute="width" constant="414" id="IKb-CB-s6b"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9U-lz-bT7">
+                                <rect key="frame" x="50" y="667" width="314" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.14117647059999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="VMz-ML-NYD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <state key="normal" title="Set Your Permissions">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <segue destination="WuH-Md-jtu" kind="show" id="QBk-1D-1fj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="7MK-iO-xgj" firstAttribute="top" secondItem="pcb-aN-7Tx" secondAttribute="bottom" constant="-15" id="7Fc-k5-J7c"/>
+                            <constraint firstItem="c9U-lz-bT7" firstAttribute="top" secondItem="7MK-iO-xgj" secondAttribute="bottom" constant="18" id="9LJ-2W-fE5"/>
+                            <constraint firstItem="bK2-Bf-thm" firstAttribute="centerX" secondItem="eN0-fM-s3z" secondAttribute="centerX" id="TdJ-T5-Lei"/>
+                            <constraint firstItem="pcb-aN-7Tx" firstAttribute="top" secondItem="bK2-Bf-thm" secondAttribute="bottom" constant="15" id="eMY-CV-JlR"/>
+                            <constraint firstItem="c9U-lz-bT7" firstAttribute="leading" secondItem="QbP-XL-J6t" secondAttribute="leading" constant="50" id="hly-kc-4t0"/>
+                            <constraint firstItem="7MK-iO-xgj" firstAttribute="centerX" secondItem="eN0-fM-s3z" secondAttribute="centerX" id="iYw-FS-yXQ"/>
+                            <constraint firstItem="QbP-XL-J6t" firstAttribute="trailing" secondItem="c9U-lz-bT7" secondAttribute="trailing" constant="50" id="iwV-if-BPc"/>
+                            <constraint firstItem="pcb-aN-7Tx" firstAttribute="centerX" secondItem="eN0-fM-s3z" secondAttribute="centerX" id="kup-hA-ehN"/>
+                            <constraint firstItem="c9U-lz-bT7" firstAttribute="centerX" secondItem="eN0-fM-s3z" secondAttribute="centerX" id="mWj-eE-kwR"/>
+                            <constraint firstItem="bK2-Bf-thm" firstAttribute="top" secondItem="QbP-XL-J6t" secondAttribute="top" constant="20" id="vYZ-OC-IGi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QbP-XL-J6t"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JBT-Pc-PNb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5031.884057971015" y="-291.29464285714283"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Fj2-LL-vCO">
+            <objects>
+                <viewController id="WuH-Md-jtu" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vEJ-Ql-6wA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Kp2-a9-u0x"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6n1-f8-oIe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J6T-Cy-QEV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5709" y="-291"/>
         </scene>
         <!--LandingPage3-->
         <scene sceneID="wGk-FJ-SHq">
@@ -650,13 +734,14 @@
     <resources>
         <image name="CalendarIcon" width="214" height="236"/>
         <image name="EmailIcon" width="225" height="225"/>
+        <image name="FacebookLogo" width="456" height="454"/>
         <image name="GenderIcon" width="170" height="160"/>
         <image name="PeopleIcon" width="512" height="512"/>
         <image name="ic_app_logo_with_name" width="29" height="39.333332061767578"/>
-        <image name="ic_fb_logo" width="6.3333334922790527" height="9.3333330154418945"/>
         <image name="ic_gPlus_logo" width="27" height="28"/>
         <image name="ic_landing_1" width="406.66665649414062" height="406.66665649414062"/>
         <image name="ic_mob" width="4" height="7.3333334922790527"/>
+        <image name="ic_permissions" width="406.66665649414062" height="406.66665649414062"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vDh-nN-0tz"/>
