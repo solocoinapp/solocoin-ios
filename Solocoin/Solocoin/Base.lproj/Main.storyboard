@@ -582,7 +582,7 @@
                             <constraint firstItem="pcb-aN-7Tx" firstAttribute="top" secondItem="bK2-Bf-thm" secondAttribute="bottom" constant="15" id="eMY-CV-JlR"/>
                             <constraint firstItem="c9U-lz-bT7" firstAttribute="leading" secondItem="QbP-XL-J6t" secondAttribute="leading" constant="50" id="hly-kc-4t0"/>
                             <constraint firstItem="7MK-iO-xgj" firstAttribute="centerX" secondItem="eN0-fM-s3z" secondAttribute="centerX" id="iYw-FS-yXQ"/>
-                            <constraint firstItem="QbP-XL-J6t" firstAttribute="trailing" secondItem="c9U-lz-bT7" secondAttribute="trailing" constant="50" id="iwV-if-BPc"/>
+                            <constraint firstItem="QbP-XL-J6t" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="c9U-lz-bT7" secondAttribute="trailing" id="iwV-if-BPc"/>
                             <constraint firstItem="pcb-aN-7Tx" firstAttribute="centerX" secondItem="eN0-fM-s3z" secondAttribute="centerX" id="kup-hA-ehN"/>
                             <constraint firstItem="c9U-lz-bT7" firstAttribute="centerX" secondItem="eN0-fM-s3z" secondAttribute="centerX" id="mWj-eE-kwR"/>
                             <constraint firstItem="bK2-Bf-thm" firstAttribute="top" secondItem="QbP-XL-J6t" secondAttribute="top" constant="20" id="vYZ-OC-IGi"/>
@@ -594,10 +594,10 @@
             </objects>
             <point key="canvasLocation" x="5031.884057971015" y="-291.29464285714283"/>
         </scene>
-        <!--View Controller-->
+        <!--Permissions Page-->
         <scene sceneID="Fj2-LL-vCO">
             <objects>
-                <viewController id="WuH-Md-jtu" sceneMemberID="viewController">
+                <viewController id="WuH-Md-jtu" userLabel="Permissions Page" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vEJ-Ql-6wA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
