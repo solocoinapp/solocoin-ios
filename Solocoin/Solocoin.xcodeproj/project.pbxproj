@@ -26,6 +26,8 @@
 		68B1D8C6245425FA007ECC01 /* OTP2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */; };
 		68B1D8C82454A213007ECC01 /* SignInValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8C72454A213007ECC01 /* SignInValidation.swift */; };
 		68B1D8CB2454AC29007ECC01 /* SignInWithAppleID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8CA2454AC29007ECC01 /* SignInWithAppleID.swift */; };
+		68B1D8CF24551915007ECC01 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8CE24551915007ECC01 /* SignUpController.swift */; };
+		68B1D8D124551A5E007ECC01 /* PublicVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D024551A5E007ECC01 /* PublicVars.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTP2Controller.swift; sourceTree = "<group>"; };
 		68B1D8C72454A213007ECC01 /* SignInValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInValidation.swift; sourceTree = "<group>"; };
 		68B1D8CA2454AC29007ECC01 /* SignInWithAppleID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleID.swift; sourceTree = "<group>"; };
+		68B1D8CE24551915007ECC01 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		68B1D8D024551A5E007ECC01 /* PublicVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVars.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 				68B1D8702453ACDC007ECC01 /* AppDelegate.swift */,
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
 				68B1D8762453ACDC007ECC01 /* Main.storyboard */,
+				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
+				68B1D8CE24551915007ECC01 /* SignUpController.swift */,
 				68B1D88924540C5F007ECC01 /* OTPController.swift */,
 				68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */,
 				68B1D8CA2454AC29007ECC01 /* SignInWithAppleID.swift */,
@@ -195,8 +201,10 @@
 				68B1D88A24540C5F007ECC01 /* OTPController.swift in Sources */,
 				68B1D8C6245425FA007ECC01 /* OTP2Controller.swift in Sources */,
 				68B1D8C224541A82007ECC01 /* SCColorUtil.swift in Sources */,
+				68B1D8CF24551915007ECC01 /* SignUpController.swift in Sources */,
 				68B1D8AB24541A82007ECC01 /* SCStringExtension.swift in Sources */,
 				68B1D8AC24541A82007ECC01 /* SCDateUtils.swift in Sources */,
+				68B1D8D124551A5E007ECC01 /* PublicVars.swift in Sources */,
 				68B1D8AE24541A82007ECC01 /* SCNavigationBarUtil.swift in Sources */,
 				68B1D87B2453ACDC007ECC01 /* Solocoin.xcdatamodeld in Sources */,
 				68B1D8B024541A82007ECC01 /* SCCameraGalleryHandler.swift in Sources */,
