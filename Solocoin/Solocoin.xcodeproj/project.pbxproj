@@ -21,6 +21,7 @@
 		68B1D8CF24551915007ECC01 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8CE24551915007ECC01 /* SignUpController.swift */; };
 		68B1D8D124551A5E007ECC01 /* PublicVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D024551A5E007ECC01 /* PublicVars.swift */; };
 		68B1D8D324565FD8007ECC01 /* HomePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D224565FD8007ECC01 /* HomePage1.swift */; };
+		68B1D8D52457707B007ECC01 /* Geofencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D42457707B007ECC01 /* Geofencing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		68B1D8CE24551915007ECC01 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		68B1D8D024551A5E007ECC01 /* PublicVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVars.swift; sourceTree = "<group>"; };
 		68B1D8D224565FD8007ECC01 /* HomePage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage1.swift; sourceTree = "<group>"; };
+		68B1D8D42457707B007ECC01 /* Geofencing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geofencing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				68B1D8702453ACDC007ECC01 /* AppDelegate.swift */,
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
 				68B1D8762453ACDC007ECC01 /* Main.storyboard */,
+				68B1D8D42457707B007ECC01 /* Geofencing.swift */,
 				68B1D8D224565FD8007ECC01 /* HomePage1.swift */,
 				68B1D8CE24551915007ECC01 /* SignUpController.swift */,
 				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
@@ -162,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68B1D8D52457707B007ECC01 /* Geofencing.swift in Sources */,
 				68B1D8712453ACDC007ECC01 /* AppDelegate.swift in Sources */,
 				68B1D8D324565FD8007ECC01 /* HomePage1.swift in Sources */,
 				68B1D8732453ACDC007ECC01 /* SceneDelegate.swift in Sources */,
