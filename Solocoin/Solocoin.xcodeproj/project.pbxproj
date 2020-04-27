@@ -15,19 +15,12 @@
 		68B1D8802453ACDE007ECC01 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */; };
 		68B1D8882453B4BA007ECC01 /* LandingPagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */; };
 		68B1D88A24540C5F007ECC01 /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D88924540C5F007ECC01 /* OTPController.swift */; };
-		68B1D8AA24541A82007ECC01 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89024541A82007ECC01 /* Constant.swift */; };
-		68B1D8AB24541A82007ECC01 /* SCStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89124541A82007ECC01 /* SCStringExtension.swift */; };
-		68B1D8AC24541A82007ECC01 /* SCDateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89224541A82007ECC01 /* SCDateUtils.swift */; };
-		68B1D8AD24541A82007ECC01 /* SCFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89324541A82007ECC01 /* SCFonts.swift */; };
-		68B1D8AE24541A82007ECC01 /* SCNavigationBarUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89424541A82007ECC01 /* SCNavigationBarUtil.swift */; };
-		68B1D8AF24541A82007ECC01 /* SCViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89524541A82007ECC01 /* SCViewUtils.swift */; };
-		68B1D8B024541A82007ECC01 /* SCCameraGalleryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D89624541A82007ECC01 /* SCCameraGalleryHandler.swift */; };
-		68B1D8C224541A82007ECC01 /* SCColorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8A924541A82007ECC01 /* SCColorUtil.swift */; };
 		68B1D8C6245425FA007ECC01 /* OTP2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */; };
 		68B1D8C82454A213007ECC01 /* SignInValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8C72454A213007ECC01 /* SignInValidation.swift */; };
 		68B1D8CB2454AC29007ECC01 /* SignInWithAppleID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8CA2454AC29007ECC01 /* SignInWithAppleID.swift */; };
 		68B1D8CF24551915007ECC01 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8CE24551915007ECC01 /* SignUpController.swift */; };
 		68B1D8D124551A5E007ECC01 /* PublicVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D024551A5E007ECC01 /* PublicVars.swift */; };
+		68B1D8D324565FD8007ECC01 /* HomePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D224565FD8007ECC01 /* HomePage1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,19 +34,12 @@
 		68B1D8812453ACDE007ECC01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPagesController.swift; sourceTree = "<group>"; };
 		68B1D88924540C5F007ECC01 /* OTPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
-		68B1D89024541A82007ECC01 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		68B1D89124541A82007ECC01 /* SCStringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCStringExtension.swift; sourceTree = "<group>"; };
-		68B1D89224541A82007ECC01 /* SCDateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCDateUtils.swift; sourceTree = "<group>"; };
-		68B1D89324541A82007ECC01 /* SCFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCFonts.swift; sourceTree = "<group>"; };
-		68B1D89424541A82007ECC01 /* SCNavigationBarUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCNavigationBarUtil.swift; sourceTree = "<group>"; };
-		68B1D89524541A82007ECC01 /* SCViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCViewUtils.swift; sourceTree = "<group>"; };
-		68B1D89624541A82007ECC01 /* SCCameraGalleryHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCameraGalleryHandler.swift; sourceTree = "<group>"; };
-		68B1D8A924541A82007ECC01 /* SCColorUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCColorUtil.swift; sourceTree = "<group>"; };
 		68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTP2Controller.swift; sourceTree = "<group>"; };
 		68B1D8C72454A213007ECC01 /* SignInValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInValidation.swift; sourceTree = "<group>"; };
 		68B1D8CA2454AC29007ECC01 /* SignInWithAppleID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleID.swift; sourceTree = "<group>"; };
 		68B1D8CE24551915007ECC01 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		68B1D8D024551A5E007ECC01 /* PublicVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVars.swift; sourceTree = "<group>"; };
+		68B1D8D224565FD8007ECC01 /* HomePage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage1.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +76,7 @@
 				68B1D8702453ACDC007ECC01 /* AppDelegate.swift */,
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
 				68B1D8762453ACDC007ECC01 /* Main.storyboard */,
+				68B1D8D224565FD8007ECC01 /* HomePage1.swift */,
 				68B1D8CE24551915007ECC01 /* SignUpController.swift */,
 				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
 				68B1D88924540C5F007ECC01 /* OTPController.swift */,
@@ -100,25 +87,8 @@
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
 				68B1D8812453ACDE007ECC01 /* Info.plist */,
 				68B1D8792453ACDC007ECC01 /* Solocoin.xcdatamodeld */,
-				68B1D88F24541A81007ECC01 /* Utils */,
 			);
 			path = Solocoin;
-			sourceTree = "<group>";
-		};
-		68B1D88F24541A81007ECC01 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				68B1D89024541A82007ECC01 /* Constant.swift */,
-				68B1D89124541A82007ECC01 /* SCStringExtension.swift */,
-				68B1D89224541A82007ECC01 /* SCDateUtils.swift */,
-				68B1D89324541A82007ECC01 /* SCFonts.swift */,
-				68B1D89424541A82007ECC01 /* SCNavigationBarUtil.swift */,
-				68B1D89524541A82007ECC01 /* SCViewUtils.swift */,
-				68B1D89624541A82007ECC01 /* SCCameraGalleryHandler.swift */,
-				68B1D8A924541A82007ECC01 /* SCColorUtil.swift */,
-			);
-			name = Utils;
-			path = "../../corona-go/Utils";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,23 +162,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68B1D8AA24541A82007ECC01 /* Constant.swift in Sources */,
 				68B1D8712453ACDC007ECC01 /* AppDelegate.swift in Sources */,
-				68B1D8AF24541A82007ECC01 /* SCViewUtils.swift in Sources */,
+				68B1D8D324565FD8007ECC01 /* HomePage1.swift in Sources */,
 				68B1D8732453ACDC007ECC01 /* SceneDelegate.swift in Sources */,
 				68B1D8CB2454AC29007ECC01 /* SignInWithAppleID.swift in Sources */,
 				68B1D8C82454A213007ECC01 /* SignInValidation.swift in Sources */,
 				68B1D88A24540C5F007ECC01 /* OTPController.swift in Sources */,
 				68B1D8C6245425FA007ECC01 /* OTP2Controller.swift in Sources */,
-				68B1D8C224541A82007ECC01 /* SCColorUtil.swift in Sources */,
 				68B1D8CF24551915007ECC01 /* SignUpController.swift in Sources */,
-				68B1D8AB24541A82007ECC01 /* SCStringExtension.swift in Sources */,
-				68B1D8AC24541A82007ECC01 /* SCDateUtils.swift in Sources */,
 				68B1D8D124551A5E007ECC01 /* PublicVars.swift in Sources */,
-				68B1D8AE24541A82007ECC01 /* SCNavigationBarUtil.swift in Sources */,
 				68B1D87B2453ACDC007ECC01 /* Solocoin.xcdatamodeld in Sources */,
-				68B1D8B024541A82007ECC01 /* SCCameraGalleryHandler.swift in Sources */,
-				68B1D8AD24541A82007ECC01 /* SCFonts.swift in Sources */,
 				68B1D8882453B4BA007ECC01 /* LandingPagesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
