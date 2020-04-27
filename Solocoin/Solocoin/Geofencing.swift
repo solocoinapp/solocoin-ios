@@ -20,10 +20,10 @@ class Geofencing: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
-        //locationManager.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
         
         GeoFencing.showsUserLocation = true
         
@@ -46,6 +46,13 @@ class Geofencing: UIViewController {
         }
     }
 
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+
+    }
     
     
 

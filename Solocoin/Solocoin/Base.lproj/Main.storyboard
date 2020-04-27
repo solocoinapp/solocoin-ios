@@ -453,7 +453,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CalendarIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YVi-Ru-Hvg">
-                                        <rect key="frame" x="0.0" y="186" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="186" width="50.000000000000057" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="E1c-IB-Hr4"/>
                                             <constraint firstAttribute="width" constant="50" id="zUY-dh-g1X"/>
@@ -476,7 +476,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Vjn-6E-vCN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Create An Account!">
+                                <state key="normal" title="Create Account!">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -835,13 +835,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k17-AT-6Zj">
-                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <gestureRecognizers/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="k17-AT-6Zj" firstAttribute="top" secondItem="fyg-ek-a5J" secondAttribute="top" constant="100" id="3Jv-pj-Esg"/>
+                            <constraint firstItem="k17-AT-6Zj" firstAttribute="top" secondItem="fyg-ek-a5J" secondAttribute="top" id="3Jv-pj-Esg"/>
                             <constraint firstAttribute="bottom" secondItem="k17-AT-6Zj" secondAttribute="bottom" id="5gQ-lL-h6w"/>
                             <constraint firstItem="k17-AT-6Zj" firstAttribute="leading" secondItem="fyg-ek-a5J" secondAttribute="leading" id="LTR-x9-bwn"/>
                             <constraint firstItem="k17-AT-6Zj" firstAttribute="trailing" secondItem="fyg-ek-a5J" secondAttribute="trailing" id="l6X-jK-OOC"/>
