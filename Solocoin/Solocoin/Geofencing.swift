@@ -1,0 +1,52 @@
+//
+//  Geofencing.swift
+//  Solocoin
+//
+//  Created by Vamsi Sistla on 4/27/20.
+//  Copyright © 2020 Solocoin. All rights reserved.
+//
+
+import UIKit
+import MapKit
+import CoreLocation
+
+class Geofencing: UIViewController {
+
+    
+    @IBOutlet weak var GeoFencing: MKMapView!
+    
+    let locationManager = CLLocationManager()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        //locationManager.startUpdatingLocation()
+        
+        GeoFencing.showsUserLocation = true
+        
+        let currentLocation = locationManager.location
+        let userLongitude = currentLocation?.coordinate.longitude
+        let userLatitude = currentLocation?.coordinate.latitude
+        
+        let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(userLatitude!, userLongitude!), radius: 200, identifier: "home")
+
+        locationManager.startMonitoring(for: geoFenceRegion)
+        
+        // Do any additional setup after loading the view.
+    }
+    
+
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        for currentLocation in locations{
+            print ("\(String(describing: index)): \(currentLocation)")
+        }
+    }
+
+    
+    
+
+}
