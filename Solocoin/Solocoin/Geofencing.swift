@@ -20,25 +20,24 @@ class Geofencing: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
-        //locationManager.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
         
         GeoFencing.showsUserLocation = true
+    
         
         let currentLocation = locationManager.location
+        if currentLocation != nil {
         let userLongitude = currentLocation?.coordinate.longitude
         let userLatitude = currentLocation?.coordinate.latitude
         
         let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(userLatitude!, userLongitude!), radius: 200, identifier: "home")
 
         locationManager.startMonitoring(for: geoFenceRegion)
-        
-        // Do any additional setup after loading the view.
+        }
     }
-    
-
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for currentLocation in locations{
@@ -46,7 +45,12 @@ class Geofencing: UIViewController {
         }
     }
 
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+
+    }
     
-    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+
+    }
 
 }

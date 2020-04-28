@@ -21,7 +21,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Zv-VQ-lxx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="588" y="370"/>
+            <point key="canvasLocation" x="622" y="370"/>
         </scene>
         <!--Landing Page Controller-->
         <scene sceneID="aas-2f-3sN">
@@ -31,7 +31,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sLA-Li-ySe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1326" y="370"/>
+            <point key="canvasLocation" x="1352" y="370"/>
         </scene>
         <!--LandingPage1-->
         <scene sceneID="CMG-2M-93W">
@@ -217,7 +217,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="257" id="din-pI-DJt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES" smartDashesType="yes"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES" smartDashesType="yes" smartInsertDeleteType="yes"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will receive an OTP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXi-je-GFj">
                                 <rect key="frame" x="127.66666666666669" y="250" width="159" height="18"/>
@@ -269,7 +269,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BcN-o6-VLn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2771" y="-291"/>
+            <point key="canvasLocation" x="2770" y="-291"/>
         </scene>
         <!--MobileOTPVerification-->
         <scene sceneID="e8l-Ei-D0N">
@@ -367,12 +367,12 @@
                     <navigationItem key="navigationItem" id="ngf-28-JSw"/>
                     <connections>
                         <outlet property="OTP" destination="aT8-4K-8En" id="kbJ-MD-Utp"/>
-                        <outlet property="mobileNumber" destination="PT9-EM-3Jz" id="SOz-f2-cJg"/>
+                        <outlet property="mobileNumber" destination="PT9-EM-3Jz" id="avZ-fa-nc0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SQr-jV-9cV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3540.579710144928" y="-291.29464285714283"/>
+            <point key="canvasLocation" x="3467" y="-291"/>
         </scene>
         <!--SignUpMain-->
         <scene sceneID="F7y-WT-f7p">
@@ -476,7 +476,7 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="Vjn-6E-vCN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Create An Account!">
+                                <state key="normal" title="Create Account!">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -535,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Moz-zn-7WV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4337.68115942029" y="-291.29464285714283"/>
+            <point key="canvasLocation" x="4180" y="-291"/>
         </scene>
         <!--Set Permissions-->
         <scene sceneID="aIu-Yc-CM0">
@@ -603,12 +603,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JBT-Pc-PNb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5031.884057971015" y="-291.29464285714283"/>
+            <point key="canvasLocation" x="4884" y="-291"/>
         </scene>
         <!--Permissions Page-->
         <scene sceneID="Fj2-LL-vCO">
             <objects>
-                <viewController id="WuH-Md-jtu" userLabel="Permissions Page" sceneMemberID="viewController">
+                <viewController id="WuH-Md-jtu" userLabel="Permissions Page" customClass="PermissionsController" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vEJ-Ql-6wA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -647,6 +647,9 @@
                                                 <integer key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="sgM-gK-4LN" kind="show" id="bSK-pS-vCx"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaR-Hr-IRk">
                                         <rect key="frame" x="0.0" y="100" width="334" height="50"/>
@@ -704,7 +707,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6T-Cy-QEV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5708.6956521739139" y="-291.29464285714283"/>
+            <point key="canvasLocation" x="5583" y="-291"/>
         </scene>
         <!--Home Page-->
         <scene sceneID="JDH-30-jLD">
@@ -824,37 +827,38 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMS-O0-ojF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6495.652173913044" y="369.64285714285711"/>
+            <point key="canvasLocation" x="6290" y="370"/>
         </scene>
         <!--Geofencing-->
         <scene sceneID="BMY-P6-XlU">
             <objects>
                 <viewController id="sgM-gK-4LN" customClass="Geofencing" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bpx-cP-1XI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k17-AT-6Zj">
-                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <gestureRecognizers/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="k17-AT-6Zj" firstAttribute="top" secondItem="fyg-ek-a5J" secondAttribute="top" constant="100" id="3Jv-pj-Esg"/>
+                            <constraint firstItem="k17-AT-6Zj" firstAttribute="top" secondItem="fyg-ek-a5J" secondAttribute="top" id="3Jv-pj-Esg"/>
                             <constraint firstAttribute="bottom" secondItem="k17-AT-6Zj" secondAttribute="bottom" id="5gQ-lL-h6w"/>
                             <constraint firstItem="k17-AT-6Zj" firstAttribute="leading" secondItem="fyg-ek-a5J" secondAttribute="leading" id="LTR-x9-bwn"/>
                             <constraint firstItem="k17-AT-6Zj" firstAttribute="trailing" secondItem="fyg-ek-a5J" secondAttribute="trailing" id="l6X-jK-OOC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fyg-ek-a5J"/>
                     </view>
+                    <navigationItem key="navigationItem" id="S4J-F7-TS2"/>
                     <connections>
                         <outlet property="GeoFencing" destination="k17-AT-6Zj" id="q2v-A2-pFU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiB-8Z-XbU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7224.6376811594209" y="361.60714285714283"/>
+            <point key="canvasLocation" x="6291" y="-291"/>
         </scene>
         <!--LandingPage3-->
         <scene sceneID="wGk-FJ-SHq">
