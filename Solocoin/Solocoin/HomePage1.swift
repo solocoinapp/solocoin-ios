@@ -11,6 +11,9 @@ import UIKit
 class HomePage1: UIViewController {
 
     @IBOutlet var languageOptions: [UIButton]!
+
+    
+    @IBOutlet weak var Toolbar: UIToolbar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
