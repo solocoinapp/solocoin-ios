@@ -19,7 +19,6 @@ struct publicVars {
     static var fullNameSignUp: String = ""
     static var emailSignUp: String = ""
     static var genderSignUp: String = ""
-    static var birthSignUp: String = ""
     static var hasGender: Bool = false
     static var whichGenderSegment: Int = 0
 

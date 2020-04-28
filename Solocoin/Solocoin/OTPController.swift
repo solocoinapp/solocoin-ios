@@ -23,9 +23,9 @@ class OTPController: UIViewController {
 
     
     @IBAction func OTPNext(_ sender: Any) {
-        guard let _mobileNum = mobileNumber else {return}
-        let mobileNum = mobileNumber.text!
-        if isValidMobile(phone: mobileNum) == true {
+        guard let _ = mobileNumber else {return}
+        publicVars.mobileNumber = mobileNumber.text!
+        if isValidMobile(phone: publicVars.mobileNumber) == true {
             performSegue(withIdentifier: "OTP2", sender: self)
            }
        }
@@ -41,8 +41,7 @@ class OTPController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if segue.identifier == "OTP2" {
-            let OTP2 = segue.destination as! OTP2Controller
-            publicVars.mobileNumber = mobileNum
+            _ = segue.destination as! OTP2Controller
         }
      }
 }

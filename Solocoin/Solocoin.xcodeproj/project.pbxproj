@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68213D1B2457FD1E008B30A1 /* PermissionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68213D1A2457FD1D008B30A1 /* PermissionsController.swift */; };
 		68B1D8712453ACDC007ECC01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8702453ACDC007ECC01 /* AppDelegate.swift */; };
 		68B1D8732453ACDC007ECC01 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */; };
 		68B1D8782453ACDC007ECC01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68B1D8762453ACDC007ECC01 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		68213D1A2457FD1D008B30A1 /* PermissionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsController.swift; sourceTree = "<group>"; };
 		68B1D86D2453ACDC007ECC01 /* Solocoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Solocoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68B1D8702453ACDC007ECC01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				68B1D88924540C5F007ECC01 /* OTPController.swift */,
 				68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */,
 				68B1D8CE24551915007ECC01 /* SignUpController.swift */,
+				68213D1A2457FD1D008B30A1 /* PermissionsController.swift */,
 				68B1D8D42457707B007ECC01 /* Geofencing.swift */,
 				68B1D8D224565FD8007ECC01 /* HomePage1.swift */,
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
@@ -163,6 +166,7 @@
 				68B1D8712453ACDC007ECC01 /* AppDelegate.swift in Sources */,
 				68B1D8D324565FD8007ECC01 /* HomePage1.swift in Sources */,
 				68B1D8732453ACDC007ECC01 /* SceneDelegate.swift in Sources */,
+				68213D1B2457FD1E008B30A1 /* PermissionsController.swift in Sources */,
 				68B1D88A24540C5F007ECC01 /* OTPController.swift in Sources */,
 				68B1D8C6245425FA007ECC01 /* OTP2Controller.swift in Sources */,
 				68B1D8CF24551915007ECC01 /* SignUpController.swift in Sources */,
