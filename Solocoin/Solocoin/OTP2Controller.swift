@@ -10,22 +10,20 @@ import UIKit
 
 class OTP2Controller: UIViewController {
  
-    //VARIABLES
-    var mobile = ""
     // OUTLETS
     @IBOutlet weak var mobileNumber: UITextField!
-
-    @IBOutlet weak var OTP: UITextField!
-    //OTP.textContentType = .oneTimeCode
     
+    @IBOutlet weak var OTP: UITextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        let endEditing = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(endEditing)
+        mobileNumber.text! = publicVars.mobileNumber
     }
     
     @IBAction func Next(_ sender: Any) {
-        mobileNumber.text! = mobile
+        
     }
 
 }

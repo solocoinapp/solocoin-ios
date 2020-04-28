@@ -23,6 +23,8 @@ class SignUpController: UIViewController {
         super.viewDidLoad()
         if signUpGender.selectedSegmentIndex == 0 {
             publicVars.genderSignUp = signUpGender.titleForSegment(at: 0) ?? "error"
+            let endEditing = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+            view.addGestureRecognizer(endEditing)
         }
         // Do any additional setup after loading the view.
     }

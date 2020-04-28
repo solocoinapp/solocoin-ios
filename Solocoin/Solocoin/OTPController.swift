@@ -17,24 +17,21 @@ class OTPController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let endEditing = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(endEditing)
     }
 
     
     @IBAction func OTPNext(_ sender: Any) {
-        guard let _ = mobileNumber else {return}
-        var mobileNum = mobileNumber.text!
+        guard let _mobileNum = mobileNumber else {return}
+        let mobileNum = mobileNumber.text!
         if isValidMobile(phone: mobileNum) == true {
             performSegue(withIdentifier: "OTP2", sender: self)
-            mobileNum = mobileNumber.text!
            }
        }
 
-    // MARK: FUNCTIONS
-    // Checks to see if an phone is valid
     func isValidMobile(phone: String) -> Bool {
-        if mobileNum.count == 10 {
+        if phone.count == 10 {
             return true
         }
         else {
@@ -45,7 +42,7 @@ class OTPController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if segue.identifier == "OTP2" {
             let OTP2 = segue.destination as! OTP2Controller
-            OTP2.mobile = mobileNum
+            publicVars.mobileNumber = mobileNum
         }
      }
 }
