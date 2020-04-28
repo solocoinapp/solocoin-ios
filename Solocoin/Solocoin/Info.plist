@@ -56,7 +56,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>SoloCoin needs your location for you to use the app</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Always being monitored</string>
+	<string>Will you allow this?</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

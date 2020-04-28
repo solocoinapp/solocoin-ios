@@ -16,60 +16,64 @@ class Geofencing: UIViewController {
     @IBOutlet weak var GeoFencing: MKMapView!
     
     let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.startUpdatingLocation()
         
-        GeoFencing.showsUserLocation = true
-    
-        
         let currentLocation = locationManager.location
-        if currentLocation != nil {
+    //    if currentLocation != nil {
             let userLongitude = currentLocation?.coordinate.longitude
             let userLatitude = currentLocation?.coordinate.latitude
         
             let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(userLatitude!, userLongitude!), radius: 1, identifier: "home")
 
             locationManager.startMonitoring(for: geoFenceRegion)
-        }
+     //   }
     }
+        func showAlert(title: String, message: String) {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }
     
-    func showAlert() {}
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        for currentLocation in locations{
-            print ("\(String(describing: index)): \(currentLocation)")
-        }
+    func showNotification(title: String, message: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = message
+        content.badge = 1
+        content.sound = .default
+        let request = UNNotificationRequest(identifier: "notif", content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
+}
 
+extension Geofencing: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locationManager.stopUpdatingLocation()
+        GeoFencing.showsUserLocation = true
+        }
+    
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-
+        let title = "You Entered the Region"
+        let message = "Wow theres cool stuff in here! YAY!"
+        showAlert(title: title, message: message)
+        showNotification(title: title, message: message)
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        
-        let center = UNUserNotificationCenter.current()
-        let content = UNMutableNotificationContent()
-        content.title = "You have gone out of the geofenced area"
-        content.body = "Please go back inside, unless it is an essential need, in which case we will give you solocoins."
-        
-        let date = Date().addingTimeInterval(0)
-        
-        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-        
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        
-        let uuidString = UUID().uuidString
-        
-        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-        
-        center.add(request) { (error) in
-            // Check the error parameter
-        }
+        let title = "You Left the Region"
+        let message = "Say bye bye to all that cool stuff. =["
+        showAlert(title: title, message: message)
+        showNotification(title: title, message: message)
     }
+    
 
+    
 }
