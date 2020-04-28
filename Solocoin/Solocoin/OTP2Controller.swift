@@ -23,7 +23,13 @@ class OTP2Controller: UIViewController {
     }
     
     @IBAction func Next(_ sender: Any) {
-        
+        performSegue(withIdentifier: "SignUpController", sender: self)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SignUpController" {
+            _ = segue.destination as! SignUpController
+        }
+    }
+    
 }
