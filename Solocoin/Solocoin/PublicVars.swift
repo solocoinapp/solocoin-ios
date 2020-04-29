@@ -21,5 +21,8 @@ struct publicVars {
     static var genderSignUp: String = ""
     static var hasGender: Bool = false
     static var whichGenderSegment: Int = 0
+    
+    //MARK: - GeofencingControllerVars
+    static var showNotifications: Bool = false
 
 }

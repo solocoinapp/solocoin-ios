@@ -25,15 +25,17 @@ class Geofencing: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
+        
         let currentLocation = locationManager.location
-    //    if currentLocation != nil {
+        
             let userLongitude = currentLocation?.coordinate.longitude
             let userLatitude = currentLocation?.coordinate.latitude
         
             let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(userLatitude!, userLongitude!), radius: 1, identifier: "home")
 
             locationManager.startMonitoring(for: geoFenceRegion)
-     //   }
+            print ("HOPEFULLY USER LATITUDE PRINTS OUT \(userLatitude)")
+       // print ("The user location is ***** \(currentLocation)")
     }
         func showAlert(title: String, message: String) {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -61,15 +63,15 @@ extension Geofencing: CLLocationManagerDelegate {
         }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        let title = "You Entered the Region"
-        let message = "Wow theres cool stuff in here! YAY!"
+        let title = "You have entered your Geofenced area"
+        let message = "Thank you for coming back"
         showAlert(title: title, message: message)
         showNotification(title: title, message: message)
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        let title = "You Left the Region"
-        let message = "Say bye bye to all that cool stuff. =["
+        let title = "You have exited your Geofenced area"
+        let message = "This is a warning that you might lose SoloCoins"
         showAlert(title: title, message: message)
         showNotification(title: title, message: message)
     }
