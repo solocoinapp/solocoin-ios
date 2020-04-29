@@ -31,11 +31,9 @@ class Geofencing: UIViewController {
             let userLongitude = currentLocation?.coordinate.longitude
             let userLatitude = currentLocation?.coordinate.latitude
         
-            let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(userLatitude!, userLongitude!), radius: 1, identifier: "home")
+            let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(userLatitude!, userLongitude!), radius: 200, identifier: "home")
 
             locationManager.startMonitoring(for: geoFenceRegion)
-            print ("HOPEFULLY USER LATITUDE PRINTS OUT \(userLatitude)")
-       // print ("The user location is ***** \(currentLocation)")
     }
         func showAlert(title: String, message: String) {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
