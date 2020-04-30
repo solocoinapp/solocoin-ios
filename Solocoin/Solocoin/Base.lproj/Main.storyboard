@@ -910,7 +910,7 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="yao-CA-mbi" secondAttribute="bottom" constant="20" id="43L-Cb-vYQ"/>
                             <constraint firstItem="7EH-sn-Edy" firstAttribute="top" secondItem="e7w-CF-7X6" secondAttribute="top" id="4Fw-fQ-a30"/>
-                            <constraint firstItem="GDX-7y-62v" firstAttribute="leading" secondItem="e7w-CF-7X6" secondAttribute="leading" constant="10" id="4ru-em-e2f"/>
+                            <constraint firstItem="GDX-7y-62v" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e7w-CF-7X6" secondAttribute="leading" id="4ru-em-e2f"/>
                             <constraint firstItem="kDx-1u-zYU" firstAttribute="centerX" secondItem="e7w-CF-7X6" secondAttribute="centerX" id="BuI-Uv-7Q3"/>
                             <constraint firstItem="oSZ-2U-Ko1" firstAttribute="centerX" secondItem="e7w-CF-7X6" secondAttribute="centerX" constant="30" id="KPE-h6-Vvb"/>
                             <constraint firstItem="dxE-67-Hhx" firstAttribute="top" secondItem="oSZ-2U-Ko1" secondAttribute="bottom" constant="100" id="KvK-3d-jfs"/>
@@ -1339,19 +1339,19 @@
                                     <constraint firstAttribute="height" constant="50" id="FfA-rq-cDf"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4pz-Zb-zBh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4pz-Zb-zBh">
                                 <rect key="frame" x="0.0" y="105" width="414" height="737"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="profile" textLabel="jmn-0h-KNX" rowHeight="116" style="IBUITableViewCellStyleDefault" id="VaP-HJ-P03">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="116"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="profile" textLabel="aZY-P2-atk" style="IBUITableViewCellStyleDefault" id="TZv-NW-pGk">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VaP-HJ-P03" id="5w2-dn-WPr">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="116"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TZv-NW-pGk" id="ATj-rI-Djp">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Profile Setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jmn-0h-KNX">
-                                                    <rect key="frame" x="20" y="0.0" width="355" height="116"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Profile Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aZY-P2-atk">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="80"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
