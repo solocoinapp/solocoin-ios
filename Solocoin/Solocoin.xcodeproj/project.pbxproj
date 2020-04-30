@@ -21,6 +21,7 @@
 		68B1D8D124551A5E007ECC01 /* PublicVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D024551A5E007ECC01 /* PublicVars.swift */; };
 		68B1D8D324565FD8007ECC01 /* HomePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D224565FD8007ECC01 /* HomePage1.swift */; };
 		68B1D8D52457707B007ECC01 /* Geofencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D42457707B007ECC01 /* Geofencing.swift */; };
+		68D2ED7C245B3FAA00F39655 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		68B1D8D024551A5E007ECC01 /* PublicVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicVars.swift; sourceTree = "<group>"; };
 		68B1D8D224565FD8007ECC01 /* HomePage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage1.swift; sourceTree = "<group>"; };
 		68B1D8D42457707B007ECC01 /* Geofencing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geofencing.swift; sourceTree = "<group>"; };
+		68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				68213D1A2457FD1D008B30A1 /* PermissionsController.swift */,
 				68B1D8D42457707B007ECC01 /* Geofencing.swift */,
 				68B1D8D224565FD8007ECC01 /* HomePage1.swift */,
+				68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */,
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
 				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
@@ -168,6 +171,7 @@
 				68B1D8732453ACDC007ECC01 /* SceneDelegate.swift in Sources */,
 				68213D1B2457FD1E008B30A1 /* PermissionsController.swift in Sources */,
 				68B1D88A24540C5F007ECC01 /* OTPController.swift in Sources */,
+				68D2ED7C245B3FAA00F39655 /* ProfilePage.swift in Sources */,
 				68B1D8C6245425FA007ECC01 /* OTP2Controller.swift in Sources */,
 				68B1D8CF24551915007ECC01 /* SignUpController.swift in Sources */,
 				68B1D8D124551A5E007ECC01 /* PublicVars.swift in Sources */,
