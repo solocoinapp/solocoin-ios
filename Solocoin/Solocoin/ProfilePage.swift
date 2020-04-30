@@ -14,7 +14,7 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     var profileSettings = ["Profile", "Invite", "Permissions", "Privacy Policy", "Terms & Conditions"]
     
-    
+//    let profileImages: [UIImage] = [#imageLiteral(resourceName: "PeopleIcon"), #imageLiteral(resourceName: "EmailIcon"), #imageLiteral(resourceName: "PermissionIcon"), #imageLiteral(resourceName: "PrivacyPolicyIcon.png"), #imageLiteral(resourceName: "TermsAndConditionsIcon")]
 
     
     override func viewDidLoad() {
@@ -22,8 +22,6 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
         
         profileTableView.delegate = self
         profileTableView.dataSource = self
-        profileTableView.beginUpdates()
-        profileTableView.endUpdates()
 
         // Do any additional setup after loading the view.
     }
@@ -36,7 +34,7 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let cell = profileTableView.dequeueReusableCell(withIdentifier: "profile")
         
         cell?.textLabel?.text = profileSettings[indexPath.row]
-        
+//        cell?.imageView?.image = profileImages[indexPath.row]
         return cell!
     }
 
