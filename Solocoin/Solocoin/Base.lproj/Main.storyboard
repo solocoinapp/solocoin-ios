@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Pc-xg-JC9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QKd-3V-mPb">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -753,46 +753,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yao-CA-mbi">
-                                <rect key="frame" x="0.0" y="773" width="414" height="49"/>
-                                <items>
-                                    <barButtonItem style="plain" id="bZG-a3-4Vp">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rSJ-9Q-Vol">
-                                            <rect key="frame" x="20" y="5" width="57" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <state key="normal" image="ic_home_tab"/>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="qsU-h5-POr">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Awf-Sx-5ZB">
-                                            <rect key="frame" x="77" y="5" width="137" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <accessibility key="accessibilityConfiguration">
-                                                <accessibilityTraits key="traits" button="YES" image="YES"/>
-                                            </accessibility>
-                                            <state key="normal" image="ic_wallet_tab"/>
-                                        </button>
-                                        <connections>
-                                            <segue destination="imi-9z-lpv" kind="show" id="fcn-Tz-bGe"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="8i2-XE-Fcf">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="58Z-5p-3dQ">
-                                            <rect key="frame" x="214" y="5" width="79" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="ic_leader_tab"/>
-                                        </button>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" id="92N-db-qCL">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VUp-kJ-I57">
-                                            <rect key="frame" x="343" y="5" width="51" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" image="ic_profile_tab"/>
-                                        </button>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nBM-3f-eZq" userLabel="LanguageSV">
                                 <rect key="frame" x="299" y="14" width="95" height="39"/>
                                 <subviews>
@@ -905,10 +865,22 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UlD-ay-Ddo">
+                                <rect key="frame" x="0.0" y="765" width="414" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="" selectedImage="ic_wallet_tab" id="LKP-WP-UIG">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="ic_wallet_tab"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </tabBarItem>
+                                    <tabBarItem systemItem="search" id="Mvw-UZ-7TF"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="yao-CA-mbi" secondAttribute="bottom" constant="20" id="43L-Cb-vYQ"/>
                             <constraint firstItem="7EH-sn-Edy" firstAttribute="top" secondItem="e7w-CF-7X6" secondAttribute="top" id="4Fw-fQ-a30"/>
                             <constraint firstItem="GDX-7y-62v" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e7w-CF-7X6" secondAttribute="leading" id="4ru-em-e2f"/>
                             <constraint firstItem="kDx-1u-zYU" firstAttribute="centerX" secondItem="e7w-CF-7X6" secondAttribute="centerX" id="BuI-Uv-7Q3"/>
@@ -926,11 +898,9 @@
                             <constraint firstItem="kDx-1u-zYU" firstAttribute="top" secondItem="KU3-jC-J5L" secondAttribute="top" constant="25" id="XN9-Wx-NRS"/>
                             <constraint firstItem="7EH-sn-Edy" firstAttribute="leading" secondItem="KU3-jC-J5L" secondAttribute="leading" id="Z3K-DX-zvq"/>
                             <constraint firstItem="7EH-sn-Edy" firstAttribute="trailing" secondItem="KU3-jC-J5L" secondAttribute="trailing" id="ZQi-dJ-txg"/>
-                            <constraint firstItem="yao-CA-mbi" firstAttribute="leading" secondItem="KU3-jC-J5L" secondAttribute="leading" id="a2j-7m-epb"/>
                             <constraint firstItem="JiO-IH-PDP" firstAttribute="top" secondItem="KU3-jC-J5L" secondAttribute="top" constant="10" id="ap3-Eh-Azw"/>
                             <constraint firstItem="GDX-7y-62v" firstAttribute="top" secondItem="ghf-of-L4p" secondAttribute="bottom" constant="40" id="d2c-vO-eA8"/>
                             <constraint firstItem="oSZ-2U-Ko1" firstAttribute="top" secondItem="7EH-sn-Edy" secondAttribute="bottom" constant="100" id="g9U-Ka-avg"/>
-                            <constraint firstItem="yao-CA-mbi" firstAttribute="trailing" secondItem="KU3-jC-J5L" secondAttribute="trailing" id="hPa-yy-OKm"/>
                             <constraint firstItem="dxE-67-Hhx" firstAttribute="centerX" secondItem="e7w-CF-7X6" secondAttribute="centerX" id="owz-Sd-IAK"/>
                             <constraint firstItem="GDX-7y-62v" firstAttribute="centerX" secondItem="e7w-CF-7X6" secondAttribute="centerX" id="oxu-qc-Bk0"/>
                             <constraint firstAttribute="trailing" secondItem="GDX-7y-62v" secondAttribute="trailing" constant="10" id="tTG-gE-8BK"/>
@@ -942,7 +912,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="qKh-ak-KBM"/>
                     <connections>
-                        <outlet property="Toolbar" destination="yao-CA-mbi" id="uQZ-o2-gn5"/>
                         <outletCollection property="languageOptions" destination="UkO-cH-Sxg" collectionClass="NSMutableArray" id="b9c-Nb-0Pp"/>
                         <outletCollection property="languageOptions" destination="VW8-k2-Zj9" collectionClass="NSMutableArray" id="5Fx-1B-Qkn"/>
                         <outletCollection property="languageOptions" destination="Ptg-UR-MKy" collectionClass="NSMutableArray" id="gFc-9L-8tC"/>
@@ -957,7 +926,7 @@
             <objects>
                 <viewController id="imi-9z-lpv" userLabel="WalletsPage" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l27-E2-tEd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RedColor" translatesAutoresizingMaskIntoConstraints="NO" id="SM7-fi-Bl4" userLabel="NavigationBar">
@@ -967,14 +936,14 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_app_logo_nav_bar" translatesAutoresizingMaskIntoConstraints="NO" id="2b7-7L-Uit">
-                                <rect key="frame" x="30" y="10" width="50" height="50"/>
+                                <rect key="frame" x="30" y="54" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Jag-R3-0GS"/>
                                     <constraint firstAttribute="width" constant="50" id="lMw-Uk-bU0"/>
                                 </constraints>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ME1-zh-Fnq">
-                                <rect key="frame" x="0.0" y="773" width="414" height="49"/>
+                                <rect key="frame" x="0.0" y="827" width="414" height="49"/>
                                 <items>
                                     <barButtonItem style="plain" id="8A1-JK-xIc">
                                         <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vkO-UQ-sNk">
@@ -1011,7 +980,7 @@
                                 </items>
                             </toolbar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lg0-WE-FGM" userLabel="LanguageSV">
-                                <rect key="frame" x="394" y="14" width="0.0" height="0.0"/>
+                                <rect key="frame" x="394" y="58" width="0.0" height="0.0"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0Z-a5-ejX">
                                         <rect key="frame" x="-10" y="0.0" width="70" height="0.0"/>
@@ -1043,7 +1012,7 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qgH-FP-PB0">
-                                <rect key="frame" x="5" y="451" width="404" height="314"/>
+                                <rect key="frame" x="5" y="451" width="404" height="368"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1087,7 +1056,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WALLET" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Vy-uT-lKa">
-                                <rect key="frame" x="157.66666666666666" y="25" width="98.666666666666657" height="30"/>
+                                <rect key="frame" x="157.66666666666666" y="69" width="98.666666666666657" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1259,7 +1228,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="ic_profile_tab"/>
                                             <connections>
-                                                <segue destination="5Pc-xg-JC9" kind="show" id="xqL-1h-gl1"/>
+                                                <segue destination="5Pc-xg-JC9" kind="show" id="qsx-nG-5Hv"/>
                                             </connections>
                                         </button>
                                     </barButtonItem>
@@ -1541,6 +1510,9 @@
             <point key="canvasLocation" x="2770" y="1031"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="vDh-nN-0tz"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="AppleMaps" width="225" height="225"/>
         <image name="CalendarIcon" width="214" height="236"/>
@@ -1561,7 +1533,4 @@
         <image name="ic_profile_tab" width="25" height="25"/>
         <image name="ic_wallet_tab" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="vDh-nN-0tz"/>
-    </inferredMetricsTieBreakers>
 </document>
