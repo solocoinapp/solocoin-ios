@@ -17,8 +17,9 @@ class LandingPageController: UIPageViewController, UIPageViewControllerDataSourc
         let landPage1 = sb.instantiateViewController(withIdentifier: "LandingPage1")
         let landPage2 = sb.instantiateViewController(withIdentifier: "LandingPage2")
         let landPage3 = sb.instantiateViewController(withIdentifier: "LandingPage3")
+        let landPage4 = sb.instantiateViewController(withIdentifier: "LandingPage4")
         
-        return [landPage1, landPage2, landPage3]
+        return [landPage1, landPage2, landPage3, landPage4]
         
     }()
     
