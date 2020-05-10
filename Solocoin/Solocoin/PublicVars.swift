@@ -11,18 +11,20 @@ import UIKit
 
 struct publicVars {
     
-    //MARK: - OTP2ControllerVars
+    //MARK: OTP2ControllerVars
     static var mobileNumber: String = ""
     
-    
-    //MARK: - SignUpControllerVars
+    //MARK: SignUpControllerVars
     static var fullNameSignUp: String = ""
     static var emailSignUp: String = ""
     static var genderSignUp: String = ""
     static var hasGender: Bool = false
     static var whichGenderSegment: Int = 0
     
-    //MARK: - GeofencingControllerVars
+    //MARK: GeofencingControllerVars
     static var showNotifications: Bool = false
+    
+    //MARK: HomePage1
 
+    
 }
