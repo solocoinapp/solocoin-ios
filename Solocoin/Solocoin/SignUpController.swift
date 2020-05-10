@@ -30,14 +30,12 @@ class SignUpController: UIViewController {
     @IBAction func genderClicked(_ sender: Any) {
         publicVars.hasGender = true
         publicVars.whichGenderSegment = signUpGender.selectedSegmentIndex
-        }
+    }
 
     @IBAction func accountCreated(_ sender: Any) {
         // VARIABLES
         publicVars.fullNameSignUp = fullName.text!
         publicVars.emailSignUp = signUpEmail.text!
- //       publicVars.birthSignUp = signUpBirth.text!
-        // GENDER
         if publicVars.hasGender == true {
             publicVars.genderSignUp = signUpGender.titleForSegment(at: publicVars.whichGenderSegment) ?? "error"
             print(publicVars.genderSignUp)

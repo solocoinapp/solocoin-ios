@@ -933,7 +933,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="tsF-Cx-tmf">
-                                <rect key="frame" x="5" y="341.66666666666669" width="404" height="66"/>
+                                <rect key="frame" x="5" y="361.66666666666669" width="404" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="GY0-Tx-zmq"/>
                                 </constraints>
@@ -941,80 +941,73 @@
                                     <segment title="Daily"/>
                                     <segment title="Weekly"/>
                                 </segments>
+                                <connections>
+                                    <action selector="questionChanged:" destination="5Jq-y0-Jlc" eventType="valueChanged" id="5Ea-8e-uEE"/>
+                                </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6. What is the best way to minimize the risk of coronavirus?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LT-K2-HvP">
-                                <rect key="frame" x="10" y="436.66666666666669" width="394" height="52.666666666666686"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is the best way to minimize the risk of coronavirus?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LT-K2-HvP">
+                                <rect key="frame" x="10" y="466.66666666666669" width="394" height="52.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="VHh-eg-mhe">
-                                <rect key="frame" x="25" y="519.33333333333337" width="364" height="236"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="VHh-eg-mhe" userLabel="AnswersSV">
+                                <rect key="frame" x="20" y="549.33333333333337" width="374" height="245"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="A. Social Distancing" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ndj-Er-iLi">
-                                        <rect key="frame" x="0.0" y="0.0" width="364" height="50"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" button="YES"/>
-                                        </accessibility>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bET-Dr-VvH" userLabel="Answer1">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="8NV-e0-e3E"/>
+                                            <constraint firstAttribute="height" constant="50" id="gZK-1U-d7t"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="B. Meeting small, regular groups" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Znk-3D-sIF">
-                                        <rect key="frame" x="0.0" y="62" width="364" height="50"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" button="YES"/>
-                                        </accessibility>
+                                        <state key="normal" title="  A. Social Distancing">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="firstAnswerSelected:" destination="5Jq-y0-Jlc" eventType="touchUpInside" id="OAU-ZD-uOA"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KD-6n-lA5" userLabel="Answer2">
+                                        <rect key="frame" x="0.0" y="65" width="374" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="8iO-4P-FrG"/>
+                                            <constraint firstAttribute="height" constant="50" id="CWh-qm-gHo"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="C. Continue as usual" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cXD-cc-URn">
-                                        <rect key="frame" x="0.0" y="124" width="364" height="50"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" button="YES"/>
-                                        </accessibility>
+                                        <state key="normal" title="  B. Meeting small, regular groups">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="secondAnswerSelected:" destination="5Jq-y0-Jlc" eventType="touchUpInside" id="Vt2-Z8-ZIL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nn0-GU-Qis" userLabel="Answer3">
+                                        <rect key="frame" x="0.0" y="130" width="374" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="4cj-lE-Anc"/>
+                                            <constraint firstAttribute="height" constant="50" id="3eg-lD-7Wz"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="D. No clue" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FqC-gv-Nuv">
-                                        <rect key="frame" x="0.0" y="186" width="364" height="50"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" button="YES"/>
-                                        </accessibility>
+                                        <state key="normal" title="  C. Continue as usual">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="thirdAnswerSelected:" destination="5Jq-y0-Jlc" eventType="touchUpInside" id="ZTP-3L-f3h"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdL-zp-hbt" userLabel="Answer4">
+                                        <rect key="frame" x="0.0" y="195" width="374" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="5o4-Gd-Wdu"/>
+                                            <constraint firstAttribute="height" constant="50" id="UJv-ab-jlR"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <state key="normal" title="  D. No clue">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="fourthAnswerSelected:" destination="5Jq-y0-Jlc" eventType="touchUpInside" id="Nen-Xw-dKD"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uMg-EH-FO5">
-                                <rect key="frame" x="143" y="456" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BNOBOBO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tip-Jm-tzu">
-                                        <rect key="frame" x="99" y="53" width="83" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bET-Dr-VvH">
-                                <rect key="frame" x="29" y="341.66666666666669" width="292" height="45"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -1022,30 +1015,26 @@
                             <constraint firstItem="7EH-sn-Edy" firstAttribute="top" secondItem="e7w-CF-7X6" secondAttribute="top" id="4Fw-fQ-a30"/>
                             <constraint firstItem="tsF-Cx-tmf" firstAttribute="centerX" secondItem="e7w-CF-7X6" secondAttribute="centerX" id="510-aN-Xno"/>
                             <constraint firstItem="VHh-eg-mhe" firstAttribute="centerX" secondItem="e7w-CF-7X6" secondAttribute="centerX" id="7UB-Eh-a2m"/>
-                            <constraint firstItem="0LT-K2-HvP" firstAttribute="top" secondItem="tsF-Cx-tmf" secondAttribute="bottom" constant="30" id="Bf4-DG-jBJ"/>
+                            <constraint firstItem="0LT-K2-HvP" firstAttribute="top" secondItem="tsF-Cx-tmf" secondAttribute="bottom" constant="40" id="Bf4-DG-jBJ"/>
                             <constraint firstItem="kDx-1u-zYU" firstAttribute="centerX" secondItem="e7w-CF-7X6" secondAttribute="centerX" id="BuI-Uv-7Q3"/>
-                            <constraint firstItem="bET-Dr-VvH" firstAttribute="leading" secondItem="KU3-jC-J5L" secondAttribute="leading" constant="29" id="BvM-tf-f54"/>
                             <constraint firstItem="KU3-jC-J5L" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tsF-Cx-tmf" secondAttribute="trailing" id="FkI-5y-lRb"/>
                             <constraint firstItem="oSZ-2U-Ko1" firstAttribute="centerX" secondItem="e7w-CF-7X6" secondAttribute="centerX" id="KPE-h6-Vvb"/>
                             <constraint firstItem="tsF-Cx-tmf" firstAttribute="leading" secondItem="KU3-jC-J5L" secondAttribute="leading" constant="5" id="KTY-Yg-VTZ"/>
-                            <constraint firstItem="VHh-eg-mhe" firstAttribute="top" secondItem="0LT-K2-HvP" secondAttribute="bottom" constant="30" id="LiD-Mm-w1c"/>
                             <constraint firstItem="nBM-3f-eZq" firstAttribute="top" secondItem="KU3-jC-J5L" secondAttribute="top" constant="14" id="Lmi-i7-q41"/>
                             <constraint firstItem="JiO-IH-PDP" firstAttribute="leading" secondItem="KU3-jC-J5L" secondAttribute="leading" constant="25" id="OkG-NH-GNl"/>
+                            <constraint firstItem="57X-Cn-P4r" firstAttribute="top" secondItem="VHh-eg-mhe" secondAttribute="bottom" constant="32.670000000000002" id="QW0-ix-pnK"/>
                             <constraint firstItem="CD6-yr-KSY" firstAttribute="leading" secondItem="KU3-jC-J5L" secondAttribute="leading" constant="10" id="RDv-c8-Ur8"/>
-                            <constraint firstItem="0LT-K2-HvP" firstAttribute="top" secondItem="bET-Dr-VvH" secondAttribute="bottom" constant="50" id="Rjf-zK-Bce"/>
                             <constraint firstItem="KU3-jC-J5L" firstAttribute="trailing" secondItem="nBM-3f-eZq" secondAttribute="trailing" constant="25" id="WaQ-Qs-usF"/>
                             <constraint firstItem="kDx-1u-zYU" firstAttribute="top" secondItem="KU3-jC-J5L" secondAttribute="top" constant="20" id="XN9-Wx-NRS"/>
-                            <constraint firstItem="bET-Dr-VvH" firstAttribute="top" secondItem="ZiX-Tf-bec" secondAttribute="bottom" constant="30" id="Xi9-X8-jIi"/>
                             <constraint firstItem="7EH-sn-Edy" firstAttribute="leading" secondItem="KU3-jC-J5L" secondAttribute="leading" id="Z3K-DX-zvq"/>
                             <constraint firstItem="7EH-sn-Edy" firstAttribute="trailing" secondItem="KU3-jC-J5L" secondAttribute="trailing" id="ZQi-dJ-txg"/>
                             <constraint firstItem="JiO-IH-PDP" firstAttribute="top" secondItem="KU3-jC-J5L" secondAttribute="top" constant="10" id="ap3-Eh-Azw"/>
-                            <constraint firstItem="tsF-Cx-tmf" firstAttribute="top" secondItem="ZiX-Tf-bec" secondAttribute="bottom" constant="30" id="fud-sX-9vX"/>
+                            <constraint firstItem="tsF-Cx-tmf" firstAttribute="top" secondItem="ZiX-Tf-bec" secondAttribute="bottom" constant="50" id="fud-sX-9vX"/>
                             <constraint firstItem="oSZ-2U-Ko1" firstAttribute="top" secondItem="7EH-sn-Edy" secondAttribute="bottom" constant="40" id="g9U-Ka-avg"/>
                             <constraint firstItem="ZiX-Tf-bec" firstAttribute="top" secondItem="oSZ-2U-Ko1" secondAttribute="bottom" constant="30" id="hH5-Go-fCB"/>
-                            <constraint firstItem="KU3-jC-J5L" firstAttribute="trailing" secondItem="VHh-eg-mhe" secondAttribute="trailing" constant="25" id="hfP-Xk-Vea"/>
-                            <constraint firstItem="KU3-jC-J5L" firstAttribute="trailing" secondItem="bET-Dr-VvH" secondAttribute="trailing" constant="93" id="iKE-tE-7Mw"/>
+                            <constraint firstItem="KU3-jC-J5L" firstAttribute="trailing" secondItem="VHh-eg-mhe" secondAttribute="trailing" constant="20" id="hfP-Xk-Vea"/>
                             <constraint firstItem="0LT-K2-HvP" firstAttribute="centerX" secondItem="e7w-CF-7X6" secondAttribute="centerX" id="iZQ-zc-TDs"/>
-                            <constraint firstItem="VHh-eg-mhe" firstAttribute="leading" secondItem="KU3-jC-J5L" secondAttribute="leading" constant="25" id="iZV-hd-85e"/>
+                            <constraint firstItem="VHh-eg-mhe" firstAttribute="leading" secondItem="KU3-jC-J5L" secondAttribute="leading" constant="20" id="iZV-hd-85e"/>
                             <constraint firstItem="ZiX-Tf-bec" firstAttribute="centerX" secondItem="e7w-CF-7X6" secondAttribute="centerX" id="ld4-G0-Hlo"/>
                             <constraint firstAttribute="trailing" secondItem="0LT-K2-HvP" secondAttribute="trailing" constant="10" id="pmT-rL-69k"/>
                             <constraint firstItem="CD6-yr-KSY" firstAttribute="top" secondItem="7EH-sn-Edy" secondAttribute="bottom" constant="10" id="tXB-mL-1Bb"/>
@@ -1057,9 +1046,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="qKh-ak-KBM"/>
                     <connections>
-                        <outlet property="button" destination="bET-Dr-VvH" id="sde-V7-Ifo"/>
+                        <outlet property="answer1" destination="bET-Dr-VvH" id="hly-02-2B4"/>
+                        <outlet property="answer2" destination="6KD-6n-lA5" id="GaF-Vk-wgE"/>
+                        <outlet property="answer3" destination="Nn0-GU-Qis" id="ivv-MH-MqK"/>
+                        <outlet property="answer4" destination="FdL-zp-hbt" id="GxJ-bI-ZdG"/>
                         <outlet property="dailyWeekly" destination="tsF-Cx-tmf" id="G25-xa-Bh1"/>
-                        <outlet property="questionView" destination="uMg-EH-FO5" id="Prp-Qc-tjf"/>
+                        <outlet property="question" destination="0LT-K2-HvP" id="jGy-dp-ZFn"/>
                         <outletCollection property="languageOptions" destination="UkO-cH-Sxg" collectionClass="NSMutableArray" id="b9c-Nb-0Pp"/>
                         <outletCollection property="languageOptions" destination="VW8-k2-Zj9" collectionClass="NSMutableArray" id="5Fx-1B-Qkn"/>
                         <outletCollection property="languageOptions" destination="Ptg-UR-MKy" collectionClass="NSMutableArray" id="gFc-9L-8tC"/>

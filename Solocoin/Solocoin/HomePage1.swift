@@ -9,39 +9,102 @@
 import UIKit
 
 class HomePage1: UIViewController {
+    
+    //MARK: - IBOUTLETS
 
     @IBOutlet var languageOptions: [UIButton]!
 
     @IBOutlet weak var dailyWeekly: UISegmentedControl!
     
-    @IBOutlet weak var questionView: UIView!
+    //MARK: Question/Answer
+
+    @IBOutlet weak var question: UILabel!
     
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var answer1: UIButton!
     
-    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(gestureRecognized(gesture:)))
+    @IBOutlet weak var answer2: UIButton!
+    
+    @IBOutlet weak var answer3: UIButton!
+    
+    @IBOutlet weak var answer4: UIButton!
+    
+    //MARK: - DATA
+    
+    var answerButtons: [UIButton]!
+    
+    var dailyCorrectAnswer: UIButton!
+    
+    var weeklyCorrectAnswer: UIButton!
+    
+    //MARK: - FUNCTIONS
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        questionView.layer.borderColor = UIColor.lightGray.cgColor
-        questionView.layer.borderWidth = 1.0
-        questionView.layer.cornerRadius = 5.0
+        answerButtons = [answer1, answer2, answer3, answer4]
+
+        answerLayouts(answer: answer1)
+        answerLayouts(answer: answer2)
+        answerLayouts(answer: answer3)
+        answerLayouts(answer: answer4)
         
-        button.layer.borderColor = UIColor.systemGray4.cgColor
-        button.layer.borderWidth = 1.0
-        button.layer.cornerRadius = 5.0
-        
-        questionView.addGestureRecognizer(tapGesture)
+        dailyWeekly.selectedSegmentIndex = 1
+        dailyWeekly.selectedSegmentIndex = 0
         
         let font = UIFont.systemFont(ofSize: 23)
         dailyWeekly.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
 
     }
     
-
-    // Somewhere below in code put the method that is called when gesture is recognized
-    @objc func gestureRecognized(gesture: UITapGestureRecognizer) {
-        print("Great, it worked!")
+    func setCorrectAnswer() {
+    answerButtons.forEach {
+        // Reset the border on each button
+        $0.layer.borderColor = UIColor.systemGray4.cgColor
+        // Reset the tag on each button
+        $0.tag = 0
+    }
+        answerButtons[1].tag = 1
+    }
+    
+    func answerLayouts(answer: UIButton) {
+        answer.layer.borderColor = UIColor.systemGray4.cgColor
+        answer.layer.borderWidth = 1.0
+        answer.layer.cornerRadius = 5.0
+    }
+    
+    //MARK: - ACTIONS
+    
+    @IBAction func questionChanged(_ sender: Any) {
+        
+        if dailyWeekly.selectedSegmentIndex == 0 {
+            question.text = "What is the best way to minimize the risk of coronavirus?"
+            answer1.setTitle("  A. Social Distancing", for: .normal)
+            answer2.setTitle("  B. Meeting small, regular groups", for: .normal)
+            answer3.setTitle("  C. Continue as usual", for: .normal)
+            answer4.setTitle("  D. No clue", for: .normal)
+            dailyCorrectAnswer = answer1
+            
+            answerLayouts(answer: answer1)
+            answerLayouts(answer: answer2)
+            answerLayouts(answer: answer3)
+            answerLayouts(answer: answer4)
+            
+        }
+        
+        if dailyWeekly.selectedSegmentIndex == 1 {
+            question.text = "How long should I wash my hands?"
+            answer1.setTitle("  A. Around 5 seconds with soap", for: .normal)
+            answer2.setTitle("  B. Around 20 seconds with soap", for: .normal)
+            answer3.setTitle("  C. For 15 seconds without soap", for: .normal)
+            answer4.setTitle("  D. I shouldn't - it wastes water", for: .normal)
+            weeklyCorrectAnswer = answer2
+            
+            answerLayouts(answer: answer1)
+            answerLayouts(answer: answer2)
+            answerLayouts(answer: answer3)
+            answerLayouts(answer: answer4)
+        
+        }
     }
     
     @IBAction func languagePressed(_ sender: UIButton) {
@@ -52,4 +115,36 @@ class HomePage1: UIViewController {
             }
         }
     }
+    
+    @IBAction func firstAnswerSelected(_ sender: Any) {
+        if dailyWeekly.selectedSegmentIndex == 0{
+            if dailyCorrectAnswer == answer1 {
+                answer1.layer.borderColor = UIColor.green.cgColor
+                answer1.layer.borderWidth = 3.0
+            }
+        }
+        if dailyWeekly.selectedSegmentIndex == 1{
+            if dailyCorrectAnswer == answer2 {
+                answer2.layer.borderColor = UIColor.green.cgColor
+                answer2.layer.borderWidth = 5.0
+            }
+            else {
+                
+            }
+        }
+    }
+    
+    @IBAction func secondAnswerSelected(_ sender: Any) {
+        if dailyCorrectAnswer == answer1 {
+            answer1.layer.borderColor = UIColor.green.cgColor
+        }
+    }
+    
+    @IBAction func thirdAnswerSelected(_ sender: Any) {
+    }
+
+    @IBAction func fourthAnswerSelected(_ sender: Any) {
+    }
+    
+    
 }
