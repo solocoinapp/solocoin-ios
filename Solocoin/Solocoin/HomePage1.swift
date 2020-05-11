@@ -146,5 +146,4 @@ class HomePage1: UIViewController {
     @IBAction func fourthAnswerSelected(_ sender: Any) {
     }
     
-    
 }
