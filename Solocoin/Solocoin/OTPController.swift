@@ -21,7 +21,6 @@ class OTPController: UIViewController {
         view.addGestureRecognizer(endEditing)
     }
 
-    
     @IBAction func OTPNext(_ sender: Any) {
         guard let _ = mobileNumber else {return}
         publicVars.mobileNumber = mobileNumber.text!

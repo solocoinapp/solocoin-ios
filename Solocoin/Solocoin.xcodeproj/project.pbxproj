@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		68213D1B2457FD1E008B30A1 /* PermissionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68213D1A2457FD1D008B30A1 /* PermissionsController.swift */; };
+		68872A152468CC70005348B4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68872A142468CC70005348B4 /* UIViewExtension.swift */; };
 		68B1D8712453ACDC007ECC01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8702453ACDC007ECC01 /* AppDelegate.swift */; };
 		68B1D8732453ACDC007ECC01 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */; };
 		68B1D8782453ACDC007ECC01 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68B1D8762453ACDC007ECC01 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		68213D1A2457FD1D008B30A1 /* PermissionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsController.swift; sourceTree = "<group>"; };
+		68872A142468CC70005348B4 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		68B1D86D2453ACDC007ECC01 /* Solocoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Solocoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68B1D8702453ACDC007ECC01 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			children = (
 				68B1D8702453ACDC007ECC01 /* AppDelegate.swift */,
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
+				68872A142468CC70005348B4 /* UIViewExtension.swift */,
 				68B1D8762453ACDC007ECC01 /* Main.storyboard */,
 				68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */,
 				68B1D88924540C5F007ECC01 /* OTPController.swift */,
@@ -174,6 +177,7 @@
 				68D2ED7C245B3FAA00F39655 /* ProfilePage.swift in Sources */,
 				68B1D8C6245425FA007ECC01 /* OTP2Controller.swift in Sources */,
 				68B1D8CF24551915007ECC01 /* SignUpController.swift in Sources */,
+				68872A152468CC70005348B4 /* UIViewExtension.swift in Sources */,
 				68B1D8D124551A5E007ECC01 /* PublicVars.swift in Sources */,
 				68B1D87B2453ACDC007ECC01 /* Solocoin.xcdatamodeld in Sources */,
 				68B1D8882453B4BA007ECC01 /* LandingPagesController.swift in Sources */,
