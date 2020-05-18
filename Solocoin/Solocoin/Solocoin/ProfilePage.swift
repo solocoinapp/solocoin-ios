@@ -12,7 +12,7 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
     
     @IBOutlet weak var profileTableView: UITableView!
     
-    var profileSettings = ["Profile", "Invite", "Permissions", "Privacy Policy", "Terms & Conditions"]
+    var profileSettings = ["Profile", "Rewards History", "Invite", "Permissions", "Privacy Policy", "Terms & Conditions"]
     
 //    let profileImages: [UIImage] = [#imageLiteral(resourceName: "PeopleIcon"), #imageLiteral(resourceName: "EmailIcon"), #imageLiteral(resourceName: "PermissionIcon"), #imageLiteral(resourceName: "PrivacyPolicyIcon.png"), #imageLiteral(resourceName: "TermsAndConditionsIcon")]
 
