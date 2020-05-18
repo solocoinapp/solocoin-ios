@@ -48,13 +48,18 @@ class HomePage1: UIViewController {
         answerLayouts(answer: answer3)
         answerLayouts(answer: answer4)
         
-        dailyWeekly.selectedSegmentIndex = 1
+        dailyCorrectAnswer = answer1
+        weeklyCorrectAnswer = answer2
+        
         dailyWeekly.selectedSegmentIndex = 0
         
         let font = UIFont.systemFont(ofSize: 23)
         dailyWeekly.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
 
+        
     }
+    
+    
     
     func setCorrectAnswer() {
     answerButtons.forEach {
@@ -66,11 +71,13 @@ class HomePage1: UIViewController {
         answerButtons[1].tag = 1
     }
     
+    
     func answerLayouts(answer: UIButton) {
         answer.layer.borderColor = UIColor.systemGray4.cgColor
         answer.layer.borderWidth = 1.0
         answer.layer.cornerRadius = 5.0
     }
+    
     
     //MARK: - ACTIONS
     
@@ -82,13 +89,11 @@ class HomePage1: UIViewController {
             answer2.setTitle("  B. Meeting small, regular groups", for: .normal)
             answer3.setTitle("  C. Continue as usual", for: .normal)
             answer4.setTitle("  D. No clue", for: .normal)
-            dailyCorrectAnswer = answer1
             
             answerLayouts(answer: answer1)
             answerLayouts(answer: answer2)
             answerLayouts(answer: answer3)
             answerLayouts(answer: answer4)
-            
         }
         
         if dailyWeekly.selectedSegmentIndex == 1 {
@@ -97,7 +102,7 @@ class HomePage1: UIViewController {
             answer2.setTitle("  B. Around 20 seconds with soap", for: .normal)
             answer3.setTitle("  C. For 15 seconds without soap", for: .normal)
             answer4.setTitle("  D. I shouldn't - it wastes water", for: .normal)
-            weeklyCorrectAnswer = answer2
+            
             
             answerLayouts(answer: answer1)
             answerLayouts(answer: answer2)
@@ -115,35 +120,5 @@ class HomePage1: UIViewController {
             }
         }
     }
-    
-    @IBAction func firstAnswerSelected(_ sender: Any) {
-        if dailyWeekly.selectedSegmentIndex == 0{
-            if dailyCorrectAnswer == answer1 {
-                answer1.layer.borderColor = UIColor.green.cgColor
-                answer1.layer.borderWidth = 3.0
-            }
-        }
-        if dailyWeekly.selectedSegmentIndex == 1{
-            if dailyCorrectAnswer == answer2 {
-                answer2.layer.borderColor = UIColor.green.cgColor
-                answer2.layer.borderWidth = 5.0
-            }
-            else {
-                
-            }
-        }
-    }
-    
-    @IBAction func secondAnswerSelected(_ sender: Any) {
-        if dailyCorrectAnswer == answer1 {
-            answer1.layer.borderColor = UIColor.green.cgColor
-        }
-    }
-    
-    @IBAction func thirdAnswerSelected(_ sender: Any) {
-    }
 
-    @IBAction func fourthAnswerSelected(_ sender: Any) {
-    }
-    
 }
