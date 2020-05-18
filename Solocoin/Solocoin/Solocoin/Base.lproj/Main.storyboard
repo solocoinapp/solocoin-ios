@@ -1345,6 +1345,9 @@
                                                                             <accessibilityTraits key="traits" button="YES" image="YES"/>
                                                                         </accessibility>
                                                                         <state key="normal" image="Amazon"/>
+                                                                        <connections>
+                                                                            <segue destination="1fG-sf-6rY" kind="show" id="uvy-NV-Tii"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1386,6 +1389,9 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u80-0I-63a" userLabel="FashionBrands">
                                                                         <rect key="frame" x="5" y="15" width="140" height="100"/>
                                                                         <state key="normal" image="FashionBrands"/>
+                                                                        <connections>
+                                                                            <segue destination="1fG-sf-6rY" kind="show" id="zwd-wa-nyt"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1427,6 +1433,9 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqr-Rd-p3t" userLabel="FashionBrands">
                                                                         <rect key="frame" x="5" y="15" width="140" height="100"/>
                                                                         <state key="normal" image="FashionBrands"/>
+                                                                        <connections>
+                                                                            <segue destination="1fG-sf-6rY" kind="show" id="Hfb-b6-lRH"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1473,6 +1482,9 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNa-Nl-vVk" userLabel="Flipkart">
                                                                         <rect key="frame" x="5" y="15" width="140" height="100"/>
                                                                         <state key="normal" image="Flipkart"/>
+                                                                        <connections>
+                                                                            <segue destination="1fG-sf-6rY" kind="show" id="nUx-oX-6Ir"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1514,6 +1526,9 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Esn-Ou-Lf1" userLabel="Jio">
                                                                         <rect key="frame" x="5" y="15" width="140" height="100"/>
                                                                         <state key="normal" image="Jio"/>
+                                                                        <connections>
+                                                                            <segue destination="1fG-sf-6rY" kind="show" id="Lmh-ge-gvk"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1555,6 +1570,9 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="raJ-zv-Ff7" userLabel="Zomato">
                                                                         <rect key="frame" x="5" y="15" width="140" height="100"/>
                                                                         <state key="normal" image="Zomato"/>
+                                                                        <connections>
+                                                                            <segue destination="1fG-sf-6rY" kind="show" id="6ZI-0c-RqW"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1596,6 +1614,9 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1D8-qK-33C" userLabel="Zomato">
                                                                         <rect key="frame" x="5" y="15" width="140" height="100"/>
                                                                         <state key="normal" image="Zomato"/>
+                                                                        <connections>
+                                                                            <segue destination="1fG-sf-6rY" kind="show" id="ZXV-tb-ioz"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -2190,6 +2211,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vDh-nN-0tz"/>
+        <segue reference="ZXV-tb-ioz"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Amazon" width="588" height="340"/>
