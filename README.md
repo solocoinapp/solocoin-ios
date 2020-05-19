@@ -15,25 +15,3 @@ Adding one more thing if want to use alamofire or any third party lib
 try to use it with a wrapper class over it so that if we want to change at any point of time, it will be easy and without breaking anything it can be changed.
 
 Don't change the layout of the different objects in the app through code, as that will be changed and removed when making the switch to storyboard.
-
-Finished Tasks:
-
-1. Landing Pages
-2. OTP Base Verification
-3. Sign Up UI
-4. Notification and Location permissions
-5. Home Page
-6. Wallet Page
-7. Leaderboard/Rewards Page
-8. Profile Page
-
-Important To Do Tasks:
-
-1. Question Backend Database Implementation
-2. Sign Up Backend Database Implementation
-3. Leaderboard Backend Database Implementation
-4. Creating seperated paths for Profile Settings
-5. Creating and implementing rewards through backend
-6. Fixing Errors in Geofencing
-7. Getting the iOS Developer Account
-8. Publishing the App
