@@ -31,7 +31,7 @@ class Geofencing: UIViewController {
             let userLongitude = currentLocation?.coordinate.longitude
             let userLatitude = currentLocation?.coordinate.latitude
         
-            let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(userLatitude!, userLongitude!), radius: 200, identifier: "home")
+        guard let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(userLatitude!, userLongitude!), radius: 200, identifier: "home") else {return}
 
             locationManager.startMonitoring(for: geoFenceRegion)
     }
