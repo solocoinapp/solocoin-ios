@@ -1118,7 +1118,6 @@
                                             <rect key="frame" x="20" y="5" width="57" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <state key="normal" image="ic_home_tab"/>
                                         </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" id="fjo-AV-DY8">
