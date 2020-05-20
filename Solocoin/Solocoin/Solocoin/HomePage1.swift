@@ -55,11 +55,8 @@ class HomePage1: UIViewController {
         
         let font = UIFont.systemFont(ofSize: 23)
         dailyWeekly.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
-
         
     }
-    
-    
     
     func setCorrectAnswer() {
     answerButtons.forEach {
