@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20725A7B807EDD32944BBE9E /* Pods_Solocoin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD9BD85F0412AF4F088824A /* Pods_Solocoin.framework */; };
 		68213D1B2457FD1E008B30A1 /* PermissionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68213D1A2457FD1D008B30A1 /* PermissionsController.swift */; };
 		68872A152468CC70005348B4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68872A142468CC70005348B4 /* UIViewExtension.swift */; };
 		68B1D8712453ACDC007ECC01 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8702453ACDC007ECC01 /* AppDelegate.swift */; };
@@ -23,10 +24,14 @@
 		68B1D8D324565FD8007ECC01 /* HomePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D224565FD8007ECC01 /* HomePage1.swift */; };
 		68B1D8D52457707B007ECC01 /* Geofencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D42457707B007ECC01 /* Geofencing.swift */; };
 		68D2ED7C245B3FAA00F39655 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */; };
+		F544696E247AC10400477F72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F544696D247AC10400477F72 /* GoogleService-Info.plist */; };
 		F5D66FC92475A1EC00476863 /* MenuTBController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D66FC82475A1EC00476863 /* MenuTBController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A2330E3827520B4D0032661 /* Pods-Solocoin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Solocoin.release.xcconfig"; path = "Target Support Files/Pods-Solocoin/Pods-Solocoin.release.xcconfig"; sourceTree = "<group>"; };
+		5A8EC59CA352A3C678A64B14 /* Pods-Solocoin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Solocoin.debug.xcconfig"; path = "Target Support Files/Pods-Solocoin/Pods-Solocoin.debug.xcconfig"; sourceTree = "<group>"; };
+		5DD9BD85F0412AF4F088824A /* Pods_Solocoin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Solocoin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68213D1A2457FD1D008B30A1 /* PermissionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsController.swift; sourceTree = "<group>"; };
 		68872A142468CC70005348B4 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		68B1D86D2453ACDC007ECC01 /* Solocoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Solocoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +50,7 @@
 		68B1D8D224565FD8007ECC01 /* HomePage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage1.swift; sourceTree = "<group>"; };
 		68B1D8D42457707B007ECC01 /* Geofencing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geofencing.swift; sourceTree = "<group>"; };
 		68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
+		F544696D247AC10400477F72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/googleplists/solocoin/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F5D66FC82475A1EC00476863 /* MenuTBController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTBController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20725A7B807EDD32944BBE9E /* Pods_Solocoin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +71,8 @@
 			children = (
 				68B1D86F2453ACDC007ECC01 /* Solocoin */,
 				68B1D86E2453ACDC007ECC01 /* Products */,
+				9071B65EB06AE447E0EBA96F /* Pods */,
+				6FE5A0B389F6A001C3E05E76 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,10 +103,29 @@
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
 				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
+				F544696D247AC10400477F72 /* GoogleService-Info.plist */,
 				68B1D8812453ACDE007ECC01 /* Info.plist */,
 				68B1D8792453ACDC007ECC01 /* Solocoin.xcdatamodeld */,
 			);
 			path = Solocoin;
+			sourceTree = "<group>";
+		};
+		6FE5A0B389F6A001C3E05E76 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5DD9BD85F0412AF4F088824A /* Pods_Solocoin.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9071B65EB06AE447E0EBA96F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5A8EC59CA352A3C678A64B14 /* Pods-Solocoin.debug.xcconfig */,
+				4A2330E3827520B4D0032661 /* Pods-Solocoin.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,9 +135,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 68B1D8842453ACDE007ECC01 /* Build configuration list for PBXNativeTarget "Solocoin" */;
 			buildPhases = (
+				0C1605588AAA09FE541A27AB /* [CP] Check Pods Manifest.lock */,
 				68B1D8692453ACDC007ECC01 /* Sources */,
 				68B1D86A2453ACDC007ECC01 /* Frameworks */,
 				68B1D86B2453ACDC007ECC01 /* Resources */,
+				5EC6F6A63EA76A380CDC8AA6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -159,12 +189,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				68B1D8802453ACDE007ECC01 /* LaunchScreen.storyboard in Resources */,
+				F544696E247AC10400477F72 /* GoogleService-Info.plist in Resources */,
 				68B1D87D2453ACDE007ECC01 /* Assets.xcassets in Resources */,
 				68B1D8782453ACDC007ECC01 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0C1605588AAA09FE541A27AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Solocoin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5EC6F6A63EA76A380CDC8AA6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Solocoin/Pods-Solocoin-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Solocoin/Pods-Solocoin-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Solocoin/Pods-Solocoin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		68B1D8692453ACDC007ECC01 /* Sources */ = {
@@ -328,6 +401,7 @@
 		};
 		68B1D8852453ACDE007ECC01 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A8EC59CA352A3C678A64B14 /* Pods-Solocoin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -346,6 +420,7 @@
 		};
 		68B1D8862453ACDE007ECC01 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A2330E3827520B4D0032661 /* Pods-Solocoin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
