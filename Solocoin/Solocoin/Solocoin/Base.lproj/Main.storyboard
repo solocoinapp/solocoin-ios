@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QKd-3V-mPb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="y5H-9s-wQx">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -267,15 +267,20 @@
             </objects>
             <point key="canvasLocation" x="2063.768115942029" y="1030.5803571428571"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--MenuTB Controller-->
         <scene sceneID="AMM-uf-JJr">
             <objects>
-                <tabBarController id="y5H-9s-wQx" sceneMemberID="viewController">
+                <tabBarController id="y5H-9s-wQx" customClass="MenuTBController" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7DT-qF-e0p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="5Jq-y0-Jlc" kind="relationship" relationship="viewControllers" id="WIe-4M-YVs"/>
@@ -286,7 +291,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yQl-pn-3nh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7386" y="-291"/>
+            <point key="canvasLocation" x="6296" y="-291"/>
         </scene>
         <!--EnterMobile-->
         <scene sceneID="nZb-1s-4Kx">
@@ -1139,7 +1144,6 @@
                                             <rect key="frame" x="20" y="5" width="57" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <state key="normal" image="ic_home_tab"/>
                                         </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" id="fjo-AV-DY8">
@@ -1194,7 +1198,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KU3-jC-J5L"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="tabHome" id="Hcz-5F-cp7"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="tabHome" id="Hcz-5F-cp7">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="qKh-ak-KBM"/>
                     <connections>
                         <outlet property="answer1" destination="bET-Dr-VvH" id="hly-02-2B4"/>
@@ -1210,7 +1223,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMS-O0-ojF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5928" y="469"/>
+            <point key="canvasLocation" x="6296" y="371"/>
         </scene>
         <!--WalletsPage-->
         <scene sceneID="7BI-XZ-LaI">
@@ -1724,12 +1737,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cBP-6z-xkS"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Wallet" image="tabWallet" id="0wN-by-nHg"/>
+                    <tabBarItem key="tabBarItem" title="Wallet" image="tabWallet" id="0wN-by-nHg">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="QQk-Da-MRK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XbP-SA-BS8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6890" y="495"/>
+            <point key="canvasLocation" x="6980" y="371"/>
         </scene>
         <!--OfferDetails-->
         <scene sceneID="2N9-xA-Mz4">
@@ -1849,7 +1868,7 @@
                             <constraint firstAttribute="trailing" secondItem="7Qg-vU-0BU" secondAttribute="trailing" constant="5" id="91h-Wc-FVf"/>
                             <constraint firstItem="y3w-41-cJY" firstAttribute="top" secondItem="c9i-Tc-JbZ" secondAttribute="bottom" constant="20" id="CYo-cT-r66"/>
                             <constraint firstItem="UbD-4c-EUe" firstAttribute="centerX" secondItem="DkA-PI-2M2" secondAttribute="centerX" id="Jlz-Q2-MQL"/>
-                            <constraint firstItem="lTc-pZ-ROo" firstAttribute="trailing" secondItem="UbD-4c-EUe" secondAttribute="trailing" constant="125" id="Jzi-uI-Sdp"/>
+                            <constraint firstItem="lTc-pZ-ROo" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UbD-4c-EUe" secondAttribute="trailing" id="Jzi-uI-Sdp"/>
                             <constraint firstItem="UbD-4c-EUe" firstAttribute="leading" secondItem="lTc-pZ-ROo" secondAttribute="leading" constant="125" id="Kc1-ct-gpF"/>
                             <constraint firstItem="Sxy-rj-jLC" firstAttribute="leading" secondItem="lTc-pZ-ROo" secondAttribute="leading" constant="155" id="OEM-jb-uwE"/>
                             <constraint firstItem="UbD-4c-EUe" firstAttribute="top" secondItem="7Qg-vU-0BU" secondAttribute="bottom" constant="20" id="RCE-8o-czw"/>
@@ -1872,7 +1891,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VI3-e7-Hm7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7019" y="1233"/>
+            <point key="canvasLocation" x="6980" y="1031"/>
         </scene>
         <!--BadgesPage-->
         <scene sceneID="3HU-R3-sPz">
@@ -1946,7 +1965,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USn-E5-tni" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7661" y="1233"/>
+            <point key="canvasLocation" x="7661" y="1057"/>
         </scene>
         <!--LeaderboardPage-->
         <scene sceneID="CDm-fQ-rFD">
@@ -2252,12 +2271,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bml-Gu-5vR"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Leaderboard" image="tabTrophy" id="kjn-8s-fdy"/>
+                    <tabBarItem key="tabBarItem" title="Leaderboard" image="tabTrophy" id="kjn-8s-fdy">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="8Bh-yH-g8f"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HOg-Xs-ioF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7661" y="495"/>
+            <point key="canvasLocation" x="7661" y="371"/>
         </scene>
         <!--Profile-->
         <scene sceneID="1j6-6m-vIj">
@@ -2328,7 +2353,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nhr-mj-63E"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="tabProf" id="pVN-m8-RDI"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="tabProf" id="pVN-m8-RDI">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="oQU-04-PQG"/>
                     <connections>
                         <outlet property="profileTableView" destination="4pz-Zb-zBh" id="VsV-Lf-Aab"/>
@@ -2336,7 +2367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="As9-JI-clz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8342" y="495"/>
+            <point key="canvasLocation" x="8364" y="371"/>
         </scene>
         <!--Geofencing-->
         <scene sceneID="BMY-P6-XlU">
@@ -2367,7 +2398,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiB-8Z-XbU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6384" y="-291"/>
+            <point key="canvasLocation" x="6980" y="-291"/>
         </scene>
         <!--LandingPage4-->
         <scene sceneID="wGk-FJ-SHq">
@@ -2440,7 +2471,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vDh-nN-0tz"/>
-        <segue reference="l2C-ge-soG"/>
+        <segue reference="Xz4-Q5-4Az"/>
         <segue reference="ZXV-tb-ioz"/>
     </inferredMetricsTieBreakers>
     <resources>
