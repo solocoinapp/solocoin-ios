@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,7 +24,7 @@
 		68B1D8D324565FD8007ECC01 /* HomePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D224565FD8007ECC01 /* HomePage1.swift */; };
 		68B1D8D52457707B007ECC01 /* Geofencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D42457707B007ECC01 /* Geofencing.swift */; };
 		68D2ED7C245B3FAA00F39655 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */; };
-		F544696E247AC10400477F72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F544696D247AC10400477F72 /* GoogleService-Info.plist */; };
+		F5446970247AF7F900477F72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F544696F247AF7F900477F72 /* GoogleService-Info.plist */; };
 		F5D66FC92475A1EC00476863 /* MenuTBController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D66FC82475A1EC00476863 /* MenuTBController.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +50,7 @@
 		68B1D8D224565FD8007ECC01 /* HomePage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage1.swift; sourceTree = "<group>"; };
 		68B1D8D42457707B007ECC01 /* Geofencing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geofencing.swift; sourceTree = "<group>"; };
 		68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
-		F544696D247AC10400477F72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/googleplists/solocoin/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F544696F247AF7F900477F72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F5D66FC82475A1EC00476863 /* MenuTBController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTBController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,8 +102,8 @@
 				68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */,
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
 				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
+				F544696F247AF7F900477F72 /* GoogleService-Info.plist */,
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
-				F544696D247AC10400477F72 /* GoogleService-Info.plist */,
 				68B1D8812453ACDE007ECC01 /* Info.plist */,
 				68B1D8792453ACDC007ECC01 /* Solocoin.xcdatamodeld */,
 			);
@@ -124,7 +124,6 @@
 				5A8EC59CA352A3C678A64B14 /* Pods-Solocoin.debug.xcconfig */,
 				4A2330E3827520B4D0032661 /* Pods-Solocoin.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -189,7 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68B1D8802453ACDE007ECC01 /* LaunchScreen.storyboard in Resources */,
-				F544696E247AC10400477F72 /* GoogleService-Info.plist in Resources */,
+				F5446970247AF7F900477F72 /* GoogleService-Info.plist in Resources */,
 				68B1D87D2453ACDE007ECC01 /* Assets.xcassets in Resources */,
 				68B1D8782453ACDC007ECC01 /* Main.storyboard in Resources */,
 			);
