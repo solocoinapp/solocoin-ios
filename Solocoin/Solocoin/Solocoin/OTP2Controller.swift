@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class OTP2Controller: UIViewController {
  
@@ -23,7 +24,36 @@ class OTP2Controller: UIViewController {
     }
     
     @IBAction func Next(_ sender: Any) {
-        performSegue(withIdentifier: "SignUpController", sender: self)
+        print("in")
+        guard OTP.text! != "" else{
+            print("no otp entered, handle error")//handle this by showing a message or smth
+            return
+        }
+        print("in again")
+        guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else {
+            print("no ver id found") //highly unlikely but for safety
+            return
+        }
+        print("in againaga")
+        //initialisation for signin
+        let verificationCode = OTP.text!
+        let credential = PhoneAuthProvider.provider().credential(
+        withVerificationID: verificationID,
+        verificationCode: verificationCode)
+        //signin
+        print("in againfh")
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if error != nil{
+                print(error?.localizedDescription)
+            }else{
+                // User is signed in
+                // ...
+                print("signed in")
+                self.performSegue(withIdentifier: "SignUpController", sender: self)
+            }
+          
+        }
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
