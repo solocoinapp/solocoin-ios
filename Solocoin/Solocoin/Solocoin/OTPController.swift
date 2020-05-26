@@ -8,6 +8,7 @@
 
 import UIKit
 import AuthenticationServices
+import FirebaseAuth
 
 class OTPController: UIViewController {
 
@@ -22,15 +23,32 @@ class OTPController: UIViewController {
     }
 
     @IBAction func OTPNext(_ sender: Any) {
-        guard let _ = mobileNumber else {return}
+        print("in")
+        print(mobileNumber.text)
+        guard let _ = mobileNumber else {
+            print("whoops")
+            return
+        }
         publicVars.mobileNumber = mobileNumber.text!
         if isValidMobile(phone: publicVars.mobileNumber) == true {
-            performSegue(withIdentifier: "OTP2", sender: self)
+            //from firebase doc, we're verifying the phone number here and getting the provate veri code from firebase
+            PhoneAuthProvider.provider().verifyPhoneNumber(mobileNumber.text!, uiDelegate: nil) { (verificationID, error) in
+              if let error = error {
+                //self.showMessagePrompt(error.localizedDescription) //error handling function, just printing it to console for now
+                print(error.localizedDescription)
+                return
+              }
+              // Sign in using the verificationID and the code sent to the user
+              // ...
+                print("correct")
+                UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                self.performSegue(withIdentifier: "OTP2", sender: self)
+            }
            }
        }
 
     func isValidMobile(phone: String) -> Bool {
-        if phone.count == 10 {
+        if phone.count > 5 { //change accroding to country
             return true
         }
         else {
