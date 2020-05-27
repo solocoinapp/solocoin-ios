@@ -12,7 +12,6 @@ import FirebaseAuth
 
 class OTPController: UIViewController {
 
-    var mobileNum = ""
     
     @IBOutlet weak var mobileNumber: UITextField!
     
@@ -49,16 +48,16 @@ class OTPController: UIViewController {
                 UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
                 self.performSegue(withIdentifier: "OTP2", sender: self)
             }
-           }
-       }
+        }
+    }
 
     func isValidMobile(phone: String) -> Bool {
-        if phone.count > 5 { //change accroding to country
+        //if phone.count > 5 { //change according to country
             return true
-        }
-        else {
-            return false
-        }
+        //}
+        //else {
+           //return false
+        //}
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
