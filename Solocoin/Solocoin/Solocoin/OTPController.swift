@@ -23,24 +23,29 @@ class OTPController: UIViewController {
     }
 
     @IBAction func OTPNext(_ sender: Any) {
-        print("in")
         print(mobileNumber.text)
         guard let _ = mobileNumber else {
-            print("whoops")
             return
         }
-        publicVars.mobileNumber = mobileNumber.text!
+        //removing spaces if any in mobile number
+        var realno=""
+        for chr in mobileNumber.text!{
+            if chr != " " && chr != "-"{
+                realno+=String(chr)
+            }
+        }
+        
+        publicVars.mobileNumber = realno
         if isValidMobile(phone: publicVars.mobileNumber) == true {
             //from firebase doc, we're verifying the phone number here and getting the provate veri code from firebase
-            PhoneAuthProvider.provider().verifyPhoneNumber(mobileNumber.text!, uiDelegate: nil) { (verificationID, error) in
+            PhoneAuthProvider.provider().verifyPhoneNumber(realno, uiDelegate: nil) { (verificationID, error) in
               if let error = error {
                 //self.showMessagePrompt(error.localizedDescription) //error handling function, just printing it to console for now
-                print(error.localizedDescription)
+                print("error",error.localizedDescription)
                 return
               }
               // Sign in using the verificationID and the code sent to the user
               // ...
-                print("correct")
                 UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
                 self.performSegue(withIdentifier: "OTP2", sender: self)
             }
