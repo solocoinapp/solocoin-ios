@@ -28,6 +28,11 @@ class LandingPageController: UIPageViewController, UIPageViewControllerDataSourc
         super.viewDidLoad()
         
         self.dataSource = self
+        print(UserDefaults.standard.string(forKey: "uuid") ?? nil)
+        print(UserDefaults.standard.string(forKey: "authtoken") ?? nil)
+        if let uuid = UserDefaults.standard.string(forKey: "uuid"){
+            performSegue(withIdentifier: "toDashboard", sender: nil)
+        }
 
         if let firstViewController = viewControllerList.first {
         self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)

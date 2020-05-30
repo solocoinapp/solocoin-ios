@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QKd-3V-mPb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QKd-3V-mPb">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -28,6 +28,9 @@
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="Snk-I3-BqT" customClass="LandingPageController" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Y7N-Bc-b32"/>
+                    <connections>
+                        <segue destination="y5H-9s-wQx" kind="presentation" identifier="toDashboard" modalPresentationStyle="fullScreen" id="k7i-Dz-bR0"/>
+                    </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sLA-Li-ySe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -472,6 +475,7 @@
                         <outlet property="OTP" destination="aT8-4K-8En" id="kbJ-MD-Utp"/>
                         <outlet property="mobileNumber" destination="PT9-EM-3Jz" id="avZ-fa-nc0"/>
                         <segue destination="5hU-Hj-CPJ" kind="show" identifier="SignUpController" id="nnu-bc-5Ag"/>
+                        <segue destination="y5H-9s-wQx" kind="presentation" identifier="straightDash" modalPresentationStyle="fullScreen" id="LP3-O8-iS6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SQr-jV-9cV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1215,6 +1219,7 @@
                         <outlet property="answer3" destination="Nn0-GU-Qis" id="ivv-MH-MqK"/>
                         <outlet property="answer4" destination="FdL-zp-hbt" id="GxJ-bI-ZdG"/>
                         <outlet property="dailyWeekly" destination="tsF-Cx-tmf" id="G25-xa-Bh1"/>
+                        <outlet property="distancing_time" destination="s6l-Ng-6jS" id="IzZ-o1-rbP"/>
                         <outlet property="question" destination="0LT-K2-HvP" id="jGy-dp-ZFn"/>
                         <outletCollection property="languageOptions" destination="UkO-cH-Sxg" collectionClass="NSMutableArray" id="b9c-Nb-0Pp"/>
                         <outletCollection property="languageOptions" destination="VW8-k2-Zj9" collectionClass="NSMutableArray" id="5Fx-1B-Qkn"/>
@@ -1228,7 +1233,7 @@
         <!--WalletsPage-->
         <scene sceneID="7BI-XZ-LaI">
             <objects>
-                <viewController modalTransitionStyle="partialCurl" id="imi-9z-lpv" userLabel="WalletsPage" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="partialCurl" id="imi-9z-lpv" userLabel="WalletsPage" customClass="WalletViewController" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="l27-E2-tEd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1745,6 +1750,9 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="QQk-Da-MRK"/>
+                    <connections>
+                        <outlet property="coins" destination="Q2S-bC-ffy" id="0gI-9U-Kda"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XbP-SA-BS8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1970,7 +1978,7 @@
         <!--LeaderboardPage-->
         <scene sceneID="CDm-fQ-rFD">
             <objects>
-                <viewController id="moj-7w-w4e" userLabel="LeaderboardPage" sceneMemberID="viewController">
+                <viewController id="moj-7w-w4e" userLabel="LeaderboardPage" customClass="LeaderBoardViewController" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0OL-S8-0MH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2473,6 +2481,7 @@
         <segue reference="vDh-nN-0tz"/>
         <segue reference="Xz4-Q5-4Az"/>
         <segue reference="ZXV-tb-ioz"/>
+        <segue reference="k7i-Dz-bR0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Amazon" width="588" height="340"/>
