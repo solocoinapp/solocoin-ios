@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1033706353554-0gp8ggqqies93gakkkirfskmlejjtkms.apps.googleusercontent.com</string>
+	<string>667382448546-81f1mt2migqlc6q2pdliacg43icqec2m.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1033706353554-0gp8ggqqies93gakkkirfskmlejjtkms</string>
+	<string>com.googleusercontent.apps.667382448546-81f1mt2migqlc6q2pdliacg43icqec2m</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>1033706353554-b8pktp0e8ddri4ssunss1brieibuh3eh.apps.googleusercontent.com</string>
+	<string>667382448546-7jqlf74lfg9fvbfgi2n70rbm7i0q0h6o.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyD8A_H-AfJaTdDkxvJvlNc39n7yLbt8OZ8</string>
+	<string>AIzaSyCTjsfvc7PuG0sY0C8Q901QR5OZ_jrXNtY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1033706353554</string>
+	<string>667382448546</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>app.Solocoinapp</string>
 	<key>PROJECT_ID</key>
-	<string>coronago-app</string>
+	<string>solocoin-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>coronago-app.appspot.com</string>
+	<string>solocoin-app.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1033706353554:ios:5273f8d123c2cacb26074b</string>
+	<string>1:667382448546:ios:801ca34a2ed7b3977432fb</string>
 	<key>DATABASE_URL</key>
-	<string>https://coronago-app.firebaseio.com</string>
+	<string>https://solocoin-app.firebaseio.com</string>
 </dict>
 </plist>

@@ -12,7 +12,8 @@ import FirebaseAuth
 
 class OTPController: UIViewController {
 
-    
+    var code = ""
+    var phone = ""
     @IBOutlet weak var mobileNumber: UITextField!
     
     override func viewDidLoad() {
@@ -23,6 +24,7 @@ class OTPController: UIViewController {
 
     @IBAction func OTPNext(_ sender: Any) {
         print(mobileNumber.text)
+        UserDefaults.standard.set(mobileNumber.text!,forKey: "phone")
         guard let _ = mobileNumber else {
             return
         }
@@ -33,6 +35,22 @@ class OTPController: UIViewController {
                 realno+=String(chr)
             }
         }
+        let oldphone=mobileNumber.text!
+        var found=0
+        for chr in oldphone{
+            if chr == " " || chr == "-"{
+                found=1
+            }else{
+                if found==0{
+                    code+=String(chr)
+                }else{
+                    phone+=String(chr)
+                }
+            }
+        }
+        UserDefaults.standard.set(phone,forKey: "phone")
+        UserDefaults.standard.set(code,forKey: "code")
+        print("c",code,"p",phone)
         
         publicVars.mobileNumber = realno
         if isValidMobile(phone: publicVars.mobileNumber) == true {
