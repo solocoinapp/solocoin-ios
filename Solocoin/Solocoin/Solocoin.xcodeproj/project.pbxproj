@@ -24,7 +24,9 @@
 		68B1D8D324565FD8007ECC01 /* HomePage1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D224565FD8007ECC01 /* HomePage1.swift */; };
 		68B1D8D52457707B007ECC01 /* Geofencing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B1D8D42457707B007ECC01 /* Geofencing.swift */; };
 		68D2ED7C245B3FAA00F39655 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */; };
-		F5A1AF2D247E7CFE00E41C1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5A1AF2C247E7CFE00E41C1B /* GoogleService-Info.plist */; };
+		F53DA2A5248378B7005FE377 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53DA2A4248378B7005FE377 /* GoogleService-Info.plist */; };
+		F53DA2A72483A9EF005FE377 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DA2A62483A9EF005FE377 /* OfferCollectionViewCell.swift */; };
+		F53DA2AB2483D94C005FE377 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */; };
 		F5CB66DB24826DC4005BF70D /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */; };
 		F5CB66DD2482865E005BF70D /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CB66DC2482865E005BF70D /* WalletViewController.swift */; };
 		F5D66FC92475A1EC00476863 /* MenuTBController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D66FC82475A1EC00476863 /* MenuTBController.swift */; };
@@ -52,7 +54,9 @@
 		68B1D8D224565FD8007ECC01 /* HomePage1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage1.swift; sourceTree = "<group>"; };
 		68B1D8D42457707B007ECC01 /* Geofencing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geofencing.swift; sourceTree = "<group>"; };
 		68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
-		F5A1AF2C247E7CFE00E41C1B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../googleplists/solocoin prod/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F53DA2A4248378B7005FE377 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F53DA2A62483A9EF005FE377 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
+		F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailsViewController.swift; sourceTree = "<group>"; };
 		F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
 		F5CB66DC2482865E005BF70D /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		F5D66FC82475A1EC00476863 /* MenuTBController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTBController.swift; sourceTree = "<group>"; };
@@ -95,7 +99,9 @@
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
 				68872A142468CC70005348B4 /* UIViewExtension.swift */,
 				68B1D8762453ACDC007ECC01 /* Main.storyboard */,
+				F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */,
 				F5CB66DC2482865E005BF70D /* WalletViewController.swift */,
+				F53DA2A62483A9EF005FE377 /* OfferCollectionViewCell.swift */,
 				F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */,
 				F5D66FC82475A1EC00476863 /* MenuTBController.swift */,
 				68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */,
@@ -109,7 +115,7 @@
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
 				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
-				F5A1AF2C247E7CFE00E41C1B /* GoogleService-Info.plist */,
+				F53DA2A4248378B7005FE377 /* GoogleService-Info.plist */,
 				68B1D8812453ACDE007ECC01 /* Info.plist */,
 				68B1D8792453ACDC007ECC01 /* Solocoin.xcdatamodeld */,
 			);
@@ -194,7 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68B1D8802453ACDE007ECC01 /* LaunchScreen.storyboard in Resources */,
-				F5A1AF2D247E7CFE00E41C1B /* GoogleService-Info.plist in Resources */,
+				F53DA2A5248378B7005FE377 /* GoogleService-Info.plist in Resources */,
 				68B1D87D2453ACDE007ECC01 /* Assets.xcassets in Resources */,
 				68B1D8782453ACDC007ECC01 /* Main.storyboard in Resources */,
 			);
@@ -249,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F53DA2AB2483D94C005FE377 /* OfferDetailsViewController.swift in Sources */,
 				68B1D8D52457707B007ECC01 /* Geofencing.swift in Sources */,
 				68B1D8712453ACDC007ECC01 /* AppDelegate.swift in Sources */,
 				68B1D8D324565FD8007ECC01 /* HomePage1.swift in Sources */,
@@ -258,6 +265,7 @@
 				68B1D88A24540C5F007ECC01 /* OTPController.swift in Sources */,
 				68D2ED7C245B3FAA00F39655 /* ProfilePage.swift in Sources */,
 				68B1D8C6245425FA007ECC01 /* OTP2Controller.swift in Sources */,
+				F53DA2A72483A9EF005FE377 /* OfferCollectionViewCell.swift in Sources */,
 				68B1D8CF24551915007ECC01 /* SignUpController.swift in Sources */,
 				68872A152468CC70005348B4 /* UIViewExtension.swift in Sources */,
 				F5D66FC92475A1EC00476863 /* MenuTBController.swift in Sources */,

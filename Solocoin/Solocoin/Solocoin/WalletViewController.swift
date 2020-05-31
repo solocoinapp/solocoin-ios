@@ -8,22 +8,47 @@
 
 import UIKit
 
-class WalletViewController: UIViewController {
+class WalletViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    @IBOutlet weak var headerStack: UIStackView!
     @IBOutlet weak var coins: UILabel!
     //all offers
     var offers: [[String:String]] = []
+    var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCustomLayout())
+        //collectionView.backgroundColor = .init(red: 92/255, green: 219/255, blue: 115/255, alpha: 1)
+        //collectionView.backgroundColor = .init(red: 5/255, green: 56/255, blue: 107/255, alpha: 1)
+        self.collectionView.delegate = self
+        self.collectionView.backgroundColor = .clear
+        self.collectionView.dataSource = self
+        self.collectionView.register(OfferCollectionViewCell.self, forCellWithReuseIdentifier: "offerCell")
+        configureCollectionView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         coins.text = UserDefaults.standard.string(forKey: "wallet")
         obtainRewards {
             print("completed")
+            collectionView.reloadData()
+            print("count",offers.count)
         }
+    }
+    
+    func configureCollectionView() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(collectionView)
+        
+        NSLayoutConstraint.activate([
+            self.collectionView.topAnchor.constraint(equalTo: self.headerStack.bottomAnchor, constant: 10),
+            //self.collectionView.heightAnchor.constraint(equalToConstant: view.frame.height/1.3),
+            self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.collectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            self.collectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor)
+        ])
     }
     
     func obtainRewards(completion: ()->()){
@@ -52,6 +77,9 @@ class WalletViewController: UIViewController {
                                 self.offers.append(["offer_name":nameOffer,"company":companyName,"terms":terms,"coins":"\(coins)","coupon_code":copcode])
                             }
                             print(self.offers)
+                            DispatchQueue.main.async {
+                                self.collectionView.reloadData()
+                            }
                         }
                     }
                 }
@@ -61,6 +89,74 @@ class WalletViewController: UIViewController {
         qtask.resume()
         completion()
     }
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        print("s",offers.count/2 + 1)
+        return offers.count/2 + 1
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //implement this later
+        if offers.count%2 == 0{
+            return 2
+        }else{
+            if section == offers.count/2{
+                return 1
+            }else{
+                return 2
+            }
+        }
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerCell", for: indexPath) as? OfferCollectionViewCell{
+            if indexPath.section == 0{
+                cell.id = indexPath.section+indexPath.row
+            }else{
+                cell.id = indexPath.section+indexPath.row + 1
+            }
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? OfferCollectionViewCell{
+            setView(id: cell.id)
+        }
+    }
+    
+    
+    func createCustomLayout() -> UICollectionViewLayout {
+            
+            let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+
+                let leadingItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
+                leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+                
+                let leadingGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
+                let leadingGroup = NSCollectionLayoutGroup.vertical(layoutSize: leadingGroupSize, subitem: leadingItem, count: 1)
+                
+                let containerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),  heightDimension: .fractionalWidth(0.3))
+                
+                let containerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: containerGroupSize, subitems: [leadingGroup])
+      
+                
+                let section = NSCollectionLayoutSection(group: containerGroup)
+                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0)
+                
+                return section
+            }
+            return layout
+        }
+    
+    func setView(id: Int){
+        let offer = offers[id]
+        UserDefaults.standard.set(offer, forKey: "offerDict")
+        performSegue(withIdentifier: "toOffer", sender: nil)
+    }
+    
+    
 
     /*
     // MARK: - Navigation
