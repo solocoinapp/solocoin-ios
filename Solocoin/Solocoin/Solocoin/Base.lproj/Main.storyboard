@@ -1919,7 +1919,7 @@
         <!--BadgesPage-->
         <scene sceneID="3HU-R3-sPz">
             <objects>
-                <viewController id="xKT-U3-3li" userLabel="BadgesPage" sceneMemberID="viewController">
+                <viewController id="xKT-U3-3li" userLabel="BadgesPage" customClass="ShareBadgeViewController" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iJh-Ea-QRG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1932,7 +1932,7 @@
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axw-EQ-jmb">
-                                <rect key="frame" x="75" y="728" width="264" height="75"/>
+                                <rect key="frame" x="20" y="728" width="374" height="75"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="U9U-JQ-fZN"/>
@@ -1953,7 +1953,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DfS-WN-UsI">
                                 <rect key="frame" x="15.666666666666657" y="493" width="382.66666666666674" height="135"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Common Man" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zWd-zF-NUS">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Common Man" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="zWd-zF-NUS">
                                         <rect key="frame" x="0.0" y="0.0" width="382.66666666666669" height="105"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="60"/>
                                         <nil key="textColor"/>
@@ -1966,9 +1966,15 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="zWd-zF-NUS" firstAttribute="top" secondItem="DfS-WN-UsI" secondAttribute="top" id="2am-RX-baj"/>
+                                    <constraint firstItem="lsE-Yv-WHX" firstAttribute="top" secondItem="zWd-zF-NUS" secondAttribute="bottom" id="QDS-7A-HJJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="zWd-zF-NUS" secondAttribute="trailing" id="gCA-ek-fSG"/>
+                                    <constraint firstItem="zWd-zF-NUS" firstAttribute="leading" secondItem="DfS-WN-UsI" secondAttribute="leading" id="tmM-xL-aLq"/>
+                                </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="fH9-wU-Cu4" firstAttribute="bottom" secondItem="PUh-uO-ZzJ" secondAttribute="bottom" constant="325" id="0FJ-6M-Qcd"/>
                             <constraint firstItem="axw-EQ-jmb" firstAttribute="top" secondItem="DfS-WN-UsI" secondAttribute="bottom" constant="100" id="6aG-ft-YQA"/>
@@ -1979,16 +1985,21 @@
                             <constraint firstItem="PUh-uO-ZzJ" firstAttribute="leading" secondItem="fH9-wU-Cu4" secondAttribute="leading" id="tSQ-TW-jXS"/>
                             <constraint firstItem="fH9-wU-Cu4" firstAttribute="bottom" secondItem="axw-EQ-jmb" secondAttribute="bottom" constant="5" id="u7v-wu-Wl2"/>
                             <constraint firstItem="DfS-WN-UsI" firstAttribute="centerX" secondItem="iJh-Ea-QRG" secondAttribute="centerX" id="uLR-rd-uTa"/>
-                            <constraint firstItem="axw-EQ-jmb" firstAttribute="leading" secondItem="fH9-wU-Cu4" secondAttribute="leading" constant="75" id="vtK-Hi-kGM"/>
+                            <constraint firstItem="axw-EQ-jmb" firstAttribute="leading" secondItem="fH9-wU-Cu4" secondAttribute="leading" constant="20" id="vtK-Hi-kGM"/>
                             <constraint firstItem="PUh-uO-ZzJ" firstAttribute="trailing" secondItem="fH9-wU-Cu4" secondAttribute="trailing" id="xjK-5v-Ddg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fH9-wU-Cu4"/>
                     </view>
                     <navigationItem key="navigationItem" id="Vkf-w8-1b7"/>
+                    <connections>
+                        <outlet property="badgeImage" destination="PUh-uO-ZzJ" id="65k-F2-FGq"/>
+                        <outlet property="badgeName" destination="zWd-zF-NUS" id="3ry-he-vBn"/>
+                        <outlet property="level" destination="lsE-Yv-WHX" id="7Lh-fo-ABu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USn-E5-tni" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7661" y="1057"/>
+            <point key="canvasLocation" x="7660.8695652173919" y="1056.0267857142858"/>
         </scene>
         <!--LeaderboardPage-->
         <scene sceneID="CDm-fQ-rFD">
@@ -2048,6 +2059,7 @@
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophyIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Jqy-Ot-Mgo">
                                                         <rect key="frame" x="0.0" y="0.0" width="57" height="57"/>
+                                                        <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="57" id="8xu-0H-Dvn"/>
                                                             <constraint firstAttribute="width" constant="57" id="GZN-BY-7rY"/>
@@ -2293,6 +2305,11 @@
                             <constraint firstItem="eJY-he-SRd" firstAttribute="top" secondItem="NlN-5f-ftn" secondAttribute="bottom" constant="41.670000000000002" id="z2B-gT-S1H"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bml-Gu-5vR"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="xDM-ao-a7C"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Leaderboard" image="tabTrophy" id="kjn-8s-fdy">
                         <userDefinedRuntimeAttributes>
@@ -2302,6 +2319,10 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="8Bh-yH-g8f"/>
+                    <connections>
+                        <outlet property="leaderBoardHeader" destination="Ugf-Pp-EUe" id="H9R-6n-bRj"/>
+                        <segue destination="xKT-U3-3li" kind="presentation" identifier="shareBadge" id="egh-YX-hAQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HOg-Xs-ioF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2494,7 +2515,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vDh-nN-0tz"/>
-        <segue reference="Xz4-Q5-4Az"/>
+        <segue reference="egh-YX-hAQ"/>
         <segue reference="DoF-mq-kLh"/>
         <segue reference="M1o-9q-Suv"/>
     </inferredMetricsTieBreakers>
