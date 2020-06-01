@@ -93,7 +93,6 @@ class HomePage1: UIViewController {
         obtainDaily()
         obtainWeekly()
         obtainLeaderBoard()
-        obtainBadges()
         obtainProfileInfo()
         //obtainRewards()
     }
@@ -269,38 +268,7 @@ class HomePage1: UIViewController {
         }
     
     
-    func obtainBadges(){
-        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user/badges")!
-        var request = URLRequest(url: url)
-        // Specify HTTP Method to use
-        request.httpMethod = "GET"
-        //sepcifying header
-        let authtoken = "Bearer \(UserDefaults.standard.string(forKey: "authtoken")!)"
-        request.addValue(authtoken, forHTTPHeaderField: "Authorization")
-        let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if error == nil{
-                // Read HTTP Response Status code
-                if let response = response as? HTTPURLResponse {
-                    print("Response HTTP Status code: \(response.statusCode)")
-                    if let data = data{
-                    if let json = try? JSONSerialization.jsonObject(with: data, options: []){
-                        print("B",json)
-                        if let object = json as? [String:AnyObject]{
-                            let name = object["name"] as! String
-                            UserDefaults.standard.set(name,forKey: "name")
-                            let pic = object["profile_picture_url"] as! String
-                            UserDefaults.standard.set(pic,forKey: "pic")
-                            let wallet_balance = object["wallet_balance"] as! String
-                            UserDefaults.standard.set(wallet_balance,forKey: "wallet")
-                            let home_duration_in_seconds = object["home_duration_in_seconds"] as! String
-                            UserDefaults.standard.set(home_duration_in_seconds,forKey: "time")
-                        }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    
     
     func setCorrectAnswer() {
     answerButtons.forEach {
