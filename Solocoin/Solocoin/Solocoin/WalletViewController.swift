@@ -74,7 +74,8 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                                 let terms = offer["terms_and_conditions"] as! String
                                 let coins = offer["coins"] as! Int
                                 let copcode = offer["coupon_code"] as! String
-                                self.offers.append(["offer_name":nameOffer,"company":companyName,"terms":terms,"coins":"\(coins)","coupon_code":copcode])
+                                let id = offer["id"] as! Int
+                                self.offers.append(["offer_name":nameOffer,"company":companyName,"terms":terms,"coins":"\(coins)","coupon_code":copcode,"id":"\(id)"])
                             }
                             print(self.offers)
                             DispatchQueue.main.async {
