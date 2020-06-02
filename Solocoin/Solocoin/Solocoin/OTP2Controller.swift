@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import CoreLocation
 
 class OTP2Controller: UIViewController {
  
@@ -74,6 +75,19 @@ class OTP2Controller: UIViewController {
                                             let auth_token = object["auth_token"] as! String
                                             UserDefaults.standard.set(auth_token,forKey: "authtoken")
                                             //perform segue to dahsboard
+                                            let username = object["name"] as! String
+                                            UserDefaults.standard.set(username, forKey: "username")
+                                            guard let lat = object["lat"] as? CLLocationDegrees else{
+                                                print("nope lat")
+                                                return
+                                            }
+                                            guard let lang = object["lng"] as? CLLocationDegrees else {
+                                                print("nope lang")
+                                               return
+                                            }
+                                            let location = CLLocation(latitude: lat, longitude: lang)
+                                            //UserDefaults.standard.set(location, forKey: "homeloc")
+                                            publicVars.homeloc = location
                                             DispatchQueue.main.async {
                                                  self.performSegue(withIdentifier: "straightDash", sender: nil)
                                             }

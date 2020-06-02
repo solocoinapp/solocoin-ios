@@ -8,8 +8,9 @@
 
 import UIKit
 import FirebaseAuth
+import CoreLocation
 
-class HomePage1: UIViewController {
+class HomePage1: UIViewController, CLLocationManagerDelegate {
     
     //MARK: - IBOUTLETS
 
@@ -39,6 +40,8 @@ class HomePage1: UIViewController {
     
     var weeklyCorrectAnswer: UIButton!
     
+    let manager = CLLocationManager()
+    
     var dailyQuestion = ""
     var weeklyQuestion = ""
     var dailyOption: [String] = []
@@ -54,6 +57,77 @@ class HomePage1: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Timer.scheduledTimer(withTimeInterval: 900, repeats: true) { timer in
+            print("again")
+            let url = URL(string: "https://solocoin.herokuapp.com/api/v1/sessions/ping")!
+            var request = URLRequest(url: url)
+            // Specify HTTP Method to use
+            request.httpMethod = "POST"
+            //sepcifying header
+            let authtoken = "Token \(UserDefaults.standard.string(forKey: "authtoken")!)"
+            print("a",authtoken)
+            request.addValue(authtoken, forHTTPHeaderField: "Authorization")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            //let nowloc = UserDefaults.standard.object(forKey: "nowloc") as! CLLocation
+            let nowloc = publicVars.newloc
+            let homeloc = publicVars.homeloc
+            let diff = self.getBearingBetweenTwoPoints1(point1: nowloc, point2: homeloc)
+            if diff > 20{
+                let content = ["session":["type":"away"]]
+                let jsonEncoder = JSONEncoder()
+                if let jsonData = try? jsonEncoder.encode(content),
+                    let jsonString = String(data: jsonData, encoding: .utf8) {
+                    print(jsonString)
+                    request.httpBody = jsonData
+                    let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                        if error == nil{
+                            if let response = response as? HTTPURLResponse {
+                                print("loc Response HTTP Status code: \(response.statusCode)")
+                                if let data = data{
+                                    if let json = try? JSONSerialization.jsonObject(with: data, options: []){
+                                        print("location resp",json)
+                                    }
+                                }
+                            }
+                        }else{
+                            print("no internet connection or smthgn lol, handle this with popup")
+                        }
+                    }
+                    qtask.resume()
+                    print("less")
+                }
+            }else{
+                let content = ["session":["type":"home"]]
+                let jsonEncoder = JSONEncoder()
+                if let jsonData = try? jsonEncoder.encode(content),
+                    let jsonString = String(data: jsonData, encoding: .utf8) {
+                    print(jsonString)
+                    request.httpBody = jsonData
+                    let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                        if error == nil{
+                            if let response = response as? HTTPURLResponse {
+                                print("loc Response HTTP Status code: \(response.statusCode)")
+                                if let data = data{
+                                    if let json = try? JSONSerialization.jsonObject(with: data, options: []){
+                                        print("location resp",json)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    qtask.resume()
+                    print("more")
+                }
+            }
+            
+            
+        }
+        
+        manager.delegate = self
+        manager.requestAlwaysAuthorization()
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestLocation()
         
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
@@ -85,6 +159,7 @@ class HomePage1: UIViewController {
         
         let font = UIFont.systemFont(ofSize: 23)
         dailyWeekly.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+        userUpdate()
         
     }
     
@@ -92,9 +167,55 @@ class HomePage1: UIViewController {
         //get from api
         obtainDaily()
         obtainWeekly()
-        obtainLeaderBoard()
+        //obtainLeaderBoard()
         obtainProfileInfo()
         //obtainRewards()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            UserDefaults.standard.set("\(location.coordinate.latitude)", forKey: "lat")
+            UserDefaults.standard.set("\(location.coordinate.longitude)", forKey: "lng")
+            let newloc = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            //UserDefaults.standard.set(newloc, forKey: "nowloc")
+            publicVars.newloc = newloc
+            print("Found user's location: \(location)")
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to find user's location: \(error.localizedDescription)")
+    }
+    
+    func userUpdate(){
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user/update")!
+        var request = URLRequest(url: url)
+        // Specify HTTP Method to use
+        request.httpMethod = "POST"
+        //sepcifying header
+        let authtoken = "Token \(UserDefaults.standard.string(forKey: "authtoken")!)"
+        print("a",authtoken)
+        request.addValue(authtoken, forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let content = ["user":["name": UserDefaults.standard.string(forKey: "username"),"mobile":UserDefaults.standard.string(forKey: "phone"),"lat":UserDefaults.standard.string(forKey: "lat"),"lang":UserDefaults.standard.string(forKey: "long")]]
+        let jsonEncoder = JSONEncoder()
+        if let jsonData = try? jsonEncoder.encode(content),
+            let jsonString = String(data: jsonData, encoding: .utf8) {
+            print(jsonString)
+            request.httpBody = jsonData
+            let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if error == nil{
+                    if let response = response as? HTTPURLResponse {
+                    print("loc Response HTTP Status code: \(response.statusCode)")
+                    }
+                }
+            }
+            qtask.resume()
+        }
+        
     }
     
     func obtainWeekly(){
@@ -244,7 +365,7 @@ class HomePage1: UIViewController {
         
     }
     
-    func obtainLeaderBoard(){
+    /*func obtainLeaderBoard(){
         let url = URL(string: "https://solocoin.herokuapp.com/api/v1/leaderboard")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
@@ -265,7 +386,7 @@ class HomePage1: UIViewController {
                 }
             }
         }
-        }
+        }*/
     
     
     
@@ -396,6 +517,26 @@ class HomePage1: UIViewController {
         
         
         
+    }
+    
+    func degreesToRadians(degrees: Double) -> Double { return degrees * .pi / 180.0 }
+    func radiansToDegrees(radians: Double) -> Double { return radians * 180.0 / .pi }
+
+    func getBearingBetweenTwoPoints1(point1 : CLLocation, point2 : CLLocation) -> Double {
+
+        let lat1 = degreesToRadians(degrees: point1.coordinate.latitude)
+        let lon1 = degreesToRadians(degrees: point1.coordinate.longitude)
+
+        let lat2 = degreesToRadians(degrees: point2.coordinate.latitude)
+        let lon2 = degreesToRadians(degrees: point2.coordinate.longitude)
+
+        let dLon = lon2 - lon1
+
+        let y = sin(dLon) * cos(lat2)
+        let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon)
+        let radiansBearing = atan2(y, x)
+
+        return radiansToDegrees(radians: radiansBearing)
     }
 
 }
