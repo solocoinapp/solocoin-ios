@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 struct publicVars {
     
@@ -25,6 +26,8 @@ struct publicVars {
     static var showNotifications: Bool = false
     
     //MARK: HomePage1
+    static var newloc: CLLocation = CLLocation()
+    static var homeloc = CLLocation()
 
     
 }
