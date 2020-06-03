@@ -72,7 +72,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             //let nowloc = UserDefaults.standard.object(forKey: "nowloc") as! CLLocation
             let nowloc = publicVars.newloc
             let homeloc = publicVars.homeloc
-            let diff = self.getBearingBetweenTwoPoints1(point1: nowloc, point2: homeloc)
+            let diff = self.getBearingBetweenTwoPoints(point1: homeloc, point2: nowloc)
             if diff > 20{
                 let content = ["session":["type":"away"]]
                 let jsonEncoder = JSONEncoder()
@@ -95,7 +95,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                         }
                     }
                     qtask.resume()
-                    print("less")
+                    print("less",diff)
                 }
             }else{
                 let content = ["session":["type":"home"]]
@@ -522,7 +522,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     func degreesToRadians(degrees: Double) -> Double { return degrees * .pi / 180.0 }
     func radiansToDegrees(radians: Double) -> Double { return radians * 180.0 / .pi }
 
-    func getBearingBetweenTwoPoints1(point1 : CLLocation, point2 : CLLocation) -> Double {
+    /*func getBearingBetweenTwoPoints1(point1 : CLLocation, point2 : CLLocation) -> Double {
 
         let lat1 = degreesToRadians(degrees: point1.coordinate.latitude)
         let lon1 = degreesToRadians(degrees: point1.coordinate.longitude)
@@ -537,6 +537,53 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         let radiansBearing = atan2(y, x)
 
         return radiansToDegrees(radians: radiansBearing)
+    }*/
+    /*func XXRadiansToDegrees(radians: Double) -> Double {
+        return radians * 180.0 / M_PI
     }
 
+    func getBearingBetweenTwoPoints(point1 : CLLocation, point2 : CLLocation) -> Double {
+        // Returns a float with the angle between the two points
+        let x = point1.coordinate.longitude - point2.coordinate.longitude
+        let y = point1.coordinate.latitude - point2.coordinate.latitude
+
+        return fmod(XXRadiansToDegrees(radians: atan2(y, x)), 360.0) + 90.0
+    }
+*/
+    /*func getBearingBetweenTwoPoints(point1 : CLLocation, point2 : CLLocation) -> Double {
+        // home coordinate
+        let uLat: Double = point1.coordinate.latitude
+        let uLng: Double = point1.coordinate.longitude
+        // new coordinate
+        let sLat: Double = point2.coordinate.latitude
+        let sLon: Double = point2.coordinate.latitude
+        
+        let radius: Double = 6371000 // Meters
+        let phi_1 = degreesToRadians(degrees: uLat)
+        let phi_2 = degreesToRadians(degrees: sLat)
+        
+        let delta_phi = degreesToRadians(degrees: sLat - uLat)
+        let delta_lambda = degreesToRadians(degrees: sLon-uLng)
+        
+        let a = sin(delta_phi/2.0)*sin(delta_phi/2.0) + cos(phi_1)*cos(phi_2) + sin(delta_lambda/2.0)*sin(delta_lambda/2.0)
+        let c = 2 * atan2(sqrt(a), sqrt(1-a))
+        let meters = radius*c
+        
+        return meters
+    }*/
+    
+    func getBearingBetweenTwoPoints(point1 : CLLocation, point2 : CLLocation) -> Double {
+        let r = 6371.0  //avg radius of earth inkm
+        let dLat = degreesToRadians(degrees: point1.coordinate.latitude-point2.coordinate.latitude)
+        let dLng = degreesToRadians(degrees: point1.coordinate.longitude-point2.coordinate.longitude)
+        
+        let a = sin(dLat/2.0)*sin(dLng/2.0)
+        let rest = (cos(degreesToRadians(degrees: point1.coordinate.latitude))*cos(degreesToRadians(degrees: point2.coordinate.longitude))*sin(dLng/2)*sin(dLng/2))
+        let total = a+rest
+        let c = 2*atan2(sqrt(total), sqrt(1-total))
+        
+        return (r*c*1000) // in meters
+        
+    }
+    
 }
