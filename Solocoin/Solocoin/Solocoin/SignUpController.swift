@@ -6,6 +6,7 @@
 //  Copyright © 2020 Solocoin. All rights reserved.
 //
 import UIKit
+import CoreLocation
 
 class SignUpController: UIViewController {
 
@@ -100,6 +101,18 @@ class SignUpController: UIViewController {
                                     if let object = json as? [String:AnyObject]{
                                         let auth_token = object["auth_token"] as! String
                                         UserDefaults.standard.set(auth_token,forKey: "authtoken")
+                                        UserDefaults.standard.set(self.fullName.text!, forKey: "username")
+                                        guard let lat = object["lat"] as? CLLocationDegrees else{
+                                            print("nope lat")
+                                            return
+                                        }
+                                        guard let lang = object["lng"] as? CLLocationDegrees else {
+                                            print("nope lang")
+                                           return
+                                        }
+                                        let location = CLLocation(latitude: lat, longitude: lang)
+                                        //UserDefaults.standard.set(location, forKey: "homeloc")
+                                        publicVars.homeloc = location
                                         //perform segue to dahsboard
                                         DispatchQueue.main.async {
                                             self.performSegue(withIdentifier: "permissionSegue", sender: self)
