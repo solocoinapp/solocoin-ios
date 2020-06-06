@@ -16,23 +16,27 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
     var collectionView: UICollectionView!
     
     @IBOutlet weak var leaderBoardHeader: UILabel!
-    let levels = [["0":"Amazon"],
-    ["1":"Artboard1"],
-    ["2":"Artboard2"],
-    ["3":"Artboard3"],
-    ["4":"Artboard4"],
-    ["5":"Artboard5"],
-    ["6":"Artboard6"],
-    ["7":"Artboard7"],
-    ["8":"Artboard8"],
-    ["9":"Artboard9"],
-    ["10":"Artboard10"],
-    ["11":"Artboard11"],
-    ["12":"Artboard12"],
-    ["13":"Artboard13"]]
+    let levels = [
+        ["0":"Amazon"],
+        ["1":"Artboard1"],
+        ["2":"Artboard2"],
+        ["3":"Artboard3"],
+        ["4":"Artboard4"],
+        ["5":"Artboard5"],
+        ["6":"Artboard6"],
+        ["7":"Artboard7"],
+        ["8":"Artboard8"],
+        ["9":"Artboard9"],
+        ["10":"Artboard10"],
+        ["11":"Artboard11"],
+        ["12":"Artboard12"],
+        ["13":"Artboard13"]]
+    
     let levelNames = [["Alpha Warrior",1000],["Beta Warrior",2500],["Omega Warrior",5000],["Chief Warrior",10000],["Ultimate Warrior",25000],["Supreme Warrior",50000],["Master",100000],["Grand Master",250000],["Ultimate Master",500000],["Supreme Master",1000000],["Universe God",5000000],["Mutliverse God",2500000]]
     var currentLevels:[[String:String]] = []
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCustomLayout())
         self.collectionView.delegate = self
@@ -41,6 +45,7 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
         self.collectionView.register(BadgeCollectionViewCell.self, forCellWithReuseIdentifier: "badgeCell")
         configureCollectionView()
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         //get from ap
@@ -59,13 +64,13 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
                 self.collectionView.reloadData()
             }
         }
-        
     }
     
     
     func putImages(levels: [[String:String]]){
         print("putting",levels)
     }
+    
     
     func obtainBadges(completion:@escaping ([Int]) -> ()){
         
@@ -103,13 +108,15 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
                     }
                     
                 }
-            }else{
+            }
+            else{
                 print("eroor",error?.localizedDescription)
             }
         }
         qtask.resume()
         
     }
+    
     
     func configureCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -162,8 +169,8 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
                 return 2
             }
         }
-        
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "badgeCell", for: indexPath) as? BadgeCollectionViewCell{
@@ -183,61 +190,20 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
         return UICollectionViewCell()
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? BadgeCollectionViewCell{
             setView(level: (indexPath.section*2)+indexPath.row+1,image: self.levels[(indexPath.section*2)+indexPath.row+1]["\((indexPath.section*2)+indexPath.row+1)"] ?? "Amazon")
         }
     }
+    
+    
     func setView(level: Int,image: String){
         UserDefaults.standard.set(self.levelNames[level-1][0], forKey: "badgeName")
         UserDefaults.standard.set("Level \(level+1)", forKey: "level")
         UserDefaults.standard.set(image, forKey: "badgeImage")
         performSegue(withIdentifier: "shareBadge", sender: nil)
     }
-    
-    /*func obtainLeaderBoard(){
-        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/leaderboard")!
-        var request = URLRequest(url: url)
-        // Specify HTTP Method to use
-        request.httpMethod = "GET"
-        //sepcifying header
-        let authtoken = "Token \(UserDefaults.standard.string(forKey: "authtoken")!)"
-        request.addValue(authtoken, forHTTPHeaderField: "Authorization")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //let content = ["notification":["token":]]
-        let jsonEncoder = JSONEncoder()
-               if let jsonData = try? jsonEncoder.encode(content), let jsonString = String(data: jsonData, encoding: .utf8) {
-                print(jsonString)
-                request.httpBody = jsonData
-                let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                    if error == nil{
-                        // Read HTTP Response Status code
-                        if let response = response as? HTTPURLResponse {
-                            print("Response HTTP Status code: \(response.statusCode)")
-                            if let data = data{
-                            if let json = try? JSONSerialization.jsonObject(with: data, options: []){
-                                print("L",json)
-                                }
-                            }
-                        }
-                    }else{
-                        print("error",error?.localizedDescription)
-                    }
-                }
-                qtask.resume()
-        }
-        
-    }*/
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+ 
