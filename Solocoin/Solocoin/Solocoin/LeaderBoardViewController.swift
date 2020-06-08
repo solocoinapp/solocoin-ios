@@ -38,11 +38,14 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
     ["11":"Artboard11"],
     ["12":"Artboard12"],
     ["13":"Artboard13"]]
+    
     let levelNames = [["Alpha Warrior",1000],["Beta Warrior",2500],["Omega Warrior",5000],["Chief Warrior",10000],["Ultimate Warrior",25000],["Supreme Warrior",50000],["Master",100000],["Grand Master",250000],["Ultimate Master",500000],["Supreme Master",1000000],["Universe God",5000000],["Mutliverse God",2500000]]
     let levelCoins:[Int] = [1000,2300,5000,10000,25000,50000,100000,250000,500000,1000000,2500000,5000000]
     var currentLevels:[[String:String]] = []
     var totalCoinsEarned = 0
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCustomLayout())
         self.collectionView.delegate = self
@@ -51,6 +54,7 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
         self.collectionView.register(BadgeCollectionViewCell.self, forCellWithReuseIdentifier: "badgeCell")
         configureCollectionView()
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         //get from ap
@@ -79,7 +83,6 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
                 self.collectionView.reloadData()
             }
         }
-        
     }
     
     
@@ -157,6 +160,7 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
         }
     }
     
+    
     func obtainBadges(completion:@escaping ([Int]) -> ()){
         
         var levels = [Int]()
@@ -194,13 +198,15 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
                     }
                     
                 }
-            }else{
+            }
+            else{
                 print("eroor",error?.localizedDescription)
             }
         }
         qtask.resume()
         
     }
+    
     
     func configureCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -253,8 +259,8 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
                 return 2
             }
         }
-        
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "badgeCell", for: indexPath) as? BadgeCollectionViewCell{
@@ -280,11 +286,14 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
         return UICollectionViewCell()
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? BadgeCollectionViewCell{
             setView(level: (indexPath.section*2)+indexPath.row+1,image: self.levels[(indexPath.section*2)+indexPath.row+1]["\((indexPath.section*2)+indexPath.row+1)"] ?? "Amazon")
         }
     }
+    
+    
     func setView(level: Int,image: String){
         UserDefaults.standard.set(self.levelNames[level-1][0], forKey: "badgeName")
         UserDefaults.standard.set("Level \(level+1)", forKey: "level")
@@ -364,3 +373,4 @@ class LeaderBoardViewController: UIViewController, UICollectionViewDelegate, UIC
     */
 
 }
+ 
