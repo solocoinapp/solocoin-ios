@@ -21,7 +21,16 @@ class ShareBadgeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func shareAward(_ sender: Any) {
+        let text = """
+I just earned \(badgeName.text) on SoloCoin app which rewards you based on your location from home, mall, store and parks. Earn real world rewards with solocoins. Challenge friends and achieve milestones and badges like me.
+        
+        Download the App Now!
+"""
+        let vc = UIActivityViewController(activityItems: [text], applicationActivities: [])
+        present(vc,animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 
