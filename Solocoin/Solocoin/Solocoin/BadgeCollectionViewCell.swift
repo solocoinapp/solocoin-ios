@@ -25,7 +25,7 @@ class BadgeCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(){
-        self.contentView.layer.cornerRadius = 8
+        self.contentView.layer.cornerRadius = 12
         self.contentView.layer.borderWidth = 1.0
         self.contentView.layer.borderColor = UIColor.clear.cgColor
         self.contentView.layer.masksToBounds = true
@@ -39,6 +39,10 @@ class BadgeCollectionViewCell: UICollectionViewCell {
         
         levelName.text = "Name"
         level.text = "level"
+        levelName.font = UIFont(name:"HelveticaNeue-Bold", size: 20.0)
+        level.font = UIFont(name:"HelveticaNeue-Bold", size: 12.0)
+        level.backgroundColor = UIColor.init(red: 239/255, green: 238/255, blue: 241/255, alpha: 1)
+        levelName.backgroundColor = UIColor.init(red: 239/255, green: 238/255, blue: 241/255, alpha: 1)
         //levelName.font = UIFont(name: "OpenSans-Bold", size: 20)
         level.textAlignment = .center
         levelName.textAlignment = .center
@@ -46,6 +50,8 @@ class BadgeCollectionViewCell: UICollectionViewCell {
         levelName.adjustsFontSizeToFitWidth = true
         addSubview(levelName)
         addSubview(level)
+        level.textColor = UIColor.init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+        levelName.textColor = UIColor.init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
         //constrainst for label level
         level.translatesAutoresizingMaskIntoConstraints = false
         //level.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -65,9 +71,9 @@ class BadgeCollectionViewCell: UICollectionViewCell {
         badgeImageView.image = UIImage(named: "Amazon")
         badgeImageView.contentMode = .scaleAspectFill
         addSubview(badgeImageView)
-        badgeImageView.backgroundColor = .clear
+        badgeImageView.backgroundColor = .init(red: 239/255, green: 238/255, blue: 241/255, alpha: 1)
         //badgeImageView.layer.cornerRadius = 20
-        badgeImageView.contentMode = .scaleAspectFit
+        badgeImageView.contentMode = .scaleAspectFill
         badgeImageView.translatesAutoresizingMaskIntoConstraints = false
         badgeImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         badgeImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
@@ -80,7 +86,7 @@ class BadgeCollectionViewCell: UICollectionViewCell {
         let currentFilter = CIFilter(name: "CIGaussianBlur")
         let beginImage = CIImage(image: (badgeImageView.image ?? UIImage(named:"Amazon"))!)
         currentFilter!.setValue(beginImage, forKey: kCIInputImageKey)
-        currentFilter!.setValue(10, forKey: kCIInputRadiusKey)
+        currentFilter!.setValue(20, forKey: kCIInputRadiusKey)
 
         let cropFilter = CIFilter(name: "CICrop")
         cropFilter!.setValue(currentFilter!.outputImage, forKey: kCIInputImageKey)
@@ -91,4 +97,6 @@ class BadgeCollectionViewCell: UICollectionViewCell {
         let processedImage = UIImage(cgImage: cgimg!)
         badgeImageView.image = processedImage
     }
+    
+    
 }
