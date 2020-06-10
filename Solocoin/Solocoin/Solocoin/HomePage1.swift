@@ -13,10 +13,19 @@ import CoreLocation
 class HomePage1: UIViewController, CLLocationManagerDelegate {
     
     //MARK: - IBOUTLETS
-
+    @IBOutlet weak var participate: UILabel!
+    
+    @IBOutlet weak var errorMssg: UILabel!
+    
+    @IBOutlet weak var exclMark: UIImageView!
+    
+    @IBOutlet weak var questionView: UIView!
+    
+    @IBOutlet weak var inviteHeader: UIView!
+    
     @IBOutlet weak var distancing_time: UILabel!
     
-    @IBOutlet var languageOptions: [UIButton]!
+    //@IBOutlet var languageOptions: [UIButton]!
 
     @IBOutlet weak var dailyWeekly: UISegmentedControl!
     
@@ -42,6 +51,9 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     
     let manager = CLLocationManager()
     
+    var errorWeekly = false
+    var erroDaily = false
+    
     var dailyQuestion = ""
     var weeklyQuestion = ""
     var dailyOption: [String] = []
@@ -57,6 +69,25 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //set error handlers
+        exclMark.isHidden = true
+        errorMssg.isHidden = true
+        setErorrMssg()
+        questionView.cornerRadius = questionView.frame.width/25
+        dailyWeekly.layer.cornerRadius = questionView.frame.width/25
+        questionView.shadowColor = .gray
+        questionView.shadowRadius = 8
+        questionView.shadowOffset = CGSize(width: 0, height: 2.0)
+        //questionView.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
+        questionView.borderWidth = 2
+        questionView.borderColor = .init(red: 205/255, green: 210/255, blue: 218/255, alpha: 1)
+        //participate.cornerRadius = 30
+        participate.layer.cornerRadius = participate.frame.width/23
+        participate.layer.masksToBounds = true
+        inviteHeader.layer.cornerRadius = inviteHeader.frame.width/15
+        inviteHeader.borderWidth = 5
+        inviteHeader
+            .borderColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
         
         Timer.scheduledTimer(withTimeInterval: 900, repeats: true) { timer in
             print("again")
@@ -152,13 +183,15 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         answer3.addTarget(self, action: #selector(optionPressed(_:)), for: .touchUpInside)
         answer4.addTarget(self, action: #selector(optionPressed(_:)), for: .touchUpInside)
         
-        dailyCorrectAnswer = answer1
-        weeklyCorrectAnswer = answer2
+        //dailyCorrectAnswer = answer1
+        //weeklyCorrectAnswer = answer2
         
         dailyWeekly.selectedSegmentIndex = 0
         
-        let font = UIFont.systemFont(ofSize: 23)
-        dailyWeekly.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
+        //let font = UIFont.systemFont(ofSize: 23)
+        let font = UIFont(name: "Poppins-SemiBold", size: 23)
+       // let titleTextAttribute = [NSAttributedString.Key.foregroundColor: UIColor.init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)]
+        dailyWeekly.setTitleTextAttributes([NSAttributedString.Key.font: font,NSAttributedString.Key.foregroundColor: UIColor.init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)], for: .normal)
         userUpdate()
         
     }
@@ -172,7 +205,26 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         //obtainRewards()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    func setErorrMssg(){
+        exclMark.translatesAutoresizingMaskIntoConstraints = false
+        errorMssg.translatesAutoresizingMaskIntoConstraints = false
+        
+        //exclMark
+        NSLayoutConstraint.activate([
+            //self.exclMark.topAnchor.constraint(equalTo: self.dailyWeekly.bottomAnchor, constant: 30),
+            self.exclMark.heightAnchor.constraint(equalToConstant: self.questionView.frame.height/4),
+            self.exclMark.widthAnchor.constraint(equalToConstant: self.questionView.frame.width/4),
+            self.exclMark.centerXAnchor.constraint(equalTo: self.questionView.centerXAnchor),
+            self.exclMark.centerYAnchor.constraint(equalTo: self.questionView.centerYAnchor)
+            //self.exclMark.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+        ])
+        NSLayoutConstraint.activate([
+            self.errorMssg.topAnchor.constraint(equalTo: self.exclMark.bottomAnchor, constant: 10),
+            //self.collectionView.heightAnchor.constraint(equalToConstant: view.frame.height/1.3),
+            //self.exclMark.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.errorMssg.leftAnchor.constraint(equalTo: self.questionView.leftAnchor),
+            self.errorMssg.rightAnchor.constraint(equalTo: self.questionView.rightAnchor)
+        ])
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -231,10 +283,20 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             if error == nil{
                 // Read HTTP Response Status code
                 if let response = response as? HTTPURLResponse {
-                    print("Response HTTP Status code: \(response.statusCode)")
+                    print("weeky Response HTTP Status code: \(response.statusCode)")
                     if let data = data{
                     if let json = try? JSONSerialization.jsonObject(with: data, options: []){
-                        print("j",json)
+                        self.errorWeekly = false
+                        DispatchQueue.main.async {
+                            self.question.isHidden = false
+                            self.answer1.isHidden = false
+                            self.answer2.isHidden = false
+                            self.answer3.isHidden = false
+                            self.answer4.isHidden = false
+                            self.exclMark.isHidden = true
+                            self.errorMssg.isHidden = true
+                        }
+                        print("w",json)
                         if let object = json as? [String:AnyObject]{
                             let ans = object["answers"] as! [[String:AnyObject]]
                             var indx=0
@@ -248,16 +310,42 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                                 }
                                 let temp = ["name":answer,"id": "\(id)"]
                                 self.weeklyAnswers.append(temp)
+                                indx+=1
                             }
                             self.weeklyQuestion = object["name"] as! String
                             self.idWeekly = object["id"] as! Int
                             
+                        }
+                    }else{
+                        DispatchQueue.main.async {
+                            self.question.isHidden = true
+                            self.answer1.isHidden = true
+                            self.answer2.isHidden = true
+                            self.answer3.isHidden = true
+                            self.answer4.isHidden = true
+                            self.exclMark.isHidden = false
+                            self.errorMssg.isHidden = false
+                            self.setErorrMssg()
+                            self.errorMssg.text = "Some error ocurred...."
+                            self.errorWeekly = true
                         }
                         }
                     }
                 }
             }else{
                 print("error",error?.localizedDescription)
+                DispatchQueue.main.async {
+                    self.question.isHidden = true
+                    self.answer1.isHidden = true
+                    self.answer2.isHidden = true
+                    self.answer3.isHidden = true
+                    self.answer4.isHidden = true
+                    self.exclMark.isHidden = false
+                    self.errorMssg.isHidden = false
+                    self.setErorrMssg()
+                    self.errorMssg.text = "Some error ocurred...."
+                    self.errorWeekly = true
+                }
             }
         }
         qtask.resume()
@@ -276,10 +364,20 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             if error == nil{
                 // Read HTTP Response Status code
                 if let response = response as? HTTPURLResponse {
-                    print("Response HTTP Status code: \(response.statusCode)")
+                    print("daily Response HTTP Status code: \(response.statusCode)")
                     if let data = data{
                     if let json = try? JSONSerialization.jsonObject(with: data, options: []){
-                        print("j",json)
+                        self.erroDaily = false
+                        DispatchQueue.main.async {
+                            self.question.isHidden = false
+                            self.answer1.isHidden = false
+                            self.answer2.isHidden = false
+                            self.answer3.isHidden = false
+                            self.answer4.isHidden = false
+                            self.exclMark.isHidden = true
+                            self.errorMssg.isHidden = true
+                        }
+                        print("d",json)
                         if let object = json as? [String:AnyObject]{
                             let ans = object["answers"] as! [[String:AnyObject]]
                             var indx=0
@@ -311,11 +409,36 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                             }
                             
                         }
+                    }else{
+                        DispatchQueue.main.async {
+                            self.question.isHidden = true
+                            self.answer1.isHidden = true
+                            self.answer2.isHidden = true
+                            self.answer3.isHidden = true
+                            self.answer4.isHidden = true
+                            self.exclMark.isHidden = false
+                            self.errorMssg.isHidden = false
+                            self.setErorrMssg()
+                            self.errorMssg.text = "Some error occurred...."
+                            self.erroDaily = true
+                        }
                         }
                     }
                 }
             }else{
                 print("error",error?.localizedDescription)
+                DispatchQueue.main.async {
+                    self.question.isHidden = true
+                    self.answer1.isHidden = true
+                    self.answer2.isHidden = true
+                    self.answer3.isHidden = true
+                    self.answer4.isHidden = true
+                    self.exclMark.isHidden = false
+                    self.errorMssg.isHidden = false
+                    self.setErorrMssg()
+                    self.errorMssg.text = "Some error occurred...."
+                    self.erroDaily = true
+                }
             }
         }
         qtask.resume()
@@ -412,7 +535,17 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     //MARK: - ACTIONS
     
     @IBAction func questionChanged(_ sender: Any) {
-        
+        guard erroDaily == false, errorWeekly == true else {
+            print("error in segemtn")
+            return
+        }
+            question.isHidden = false
+            answer1.isHidden = false
+            answer2.isHidden = false
+            answer3.isHidden = false
+            answer4.isHidden = false
+            exclMark.isHidden = true
+            errorMssg.isHidden = true
         if dailyWeekly.selectedSegmentIndex == 0 {
             /*question.text = "What is the best way to minimize the risk of coronavirus?"
             answer1.setTitle("  A. Social Distancing", for: .normal)
@@ -420,11 +553,11 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             answer3.setTitle("  C. Continue as usual", for: .normal)
             answer4.setTitle("  D. No clue", for: .normal)*/
             
-            question.text = dailyQuestion
-            answer1.setTitle(answers[0]["name"], for: .normal)
-            answer2.setTitle(answers[1]["name"], for: .normal)
-            answer3.setTitle(answers[2]["name"], for: .normal)
-            answer4.setTitle(answers[3]["name"], for: .normal)
+            question.text = "Q \(dailyQuestion as? String ?? "cudnt get q")"
+            answer1.setTitle("  A \(answers[0]["name"] as? String ?? "cudnt get ans")", for: .normal)
+            answer2.setTitle("  B \(answers[1]["name"] as? String ?? "cudnt get ans")", for: .normal)
+            answer3.setTitle("  C \(answers[2]["name"] as? String ?? "cudnt get ans")", for: .normal)
+            answer4.setTitle("  D \(answers[3]["name"] as? String ?? "cudnt get ans")", for: .normal)
             
             answerLayouts(answer: answer1)
             answerLayouts(answer: answer2)
@@ -439,11 +572,11 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             answer3.setTitle("  C. For 15 seconds without soap", for: .normal)
             answer4.setTitle("  D. I shouldn't - it wastes water", for: .normal)*/
             
-            question.text = dailyQuestion
-            answer1.setTitle(weeklyAnswers[0]["name"], for: .normal)
-            answer2.setTitle(weeklyAnswers[1]["name"], for: .normal)
-            answer3.setTitle(weeklyAnswers[2]["name"], for: .normal)
-            answer4.setTitle(weeklyAnswers[3]["name"], for: .normal)
+            question.text = "Q \(weeklyQuestion as? String ?? "cudnt get q")"
+            answer1.setTitle("  A \(weeklyAnswers[0]["name"] as? String ?? "cudnt get ans")", for: .normal)
+            answer2.setTitle("  B \(weeklyAnswers[1]["name"] as? String ?? "cudnt get ans")", for: .normal)
+            answer3.setTitle("  C \(weeklyAnswers[2]["name"] as? String ?? "cudnt get ans")", for: .normal)
+            answer4.setTitle("  D \(weeklyAnswers[3]["name"] as? String ?? "cudnt get ans")", for: .normal)
             
             answerLayouts(answer: answer1)
             answerLayouts(answer: answer2)
@@ -453,14 +586,14 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    @IBAction func languagePressed(_ sender: UIButton) {
+   /* @IBAction func languagePressed(_ sender: UIButton) {
         languageOptions.forEach { (button ) in
             UIView.animate(withDuration: 0.3) {
                 button.isHidden = !button.isHidden
                 self.view.layoutIfNeeded()
             }
         }
-    }
+    }*/
     @objc func optionPressed(_ sender: UIButton){
         
         let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user_questions_answers")!
@@ -478,16 +611,20 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             answerid = answers[answerButtons.firstIndex(of: sender)!]["id"]!
             if sender == dailyCorrectAnswer{
                 print("correct")
+                sender.borderColor = .green
             }else{
                 print("incorrect")
+                sender.borderColor = .red
             }
         }else{
             questionid = self.idWeekly
             answerid = weeklyAnswers[answerButtons.firstIndex(of: sender)!]["id"]!
             if sender == weeklyCorrectAnswer{
                 print("correct")
+                sender.borderColor = .green
             }else{
                 print("incorrect")
+                sender.borderColor = .red
             }
         }
         let content = [
@@ -504,6 +641,22 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                         // Read HTTP Response Status code
                         if let response = response as? HTTPURLResponse {
                             print("Response HTTP Status code: \(response.statusCode)")
+                            if response.statusCode == 201{
+                                print("correct Answer sent!")
+                            }else{
+                                DispatchQueue.main.async {
+                                    self.question.isHidden = true
+                                    self.answer1.isHidden = true
+                                    self.answer2.isHidden = true
+                                    self.answer3.isHidden = true
+                                    self.answer4.isHidden = true
+                                    self.exclMark.isHidden = false
+                                    self.errorMssg.isHidden = false
+                                    self.setErorrMssg()
+                                    self.errorMssg.text = "You have already Answered this Q!"
+                                }
+                                
+                            }
                             if let data = data{
                                 if let json = try? JSONSerialization.jsonObject(with: data, options: []){
                                     print("r",json)
