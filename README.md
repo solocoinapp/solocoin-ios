@@ -32,7 +32,7 @@ git clone  https://github.com/solocoinapp/solocoin-ios.git
 It should create a git repository in that area you git cloned in. Then
 
 	cd solocoin-ios
- then
+	
 	cd Solocoin
 
 	cd Solocoin
