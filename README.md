@@ -1,6 +1,5 @@
 # solocoin-iOS
 
-
 This is Solocoin’s frontend iOS app Github repo. (https://github.com/solocoinapp/solocoin-ios)
 
 Completed on boarding except API, i hope this helps and reduce efforts to build from scratch and will be easy to continue work efficiently.
@@ -23,6 +22,7 @@ Don't change the layout of the different objects in the app through code, as tha
 
 You need Xcode, knowledge of Swift, a Mac, and knowledge of using the storyboard in Xcode.
 
+
 ## Getting To The Xcode Project
 
 In whichever directory or folder you want to have the git repository, type in
@@ -32,12 +32,13 @@ git clone  https://github.com/solocoinapp/solocoin-ios.git
 It should create a git repository in that area you git cloned in. Then
 
 	cd solocoin-ios
-
+	
 	cd Solocoin
 
 	cd Solocoin
 
 	open Solocoin.xcodeproj
+
 
 ## Committing To GitHub
 
@@ -57,6 +58,7 @@ This makes it so that the master branch, or the main branch, doesn’t get affec
 
 And you are done. Repeat this whenever pushing to the GitHub repo.
 
+
 ## How To Run The Project On Your Device
 
 Keep in mind that when you run this on your iOS device, it will stay for only 7 days unless you have the Apple Developer Account. What you will have to do is re-run/install it every 7 days. Apple wants to give this downside of having to re-run every 7 days for people to buy the developer account.
@@ -66,11 +68,13 @@ Keep in mind that when you run this on your iOS device, it will stay for only 7 
 
 To run this on your device, you will need to have a Mac with Xcode installed, an iOS device, and a chord that can plug into your Mac with Xcode and your iOS device.
 
+
 ## Setup
 
 To set this up, if you haven’t already cloned the git repository, follow the ‘Getting To The Xcode Project’’s steps to do this.
 
 You should have the Xcode project open if you have followed the ‘Getting To The Xcode Project’ steps.
+
 
 ## Running The App
 
