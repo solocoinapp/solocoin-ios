@@ -30,7 +30,7 @@ class LandingPageController: UIPageViewController, UIPageViewControllerDataSourc
         self.dataSource = self
         print(UserDefaults.standard.string(forKey: "uuid") ?? nil)
         print(UserDefaults.standard.string(forKey: "authtoken") ?? nil)
-        if let uuid = UserDefaults.standard.string(forKey: "uuid"){
+        if let uuid = UserDefaults.standard.string(forKey: "uuid"),let tok = UserDefaults.standard.string(forKey: "authtoken"){
             performSegue(withIdentifier: "toDashboard", sender: nil)
         }
 

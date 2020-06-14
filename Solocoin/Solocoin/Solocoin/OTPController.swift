@@ -9,27 +9,61 @@
 import UIKit
 import AuthenticationServices
 import FirebaseAuth
+import FlagPhoneNumber
 
 class OTPController: UIViewController {
 
     var code = ""
     var phone = ""
-    @IBOutlet weak var mobileNumber: UITextField!
+    @IBOutlet weak var mobileNumber: FPNTextField!
+    @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var mssg: UILabel!
+    @IBOutlet weak var entermssg: UILabel!
+    
+    var listController: FPNCountryListViewController = FPNCountryListViewController(style: .grouped)
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextBtn.isHidden = true
+        nextBtn.layer.cornerRadius = view.frame.width/20
+        mobileNumber.delegate = self
         let endEditing = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(endEditing)
+        mobileNumber.displayMode = .list
+        listController.setup(repository: mobileNumber.countryRepository)
+        listController.didSelect = { [weak self] country in
+            self?.mobileNumber.setFlag(countryCode: country.code)
+        }
+        mobileNumber.setFlag(key: .IN)
+        //mobileNumber.flagButtonSize = CGSize(width: 88, height: 44)
+        mobileNumber.flagButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        mobileNumber.borderColor = .clear
+        mobileNumber.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+        mobileNumber.translatesAutoresizingMaskIntoConstraints = false
+        mssg.translatesAutoresizingMaskIntoConstraints = false
+        nextBtn.translatesAutoresizingMaskIntoConstraints = false
+        //setLayout()
     }
+    
+    
+    
+   /* func setLayout(){
+        mobileNumber1.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 12).isActive = true
+        mobileNumber1.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive = true
+        mobileNumber1.topAnchor.constraint(equalTo: entermssg.bottomAnchor, constant: 15).isActive = true
+        
+        
+    }*/
 
     @IBAction func OTPNext(_ sender: Any) {
-        print(mobileNumber.text)
+        print(mobileNumber.text!)
         UserDefaults.standard.set(mobileNumber.text!,forKey: "phone")
         guard let _ = mobileNumber else {
             return
         }
         //removing spaces if any in mobile number
-        var realno=""
+        /*var realno=""
         for chr in mobileNumber.text!{
             if chr != " " && chr != "-"{
                 realno+=String(chr)
@@ -47,10 +81,16 @@ class OTPController: UIViewController {
                     phone+=String(chr)
                 }
             }
+        }*/
+        for chr in mobileNumber.text!{
+            if chr != " " && chr != "-"{
+                phone+=String(chr)
+            }
         }
         UserDefaults.standard.set(phone,forKey: "phone")
-        UserDefaults.standard.set(code,forKey: "code")
-        print("c",code,"p",phone)
+        UserDefaults.standard.set(mobileNumber.selectedCountry?.phoneCode,forKey: "code")
+        print("c",mobileNumber.selectedCountry?.phoneCode,"p",phone)
+        var realno = mobileNumber.selectedCountry!.phoneCode+phone
         
         publicVars.mobileNumber = realno
         if isValidMobile(phone: publicVars.mobileNumber) == true {
@@ -83,4 +123,39 @@ class OTPController: UIViewController {
             _ = segue.destination as! OTP2Controller
         }
      }
+}
+
+extension OTPController: FPNTextFieldDelegate {
+
+    func fpnDisplayCountryList() {
+       let navigationViewController = UINavigationController(rootViewController: listController)
+
+       listController.title = "Countries"
+
+       self.present(navigationViewController, animated: true, completion: nil)
+    }
+
+    func fpnDidValidatePhoneNumber(textField: FPNTextField, isValid: Bool) {
+        /*textField.rightViewMode = .always
+        //textField.rightView = UIImageView(image: isValid ? #imageLiteral(resourceName: "success") : #imageLiteral(resourceName: "error"))
+
+        print(
+            isValid,
+            textField.getFormattedPhoneNumber(format: .E164) ?? "E164: nil",
+            textField.getFormattedPhoneNumber(format: .International) ?? "International: nil",
+            textField.getFormattedPhoneNumber(format: .National) ?? "National: nil",
+            textField.getFormattedPhoneNumber(format: .RFC3966) ?? "RFC3966: nil",
+            textField.getRawPhoneNumber() ?? "Raw: nil"
+        )*/
+        if isValid{
+            textField.getFormattedPhoneNumber(format: .International)
+            self.nextBtn.isHidden = false
+        }else{
+            self.nextBtn.isHidden = true
+        }
+    }
+
+    func fpnDidSelectCountry(name: String, dialCode: String, code: String) {
+        print(name, dialCode, code)
+    }
 }

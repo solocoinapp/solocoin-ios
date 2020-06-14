@@ -1,4 +1,4 @@
-//
+///
 //  BadgeCollectionViewCell.swift
 //  Solocoin
 //
@@ -10,10 +10,12 @@ import UIKit
 
 class BadgeCollectionViewCell: UICollectionViewCell {
     var id = 0
+    var clickEnabled = true
     var badgeImageView = UIImageView()
     var context = CIContext(options: nil)
     var levelName = UILabel()
     var level = UILabel()
+    let levelNames = [["Alpha Warrior",1000],["Beta Warrior",2500],["Omega Warrior",5000],["Chief Warrior",10000],["Ultimate Warrior",25000],["Supreme Warrior",50000],["Master",100000],["Grand Master",250000],["Ultimate Master",500000],["Supreme Master",1000000],["Universe God",5000000],["Mutliverse God",2500000]]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -70,6 +72,7 @@ class BadgeCollectionViewCell: UICollectionViewCell {
     
         badgeImageView.image = UIImage(named: "Amazon")
         badgeImageView.contentMode = .scaleAspectFill
+        badgeImageView.clipsToBounds = true
         addSubview(badgeImageView)
         badgeImageView.backgroundColor = .init(red: 239/255, green: 238/255, blue: 241/255, alpha: 1)
         //badgeImageView.layer.cornerRadius = 20
@@ -96,6 +99,12 @@ class BadgeCollectionViewCell: UICollectionViewCell {
         let cgimg = context.createCGImage(output!, from: output!.extent)
         let processedImage = UIImage(cgImage: cgimg!)
         badgeImageView.image = processedImage
+    }
+    
+    func putinfo(){
+        UserDefaults.standard.set(self.levelNames[(self.level.text! as! Int)-2][0], forKey: "badgeName")
+        UserDefaults.standard.set(self.level.text!, forKey: "level")
+        UserDefaults.standard.set(self.badgeImageView.image, forKey: "badgeImage")
     }
     
     
