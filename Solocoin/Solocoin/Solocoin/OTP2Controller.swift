@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import CoreLocation
+import SkyFloatingLabelTextField
 
 class OTP2Controller: UIViewController {
  
@@ -19,15 +20,30 @@ class OTP2Controller: UIViewController {
     var uuid = ""
     var idtoken = ""
     var responseCode = 0
-    @IBOutlet weak var mobileNumber: UITextField!
+    @IBOutlet weak var mobileNumber: SkyFloatingLabelTextFieldWithIcon!
     
-    @IBOutlet weak var OTP: UITextField!
+    @IBOutlet weak var continueBtn: UIButton!
+    @IBOutlet weak var OTP: OTPTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        continueBtn.layer.cornerRadius = continueBtn.frame.width/20
+        mobileNumber.placeholder = "Phone No"
+        mobileNumber.titleFont = UIFont(name: "Poppins-SemiBold", size: 12)!
+        mobileNumber.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+        mobileNumber.title = "Phone No"
+        mobileNumber.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+        //mobileNumber.iconImage = UIImage(imageLiteralResourceName: "ic_mob")
         let endEditing = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(endEditing)
         mobileNumber.text! = publicVars.mobileNumber
+        //mobileNumber.isEnabled = false
+        //mobileNumber.isUserInteractionEnabled = false
+        OTP.configure()
+        OTP.didEnterLastDigit = { [weak self] code in
+            print(code)
+            //finished text
+        }
     }
     
     @IBAction func Next(_ sender: Any) {
@@ -45,7 +61,7 @@ class OTP2Controller: UIViewController {
             // Specify HTTP Method to use
             request.httpMethod = "POST"
             //sepcifying header
-            let token = UserDefaults.standard.string(forKey: "idtoken")!
+            //let token = UserDefaults.standard.string(forKey: "idtoken")!
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             //data
             let content = [
@@ -53,7 +69,7 @@ class OTP2Controller: UIViewController {
                     "country_code": UserDefaults.standard.string(forKey: "code")!,
                     "mobile": UserDefaults.standard.string(forKey: "phone")!,
                     "uid": UserDefaults.standard.string(forKey: "uuid")!,
-                    "id_token": UserDefaults.standard.string(forKey: "idtoken")!
+                    "id_token": self.idtoken//UserDefaults.standard.string(forKey: "idtoken")!
                 ]
             ]
             let jsonEncoder = JSONEncoder()
@@ -133,7 +149,7 @@ class OTP2Controller: UIViewController {
         completion()
     }*/
     
-    func signIn(completion: () -> ()){
+    func signIn(completion: @escaping () -> ()){
         guard OTP.text! != "" else{
             print("no otp entered, handle error")//handle this by showing a message or smth
             return
@@ -149,28 +165,42 @@ class OTP2Controller: UIViewController {
             withVerificationID: verificationID,
         verificationCode: verificationCode)
         //signin
+        let userGroup = DispatchGroup()
+        let group2 = DispatchGroup()
         Auth.auth().signIn(with: credential) { (authResult, error) in
+            //userGroup.enter()
             if error != nil{
                 print(error?.localizedDescription)
             }else{
                // User is signed in
                // ...
                 let uuid = authResult?.user.uid
-                UserDefaults.standard.set(uuid,forKey: "uuid")
-                print("u",uuid)
+                    UserDefaults.standard.set(uuid,forKey: "uuid")
+                    print("u",uuid)
                 let currentUser = Auth.auth().currentUser
                 currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
                     if let error = error {
                         // Handle error
+                        print("erroorororo")
                         return
                     }
+                    //self.idtoken = idToken!
                     UserDefaults.standard.set(idToken,forKey: "idtoken")
+                    print("ddd \(UserDefaults.standard.string(forKey: "uuid")!)")
                     self.idtoken = UserDefaults.standard.string(forKey: "idtoken")!
                     self.uuid = UserDefaults.standard.string(forKey: "uuid")!
                }
-           }
-         
+            }
+            //userGroup.leave()
+            /*userGroup.notify(queue: DispatchQueue.global()) {
+                print("done")
+                completion()
+            }*/
        }
+        /*userGroup.notify(queue: DispatchQueue.global()) {
+            print("done")
+            completion()
+        }*/
         completion()
         
     }

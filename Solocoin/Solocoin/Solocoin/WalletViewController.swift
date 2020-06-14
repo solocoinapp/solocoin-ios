@@ -10,14 +10,19 @@ import UIKit
 
 class WalletViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    @IBOutlet weak var errorMssg: UILabel!
+    @IBOutlet weak var exclMark: UIImageView!
     @IBOutlet weak var headerStack: UIStackView!
     @IBOutlet weak var coins: UILabel!
     //all offers
     var offers: [[String:String]] = []
     var collectionView: UICollectionView!
+    var notAvailable = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        exclMark.isHidden = true
+        errorMssg.isHighlighted = true
         // Do any additional setup after loading the view.
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCustomLayout())
         //collectionView.backgroundColor = .init(red: 92/255, green: 219/255, blue: 115/255, alpha: 1)
@@ -66,8 +71,12 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                     print("Response HTTP Status code: \(response.statusCode)")
                     if let data = data{
                     if let json = try? JSONSerialization.jsonObject(with: data, options: []){
+                        self.errorMssg.isHidden = true
+                        self.exclMark.isHidden = true
                         print("r",json)
                         if let object = json as? [[String:AnyObject]]{
+                            self.notAvailable = false
+                            self.offers.removeAll(keepingCapacity: true)
                             for offer in object{
                                 let nameOffer = offer["offer_name"] as! String
                                 let companyName = offer["company_name"] as! String
@@ -81,8 +90,19 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                             DispatchQueue.main.async {
                                 self.collectionView.reloadData()
                             }
+                        }else{
+                            self.errorMssg.text = "No offers are available at the moment"
+                            self.errorMssg.adjustsFontSizeToFitWidth = true
+                            self.errorMssg.isHidden = false
+                            self.exclMark.isHidden = false
+                            self.notAvailable = true
                         }
-                    }
+                    }else{
+                        self.errorMssg.text = "Some error occurred..."
+                        self.errorMssg.adjustsFontSizeToFitWidth = true
+                        self.errorMssg.isHidden = false
+                        self.exclMark.isHidden = false
+                        }
                 }
             }
         }
@@ -92,6 +112,9 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         print("s",offers.count/2 + 1)
+        if notAvailable{
+            return 0
+        }
         return offers.count/2 + 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

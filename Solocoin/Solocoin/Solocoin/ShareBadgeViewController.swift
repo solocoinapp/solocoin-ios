@@ -17,10 +17,20 @@ class ShareBadgeViewController: UIViewController {
         super.viewDidLoad()
         level.text = UserDefaults.standard.string(forKey: "level")
         badgeName.text = UserDefaults.standard.string(forKey: "badgeName")
-        badgeImage.image = UIImage(named: UserDefaults.standard.string(forKey: "badgeImage") ?? "Amazon")
+        badgeName.adjustsFontSizeToFitWidth = true
+        //print(UserDefaults.standard.string(forKey: "badgeName") ?? "lll")
+        badgeImage.image = UIImage(named: UserDefaults.standard.string(forKey: "badgeImage") ?? "Amazon")  //UserDefaults.standard.object(forKey: "badgeImage") as? UIImage ?? UIImage(named: "Amazon")
         // Do any additional setup after loading the view.
     }
-    
+    @IBAction func shareAward(_ sender: Any) {
+            let text = """
+    I just earned \(badgeName.text) on SoloCoin app which rewards you based on your location from home, mall, store and parks. Earn real world rewards with solocoins. Challenge friends and achieve milestones and badges like me.
+            
+            Download the App Now!
+    """
+            let vc = UIActivityViewController(activityItems: [text], applicationActivities: [])
+            present(vc,animated: true)
+        }
 
     /*
     // MARK: - Navigation
