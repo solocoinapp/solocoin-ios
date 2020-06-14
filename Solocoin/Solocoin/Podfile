@@ -8,5 +8,7 @@ target 'Solocoin' do
   # Pods for Solocoin
 pod 'Firebase'
 pod 'Firebase/Auth'
- 
+pod "FlagPhoneNumber", :git => 'https://github.com/ecomparer/FlagPhoneNumber.git'
+pod 'SkyFloatingLabelTextField'
+
 end

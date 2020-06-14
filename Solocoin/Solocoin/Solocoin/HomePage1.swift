@@ -276,7 +276,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         // Specify HTTP Method to use
         request.httpMethod = "GET"
         //sepcifying header
-        let authtoken = "Bearer \(UserDefaults.standard.string(forKey: "authtoken")!)"
+        let authtoken = "Token \(UserDefaults.standard.string(forKey: "authtoken")!)"
         print("a",authtoken)
         request.addValue(authtoken, forHTTPHeaderField: "Authorization")
         let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -326,7 +326,10 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                             self.exclMark.isHidden = false
                             self.errorMssg.isHidden = false
                             self.setErorrMssg()
-                            self.errorMssg.text = "Some error ocurred...."
+                            if self.errorMssg.text != "You've Answered Todays Questions!"{
+                                self.errorMssg.text = "You've Answered this Weeks Questions!"
+                                self.errorMssg.adjustsFontSizeToFitWidth = true
+                            }
                             self.errorWeekly = true
                         }
                         }
@@ -343,6 +346,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                     self.exclMark.isHidden = false
                     self.errorMssg.isHidden = false
                     self.setErorrMssg()
+                    self.errorMssg.adjustsFontSizeToFitWidth = true
                     self.errorMssg.text = "Some error ocurred...."
                     self.errorWeekly = true
                 }
@@ -419,7 +423,10 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                             self.exclMark.isHidden = false
                             self.errorMssg.isHidden = false
                             self.setErorrMssg()
-                            self.errorMssg.text = "Some error occurred...."
+                            self.errorMssg.text = "You've Answered Todays Questions!"
+                            self.errorMssg.adjustsFontSizeToFitWidth = true
+                            //self.exclMark.image = UIImage(named: "ic_landing_2")
+                            //self.exclMark.contentMode = .scaleAspectFill
                             self.erroDaily = true
                         }
                         }
@@ -437,6 +444,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                     self.errorMssg.isHidden = false
                     self.setErorrMssg()
                     self.errorMssg.text = "Some error occurred...."
+                    self.errorMssg.adjustsFontSizeToFitWidth = true
                     self.erroDaily = true
                 }
             }
@@ -535,8 +543,13 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     //MARK: - ACTIONS
     
     @IBAction func questionChanged(_ sender: Any) {
-        guard erroDaily == false, errorWeekly == true else {
+        guard erroDaily == false && errorWeekly == false else {
             print("error in segemtn")
+            if dailyWeekly.selectedSegmentIndex == 0 {
+                self.errorMssg.text = "You've Answered Todays Questions!"
+            }else{
+                self.errorMssg.text = "You've Answered this Weeks Questions!"
+            }
             return
         }
             question.isHidden = false
