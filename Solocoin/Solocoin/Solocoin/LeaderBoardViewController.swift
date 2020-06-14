@@ -1,11 +1,3 @@
-//
-//  LeaderBoardViewController.swift
-//  Solocoin
-//
-//  Created by Mishaal Kandapath on 5/30/20.
-//  Copyright © 2020 Solocoin. All rights reserved.
-//
-
 import UIKit
 
 class LeaderBoardViewController: UIViewController{
@@ -588,4 +580,3 @@ extension LeaderBoardViewController: UICollectionViewDelegate {
         }
     }
 }
-
