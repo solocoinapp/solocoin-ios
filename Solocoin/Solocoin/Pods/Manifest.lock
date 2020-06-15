@@ -75,18 +75,24 @@ PODS:
   - GoogleUtilities/UserDefaults (6.6.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.4.0)
+  - IQKeyboardManagerSwift (6.5.5)
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
     - nanopb/encode (= 1.30905.0)
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.9)
+  - SDWebImage (5.8.1):
+    - SDWebImage/Core (= 5.8.1)
+  - SDWebImage/Core (5.8.1)
   - SkyFloatingLabelTextField (3.8.0)
 
 DEPENDENCIES:
   - Firebase
   - Firebase/Auth
   - FlagPhoneNumber (from `https://github.com/ecomparer/FlagPhoneNumber.git`)
+  - IQKeyboardManagerSwift
+  - SDWebImage
   - SkyFloatingLabelTextField
 
 SPEC REPOS:
@@ -104,8 +110,10 @@ SPEC REPOS:
     - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - GTMSessionFetcher
+    - IQKeyboardManagerSwift
     - nanopb
     - PromisesObjC
+    - SDWebImage
     - SkyFloatingLabelTextField
 
 EXTERNAL SOURCES:
@@ -132,10 +140,12 @@ SPEC CHECKSUMS:
   GoogleDataTransportCCTSupport: d70a561f7d236af529fee598835caad5e25f6d3d
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
+  SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
 
-PODFILE CHECKSUM: 0fe170f0c43ffa5bb887b5e20d30c7fe6ed9bfed
+PODFILE CHECKSUM: 3f247f576601cc7ebe720b0e16aacd3e8e514dc8
 
 COCOAPODS: 1.9.1

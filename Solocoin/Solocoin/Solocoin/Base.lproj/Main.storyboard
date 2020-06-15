@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rUf-OE-RGO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v8g-db-TRS">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -234,6 +234,7 @@
         <scene sceneID="AMM-uf-JJr">
             <objects>
                 <tabBarController id="y5H-9s-wQx" customClass="MenuTBController" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Sep-Ym-e9U"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7DT-qF-e0p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -524,6 +525,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Fullname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H1C-dP-h91" customClass="SkyFloatingLabelTextFieldWithIcon" customModule="SkyFloatingLabelTextField">
                                 <rect key="frame" x="20" y="308" width="374" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.062745098040000002" green="0.12549019610000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" red="0.062745098040000002" green="0.12549019610000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" textContentType="name"/>
@@ -544,6 +546,12 @@
                                         <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="image" keyPath="iconImage" value="person.fill" catalog="system"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                        <color key="value" red="0.96862745100000003" green="0.22352941179999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selectedIconColor">
+                                        <color key="value" red="0.96862745100000003" green="0.22352941179999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvu-UO-y90">
@@ -563,8 +571,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="TAg-DI-NNZ"/>
                     <connections>
-                        <outlet property="fullName" destination="H1C-dP-h91" id="O2d-MO-4zL"/>
-                        <segue destination="WuH-Md-jtu" kind="presentation" modalPresentationStyle="fullScreen" id="4bp-75-8LJ"/>
+                        <outlet property="fullName" destination="H1C-dP-h91" id="23x-CP-TzW"/>
+                        <segue destination="WuH-Md-jtu" kind="presentation" identifier="permissionSegue" modalPresentationStyle="fullScreen" id="4bp-75-8LJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Moz-zn-7WV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -579,107 +587,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Permissions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opr-uY-h95">
-                                <rect key="frame" x="129.33333333333331" y="74" width="155.33333333333331" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mark your Location" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opr-uY-h95">
+                                <rect key="frame" x="20" y="74" width="374" height="47"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="22"/>
                                 <color key="textColor" red="1" green="0.14117647059999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera_permission" translatesAutoresizingMaskIntoConstraints="NO" id="jeb-9L-ItK">
-                                <rect key="frame" x="82" y="185" width="250" height="250"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
-                                </accessibility>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="5Dk-UZ-0U9"/>
-                                    <constraint firstAttribute="width" constant="250" id="zXd-P2-eVC"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SoloCoinLaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="6RE-T8-FgH" userLabel="SolocoinLogo">
+                                <rect key="frame" x="157" y="129" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="hfj-SF-uIZ">
-                                <rect key="frame" x="40" y="485" width="334" height="150"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X40-9Y-Z0K">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="50"/>
-                                        <color key="backgroundColor" red="1" green="0.14117647059999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="7Om-Vn-gaR"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                        <state key="normal" title="Access Your Location">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="25"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="locationAllowed:" destination="WuH-Md-jtu" eventType="touchUpInside" id="h2j-eI-ayU"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oaR-Hr-IRk">
-                                        <rect key="frame" x="0.0" y="100" width="334" height="50"/>
-                                        <color key="backgroundColor" red="1" green="0.14117647059999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="59r-ij-nQp"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                        <state key="normal" title="Allow Notifications">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="25"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="notificationAllowed:" destination="WuH-Md-jtu" eventType="touchUpInside" id="wBa-mr-mHS"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sac-KD-2ug">
-                                <rect key="frame" x="40" y="710" width="334" height="50"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="XAa-hn-fwX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="Continue">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MWj-EN-nLT">
+                                <rect key="frame" x="20" y="603" width="374" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.14117647059999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="21"/>
+                                <state key="normal" title="CONFIRM LOCATION">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="y5H-9s-wQx" kind="presentation" modalPresentationStyle="fullScreen" id="M1o-9q-Suv"/>
+                                    <action selector="confirmLoc:" destination="WuH-Md-jtu" eventType="touchUpInside" id="gfV-LB-Ovu"/>
+                                    <segue destination="y5H-9s-wQx" kind="presentation" identifier="toDash" modalPresentationStyle="fullScreen" id="RLJ-rU-mwg"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Tc-sm-Cyf">
+                                <rect key="frame" x="20" y="261" width="374" height="248"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ee-eK-nrJ">
+                                <rect key="frame" x="20" y="517" width="319" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="18"/>
+                                <color key="textColor" red="0.062745098040000002" green="0.12549019610000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="reload" translatesAutoresizingMaskIntoConstraints="NO" id="b1t-tv-Eqm">
+                                <rect key="frame" x="347" y="527.33333333333337" width="47" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.96862745100000003" green="0.22352941179999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="Kp2-a9-u0x" firstAttribute="trailing" secondItem="hfj-SF-uIZ" secondAttribute="trailing" constant="40" id="1rk-Kh-7ta"/>
-                            <constraint firstItem="hfj-SF-uIZ" firstAttribute="leading" secondItem="Kp2-a9-u0x" secondAttribute="leading" constant="40" id="1vr-qg-g60"/>
-                            <constraint firstItem="Kp2-a9-u0x" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Sac-KD-2ug" secondAttribute="trailing" id="3sH-YJ-axZ"/>
-                            <constraint firstItem="hfj-SF-uIZ" firstAttribute="top" secondItem="jeb-9L-ItK" secondAttribute="bottom" constant="50" id="4u7-QM-8H8"/>
-                            <constraint firstItem="Sac-KD-2ug" firstAttribute="leading" secondItem="Kp2-a9-u0x" secondAttribute="leading" constant="40" id="CUZ-Xq-A6V"/>
-                            <constraint firstItem="jeb-9L-ItK" firstAttribute="centerX" secondItem="vEJ-Ql-6wA" secondAttribute="centerX" id="JZV-3V-3F9"/>
-                            <constraint firstItem="Sac-KD-2ug" firstAttribute="centerX" secondItem="vEJ-Ql-6wA" secondAttribute="centerX" id="NAc-XA-gMo"/>
-                            <constraint firstItem="Opr-uY-h95" firstAttribute="top" secondItem="Kp2-a9-u0x" secondAttribute="top" constant="30" id="RI5-aI-cPG"/>
-                            <constraint firstItem="Sac-KD-2ug" firstAttribute="top" secondItem="hfj-SF-uIZ" secondAttribute="bottom" constant="75" id="hUY-4z-rbA"/>
-                            <constraint firstItem="hfj-SF-uIZ" firstAttribute="centerX" secondItem="vEJ-Ql-6wA" secondAttribute="centerX" id="lA1-gH-ift"/>
-                            <constraint firstItem="jeb-9L-ItK" firstAttribute="top" secondItem="Opr-uY-h95" secondAttribute="bottom" constant="75" id="pcT-oI-88J"/>
-                            <constraint firstItem="Opr-uY-h95" firstAttribute="centerX" secondItem="vEJ-Ql-6wA" secondAttribute="centerX" id="zaT-ZX-gYP"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Kp2-a9-u0x"/>
                     </view>
                     <navigationItem key="navigationItem" id="6n1-f8-oIe"/>
+                    <connections>
+                        <outlet property="confBtn" destination="MWj-EN-nLT" id="guF-D8-yYk"/>
+                        <outlet property="locationField" destination="3Ee-eK-nrJ" id="c8U-7y-W9p"/>
+                        <outlet property="mapViewCrn" destination="2Tc-sm-Cyf" id="59C-1i-jBI"/>
+                        <outlet property="reload" destination="b1t-tv-Eqm" id="x2f-6Y-7I3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6T-Cy-QEV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5583" y="-291"/>
+            <point key="canvasLocation" x="5581.1594202898559" y="-291.29464285714283"/>
         </scene>
         <!--Home Page-->
         <scene sceneID="JDH-30-jLD">
@@ -1026,7 +989,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMS-O0-ojF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6295.652173913044" y="370.98214285714283"/>
+            <point key="canvasLocation" x="5949" y="410"/>
         </scene>
         <!--WalletsPage-->
         <scene sceneID="7BI-XZ-LaI">
@@ -1832,7 +1795,7 @@
         <!--LeaderboardPage-->
         <scene sceneID="CDm-fQ-rFD">
             <objects>
-                <viewController id="moj-7w-w4e" userLabel="LeaderboardPage" customClass="LeaderBoardViewController" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="moj-7w-w4e" userLabel="LeaderboardPage" customClass="LeaderBoardVC" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0OL-S8-0MH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2366,7 +2329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiB-8Z-XbU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6296" y="-291"/>
+            <point key="canvasLocation" x="6499" y="-1100"/>
         </scene>
         <!--LandingPage4-->
         <scene sceneID="wGk-FJ-SHq">
@@ -2429,7 +2392,7 @@
         <segue reference="Xz4-Q5-4Az"/>
         <segue reference="DoF-mq-kLh"/>
         <segue reference="QKX-lY-S2j"/>
-        <segue reference="LP3-O8-iS6"/>
+        <segue reference="RLJ-rU-mwg"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Amazon" width="588" height="340"/>
@@ -2453,7 +2416,6 @@
         <image name="exclamationmark.circle" catalog="system" width="128" height="121"/>
         <image name="exclamationmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="ic_app_logo_nav_bar" width="10.666666984558105" height="10.666666984558105"/>
-        <image name="ic_camera_permission" width="55.333332061767578" height="64.333335876464844"/>
         <image name="ic_home_tab" width="26" height="25"/>
         <image name="ic_landing_1" width="406.66665649414062" height="406.66665649414062"/>
         <image name="ic_landing_2" width="385.33334350585938" height="385.33334350585938"/>
@@ -2467,6 +2429,7 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>
         <image name="pinkTrophy" width="512" height="512"/>
+        <image name="reload" width="444" height="443"/>
         <image name="smoothCoin" width="172.66667175292969" height="168.66667175292969"/>
         <image name="tabHome" width="25" height="25"/>
         <image name="tabProf" width="25" height="25"/>
