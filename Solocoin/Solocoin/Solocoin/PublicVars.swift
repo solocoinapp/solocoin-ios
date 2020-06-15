@@ -28,6 +28,10 @@ struct publicVars {
     //MARK: HomePage1
     static var newloc: CLLocation = CLLocation()
     static var homeloc = CLLocation()
+    
+    //user details
+    static var uuid = ""
+    static var idtoken = ""
 
     
 }

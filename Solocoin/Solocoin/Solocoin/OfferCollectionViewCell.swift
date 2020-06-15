@@ -9,7 +9,8 @@
 import UIKit
 
 class OfferCollectionViewCell: UICollectionViewCell {
-    var id = 0
+    var id = "0"
+    var offerImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,8 +33,8 @@ class OfferCollectionViewCell: UICollectionViewCell {
         self.layer.shadowOpacity = 0.5
         self.layer.masksToBounds = false
         self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.contentView.layer.cornerRadius).cgPath
-        let offerImageView = UIImageView()
-        offerImageView.image = UIImage(named: "Amazon")
+        //let offerImageView = UIImageView()
+        offerImageView.image = UIImage(named: "defaultBadge")//UIImage(named: "Amazon")
         offerImageView.contentMode = .scaleAspectFit
         addSubview(offerImageView)
         offerImageView.backgroundColor = .clear

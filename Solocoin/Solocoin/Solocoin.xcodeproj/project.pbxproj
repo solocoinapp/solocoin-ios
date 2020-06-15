@@ -53,6 +53,7 @@
 		F54329BF2490B0900083EED2 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F54329AD2490B0900083EED2 /* Poppins-Italic.ttf */; };
 		F54329C02490B0900083EED2 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F54329AE2490B0900083EED2 /* Poppins-MediumItalic.ttf */; };
 		F553016F24914FC80036C2B8 /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F553016E24914FC80036C2B8 /* CollectionReusableView.swift */; };
+		F55597122496927100DBE6B8 /* LeaderBoardTempVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */; };
 		F5A0B4FC24954B7000BFCC2B /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */; };
 		F5CB66DB24826DC4005BF70D /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */; };
 		F5CB66DD2482865E005BF70D /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CB66DC2482865E005BF70D /* WalletViewController.swift */; };
@@ -110,6 +111,7 @@
 		F54329AD2490B0900083EED2 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
 		F54329AE2490B0900083EED2 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		F553016E24914FC80036C2B8 /* CollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
+		F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardTempVC.swift; sourceTree = "<group>"; };
 		F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
 		F5CB66DC2482865E005BF70D /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
 				68872A142468CC70005348B4 /* UIViewExtension.swift */,
 				68B1D8762453ACDC007ECC01 /* Main.storyboard */,
+				F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */,
 				F542F1B72493FC340089CB83 /* WelcomeViewController.swift */,
 				F542F1B32493DF7B0089CB83 /* ThirdViewController.swift */,
 				F542F1B52493DFCC0089CB83 /* SecondViewController.swift */,
@@ -388,6 +391,7 @@
 				F5CB66DD2482865E005BF70D /* WalletViewController.swift in Sources */,
 				68B1D87B2453ACDC007ECC01 /* Solocoin.xcdatamodeld in Sources */,
 				F542F1B42493DF7C0089CB83 /* ThirdViewController.swift in Sources */,
+				F55597122496927100DBE6B8 /* LeaderBoardTempVC.swift in Sources */,
 				68B1D8882453B4BA007ECC01 /* LandingPagesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

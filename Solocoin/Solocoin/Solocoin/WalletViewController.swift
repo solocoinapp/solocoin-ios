@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class WalletViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -18,6 +19,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
     var offers: [[String:String]] = []
     var collectionView: UICollectionView!
     var notAvailable = false
+    let headLink = "https://solocoin.herokuapp.com"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +73,10 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                     print("Response HTTP Status code: \(response.statusCode)")
                     if let data = data{
                     if let json = try? JSONSerialization.jsonObject(with: data, options: []){
-                        self.errorMssg.isHidden = true
-                        self.exclMark.isHidden = true
+                        DispatchQueue.main.async {
+                            self.errorMssg.isHidden = true
+                            self.exclMark.isHidden = true
+                        }
                         print("r",json)
                         if let object = json as? [[String:AnyObject]]{
                             self.notAvailable = false
@@ -84,7 +88,8 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                                 let coins = offer["coins"] as! Int
                                 let copcode = offer["coupon_code"] as! String
                                 let id = offer["id"] as! Int
-                                self.offers.append(["offer_name":nameOffer,"company":companyName,"terms":terms,"coins":"\(coins)","coupon_code":copcode,"id":"\(id)"])
+                                let imgurl = offer["brand_logo_url"] as! String
+                                self.offers.append(["offer_name":nameOffer,"company":companyName,"terms":terms,"coins":"\(coins)","coupon_code":copcode,"id":"\(id)","imgurl":imgurl])
                             }
                             print(self.offers)
                             DispatchQueue.main.async {
@@ -110,6 +115,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
         qtask.resume()
         completion()
     }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         print("s",offers.count/2 + 1)
         if notAvailable{
@@ -133,10 +139,26 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerCell", for: indexPath) as? OfferCollectionViewCell{
+            if self.offers.count == 0{
+                cell.offerImageView.image = UIImage(named: "smoothCoin")!
+                return cell
+            }
             if indexPath.section == 0{
-                cell.id = indexPath.section+indexPath.row
+                cell.id = self.offers[(2*indexPath.section)+indexPath.row]["id"]!//indexPath.section+indexPath.row
+                switch self.offers[(2*indexPath.section)+indexPath.row]["imgurl"]!{
+                case "":
+                    cell.offerImageView.image = UIImage(named: "Amazon")
+                default:
+                    cell.offerImageView.sd_setImage(with: URL(string: self.headLink+self.offers[(2*indexPath.section)+indexPath.row]["imgurl"]!)) { (image, error, cache, urlGiven) in
+                        if error == nil{
+                            print("success wallet")
+                        }else{
+                            print("wallet",error?.localizedDescription)
+                        }
+                    }
+                }
             }else{
-                cell.id = indexPath.section+indexPath.row + 1
+                cell.id = self.offers[(2*indexPath.section)+indexPath.row]["id"]!
             }
             return cell
         }
@@ -145,7 +167,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? OfferCollectionViewCell{
-            setView(id: cell.id)
+            setView(id: (2*indexPath.section)+indexPath.row)
         }
     }
     

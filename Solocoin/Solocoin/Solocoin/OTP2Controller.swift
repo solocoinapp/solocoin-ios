@@ -68,7 +68,7 @@ class OTP2Controller: UIViewController {
                 "user": [
                     "country_code": UserDefaults.standard.string(forKey: "code")!,
                     "mobile": UserDefaults.standard.string(forKey: "phone")!,
-                    "uid": UserDefaults.standard.string(forKey: "uuid")!,
+                    "uid": publicVars.uuid,//UserDefaults.standard.string(forKey: "uuid")!,
                     "id_token": self.idtoken//UserDefaults.standard.string(forKey: "idtoken")!
                 ]
             ]
@@ -175,8 +175,9 @@ class OTP2Controller: UIViewController {
                // User is signed in
                // ...
                 let uuid = authResult?.user.uid
-                    UserDefaults.standard.set(uuid,forKey: "uuid")
-                    print("u",uuid)
+                UserDefaults.standard.set(uuid,forKey: "uuid")
+                publicVars.uuid = uuid!
+                print("u",uuid)
                 let currentUser = Auth.auth().currentUser
                 currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
                     if let error = error {
@@ -185,6 +186,7 @@ class OTP2Controller: UIViewController {
                         return
                     }
                     //self.idtoken = idToken!
+                    publicVars.idtoken = self.idtoken
                     UserDefaults.standard.set(idToken,forKey: "idtoken")
                     print("ddd \(UserDefaults.standard.string(forKey: "uuid")!)")
                     self.idtoken = UserDefaults.standard.string(forKey: "idtoken")!
@@ -204,7 +206,7 @@ class OTP2Controller: UIViewController {
         completion()
         
     }
-
+ 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SignUpController" {
             _ = segue.destination as! SignUpController

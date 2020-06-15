@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class BadgeCollectionViewCell: UICollectionViewCell {
     var id = 0
@@ -84,21 +85,36 @@ class BadgeCollectionViewCell: UICollectionViewCell {
        badgeImageView.bottomAnchor.constraint(equalTo: levelName.topAnchor).isActive = true
     }
     
-    func blurEffect() {
+    func blurEffect(status: Bool) {
+        if status{
+            let currentFilter = CIFilter(name: "CIGaussianBlur")
+            let beginImage = CIImage(image: (badgeImageView.image ?? UIImage(named:"Amazon"))!)
+            currentFilter!.setValue(beginImage, forKey: kCIInputImageKey)
+            currentFilter!.setValue(20, forKey: kCIInputRadiusKey)
 
-        let currentFilter = CIFilter(name: "CIGaussianBlur")
-        let beginImage = CIImage(image: (badgeImageView.image ?? UIImage(named:"Amazon"))!)
-        currentFilter!.setValue(beginImage, forKey: kCIInputImageKey)
-        currentFilter!.setValue(20, forKey: kCIInputRadiusKey)
+            let cropFilter = CIFilter(name: "CICrop")
+            cropFilter!.setValue(currentFilter!.outputImage, forKey: kCIInputImageKey)
+            cropFilter!.setValue(CIVector(cgRect: beginImage!.extent), forKey: "inputRectangle")
 
-        let cropFilter = CIFilter(name: "CICrop")
-        cropFilter!.setValue(currentFilter!.outputImage, forKey: kCIInputImageKey)
-        cropFilter!.setValue(CIVector(cgRect: beginImage!.extent), forKey: "inputRectangle")
+            let output = cropFilter!.outputImage
+            let cgimg = context.createCGImage(output!, from: output!.extent)
+            let processedImage = UIImage(cgImage: cgimg!)
+            badgeImageView.image = processedImage
+        }else{
+            let currentFilter = CIFilter(name: "CIGaussianBlur")
+            let beginImage = CIImage(image: (badgeImageView.image ?? UIImage(named:"Amazon"))!)
+            currentFilter!.setValue(beginImage, forKey: kCIInputImageKey)
+            currentFilter!.setValue(0, forKey: kCIInputRadiusKey)
 
-        let output = cropFilter!.outputImage
-        let cgimg = context.createCGImage(output!, from: output!.extent)
-        let processedImage = UIImage(cgImage: cgimg!)
-        badgeImageView.image = processedImage
+            let cropFilter = CIFilter(name: "CICrop")
+            cropFilter!.setValue(currentFilter!.outputImage, forKey: kCIInputImageKey)
+            cropFilter!.setValue(CIVector(cgRect: beginImage!.extent), forKey: "inputRectangle")
+
+            let output = cropFilter!.outputImage
+            let cgimg = context.createCGImage(output!, from: output!.extent)
+            let processedImage = UIImage(cgImage: cgimg!)
+            badgeImageView.image = processedImage
+        }
     }
     
     func putinfo(){
