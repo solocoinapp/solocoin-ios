@@ -19,7 +19,23 @@ class ShareBadgeViewController: UIViewController {
         badgeName.text = UserDefaults.standard.string(forKey: "badgeName")
         badgeName.adjustsFontSizeToFitWidth = true
         //print(UserDefaults.standard.string(forKey: "badgeName") ?? "lll")
-        badgeImage.image = UIImage(named: UserDefaults.standard.string(forKey: "badgeImage") ?? "Amazon")  //UserDefaults.standard.object(forKey: "badgeImage") as? UIImage ?? UIImage(named: "Amazon")
+        //badgeImage.image = UIImage(named: UserDefaults.standard.string(forKey: "badgeImage") ?? "defaultBadge")
+        let url = UserDefaults.standard.string(forKey: "badgeImage") ?? "defaultBadge"
+        switch url{
+        case "defaultBadge":
+            badgeImage.image = UIImage(named: UserDefaults.standard.string(forKey: "badgeImage") ?? "defaultBadge")
+        default:
+            
+            badgeImage.sd_setImage(with: URL(string: (url as! String))) { (image, error, cache, urlGiven) in
+                if error == nil{
+                    print("sharing")
+                }else{
+                    print("sharin",error?.localizedDescription)
+                }
+            }
+        }
+        
+        //UserDefaults.standard.object(forKey: "badgeImage") as? UIImage ?? UIImage(named: "Amazon")
         // Do any additional setup after loading the view.
     }
 
