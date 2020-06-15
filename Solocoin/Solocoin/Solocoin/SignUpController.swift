@@ -7,11 +7,12 @@
 //
 import UIKit
 import CoreLocation
+import SkyFloatingLabelTextField
 
-class SignUpController: UIViewController {
+class SignUpController: UIViewController,UITextFieldDelegate {
 
     // MARK: - IBOUTLETS
-    @IBOutlet weak var fullName: UITextField!
+    @IBOutlet weak var fullName: SkyFloatingLabelTextFieldWithIcon!
 
     //@IBOutlet weak var signUpEmail: UITextField!
     
@@ -26,6 +27,13 @@ class SignUpController: UIViewController {
         //publicVars.genderSignUp = signUpGender.titleForSegment(at: 0) ?? "error"
         let endEditing = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(endEditing)
+        fullName.placeholder = "Fullname"
+        fullName.titleFont = UIFont(name: "Poppins-SemiBold", size: 12)!
+        fullName.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+        fullName.title = "Phone No"
+        fullName.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+        self.fullName.delegate = self
+        
     }
     
     /*@IBAction func genderClicked(_ sender: Any) {
@@ -33,6 +41,11 @@ class SignUpController: UIViewController {
         publicVars.whichGenderSegment = signUpGender.selectedSegmentIndex
     }*/
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     @IBAction func accountCreated(_ sender: Any) {
         // VARIABLES
         publicVars.fullNameSignUp = fullName.text!
@@ -104,7 +117,7 @@ class SignUpController: UIViewController {
                                         DispatchQueue.main.async {
                                             UserDefaults.standard.set(self.fullName.text!, forKey: "username")
                                         }
-                                        guard let lat = object["lat"] as? CLLocationDegrees else{
+                                       /* guard let lat = object["lat"] as? CLLocationDegrees else{
                                             print("nope lat")
                                             return
                                         }
@@ -114,7 +127,7 @@ class SignUpController: UIViewController {
                                         }
                                         let location = CLLocation(latitude: lat, longitude: lang)
                                         //UserDefaults.standard.set(location, forKey: "homeloc")
-                                        publicVars.homeloc = location
+                                        publicVars.homeloc = location*/
                                         //perform segue to dahsboard
                                         DispatchQueue.main.async {
                                             self.performSegue(withIdentifier: "permissionSegue", sender: self)

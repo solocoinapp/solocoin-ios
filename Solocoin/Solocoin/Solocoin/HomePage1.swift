@@ -252,7 +252,8 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         print("a",authtoken)
         request.addValue(authtoken, forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let content = ["user":["name": UserDefaults.standard.string(forKey: "username"),"mobile":UserDefaults.standard.string(forKey: "phone"),"lat":UserDefaults.standard.string(forKey: "lat"),"lang":UserDefaults.standard.string(forKey: "long")]]
+        let content = ["user":["name": UserDefaults.standard.string(forKey: "username"),"mobile":UserDefaults.standard.string(forKey: "phone"),"lat":"\(publicVars.homeloc.coordinate.latitude)",//UserDefaults.standard.string(forKey: "lat"),
+            "lang":"\(publicVars.homeloc.coordinate.longitude)"]]//UserDefaults.standard.string(forKey: "long")]]
         let jsonEncoder = JSONEncoder()
         if let jsonData = try? jsonEncoder.encode(content),
             let jsonString = String(data: jsonData, encoding: .utf8) {
@@ -261,7 +262,8 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if error == nil{
                     if let response = response as? HTTPURLResponse {
-                    print("loc Response HTTP Status code: \(response.statusCode)")
+                        print("loc Response HTTP Status code: \(response.statusCode)")
+                        
                     }
                 }
             }

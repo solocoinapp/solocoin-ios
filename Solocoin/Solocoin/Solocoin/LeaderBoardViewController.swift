@@ -1,4 +1,12 @@
-import UIKit
+//
+//  LeaderBoardViewController.swift
+//  Solocoin
+//
+//  Created by Mishaal Kandapath on 5/30/20.
+//  Copyright © 2020 Solocoin. All rights reserved.
+//
+
+/*import UIKit
 
 class LeaderBoardViewController: UIViewController{
     
@@ -10,6 +18,7 @@ class LeaderBoardViewController: UIViewController{
         case main
     }
     //var collectionView: UICollectionView!
+    var levelpoints = [[String:Int]]()
     
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var headerSec: UILabel!
@@ -67,7 +76,7 @@ class LeaderBoardViewController: UIViewController{
         //obtainLeaderBoard()
         obtainBadges { (levels) in
             //print(levels,"lrv")
-            self.currentLevel = levels.max()!
+            /*self.currentLevel = levels.max()!
             self.currentLevel -= 1
             print("level",self.currentLevel)
             for indx in 0...self.currentLevel{
@@ -89,6 +98,34 @@ class LeaderBoardViewController: UIViewController{
                     self.finalizeProgressbar()
                 }
                 self.mainCollectionView.reloadData()
+            }*/
+            self.sortBadges { (orderBadges) in
+                self.milestone = orderBadges
+                for i in 0..<self.milestone.count{
+                    if self.levelNames[i][1] as! Int > self.totalCoinsEarned{
+                        self.currentLevel = i-2 //mite wanna make it -1
+                    }
+                }
+                for indx in 0...self.currentLevel{
+                    let badge = self.levels[indx]
+                    self.currentLevels.append(badge)
+                }
+                DispatchQueue.main.async {
+                    //self.putImages(levels: self.currentLevels)
+                    if self.currentLevel == 12{
+                        self.coinsLeft.text = "Congratulations! Levels Complete!"
+                        self.bigCoinsLeft.text = "You've finished all levels!"
+                    }else{
+                        self.coinsLeft.text = "\(self.levelCoins[self.currentLevel-1]-self.totalCoinsEarned) coins to move to the next level!"
+                        self.bigCoinsLeft.text = "\(self.levelCoins[self.currentLevel-1]-self.totalCoinsEarned) coins to move to the next level!"
+                    }
+                    self.crnLevel.text = "Level \(self.currentLevel)"
+                    self.badgesUnlockedNo.text = String(self.currentLevel+1)
+                    self.setLevelProgress {
+                        self.finalizeProgressbar()
+                    }
+                    self.mainCollectionView.reloadData()
+                }
             }
         }
         
@@ -193,7 +230,7 @@ class LeaderBoardViewController: UIViewController{
         }
     }
     
-    func obtainBadges(completion:@escaping ([Int]) -> ()){
+    /*func obtainBadges(completion:@escaping ([Int]) -> ()){
         
         var levels = [Int]()
         let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user/badges")!
@@ -236,7 +273,8 @@ class LeaderBoardViewController: UIViewController{
         }
         qtask.resume()
         
-    }
+    }*/
+    
     
     /*func configureCollectionView() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -250,6 +288,57 @@ class LeaderBoardViewController: UIViewController{
             self.collectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor)
         ])
     }*/
+    
+    func obtainBadges(completion:@escaping ([Int]) -> ()){
+        
+        var levels = [Int]()
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user/badges")!
+        var request = URLRequest(url: url)
+        // Specify HTTP Method to use
+        request.httpMethod = "GET"
+        //sepcifying header
+        let authtoken = "Bearer \(UserDefaults.standard.string(forKey: "authtoken")!)"
+        request.addValue(authtoken, forHTTPHeaderField: "Authorization")
+        let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error == nil{
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                    print("Response HTTP Status code: \(response.statusCode)")
+                    if response.statusCode == 200{
+                        if let data = data{
+                        if let json = try? JSONSerialization.jsonObject(with: data, options: []){
+                            print("B",json)
+                            if let object = json as? [String:AnyObject]{
+                                let coins_earned = object["total_earned_coins"] as! Int
+                                self.totalCoinsEarned = coins_earned
+                                let badgesEarned = object["badges"] as! [[String:AnyObject]]
+                                for badge in badgesEarned{
+                                    let level = badge["level"] as! Int
+                                    let name = badge["name"] as! String
+                                    let oneline = badge["one_liner"] as! String
+                                    let min_coins = badge["min_points"] as! Int
+                                    levels.append(level)
+                                    self.milestone.append(["level":"\(level)","name":name,"oneliner":oneline])
+                                    self.levelpoints.append(["\(level-1)":min_coins])
+                                }
+                                completion(levels)
+                            }
+                        }
+                        }
+                    }
+                    
+                }
+            }else{
+                print("eroor",error?.localizedDescription)
+            }
+        }
+        qtask.resume()
+        
+    }
+    
+    func orderBadges(){
+        
+    }
     
     func createCustomLayout() -> UICollectionViewLayout {
         print("yeye")
@@ -434,6 +523,28 @@ class LeaderBoardViewController: UIViewController{
         return layout
     }
     
+    func sortBadges(completion:([[String:String]])->()){
+        for i in 0..<levelpoints.count {
+          for j in 1..<levelpoints.count - i {
+            if levelpoints[j]["\(j)"]! < levelpoints[j-1]["\(j-1)"]! {
+                let tmp = levelpoints[j-1]
+                levelpoints[j-1] = levelpoints[j]
+                levelpoints[j] = tmp
+            }
+          }
+        }
+        var orderlevels=[[String:String]]()
+        for i in 0..<milestone.count{
+            for j in 0..<milestone.count{
+                if milestone[j]["level"] == "\(j+1)"{
+                    orderlevels.append(milestone[j])
+                }
+            }
+        }
+        
+        completion(orderlevels)
+    }
+    
     /*func obtainLeaderBoard(){
         let url = URL(string: "https://solocoin.herokuapp.com/api/v1/leaderboard")!
         var request = URLRequest(url: url)
@@ -580,3 +691,4 @@ extension LeaderBoardViewController: UICollectionViewDelegate {
         }
     }
 }
+*/
