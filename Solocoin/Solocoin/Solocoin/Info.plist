@@ -8,12 +8,12 @@
 	<string>SoloCoin needs your location for you to use the app</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string></string>
+		<string>Poppins-Black.ttf</string>
 	</array>
-	<key>Item17</key>
-	<string>Poppins-MeidumItalic.ttf</string>
 	<key>Item16</key>
 	<string>Poppins-Italic.ttf</string>
+	<key>Item17</key>
+	<string>Poppins-MeidumItalic.ttf</string>
 	<key>Item15</key>
 	<string>Poppins-SemiBold.ttf</string>
 	<key>Item14</key>

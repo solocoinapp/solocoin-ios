@@ -32,6 +32,10 @@ struct publicVars {
     //user details
     static var uuid = ""
     static var idtoken = ""
+    
+    //popUp status
+    static var accepted = false
+    static var cancelled = false
 
     
 }

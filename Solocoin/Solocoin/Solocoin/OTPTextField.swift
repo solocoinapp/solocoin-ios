@@ -75,21 +75,26 @@ class OTPTextField: UITextField {
             label.isUserInteractionEnabled = true
             stackView.addArrangedSubview(label)
             digitLabels.append(label)
-            
         }
-        
         return stackView
+    }
+    
+    func clearText(){
+        for i in 0..<digitLabels.count{
+            digitLabels[i].text = defaultChar
+        }
     }
     
     @objc private func textDidChange(){
         guard let text = self.text, text.count <= digitLabels.count else {return}
-        for i in 0..<text.count{
+        for i in 0..<digitLabels.count{
             let currentLabel = digitLabels[i]
-            
             if i < text.count{
+                print("ok",i)
                 let index = text.index(text.startIndex, offsetBy: i)
                 currentLabel.text = String(text[index])
             }else{
+                print(i)
                 currentLabel.text = defaultChar
             }
         }
@@ -101,7 +106,9 @@ class OTPTextField: UITextField {
 }
 extension OTPTextField: UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        print("editing",string,"0")
         guard let characterCount = textField.text?.count  else {
+            print("ffmmfmf")
             return false
         }
         return characterCount < digitLabels.count || string == ""
