@@ -23,6 +23,14 @@ class WelcomeViewController: UIViewController {
         // Do any additional setup after loading the view.
         setView()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
+            self.performSegue(withIdentifier: "next", sender: nil)
+        }
+    }
+    
     func setView(){
         welcomText.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height/10).isActive = true
         welcomText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true

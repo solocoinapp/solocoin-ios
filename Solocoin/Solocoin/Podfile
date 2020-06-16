@@ -10,6 +10,7 @@ pod 'Firebase'
 pod 'Firebase/Auth'
 pod "FlagPhoneNumber", :git => 'https://github.com/ecomparer/FlagPhoneNumber.git'
 pod 'SkyFloatingLabelTextField'
-pod 'IQKeyboardManagerSwift'
 pod 'SDWebImage'
+pod 'CRRefresh'
+pod 'ReachabilitySwift'
 end
