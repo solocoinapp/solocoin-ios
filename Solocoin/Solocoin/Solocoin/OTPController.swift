@@ -43,7 +43,6 @@ class OTPController: UIViewController {
             self?.mobileNumber.setFlag(countryCode: country.code)
         }
         mobileNumber.setFlag(key: .IN)
-        //mobileNumber.flagButtonSize = CGSize(width: 88, height: 44)
         mobileNumber.flagButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         mobileNumber.borderColor = .clear
         mobileNumber.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
