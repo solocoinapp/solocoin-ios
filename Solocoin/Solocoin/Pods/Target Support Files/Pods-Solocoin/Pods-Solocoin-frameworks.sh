@@ -197,21 +197,23 @@ if [ -r "${ARTIFACT_LIST_FILE}" ]; then
 fi
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/CRRefresh/CRRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/CRRefresh/CRRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SkyFloatingLabelTextField/SkyFloatingLabelTextField.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
