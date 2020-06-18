@@ -161,9 +161,13 @@
 				68B1D8702453ACDC007ECC01 /* AppDelegate.swift */,
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
 				68872A142468CC70005348B4 /* UIViewExtension.swift */,
+				F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */,
+				F553016E24914FC80036C2B8 /* CollectionReusableView.swift */,
+				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
 				68B1D8762453ACDC007ECC01 /* Main.storyboard */,
-				F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */,
 				F542F1B72493FC340089CB83 /* WelcomeViewController.swift */,
+<<<<<<< HEAD
+=======
 				F542F1B12493B3A50089CB83 /* OpeningViewControllers.swift */,
 				F542F1B52493DFCC0089CB83 /* SecondViewController.swift */,
 				F542F1B32493DF7B0089CB83 /* ThirdViewController.swift */,
@@ -175,25 +179,40 @@
 				F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */,
 				F53DF2C32485279100030373 /* BadgeCollectionViewCell.swift */,
 				F5D66FC82475A1EC00476863 /* MenuTBController.swift */,
+>>>>>>> 644ee1bce7a0d68924179d7951f106f27aa1032b
 				68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */,
+				F542F1B12493B3A50089CB83 /* OpeningViewControllers.swift */,
+				F542F1B52493DFCC0089CB83 /* SecondViewController.swift */,
+				F542F1B32493DF7B0089CB83 /* ThirdViewController.swift */,
 				68B1D88924540C5F007ECC01 /* OTPController.swift */,
 				68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */,
 				F540C3712498F33E005199D9 /* NetWorkCheck.swift */,
 				68B1D8CE24551915007ECC01 /* SignUpController.swift */,
 				68213D1A2457FD1D008B30A1 /* PermissionsController.swift */,
 				68B1D8D42457707B007ECC01 /* Geofencing.swift */,
+				F5D66FC82475A1EC00476863 /* MenuTBController.swift */,
 				68B1D8D224565FD8007ECC01 /* HomePage1.swift */,
+				F5CB66DC2482865E005BF70D /* WalletViewController.swift */,
+				F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */,
+				F53DF2C52485545600030373 /* ShareBadgeViewController.swift */,
+				F53DA2A62483A9EF005FE377 /* OfferCollectionViewCell.swift */,
+				F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */,
+				F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */,
+				F53DF2C32485279100030373 /* BadgeCollectionViewCell.swift */,
 				68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */,
+				F542F1AF249369470089CB83 /* profileTableViewCell.swift */,
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
-				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
 				F53DA2A4248378B7005FE377 /* GoogleService-Info.plist */,
 				68B1D8812453ACDE007ECC01 /* Info.plist */,
 				68B1D8792453ACDC007ECC01 /* Solocoin.xcdatamodeld */,
+<<<<<<< HEAD
+=======
 				F553016E24914FC80036C2B8 /* CollectionReusableView.swift */,
 				F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */,
 				F58FFB122497F78C006D4675 /* CustomAlertView.xib */,
 				F58FFB142497FA21006D4675 /* SolocoinAlert.swift */,
+>>>>>>> 644ee1bce7a0d68924179d7951f106f27aa1032b
 			);
 			path = Solocoin;
 			sourceTree = "<group>";
