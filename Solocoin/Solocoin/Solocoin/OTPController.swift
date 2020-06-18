@@ -43,6 +43,7 @@ class OTPController: UIViewController {
             self?.mobileNumber.setFlag(countryCode: country.code)
         }
         mobileNumber.setFlag(key: .IN)
+        //mobileNumber.flagButtonSize = CGSize(width: 88, height: 44)
         mobileNumber.flagButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         mobileNumber.borderColor = .clear
         mobileNumber.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
@@ -95,44 +96,63 @@ class OTPController: UIViewController {
         }
      }
     @IBAction func sendConfirm(_ sender: Any) {
-        UIView.animate(withDuration: 0.5) {
+        if self.actionBtn.titleLabel!.text == "Connectivity" {
+            UIView.animate(withDuration: 0.5) {
             self.popupParent.alpha = 0
             self.popupParent.isUserInteractionEnabled = false
             self.bodyPop.alpha = 0
             self.bodyPop.isUserInteractionEnabled = false
-            print(self.mobileNumber.text!)
-            UserDefaults.standard.set(self.mobileNumber.text!,forKey: "phone")
-            guard let _ = self.mobileNumber else {
-                return
+            self.view.reloadInputViews()
             }
-            
-            for chr in self.mobileNumber.text!{
-                if chr != " " && chr != "-"{
-                    self.phone+=String(chr)
-                }
-            }
-            UserDefaults.standard.set(self.phone,forKey: "phone")
-            UserDefaults.standard.set(self.mobileNumber.selectedCountry?.phoneCode,forKey: "code")
-            print("c",self.mobileNumber.selectedCountry?.phoneCode,"p",self.phone)
-            var realno = self.mobileNumber.selectedCountry!.phoneCode+self.phone
-            
-            publicVars.mobileNumber = realno
-            if self.isValidMobile(phone: publicVars.mobileNumber) == true {
-                //from firebase doc, we're verifying the phone number here and getting the provate veri code from firebase
-                PhoneAuthProvider.provider().verifyPhoneNumber(realno, uiDelegate: nil) { (verificationID, error) in
-                  if let error = error {
-                    //self.showMessagePrompt(error.localizedDescription) //error handling function, just printing it to console for now
-                    print("error",error.localizedDescription)
+        }else{
+            self.mainMssg.text = "Verify the mobile number \(self.mobileNumber.selectedCountry!.phoneCode + mobileNumber.text!) and confirm"
+            UIView.animate(withDuration: 0.5) {
+                self.popupParent.alpha = 0
+                self.popupParent.isUserInteractionEnabled = false
+                self.bodyPop.alpha = 0
+                self.bodyPop.isUserInteractionEnabled = false
+                print(self.mobileNumber.text!)
+                UserDefaults.standard.set(self.mobileNumber.text!,forKey: "phone")
+                guard let _ = self.mobileNumber else {
                     return
-                  }
-                  // Sign in using the verificationID and the code sent to the user
-                  // ...
-                    UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                    self.performSegue(withIdentifier: "OTP2", sender: self)
+                }
+                
+                for chr in self.mobileNumber.text!{
+                    if chr != " " && chr != "-"{
+                        self.phone+=String(chr)
+                    }
+                }
+                UserDefaults.standard.set(self.phone,forKey: "phone")
+                UserDefaults.standard.set(self.mobileNumber.selectedCountry?.phoneCode,forKey: "code")
+                print("c",self.mobileNumber.selectedCountry?.phoneCode,"p",self.phone)
+                var realno = self.mobileNumber.selectedCountry!.phoneCode+self.phone
+                
+                publicVars.mobileNumber = realno
+                if self.isValidMobile(phone: publicVars.mobileNumber) == true {
+                    //from firebase doc, we're verifying the phone number here and getting the provate veri code from firebase
+                    PhoneAuthProvider.provider().verifyPhoneNumber(realno, uiDelegate: nil) { (verificationID, error) in
+                      if let error = error {
+                        //self.showMessagePrompt(error.localizedDescription) //error handling function, just printing it to console for now
+                        self.mainMssg.text = "You seem to have lost Internet Connection"
+                        self.topMssg.text = "Connectivity"
+                        self.actionBtn.titleLabel?.text = "Try Again"
+                        UIView.animate(withDuration: 0.5) {
+                            self.popupParent.alpha = 1.0
+                            self.popupParent.isUserInteractionEnabled = true
+                            self.bodyPop.alpha = 1
+                            self.bodyPop.isUserInteractionEnabled = true
+                        }
+                        print("error",error.localizedDescription)
+                        return
+                      }
+                      // Sign in using the verificationID and the code sent to the user
+                      // ...
+                        UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                        self.performSegue(withIdentifier: "OTP2", sender: self)
+                    }
                 }
             }
-        }
-        
+            }
     }
     @IBAction func cancelPop(_ sender: Any) {
         UIView.animate(withDuration: 0.5) {

@@ -13,6 +13,7 @@ class CollectionReusableViewHeader: UICollectionReusableView {
       return String(describing: CollectionReusableViewHeader.self)
     }*/
     static let identifier = "headerIdentifier"
+    @IBOutlet weak var awardsUnlocked: UILabel!
     @IBOutlet weak var circle3: UIImageView!
     @IBOutlet weak var circle2: UIImageView!
     @IBOutlet weak var circle1: UIImageView!
@@ -26,5 +27,18 @@ class CollectionReusableViewHeader: UICollectionReusableView {
     @IBOutlet weak var levelProgress: UIProgressView!
     //@IBOutlet weak var leaderBoardHeader: UILabel!
     @IBOutlet weak var leaderBoardSec: UIImageView!
-
+    /*@IBOutlet weak var filledProgressBar: UIImageView!
+    var emptyProgress = UIImageView(image: UIImage(named: "emptyProgress")!)*/
+    
+    /*func moveProgress(currentLevel: Int, currentCoins: Int, nextCoins: Int,diff: Int){
+        if currentLevel%3==0 && Float(diff-(nextCoins-currentCoins)) == Float(diff)/2.0{
+            self.emptyProgress.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        }else if currentLevel%3==0{
+            let to_hide = (3*Float(self.filledProgressBar.frame.width)/4.0) + Float((nextCoins-currentCoins))/Float(diff)/4.0
+            self.emptyProgress.frame = CGRect(x: 0, y: 0, width: CGFloat(to_hide), height: self.filledProgressBar.frame.height)
+        }else if currentLevel%3==2{
+            let to_show = (self.filledProgressBar.frame.width)/2.0 + Float(diff-(nextCoins-currentCoins))/4
+        }
+    }*/
+    
 }

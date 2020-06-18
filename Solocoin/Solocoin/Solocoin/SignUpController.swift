@@ -20,6 +20,13 @@ class SignUpController: UIViewController,UITextFieldDelegate {
     
     //@IBOutlet weak var signUpBirth: UIDatePicker!
     
+    //popup
+    @IBOutlet weak var popupParent: UIView!
+    @IBOutlet weak var bodyPop: UIView!
+    @IBOutlet weak var topMssg: UILabel!
+    @IBOutlet weak var mainMssg: UILabel!
+    @IBOutlet weak var actionBtn: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +40,15 @@ class SignUpController: UIViewController,UITextFieldDelegate {
         fullName.title = "Fullname"
         fullName.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
         self.fullName.delegate = self
+        popupParent.alpha = 0
+               popupParent.isUserInteractionEnabled = false
+               actionBtn.layer.cornerRadius = actionBtn.frame.width/25
+               popupParent.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 0.7)
         
+        NetworkManager.isReachable { (_) in
+            self.topMssg.text = "Connectivity"
+            self.mainMssg.text = "No internet Connection"
+        }
     }
     
     /*@IBAction func genderClicked(_ sender: Any) {
@@ -140,6 +155,7 @@ class SignUpController: UIViewController,UITextFieldDelegate {
                     }
                 }else{
                     print("error",error?.localizedDescription)
+                    self.showPopup()
                 }
                 
             }
@@ -149,7 +165,35 @@ class SignUpController: UIViewController,UITextFieldDelegate {
         // SEGUE
        // performSegue(withIdentifier: "permissionSegue", sender: self)
     }
-
+    
+    func showPopup(){
+        //self.mainMssg.text = "Verify the mobile number \(self.mobileNumber.selectedCountry!.phoneCode + mobileNumber.text!) and confirm"
+        UIView.animate(withDuration: 0.5) {
+            self.popupParent.alpha = 1.0
+            self.popupParent.isUserInteractionEnabled = true
+            self.bodyPop.alpha = 1
+            self.bodyPop.isUserInteractionEnabled = true
+        }
+    }
+    
+    @IBAction func cancelAct(_ sender: Any) {
+        UIView.animate(withDuration: 0.5) {
+                self.popupParent.alpha = 0
+                self.popupParent.isUserInteractionEnabled = false
+                self.bodyPop.alpha = 0
+                self.bodyPop.isUserInteractionEnabled = false
+            }
+        }
+    
+    @IBAction func actionAct(_ sender: Any) {
+        UIView.animate(withDuration: 0.5) {
+                self.popupParent.alpha = 0
+                self.popupParent.isUserInteractionEnabled = false
+                self.bodyPop.alpha = 0
+                self.bodyPop.isUserInteractionEnabled = false
+            }
+        }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
     
