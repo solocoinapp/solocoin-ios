@@ -10,6 +10,18 @@ import UIKit
 import SDWebImage
 
 class WalletViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+                     #selector(handleRefresh(_:)),
+                                 for: .valueChanged)
+        refreshControl.tintColor = .init(red: 247/255, green: 57/255, blue: 90/255, alpha: 1)
+        refreshControl.backgroundColor = UIColor.clear
+        
+        return refreshControl
+    }()
 
     @IBOutlet weak var errorMssg: UILabel!
     @IBOutlet weak var exclMark: UIImageView!
@@ -58,6 +70,11 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
         ])
     }
     
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.collectionView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
     func obtainRewards(completion: ()->()){
         let url = URL(string: "https://solocoin.herokuapp.com/api/v1/rewards_sponsors")!
         var request = URLRequest(url: url)
@@ -103,7 +120,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                             self.notAvailable = true
                         }
                     }else{
-                        self.errorMssg.text = "Some error occurred..."
+                        self.errorMssg.text = "Some error occurred.."
                         self.errorMssg.adjustsFontSizeToFitWidth = true
                         self.errorMssg.isHidden = false
                         self.exclMark.isHidden = false
