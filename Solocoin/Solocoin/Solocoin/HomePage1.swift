@@ -65,6 +65,9 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     var idDaily = 0
     var idWeekly = 1
     
+    
+   
+    
     //MARK: - FUNCTIONS
     
     override func viewDidLoad() {
@@ -252,7 +255,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         print("a",authtoken)
         request.addValue(authtoken, forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let content = ["user":["name": UserDefaults.standard.string(forKey: "username"),"mobile":UserDefaults.standard.string(forKey: "phone"),"lat":"\(publicVars.homeloc.coordinate.latitude)",//UserDefaults.standard.string(forKey: "lat"),
+        let content = ["user":["name": UserDefaults.standard.string(forKey: "username")!,"mobile":UserDefaults.standard.string(forKey: "phone")!,"lat":"\(publicVars.homeloc.coordinate.latitude)",
             "lang":"\(publicVars.homeloc.coordinate.longitude)"]]//UserDefaults.standard.string(forKey: "long")]]
         let jsonEncoder = JSONEncoder()
         if let jsonData = try? jsonEncoder.encode(content),
@@ -263,7 +266,6 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                 if error == nil{
                     if let response = response as? HTTPURLResponse {
                         print("loc Response HTTP Status code: \(response.statusCode)")
-                        
                     }
                 }
             }

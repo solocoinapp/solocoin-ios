@@ -29,6 +29,7 @@
 		F53DA2AB2483D94C005FE377 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */; };
 		F53DF2C42485279100030373 /* BadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DF2C32485279100030373 /* BadgeCollectionViewCell.swift */; };
 		F53DF2C62485545700030373 /* ShareBadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DF2C52485545600030373 /* ShareBadgeViewController.swift */; };
+		F540C3722498F33E005199D9 /* NetWorkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F540C3712498F33E005199D9 /* NetWorkCheck.swift */; };
 		F542F1B0249369470089CB83 /* profileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F542F1AF249369470089CB83 /* profileTableViewCell.swift */; };
 		F542F1B22493B3A50089CB83 /* OpeningViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F542F1B12493B3A50089CB83 /* OpeningViewControllers.swift */; };
 		F542F1B42493DF7C0089CB83 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F542F1B32493DF7B0089CB83 /* ThirdViewController.swift */; };
@@ -54,6 +55,8 @@
 		F54329C02490B0900083EED2 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F54329AE2490B0900083EED2 /* Poppins-MediumItalic.ttf */; };
 		F553016F24914FC80036C2B8 /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F553016E24914FC80036C2B8 /* CollectionReusableView.swift */; };
 		F55597122496927100DBE6B8 /* LeaderBoardTempVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */; };
+		F58FFB132497F78C006D4675 /* CustomAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F58FFB122497F78C006D4675 /* CustomAlertView.xib */; };
+		F58FFB152497FA21006D4675 /* SolocoinAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58FFB142497FA21006D4675 /* SolocoinAlert.swift */; };
 		F5A0B4FC24954B7000BFCC2B /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */; };
 		F5CB66DB24826DC4005BF70D /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */; };
 		F5CB66DD2482865E005BF70D /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CB66DC2482865E005BF70D /* WalletViewController.swift */; };
@@ -87,6 +90,7 @@
 		F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailsViewController.swift; sourceTree = "<group>"; };
 		F53DF2C32485279100030373 /* BadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionViewCell.swift; sourceTree = "<group>"; };
 		F53DF2C52485545600030373 /* ShareBadgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBadgeViewController.swift; sourceTree = "<group>"; };
+		F540C3712498F33E005199D9 /* NetWorkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorkCheck.swift; sourceTree = "<group>"; };
 		F542F1AF249369470089CB83 /* profileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileTableViewCell.swift; sourceTree = "<group>"; };
 		F542F1B12493B3A50089CB83 /* OpeningViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningViewControllers.swift; sourceTree = "<group>"; };
 		F542F1B32493DF7B0089CB83 /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 		F54329AE2490B0900083EED2 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
 		F553016E24914FC80036C2B8 /* CollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardTempVC.swift; sourceTree = "<group>"; };
+		F58FFB122497F78C006D4675 /* CustomAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAlertView.xib; sourceTree = "<group>"; };
+		F58FFB142497FA21006D4675 /* SolocoinAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolocoinAlert.swift; sourceTree = "<group>"; };
 		F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
 		F5CB66DC2482865E005BF70D /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +178,7 @@
 				68B1D8872453B4BA007ECC01 /* LandingPagesController.swift */,
 				68B1D88924540C5F007ECC01 /* OTPController.swift */,
 				68B1D8C5245425FA007ECC01 /* OTP2Controller.swift */,
+				F540C3712498F33E005199D9 /* NetWorkCheck.swift */,
 				68B1D8CE24551915007ECC01 /* SignUpController.swift */,
 				68213D1A2457FD1D008B30A1 /* PermissionsController.swift */,
 				68B1D8D42457707B007ECC01 /* Geofencing.swift */,
@@ -185,6 +192,8 @@
 				68B1D8792453ACDC007ECC01 /* Solocoin.xcdatamodeld */,
 				F553016E24914FC80036C2B8 /* CollectionReusableView.swift */,
 				F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */,
+				F58FFB122497F78C006D4675 /* CustomAlertView.xib */,
+				F58FFB142497FA21006D4675 /* SolocoinAlert.swift */,
 			);
 			path = Solocoin;
 			sourceTree = "<group>";
@@ -311,6 +320,7 @@
 				F54329BB2490B0900083EED2 /* Poppins-Bold.ttf in Resources */,
 				68B1D8782453ACDC007ECC01 /* Main.storyboard in Resources */,
 				F54329B22490B0900083EED2 /* Poppins-BoldItalic.ttf in Resources */,
+				F58FFB132497F78C006D4675 /* CustomAlertView.xib in Resources */,
 				F54329B42490B0900083EED2 /* Poppins-Medium.ttf in Resources */,
 				F54329B72490B0900083EED2 /* Poppins-ExtraBold.ttf in Resources */,
 			);
@@ -386,6 +396,7 @@
 				68872A152468CC70005348B4 /* UIViewExtension.swift in Sources */,
 				F542F1B22493B3A50089CB83 /* OpeningViewControllers.swift in Sources */,
 				F542F1B82493FC340089CB83 /* WelcomeViewController.swift in Sources */,
+				F58FFB152497FA21006D4675 /* SolocoinAlert.swift in Sources */,
 				F5D66FC92475A1EC00476863 /* MenuTBController.swift in Sources */,
 				68B1D8D124551A5E007ECC01 /* PublicVars.swift in Sources */,
 				F5CB66DD2482865E005BF70D /* WalletViewController.swift in Sources */,
@@ -393,6 +404,7 @@
 				F542F1B42493DF7C0089CB83 /* ThirdViewController.swift in Sources */,
 				F55597122496927100DBE6B8 /* LeaderBoardTempVC.swift in Sources */,
 				68B1D8882453B4BA007ECC01 /* LandingPagesController.swift in Sources */,
+				F540C3722498F33E005199D9 /* NetWorkCheck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
