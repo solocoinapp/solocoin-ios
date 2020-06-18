@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 import CRRefresh
+import Reachability
 
 class LeaderBoardVC: UIViewController{
     
@@ -31,6 +32,12 @@ class LeaderBoardVC: UIViewController{
     }
     //var collectionView: UICollectionView!
     
+    //stacks
+    
+    @IBOutlet weak var stack3: UIStackView!
+    @IBOutlet weak var stack2: UIStackView!
+    @IBOutlet weak var stack1: UIStackView!
+    //
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var headerSec: UILabel!
     //var topStuff = CollectionReusableViewHeader()
@@ -78,6 +85,9 @@ class LeaderBoardVC: UIViewController{
         super.viewDidLoad()
         //touchCell.addTarget(self, action: #selector(cellSelected(_:)))
         //mainCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createCustomLayout())
+        NetworkManager.isUnreachable { (_) in
+            self.performSegue(withIdentifier: "errorPage", sender: nil)
+        }
         self.mainCollectionView.delegate = self
         self.mainCollectionView.backgroundColor = .clear
         self.mainCollectionView.addSubview(self.refreshControl)
@@ -96,13 +106,18 @@ class LeaderBoardVC: UIViewController{
                         if i==0{
                             self.currentLevel = 1
                             DispatchQueue.main.async {
-                                self.badgesUnlockedNo.text = "\(1)"
+                                self.badgesUnlockedNo.text = "  1"
                             }
                             break
                         }
                         self.currentLevel = (self.levelInfo[i]["level"] as! Int)-1
                         DispatchQueue.main.async {
-                            self.badgesUnlockedNo.text = "\((self.levelInfo[i]["level"] as! Int)-1)"
+                            if ((self.levelInfo[i]["level"] as! Int)-1)%10 != 0{
+                                self.badgesUnlockedNo.text = " \((self.levelInfo[i]["level"] as! Int)-1)"
+                            }else{
+                                self.badgesUnlockedNo.text = " \((self.levelInfo[i]["level"] as! Int)-1)"
+                            }
+                            
                         }
                         break
                     }
@@ -110,10 +125,10 @@ class LeaderBoardVC: UIViewController{
                 DispatchQueue.main.async {
                     //self.putImages(levels: self.currentLevels)
                     if self.currentLevel == 13{
-                        self.coinsLeft.text = "Congratulations! Levels Complete!"
+                        self.coinsLeft.text = "Congratulations!"
                         self.bigCoinsLeft.text = "You've finished all levels!"
                     }else{
-                        self.coinsLeft.text = "\(self.levelCoins[self.currentLevel-1]-self.totalCoinsEarned) coins to move to the next level!"
+                        self.coinsLeft.text = "\(self.levelCoins[self.currentLevel-1]-self.totalCoinsEarned) coins away!"
                         self.bigCoinsLeft.text = "\(self.levelCoins[self.currentLevel-1]-self.totalCoinsEarned) coins to move to the next level!"
                     }
                     self.crnLevel.text = "Level \(self.currentLevel)"
@@ -126,9 +141,11 @@ class LeaderBoardVC: UIViewController{
         }
     }
     
-    /*override func viewDidAppear(_ animated: Bool) {
-        
-    }*/
+    override func viewDidAppear(_ animated: Bool) {
+        NetworkManager.isUnreachable { (_) in
+            self.performSegue(withIdentifier: "errorPage", sender: nil)
+        }
+    }
     
     
     /*func putImages(levels: [[String:String]]){
@@ -146,10 +163,10 @@ class LeaderBoardVC: UIViewController{
         if self.currentLevel == 1{
             let diff = 1-((Float(self.levelCoins[0]-self.totalCoinsEarned))/Float(self.levelCoins[0]))
             let progress = Float(1/4)+(Float(diff)/Float(4))
-            self.levelProgress.setProgress(progress, animated: true)
+            self.levelProgress.setProgress(0.25+progress, animated: true)
             self.Level2.textColor = .white
             self.Level3.textColor = .white
-            self.circle1.tintColor = .white
+            self.circle1.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
             self.circle2.tintColor = .white
             self.circle3.tintColor = .white
         }else if self.currentLevel == 13{
@@ -273,11 +290,14 @@ class LeaderBoardVC: UIViewController{
                 }
             }else{
                 print("eroor",error?.localizedDescription)
+                self.performSegue(withIdentifier: "errorPage", sender: nil)
             }
         }
         qtask.resume()
         
     }
+    
+    
     
     func setView(level: Int,image: String,enabling: Bool){
         if enabling{
@@ -301,6 +321,11 @@ class LeaderBoardVC: UIViewController{
         } else {
             newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
         }
+        
+        
+        
+        
+        
 
         // This is the rect that we've calculated out and this is what is actually used below
         let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
@@ -477,7 +502,12 @@ class LeaderBoardVC: UIViewController{
                     headerView.Level2.adjustsFontSizeToFitWidth = true
                     headerView.Level1.adjustsFontSizeToFitWidth = true
                     headerView.Level3.adjustsFontSizeToFitWidth = true
+                    headerView.awardsUnlocked.adjustsFontSizeToFitWidth = true
+                    //changes:
+                    /*headerView.emptyProgress.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+                    headerView.filledProgressBar.mask = headerView.emptyProgress*/
                     self.badgesUnlockedNo = headerView.badgesUnlockedNo
+                    headerView.badgesUnlockedNo.adjustsFontSizeToFitWidth = true
                     self.circle1 = headerView.circle1
                     self.circle2 = headerView.circle2
                     self.circle3 = headerView.circle3

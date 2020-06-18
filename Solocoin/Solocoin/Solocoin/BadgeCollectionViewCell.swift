@@ -88,7 +88,7 @@ class BadgeCollectionViewCell: UICollectionViewCell {
     func blurEffect(status: Bool) {
         if status{
             let currentFilter = CIFilter(name: "CIGaussianBlur")
-            let beginImage = CIImage(image: (badgeImageView.image ?? UIImage(named:"Amazon"))!)
+            let beginImage = CIImage(image: (badgeImageView.image ?? UIImage(named:"AppIcon"))!)
             currentFilter!.setValue(beginImage, forKey: kCIInputImageKey)
             currentFilter!.setValue(20, forKey: kCIInputRadiusKey)
 

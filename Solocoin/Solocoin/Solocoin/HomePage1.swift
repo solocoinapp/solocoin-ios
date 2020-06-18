@@ -477,8 +477,8 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                             UserDefaults.standard.set(name,forKey: "name")
                             let pic = object["profile_picture_url"] as! String
                             UserDefaults.standard.set(pic,forKey: "pic")
-                            let wallet_balance = object["wallet_balance"] as! String
-                            UserDefaults.standard.set(wallet_balance,forKey: "wallet")
+                            let wallet_balance = object["wallet_balance"] as! Int
+                            UserDefaults.standard.set("\(wallet_balance)",forKey: "wallet")
                             let home_duration_in_seconds = object["home_duration_in_seconds"] as! Int
                             UserDefaults.standard.set(home_duration_in_seconds,forKey: "time")
                             let duration = Int(home_duration_in_seconds)
