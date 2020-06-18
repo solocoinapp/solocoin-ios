@@ -48,7 +48,7 @@ class OTP2Controller: UIViewController {
     
     @IBAction func Next(_ sender: Any) {
         guard OTP.text! != "" else{
-            print("no otp entered, handle error")//handle this by showing a message or smth
+            print("no otp entered, handle error")//handle this by showing a message or something
             return
         }
         guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else {

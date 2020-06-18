@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v8g-db-TRS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WuH-Md-jtu">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -33,7 +33,7 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sLA-Li-ySe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="632" y="370"/>
+            <point key="canvasLocation" x="683" y="370"/>
         </scene>
         <!--LandingPage2-->
         <scene sceneID="CMG-2M-93W">
@@ -160,7 +160,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xrj-pi-rGU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1341" y="371"/>
+            <point key="canvasLocation" x="1380" y="370"/>
         </scene>
         <!--LandingPage3-->
         <scene sceneID="cst-Io-ZGT">
@@ -228,7 +228,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hcm-fk-G0b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2199" y="1136"/>
+            <point key="canvasLocation" x="2064" y="1031"/>
         </scene>
         <!--MenuTB Controller-->
         <scene sceneID="AMM-uf-JJr">
@@ -255,7 +255,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yQl-pn-3nh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6980" y="-291"/>
+            <point key="canvasLocation" x="5554" y="-291"/>
         </scene>
         <!--EnterMobile-->
         <scene sceneID="nZb-1s-4Kx">
@@ -284,7 +284,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You will receive an OTP" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DXi-je-GFj">
-                                <rect key="frame" x="20" y="373.66666666666669" width="374" height="19"/>
+                                <rect key="frame" x="20" y="398.33333333333331" width="374" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DXi-je-GFj" secondAttribute="height" multiplier="374:19" id="Jl4-um-8dt"/>
                                 </constraints>
@@ -293,7 +293,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fxt-5J-Y86" customClass="FPNTextField" customModule="FlagPhoneNumber">
-                                <rect key="frame" x="57" y="332" width="302" height="36"/>
+                                <rect key="frame" x="57" y="332" width="302" height="36.333333333333314"/>
                                 <color key="textColor" red="0.062745098040000002" green="0.12549019610000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES" smartDashesType="yes" smartInsertDeleteType="yes"/>
@@ -305,7 +305,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36K-Or-z9n">
-                                <rect key="frame" x="20" y="483" width="374" height="45"/>
+                                <rect key="frame" x="20" y="477.33333333333331" width="374" height="44.999999999999943"/>
                                 <color key="backgroundColor" red="1" green="0.14117647059999999" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="36K-Or-z9n" secondAttribute="height" multiplier="374:45" id="8b7-UW-F7X"/>
@@ -326,8 +326,9 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="DXi-je-GFj" firstAttribute="top" secondItem="fxt-5J-Y86" secondAttribute="bottom" constant="30" id="21m-KB-LhQ"/>
                             <constraint firstItem="qjX-yd-2Lb" firstAttribute="leading" secondItem="GnK-ml-Et4" secondAttribute="leading" constant="157" id="3sp-OU-in8"/>
-                            <constraint firstItem="36K-Or-z9n" firstAttribute="top" secondItem="DXi-je-GFj" secondAttribute="bottom" constant="90.329999999999998" id="8Gi-wM-9qV"/>
+                            <constraint firstItem="36K-Or-z9n" firstAttribute="top" secondItem="DXi-je-GFj" secondAttribute="bottom" constant="60" id="8Gi-wM-9qV"/>
                             <constraint firstItem="iIv-J3-hlk" firstAttribute="top" secondItem="hsp-69-x18" secondAttribute="bottom" constant="29" id="8N7-vi-di9"/>
                             <constraint firstItem="DXi-je-GFj" firstAttribute="leading" secondItem="GnK-ml-Et4" secondAttribute="leading" constant="20" id="Bel-re-5KK"/>
                             <constraint firstItem="GnK-ml-Et4" firstAttribute="trailing" secondItem="fxt-5J-Y86" secondAttribute="trailing" constant="55" id="D6a-TZ-7nw"/>
@@ -340,7 +341,6 @@
                             <constraint firstItem="GnK-ml-Et4" firstAttribute="trailing" secondItem="36K-Or-z9n" secondAttribute="trailing" constant="20" id="dFK-Vo-aEE"/>
                             <constraint firstItem="GnK-ml-Et4" firstAttribute="trailing" secondItem="DXi-je-GFj" secondAttribute="trailing" constant="20" id="gkG-8C-WvG"/>
                             <constraint firstItem="GnK-ml-Et4" firstAttribute="trailing" secondItem="iIv-J3-hlk" secondAttribute="trailing" constant="20" id="lF0-AG-kHl"/>
-                            <constraint firstItem="DXi-je-GFj" firstAttribute="top" secondItem="fxt-5J-Y86" secondAttribute="bottom" constant="5.6699999999999999" id="pOe-u1-SEe"/>
                             <constraint firstItem="fxt-5J-Y86" firstAttribute="leading" secondItem="GnK-ml-Et4" secondAttribute="leading" constant="57" id="wsj-J2-D00"/>
                             <constraint firstItem="hsp-69-x18" firstAttribute="top" secondItem="qjX-yd-2Lb" secondAttribute="bottom" constant="19" id="yEQ-pb-UYX"/>
                             <constraint firstItem="GnK-ml-Et4" firstAttribute="trailing" secondItem="hsp-69-x18" secondAttribute="trailing" constant="93" id="zPk-nh-xir"/>
@@ -577,7 +577,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Moz-zn-7WV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4607.2463768115949" y="-291.29464285714283"/>
+            <point key="canvasLocation" x="4161" y="-291"/>
         </scene>
         <!--Permissions Page-->
         <scene sceneID="Fj2-LL-vCO">
@@ -642,7 +642,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J6T-Cy-QEV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5581.1594202898559" y="-291.29464285714283"/>
+            <point key="canvasLocation" x="4861" y="-291"/>
         </scene>
         <!--Home Page-->
         <scene sceneID="JDH-30-jLD">
@@ -989,7 +989,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMS-O0-ojF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5949" y="410"/>
+            <point key="canvasLocation" x="5554" y="371"/>
         </scene>
         <!--WalletsPage-->
         <scene sceneID="7BI-XZ-LaI">
@@ -1550,7 +1550,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XbP-SA-BS8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6979.7101449275369" y="370.98214285714283"/>
+            <point key="canvasLocation" x="6241" y="371"/>
         </scene>
         <!--OfferDetails-->
         <scene sceneID="2N9-xA-Mz4">
@@ -1701,7 +1701,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VI3-e7-Hm7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6980" y="1031"/>
+            <point key="canvasLocation" x="6241" y="1031"/>
         </scene>
         <!--BadgesPage-->
         <scene sceneID="3HU-R3-sPz">
@@ -1790,7 +1790,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USn-E5-tni" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7664" y="2131"/>
+            <point key="canvasLocation" x="6925" y="1031"/>
         </scene>
         <!--LeaderboardPage-->
         <scene sceneID="CDm-fQ-rFD">
@@ -1865,22 +1865,22 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="91" translatesAutoresizingMaskIntoConstraints="NO" id="NlN-5f-ftn" userLabel="smallLevelLabels">
-                                                    <rect key="frame" x="34.333333333333343" y="65" width="348.33333333333326" height="24"/>
+                                                    <rect key="frame" x="36" y="65" width="345" height="20"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Level 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBS-pV-0FU">
-                                                            <rect key="frame" x="0.0" y="0.0" width="52.333333333333336" height="24"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="54.333333333333336" height="20"/>
                                                             <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
                                                             <color key="textColor" red="0.062745098040000002" green="0.12549019610000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Level 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqL-Q4-Sre">
-                                                            <rect key="frame" x="143.33333333333331" y="0.0" width="56.666666666666657" height="24"/>
+                                                            <rect key="frame" x="145.33333333333334" y="0.0" width="54.333333333333343" height="20"/>
                                                             <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
                                                             <color key="textColor" red="0.062745098040000002" green="0.12549019610000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level 3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zO5-sQ-guc">
-                                                            <rect key="frame" x="291" y="0.0" width="57.333333333333314" height="24"/>
+                                                            <rect key="frame" x="290.66666666666669" y="0.0" width="54.333333333333314" height="20"/>
                                                             <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -1973,7 +1973,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming soon!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5A-Te-FYP">
-                                                    <rect key="frame" x="121" y="19" width="172" height="24"/>
+                                                    <rect key="frame" x="121" y="23" width="172" height="20"/>
                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -2172,7 +2172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HOg-Xs-ioF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7631.884057971015" y="370.98214285714283"/>
+            <point key="canvasLocation" x="6925" y="370"/>
         </scene>
         <!--Profile-->
         <scene sceneID="1j6-6m-vIj">
@@ -2298,7 +2298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="As9-JI-clz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8363.7681159420299" y="370.98214285714283"/>
+            <point key="canvasLocation" x="7629" y="370"/>
         </scene>
         <!--Geofencing-->
         <scene sceneID="BMY-P6-XlU">
@@ -2329,7 +2329,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiB-8Z-XbU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6499" y="-1100"/>
+            <point key="canvasLocation" x="6241" y="-291"/>
         </scene>
         <!--LandingPage4-->
         <scene sceneID="wGk-FJ-SHq">
@@ -2391,7 +2391,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Xz4-Q5-4Az"/>
         <segue reference="DoF-mq-kLh"/>
-        <segue reference="QKX-lY-S2j"/>
+        <segue reference="nLl-Y3-XGS"/>
         <segue reference="RLJ-rU-mwg"/>
     </inferredMetricsTieBreakers>
     <resources>
