@@ -21,6 +21,13 @@ class OTPController: UIViewController {
     @IBOutlet weak var entermssg: UILabel!
     
     var listController: FPNCountryListViewController = FPNCountryListViewController(style: .grouped)
+    
+    //popup
+    @IBOutlet weak var popupParent: UIView!
+    @IBOutlet weak var bodyPop: UIView!
+    @IBOutlet weak var topMssg: UILabel!
+    @IBOutlet weak var mainMssg: UILabel!
+    @IBOutlet weak var actionBtn: UIButton!
 
     
     override func viewDidLoad() {
@@ -43,9 +50,23 @@ class OTPController: UIViewController {
         mssg.translatesAutoresizingMaskIntoConstraints = false
         nextBtn.translatesAutoresizingMaskIntoConstraints = false
         //setLayout()
+        //setting popip
+        popupParent.alpha = 0
+        popupParent.isUserInteractionEnabled = false
+        actionBtn.layer.cornerRadius = actionBtn.frame.width/25
+        popupParent.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 0.7)
+        
     }
     
-    
+    func showPopup(){
+        self.mainMssg.text = "Verify the mobile number \(self.mobileNumber.selectedCountry!.phoneCode + mobileNumber.text!) and confirm"
+        UIView.animate(withDuration: 0.5) {
+            self.popupParent.alpha = 1.0
+            self.popupParent.isUserInteractionEnabled = true
+            self.bodyPop.alpha = 1
+            self.bodyPop.isUserInteractionEnabled = true
+        }
+    }
     
    /* func setLayout(){
         mobileNumber1.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 12).isActive = true
@@ -56,56 +77,7 @@ class OTPController: UIViewController {
     }*/
 
     @IBAction func OTPNext(_ sender: Any) {
-        print(mobileNumber.text!)
-        UserDefaults.standard.set(mobileNumber.text!,forKey: "phone")
-        guard let _ = mobileNumber else {
-            return
-        }
-        //removing spaces if any in mobile number
-        /*var realno=""
-        for chr in mobileNumber.text!{
-            if chr != " " && chr != "-"{
-                realno+=String(chr)
-            }
-        }
-        let oldphone=mobileNumber.text!
-        var found=0
-        for chr in oldphone{
-            if chr == " " || chr == "-"{
-                found=1
-            }else{
-                if found==0{
-                    code+=String(chr)
-                }else{
-                    phone+=String(chr)
-                }
-            }
-        }*/
-        for chr in mobileNumber.text!{
-            if chr != " " && chr != "-"{
-                phone+=String(chr)
-            }
-        }
-        UserDefaults.standard.set(phone,forKey: "phone")
-        UserDefaults.standard.set(mobileNumber.selectedCountry?.phoneCode,forKey: "code")
-        print("c",mobileNumber.selectedCountry?.phoneCode,"p",phone)
-        var realno = mobileNumber.selectedCountry!.phoneCode+phone
-        
-        publicVars.mobileNumber = realno
-        if isValidMobile(phone: publicVars.mobileNumber) == true {
-            //from firebase doc, we're verifying the phone number here and getting the provate veri code from firebase
-            PhoneAuthProvider.provider().verifyPhoneNumber(realno, uiDelegate: nil) { (verificationID, error) in
-              if let error = error {
-                //self.showMessagePrompt(error.localizedDescription) //error handling function, just printing it to console for now
-                print("error",error.localizedDescription)
-                return
-              }
-              // Sign in using the verificationID and the code sent to the user
-              // ...
-                UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                self.performSegue(withIdentifier: "OTP2", sender: self)
-            }
-        }
+        showPopup()
     }
 
     func isValidMobile(phone: String) -> Bool {
@@ -122,6 +94,54 @@ class OTPController: UIViewController {
             _ = segue.destination as! OTP2Controller
         }
      }
+    @IBAction func sendConfirm(_ sender: Any) {
+        UIView.animate(withDuration: 0.5) {
+            self.popupParent.alpha = 0
+            self.popupParent.isUserInteractionEnabled = false
+            self.bodyPop.alpha = 0
+            self.bodyPop.isUserInteractionEnabled = false
+            print(self.mobileNumber.text!)
+            UserDefaults.standard.set(self.mobileNumber.text!,forKey: "phone")
+            guard let _ = self.mobileNumber else {
+                return
+            }
+            
+            for chr in self.mobileNumber.text!{
+                if chr != " " && chr != "-"{
+                    self.phone+=String(chr)
+                }
+            }
+            UserDefaults.standard.set(self.phone,forKey: "phone")
+            UserDefaults.standard.set(self.mobileNumber.selectedCountry?.phoneCode,forKey: "code")
+            print("c",self.mobileNumber.selectedCountry?.phoneCode,"p",self.phone)
+            var realno = self.mobileNumber.selectedCountry!.phoneCode+self.phone
+            
+            publicVars.mobileNumber = realno
+            if self.isValidMobile(phone: publicVars.mobileNumber) == true {
+                //from firebase doc, we're verifying the phone number here and getting the provate veri code from firebase
+                PhoneAuthProvider.provider().verifyPhoneNumber(realno, uiDelegate: nil) { (verificationID, error) in
+                  if let error = error {
+                    //self.showMessagePrompt(error.localizedDescription) //error handling function, just printing it to console for now
+                    print("error",error.localizedDescription)
+                    return
+                  }
+                  // Sign in using the verificationID and the code sent to the user
+                  // ...
+                    UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                    self.performSegue(withIdentifier: "OTP2", sender: self)
+                }
+            }
+        }
+        
+    }
+    @IBAction func cancelPop(_ sender: Any) {
+        UIView.animate(withDuration: 0.5) {
+            self.popupParent.alpha = 0
+            self.popupParent.isUserInteractionEnabled = false
+            self.bodyPop.alpha = 0
+            self.bodyPop.isUserInteractionEnabled = false
+        }
+    }
 }
 
 extension OTPController: FPNTextFieldDelegate {

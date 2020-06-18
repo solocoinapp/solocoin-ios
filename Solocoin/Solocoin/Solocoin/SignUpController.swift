@@ -30,7 +30,7 @@ class SignUpController: UIViewController,UITextFieldDelegate {
         fullName.placeholder = "Fullname"
         fullName.titleFont = UIFont(name: "Poppins-SemiBold", size: 12)!
         fullName.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
-        fullName.title = "Phone No"
+        fullName.title = "Fullname"
         fullName.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
         self.fullName.delegate = self
         
