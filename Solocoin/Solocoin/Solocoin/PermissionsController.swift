@@ -47,20 +47,11 @@ class PermissionsController: UIViewController, MKMapViewDelegate, CLLocationMana
             }else{
                 self.reload.transform = CGAffineTransform(rotationAngle: 2*(.pi))
             }
-            
-            //self.reload.transform = CGAffineTransform(rotationAngle: 2*(.pi))
         }
-        
         determineCurrentLocation()
     }
     
-    /*@IBAction func locationAllowed(_ sender: Any) {
-        locationManager.requestAlwaysAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
-        
-    }*/
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error - locationManager: \(error.localizedDescription)")
     }
