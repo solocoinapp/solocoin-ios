@@ -43,7 +43,7 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
         profileTableView.delegate = self
         profileTableView.dataSource = self
         profileTableView.separatorColor = UIColor.init(red: 240/255, green: 81/255, blue: 105/255, alpha: 1)
-        profileTableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        profileTableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         // Do any additional setup after loading the view.
         profileTableView.tableFooterView = UIView()
     }
