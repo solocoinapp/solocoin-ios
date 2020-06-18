@@ -21,10 +21,24 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
     //var profileSettings = ["Profile", "Rewards History", "Invite", "Permissions", "Privacy Policy", "Terms & Conditions"]
     var profileSettings = ["Invite", "Privacy Policy", "Terms & Conditions","Logout"]
 //    let profileImages: [UIImage] = [#imageLiteral(resourceName: "PeopleIcon"), #imageLiteral(resourceName: "EmailIcon"), #imageLiteral(resourceName: "PermissionIcon"), #imageLiteral(resourceName: "PrivacyPolicyIcon.png"), #imageLiteral(resourceName: "TermsAndConditionsIcon")]
-
+    
+    //popup
+    
+    @IBOutlet weak var popupParent: UIView!
+    @IBOutlet weak var bodyPop: UIView!
+    @IBOutlet weak var topMssg: UILabel!
+    @IBOutlet weak var mainMssg: UILabel!
+    @IBOutlet weak var actionBtn: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //setting popip
+        popupParent.alpha = 0
+        popupParent.isUserInteractionEnabled = false
+        actionBtn.layer.cornerRadius = actionBtn.frame.width/25
+        popupParent.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 0.7)
         
         profileTableView.delegate = self
         profileTableView.dataSource = self
@@ -74,30 +88,18 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
             goURl(type: 1)
         case 3:
             print("")
-            logout {
-                if self.success{
-                    UserDefaults.standard.removeObject(forKey: "authtoken")
-                    UserDefaults.standard.removeObject(forKey: "authVerificationID")
-                    UserDefaults.standard.removeObject(forKey: "username")
-                    UserDefaults.standard.removeObject(forKey: "uuid")
-                    UserDefaults.standard.removeObject(forKey: "idtoken")
-                    UserDefaults.standard.removeObject(forKey: "code")
-                    UserDefaults.standard.removeObject(forKey: "phone")
-                    UserDefaults.standard.removeObject(forKey: "name")
-                    UserDefaults.standard.removeObject(forKey: "pic")
-                    UserDefaults.standard.removeObject(forKey: "wallet")
-                    UserDefaults.standard.removeObject(forKey: "time")
-                    UserDefaults.standard.removeObject(forKey: "lat")
-                    UserDefaults.standard.removeObject(forKey: "long")
-                    UserDefaults.standard.removeObject(forKey: "badgeName")
-                    UserDefaults.standard.removeObject(forKey: "level")
-                    UserDefaults.standard.removeObject(forKey: "badgeImage")
-                    UserDefaults.standard.removeObject(forKey: "offferDict")
-                    self.performSegue(withIdentifier: "fullBack", sender: nil)
-                }
-            }
+            showPopup()
         default:
             print("")
+        }
+    }
+    
+    func showPopup(){
+        UIView.animate(withDuration: 0.5) {
+            self.popupParent.alpha = 1.0
+            self.popupParent.isUserInteractionEnabled = true
+            self.bodyPop.alpha = 1
+            self.bodyPop.isUserInteractionEnabled = true
         }
     }
     
@@ -138,5 +140,47 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
         let item: [Any] = ["Hey! Join the #StayAtHome Challenge!","Download the App Now!","Android",URL(string: "https://play.google.com/store/apps/details?id=app.solocoin.solocoin")]
                 let vc = UIActivityViewController(activityItems: item, applicationActivities: [])
                 present(vc,animated: true)
+    }
+    @IBAction func acceptPop(_ sender: Any) {
+        UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.5) {
+                self.popupParent.alpha = 0
+                self.popupParent.isUserInteractionEnabled = false
+                self.bodyPop.alpha = 0
+                self.bodyPop.isUserInteractionEnabled = false
+                self.logout{
+                    if self.success{
+                        UserDefaults.standard.removeObject(forKey: "authtoken")
+                        UserDefaults.standard.removeObject(forKey: "authVerificationID")
+                        UserDefaults.standard.removeObject(forKey: "username")
+                        UserDefaults.standard.removeObject(forKey: "uuid")
+                        UserDefaults.standard.removeObject(forKey: "idtoken")
+                        UserDefaults.standard.removeObject(forKey: "code")
+                        UserDefaults.standard.removeObject(forKey: "phone")
+                        UserDefaults.standard.removeObject(forKey: "name")
+                        UserDefaults.standard.removeObject(forKey: "pic")
+                        UserDefaults.standard.removeObject(forKey: "wallet")
+                        UserDefaults.standard.removeObject(forKey: "time")
+                        UserDefaults.standard.removeObject(forKey: "lat")
+                        UserDefaults.standard.removeObject(forKey: "long")
+                        UserDefaults.standard.removeObject(forKey: "badgeName")
+                        UserDefaults.standard.removeObject(forKey: "level")
+                        UserDefaults.standard.removeObject(forKey: "badgeImage")
+                        UserDefaults.standard.removeObject(forKey: "offferDict")
+                        publicVars.uuid = ""
+                        publicVars.idtoken = ""
+                        self.performSegue(withIdentifier: "fullBack", sender: nil)
+                    }
+                }
+            }
+        }
+    }
+    @IBAction func cancelPop(_ sender: Any) {
+        UIView.animate(withDuration: 0.5) {
+            self.popupParent.alpha = 0
+            self.popupParent.isUserInteractionEnabled = false
+            self.bodyPop.alpha = 0
+            self.bodyPop.isUserInteractionEnabled = false
+        }
     }
 }

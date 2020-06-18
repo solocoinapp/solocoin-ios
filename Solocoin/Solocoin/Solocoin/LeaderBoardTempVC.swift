@@ -8,8 +8,20 @@
 
 import UIKit
 import SDWebImage
+import CRRefresh
 
 class LeaderBoardVC: UIViewController{
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+                     #selector(handleRefresh(_:)),
+                                 for: .valueChanged)
+        refreshControl.tintColor = .init(red: 247/255, green: 57/255, blue: 90/255, alpha: 1)
+        refreshControl.backgroundColor = UIColor.clear
+        
+        return refreshControl
+    }()
     
     var milestone = [[String:String]]()
     var context = CIContext(options: nil)
@@ -68,6 +80,7 @@ class LeaderBoardVC: UIViewController{
         //mainCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createCustomLayout())
         self.mainCollectionView.delegate = self
         self.mainCollectionView.backgroundColor = .clear
+        self.mainCollectionView.addSubview(self.refreshControl)
         //self.mainCollectionView.dataSource = self
         self.mainCollectionView.register(BadgeCollectionViewCell.self, forCellWithReuseIdentifier: "badgeCell")
         mainCollectionView.collectionViewLayout = createRowLayout()
@@ -489,6 +502,11 @@ class LeaderBoardVC: UIViewController{
         snapshot.appendSections([.main])
         snapshot.appendItems(Array(0..<13))
         dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.mainCollectionView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 

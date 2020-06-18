@@ -27,14 +27,30 @@ class LandingPageController: UIPageViewController, UIPageViewControllerDataSourc
         super.viewDidLoad()
         
         self.dataSource = self
-        print(UserDefaults.standard.string(forKey: "uuid") ?? nil)
-        print(UserDefaults.standard.string(forKey: "authtoken") ?? nil)
-        if let uuid = UserDefaults.standard.string(forKey: "uuid"),let tok = UserDefaults.standard.string(forKey: "authtoken"){
+        print(UserDefaults.standard.string(forKey: "uuid") ?? "nil")
+        print(UserDefaults.standard.string(forKey: "authtoken") ?? "nil")
+        /*if let _ = UserDefaults.standard.string(forKey: "uuid"),let _ = UserDefaults.standard.string(forKey: "authtoken"){
+            print("in")
             performSegue(withIdentifier: "toDashboard", sender: nil)
-        }
-
+        }*/
         if let firstViewController = viewControllerList.first {
         self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)
+        }
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        /*do{
+            let x = UserDefaults.standard.string(forKey: "uuid")!
+            let y = UserDefaults.standard.string(forKey: "authtoken")!
+            self.performSegue(withIdentifier: "toDashboard", sender: nil)
+        }catch{
+            print("nothing")
+        }*/
+        if let _ = UserDefaults.standard.string(forKey: "uuid"),let _ = UserDefaults.standard.string(forKey: "authtoken"){
+            print("in")
+            self.performSegue(withIdentifier: "toDashboard", sender: nil)
         }
     }
     
