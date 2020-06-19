@@ -7,9 +7,12 @@
 //
 
 import UIKit
-
+import SDWebImage
 class OfferDetailsViewController: UIViewController {
 
+    @IBOutlet weak var claimBtn: UIButton!
+    @IBOutlet weak var category: UILabel!
+    @IBOutlet weak var tandc: UILabel!
     @IBOutlet weak var finalNote: UILabel!
     @IBOutlet weak var offerImage: UIImageView!
     @IBOutlet weak var coins: UILabel!
@@ -17,10 +20,23 @@ class OfferDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        coins.text = offer["coins"]
-        let company = offer["company"] as! String
+        claimBtn.layer.cornerRadius = claimBtn.frame.width/30
+        category.text = "Category: \(offer["category"]!)"
+        tandc.text = offer["terms"]
+        coins.text = " \(offer["coins"]!) coins"
+        let company = offer["company"]!
         finalNote.text = "Please note for any clarification, the final discretion lies with the official staff at \(company)"
-        print("id",offer["id"])
+        if offer["imgurl"] != nil && offer["imgurl"] != ""{
+            let url = URL(string: "https://solocoin.herokuapp.com\(offer["imgrul"]!)")
+            offerImage.sd_setImage(with: url) { (image, error, cache, url) in
+                if error == nil{
+                    print("got image")
+                }else{
+                    print("SIKE!....no image haha")
+                }
+            }
+        }
+        print("id",offer["id"]!)
     }
     
     @IBAction func claimReward(_ sender: Any) {
