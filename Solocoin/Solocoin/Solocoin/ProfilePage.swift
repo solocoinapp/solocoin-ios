@@ -66,7 +66,7 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
         case 1:
             cell.indximage.image = UIImage(systemName: "checkmark.circle.fill")
         case 2:
-            cell.indximage.image = UIImage(systemName: "envelope.fill")
+            cell.indximage.image = UIImage(systemName: "bookmark.fill")
         case 3:
             cell.indximage.image = UIImage(systemName: "arrowshape.turn.up.left.2.fill")
         default:
