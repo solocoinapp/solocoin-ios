@@ -29,12 +29,18 @@ class PermissionsController: UIViewController, MKMapViewDelegate, CLLocationMana
         center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
                 print("ye we got permission")
-                self.confBtn.isHidden = false
-                self.confBtn.isUserInteractionEnabled = true
+                DispatchQueue.main.async {
+                    self.confBtn.isHidden = false
+                    self.confBtn.isUserInteractionEnabled = true
+                }
+                
             } else {
                 print("umm no notifi")
-                self.confBtn.isHidden = true
-                self.confBtn.isUserInteractionEnabled = false
+                DispatchQueue.main.async {
+                    self.confBtn.isHidden = true
+                    self.confBtn.isUserInteractionEnabled = false
+                }
+                
             }
         }
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(reload(_:)))

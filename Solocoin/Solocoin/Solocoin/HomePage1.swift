@@ -33,21 +33,31 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
 
     @IBOutlet weak var question: UILabel!
     
-    @IBOutlet weak var answer1: UIButton!
+    /*@IBOutlet weak var answer1: UIButton!
     
     @IBOutlet weak var answer2: UIButton!
     
     @IBOutlet weak var answer3: UIButton!
     
-    @IBOutlet weak var answer4: UIButton!
+    @IBOutlet weak var answer4: UIButton!*/
+    
+    @IBOutlet weak var answer1: UILabel!
+    
+    @IBOutlet weak var answer2: UILabel!
+    
+    @IBOutlet weak var answer3: UILabel!
+    
+    @IBOutlet weak var answer4: UILabel!
     
     //MARK: - DATA
     
-    var answerButtons: [UIButton]!
-    
-    var dailyCorrectAnswer: UIButton!
-    
-    var weeklyCorrectAnswer: UIButton!
+    //var answerButtons: [UIButton]!
+    var answerButtons: [UILabel]!
+    var gestures: [UITapGestureRecognizer]!
+    //var dailyCorrectAnswer: UIButton!
+    var dailyCorrectAnswer: UILabel!
+    //var weeklyCorrectAnswer: UIButton!
+    var weeklyCorrectAnswer: UILabel!
     
     let manager = CLLocationManager()
     
@@ -65,14 +75,27 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     var idDaily = 0
     var idWeekly = 1
     
-    
+    //blur
+    var blurredEffectView :UIVisualEffectView!
    
     
     //MARK: - FUNCTIONS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //blur it out
+        let blurEffect = UIBlurEffect(style: .extraLight)
+        blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.frame = view.bounds
+        view.addSubview(blurredEffectView)
+        
         //set error handlers
+        answer1.adjustsFontSizeToFitWidth = true
+        answer2.adjustsFontSizeToFitWidth = true
+        answer3.adjustsFontSizeToFitWidth = true
+        answer4.adjustsFontSizeToFitWidth = true
+        
         exclMark.isHidden = true
         errorMssg.isHidden = true
         setErorrMssg()
@@ -181,10 +204,24 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         answerLayouts(answer: answer3)
         answerLayouts(answer: answer4)
         
-        answer1.addTarget(self, action: #selector(optionPressed(_:)), for: .touchUpInside)
+        let tap1 = UITapGestureRecognizer(target: self, action: #selector(optionPressed(_:)))
+        answer1.addGestureRecognizer(tap1)
+        answer1.isUserInteractionEnabled = true
+        let tap2 = UITapGestureRecognizer(target: self, action: #selector(optionPressed(_:)))
+        answer2.addGestureRecognizer(tap2)
+        answer2.isUserInteractionEnabled = true
+        let tap3 = UITapGestureRecognizer(target: self, action: #selector(optionPressed(_:)))
+        answer3.addGestureRecognizer(tap3)
+        answer3.isUserInteractionEnabled = true
+        let tap4 = UITapGestureRecognizer(target: self, action: #selector(optionPressed(_:)))
+        answer4.addGestureRecognizer(tap4)
+        answer4.isUserInteractionEnabled = true
+        gestures = [tap1,tap2,tap3,tap4]
+
+        /*answer1.addTarget(self, action: #selector(optionPressed(_:)), for: .touchUpInside)
         answer2.addTarget(self, action: #selector(optionPressed(_:)), for: .touchUpInside)
         answer3.addTarget(self, action: #selector(optionPressed(_:)), for: .touchUpInside)
-        answer4.addTarget(self, action: #selector(optionPressed(_:)), for: .touchUpInside)
+        answer4.addTarget(self, action: #selector(optionPressed(_:)), for: .touchUpInside)*/
         
         //dailyCorrectAnswer = answer1
         //weeklyCorrectAnswer = answer2
@@ -404,11 +441,11 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                             self.dailyQuestion = object["name"] as! String
                             self.idDaily = object["id"] as! Int
                             DispatchQueue.main.async {
-                                self.question.text = self.dailyQuestion
-                                self.answer1.setTitle(self.answers[0]["name"], for: .normal)
-                                self.answer2.setTitle(self.answers[1]["name"], for: .normal)
-                                self.answer3.setTitle(self.answers[2]["name"], for: .normal)
-                                self.answer4.setTitle(self.answers[3]["name"], for: .normal)
+                                self.question.text = "Q. \(self.dailyQuestion)"
+                                self.answer1.text = " A. \(self.answers[0]["name"]!)"
+                                self.answer2.text = " B. \(self.answers[1]["name"]!)"
+                                self.answer3.text = " C. \(self.answers[2]["name"]!)"
+                                self.answer4.text = " D. \(self.answers[3]["name"]!)"
                                 
                                 self.answerLayouts(answer: self.answer1)
                                 self.answerLayouts(answer: self.answer2)
@@ -452,6 +489,9 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                     self.erroDaily = true
                 }
             }
+            DispatchQueue.main.async{
+                self.blurredEffectView.removeFromSuperview()
+            }
         }
         qtask.resume()
     }
@@ -477,17 +517,31 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                             UserDefaults.standard.set(name,forKey: "name")
                             let pic = object["profile_picture_url"] as! String
                             UserDefaults.standard.set(pic,forKey: "pic")
-                            let wallet_balance = object["wallet_balance"] as! Int
-                            UserDefaults.standard.set("\(wallet_balance)",forKey: "wallet")
+                            if let wallet_balance = object["wallet_balance"] as? String{
+                                UserDefaults.standard.set("\(wallet_balance)",forKey: "wallet")
+                            }else if let wallet_balance = object["wallet_balance"] as? Int{
+                                UserDefaults.standard.set("\(wallet_balance)",forKey: "wallet")
+                            }
                             let home_duration_in_seconds = object["home_duration_in_seconds"] as! Int
                             UserDefaults.standard.set(home_duration_in_seconds,forKey: "time")
                             let duration = Int(home_duration_in_seconds)
-                            let hours = duration/3600
-                            let minutes = (duration%3600)/60
-                            let message = "\(hours)h : \(minutes)m"
-                            DispatchQueue.main.async {
-                                self.distancing_time.text = message
+                            if duration<86400{
+                                let hours = duration/3600
+                                let minutes = (duration%3600)/60
+                                let message = "\(hours)h : \(minutes)m"
+                                DispatchQueue.main.async {
+                                    self.distancing_time.text = message
+                                }
+                            }else{
+                                let days = duration/86400
+                                let hours = (duration%86400)/3600
+                                let minutes = (duration%3600)/60
+                                let message = "\(days)d \(hours)h \(minutes)m"
+                                DispatchQueue.main.async {
+                                    self.distancing_time.text = message
+                                }
                             }
+                            
                         }
                         }
                     }
@@ -537,7 +591,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    func answerLayouts(answer: UIButton) {
+    func answerLayouts(answer: UILabel) {
         answer.layer.borderColor = UIColor.systemGray4.cgColor
         answer.layer.borderWidth = 1.0
         answer.layer.cornerRadius = 5.0
@@ -570,11 +624,11 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             answer3.setTitle("  C. Continue as usual", for: .normal)
             answer4.setTitle("  D. No clue", for: .normal)*/
             
-            question.text = "Q \(dailyQuestion as? String ?? "cudnt get q")"
-            answer1.setTitle("  A \(answers[0]["name"] as? String ?? "cudnt get ans")", for: .normal)
-            answer2.setTitle("  B \(answers[1]["name"] as? String ?? "cudnt get ans")", for: .normal)
-            answer3.setTitle("  C \(answers[2]["name"] as? String ?? "cudnt get ans")", for: .normal)
-            answer4.setTitle("  D \(answers[3]["name"] as? String ?? "cudnt get ans")", for: .normal)
+            question.text = "Q \(dailyQuestion)"
+            answer1.text = "  A \(answers[0]["name"] ?? "cudnt get ans")"
+            answer2.text = "  B \(answers[1]["name"] ?? "cudnt get ans")"
+            answer3.text = "  C \(answers[2]["name"] ?? "cudnt get ans")"
+            answer4.text = "  D \(answers[3]["name"] ?? "cudnt get ans")"
             
             answerLayouts(answer: answer1)
             answerLayouts(answer: answer2)
@@ -589,11 +643,11 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             answer3.setTitle("  C. For 15 seconds without soap", for: .normal)
             answer4.setTitle("  D. I shouldn't - it wastes water", for: .normal)*/
             
-            question.text = "Q \(weeklyQuestion as? String ?? "cudnt get q")"
-            answer1.setTitle("  A \(weeklyAnswers[0]["name"] as? String ?? "cudnt get ans")", for: .normal)
-            answer2.setTitle("  B \(weeklyAnswers[1]["name"] as? String ?? "cudnt get ans")", for: .normal)
-            answer3.setTitle("  C \(weeklyAnswers[2]["name"] as? String ?? "cudnt get ans")", for: .normal)
-            answer4.setTitle("  D \(weeklyAnswers[3]["name"] as? String ?? "cudnt get ans")", for: .normal)
+            question.text = "Q \(weeklyQuestion)"
+            answer1.text = "  A \(weeklyAnswers[0]["name"] ?? "cudnt get ans")"
+            answer2.text = "  B \(weeklyAnswers[1]["name"] ?? "cudnt get ans")"
+            answer3.text = "  C \(weeklyAnswers[2]["name"] ?? "cudnt get ans")"
+            answer4.text = "  D \(weeklyAnswers[3]["name"] ?? "cudnt get ans")"
             
             answerLayouts(answer: answer1)
             answerLayouts(answer: answer2)
@@ -611,7 +665,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             }
         }
     }*/
-    @objc func optionPressed(_ sender: UIButton){
+    @objc func optionPressed(_ sender: UITapGestureRecognizer){
         
         let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user_questions_answers")!
         var request = URLRequest(url: url)
@@ -625,23 +679,23 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         var answerid = ""
         if dailyWeekly.selectedSegmentIndex == 0{
             questionid = self.idDaily
-            answerid = answers[answerButtons.firstIndex(of: sender)!]["id"]!
+            answerid = answers[gestures.firstIndex(of: sender)!]["id"]!//answers[answerButtons.firstIndex(of: sender)!]["id"]!
             if sender == dailyCorrectAnswer{
                 print("correct")
-                sender.borderColor = .green
+                answerButtons[gestures.firstIndex(of: sender)!].borderColor = .green
             }else{
                 print("incorrect")
-                sender.borderColor = .red
+                answerButtons[gestures.firstIndex(of: sender)!].borderColor = .red
             }
         }else{
             questionid = self.idWeekly
-            answerid = weeklyAnswers[answerButtons.firstIndex(of: sender)!]["id"]!
+            answerid = weeklyAnswers[gestures.firstIndex(of: sender)!]["id"]!
             if sender == weeklyCorrectAnswer{
                 print("correct")
-                sender.borderColor = .green
+                answerButtons[gestures.firstIndex(of: sender)!].borderColor = .green
             }else{
                 print("incorrect")
-                sender.borderColor = .red
+                answerButtons[gestures.firstIndex(of: sender)!].borderColor = .red
             }
         }
         let content = [

@@ -44,6 +44,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.collectionView.delegate = self
         self.collectionView.backgroundColor = .clear
         self.collectionView.dataSource = self
+        self.collectionView.addSubview(self.refreshControl)
         self.collectionView.register(OfferCollectionViewCell.self, forCellWithReuseIdentifier: "offerCell")
         configureCollectionView()
     }
@@ -106,11 +107,19 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                                 let copcode = offer["coupon_code"] as! String
                                 let id = offer["id"] as! Int
                                 let imgurl = offer["brand_logo_url"] as! String
-                                self.offers.append(["offer_name":nameOffer,"company":companyName,"terms":terms,"coins":"\(coins)","coupon_code":copcode,"id":"\(id)","imgurl":imgurl])
+                                let amount = offer["offer_amount"] as! String
+                                if let categ = offer["category"] as? NSNull{
+                                    self.offers.append(["offer_name":nameOffer,"company":companyName,"terms":terms,"coins":"\(coins)","coupon_code":copcode,"id":"\(id)","imgurl":imgurl,"category":"General","amount":amount])
+                                }else{
+                                    let category = offer["category"]!["name"] as! String
+                                    self.offers.append(["offer_name":nameOffer,"company":companyName,"terms":terms,"coins":"\(coins)","coupon_code":copcode,"id":"\(id)","imgurl":imgurl,"category":category,"amount":amount])
+                                }
+                                
                             }
                             print(self.offers)
                             DispatchQueue.main.async {
                                 self.collectionView.reloadData()
+                                self.collectionView.collectionViewLayout = self.createCustomLayout()
                             }
                         }else{
                             self.errorMssg.text = "No offers are available at the moment"
@@ -142,7 +151,14 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //implement this later
-        if offers.count%2 == 0{
+        if offers.count == 0{
+            self.errorMssg.text = "No offers are available at the moment"
+            self.errorMssg.adjustsFontSizeToFitWidth = true
+            self.errorMssg.isHidden = false
+            self.exclMark.isHidden = false
+            self.notAvailable = true
+            return 0
+        }else if offers.count%2 == 0{
             return 2
         }else{
             if section == offers.count/2{
@@ -156,25 +172,64 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "offerCell", for: indexPath) as? OfferCollectionViewCell{
-            if self.offers.count == 0{
-                cell.offerImageView.image = UIImage(named: "smoothCoin")!
-                return cell
-            }
             if indexPath.section == 0{
                 cell.id = self.offers[(2*indexPath.section)+indexPath.row]["id"]!//indexPath.section+indexPath.row
                 switch self.offers[(2*indexPath.section)+indexPath.row]["imgurl"]!{
                 case "":
-                    cell.offerImageView.image = UIImage(named: "Amazon")
+                    print("no link")
+                    cell.altText.text = self.offers[(2*indexPath.section)+indexPath.row]["company"]
+                    cell.cashText.text = "₹ \(self.offers[(2*indexPath.section)+indexPath.row]["amount"]!)"
+                    cell.coinsText.text = "\(self.offers[(2*indexPath.section)+indexPath.row]["coins"]!) coins"
+                    cell.removeImage()
+                    
+                case "null":
+                    cell.altText.text = self.offers[(2*indexPath.section)+indexPath.row]["company"]
+                    cell.cashText.text = "₹ \(self.offers[(2*indexPath.section)+indexPath.row]["amount"]!)"
+                    cell.coinsText.text = "\(self.offers[(2*indexPath.section)+indexPath.row]["coins"]!) coins"
+                    cell.removeImage()
                 default:
                     cell.offerImageView.sd_setImage(with: URL(string: self.headLink+self.offers[(2*indexPath.section)+indexPath.row]["imgurl"]!)) { (image, error, cache, urlGiven) in
                         if error == nil{
                             print("success wallet")
+                            cell.altText.text = self.offers[(2*indexPath.section)+indexPath.row]["company"]
+                            cell.cashText.text = "₹ \(self.offers[(2*indexPath.section)+indexPath.row]["amount"]!)"
+                            cell.coinsText.text = "\(self.offers[(2*indexPath.section)+indexPath.row]["coins"]!) coins"
+                            cell.removeImage()
                         }else{
+                            cell.addImage()
                             print("wallet",error?.localizedDescription)
                         }
                     }
                 }
             }else{
+                cell.id = self.offers[(2*indexPath.section)+indexPath.row]["id"]!//indexPath.section+indexPath.row
+                switch self.offers[(2*indexPath.section)+indexPath.row]["imgurl"]!{
+                case "":
+                    print("no link")
+                        //cell.offerImageView.image = UIImage(named: "Flipkart")!
+                        cell.altText.text = self.offers[(2*indexPath.section)+indexPath.row]["company"]
+                        cell.cashText.text = "₹ \(self.offers[(2*indexPath.section)+indexPath.row]["amount"]!)"
+                        cell.coinsText.text = "\(self.offers[(2*indexPath.section)+indexPath.row]["coins"]!) coins"
+                        cell.removeImage()
+                case "null":
+                    cell.altText.text = self.offers[(2*indexPath.section)+indexPath.row]["company"]
+                    cell.cashText.text = "₹ \(self.offers[(2*indexPath.section)+indexPath.row]["amount"]!)"
+                    cell.coinsText.text = "\(self.offers[(2*indexPath.section)+indexPath.row]["coins"]!) coins"
+                    cell.removeImage()
+                default:
+                    cell.offerImageView.sd_setImage(with: URL(string: self.headLink+self.offers[(2*indexPath.section)+indexPath.row]["imgurl"]!)) { (image, error, cache, urlGiven) in
+                        if error == nil{
+                            print("success wallet")
+                            cell.altText.text = self.offers[(2*indexPath.section)+indexPath.row]["company"]
+                            cell.cashText.text = "₹ \(self.offers[(2*indexPath.section)+indexPath.row]["amount"]!)"
+                            cell.coinsText.text = "\(self.offers[(2*indexPath.section)+indexPath.row]["coins"]!) coins"
+                            cell.removeImage()
+                        }else{
+                            cell.addImage()
+                            print("wallet",error?.localizedDescription)
+                        }
+                    }
+                }
                 cell.id = self.offers[(2*indexPath.section)+indexPath.row]["id"]!
             }
             return cell
@@ -190,27 +245,71 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     
     func createCustomLayout() -> UICollectionViewLayout {
-            
+        print("called")
+        if offers.count%2==0{
+            print("even")
             let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
 
+                      let leadingItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
+                      leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+                      
+                      let leadingGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
+                      let leadingGroup = NSCollectionLayoutGroup.vertical(layoutSize: leadingGroupSize, subitem: leadingItem, count: 1)
+                      
+                      let containerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),  heightDimension: .fractionalWidth(0.3))
+                      
+                      let containerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: containerGroupSize, subitems: [leadingGroup])
+            
+                      
+                      let section = NSCollectionLayoutSection(group: containerGroup)
+                      section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                      section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0)
+                      
+                      return section
+                  }
+                  return layout
+        }
+        print("hmm ye")
+        let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            if section == self.numberOfSections(in: self.collectionView)-1{
+                print("ye")
+               let leadingItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
+                          leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+                          
+                let leadingGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1))
+                          let leadingGroup = NSCollectionLayoutGroup.vertical(layoutSize: leadingGroupSize, subitem: leadingItem, count: 1)
+                          
+                          let containerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),  heightDimension: .fractionalWidth(0.3))
+                          
+                          let containerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: containerGroupSize, subitems: [leadingGroup])
+                
+                          
+                          let section = NSCollectionLayoutSection(group: containerGroup)
+                          section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                          section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0)
+                          
+                          return section
+            }else{
+                print("nope")
                 let leadingItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
-                leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+                          leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+                          
+                          let leadingGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
+                          let leadingGroup = NSCollectionLayoutGroup.vertical(layoutSize: leadingGroupSize, subitem: leadingItem, count: 1)
+                          
+                          let containerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),  heightDimension: .fractionalWidth(0.3))
+                          
+                          let containerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: containerGroupSize, subitems: [leadingGroup])
                 
-                let leadingGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
-                let leadingGroup = NSCollectionLayoutGroup.vertical(layoutSize: leadingGroupSize, subitem: leadingItem, count: 1)
-                
-                let containerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),  heightDimension: .fractionalWidth(0.3))
-                
-                let containerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: containerGroupSize, subitems: [leadingGroup])
-      
-                
-                let section = NSCollectionLayoutSection(group: containerGroup)
-                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-                section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0)
-                
-                return section
+                          
+                          let section = NSCollectionLayoutSection(group: containerGroup)
+                          section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                          section.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 0, trailing: 0)
+                          
+                          return section
             }
-            return layout
+              }
+              return layout
         }
     
     func setView(id: Int){
