@@ -34,6 +34,7 @@ class OTPController: UIViewController {
         super.viewDidLoad()
         nextBtn.isHidden = true
         nextBtn.layer.cornerRadius = view.frame.width/20
+        actionBtn.titleLabel?.adjustsFontSizeToFitWidth = true
         mobileNumber.delegate = self
         let endEditing = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(endEditing)
@@ -105,6 +106,7 @@ class OTPController: UIViewController {
             self.view.reloadInputViews()
             }
         }else{
+            self.mainMssg.text = "Confirm"
             self.mainMssg.text = "Verify the mobile number \(self.mobileNumber.selectedCountry!.phoneCode + mobileNumber.text!) and confirm"
             UIView.animate(withDuration: 0.5) {
                 self.popupParent.alpha = 0
@@ -133,14 +135,26 @@ class OTPController: UIViewController {
                     PhoneAuthProvider.provider().verifyPhoneNumber(realno, uiDelegate: nil) { (verificationID, error) in
                       if let error = error {
                         //self.showMessagePrompt(error.localizedDescription) //error handling function, just printing it to console for now
-                        self.mainMssg.text = "You seem to have lost Internet Connection"
-                        self.topMssg.text = "Connectivity"
-                        self.actionBtn.titleLabel?.text = "Try Again"
-                        UIView.animate(withDuration: 0.5) {
-                            self.popupParent.alpha = 1.0
-                            self.popupParent.isUserInteractionEnabled = true
-                            self.bodyPop.alpha = 1
-                            self.bodyPop.isUserInteractionEnabled = true
+                        if error.localizedDescription == "The interaction was cancelled by the user."{
+                            self.mainMssg.text = "Pls complete the recaptcha"
+                            self.topMssg.text = "Incomplete"
+                            self.actionBtn.titleLabel?.text = "Try Again"
+                            UIView.animate(withDuration: 0.5) {
+                                self.popupParent.alpha = 1.0
+                                self.popupParent.isUserInteractionEnabled = true
+                                self.bodyPop.alpha = 1
+                                self.bodyPop.isUserInteractionEnabled = true
+                            }
+                        }else{
+                            self.mainMssg.text = "You seem to have lost Internet Connection"
+                            self.topMssg.text = "Connectivity"
+                            self.actionBtn.titleLabel?.text = "Try Again"
+                            UIView.animate(withDuration: 0.5) {
+                                self.popupParent.alpha = 1.0
+                                self.popupParent.isUserInteractionEnabled = true
+                                self.bodyPop.alpha = 1
+                                self.bodyPop.isUserInteractionEnabled = true
+                            }
                         }
                         print("error",error.localizedDescription)
                         return
