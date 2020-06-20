@@ -42,6 +42,7 @@ class OTP2Controller: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         isIncorrect.isHidden = true
+        resendOTP.adjustsFontSizeToFitWidth = true
         resendOTP.isUserInteractionEnabled = true
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(self.resendOTPCode(_:)))
         resendOTP.addGestureRecognizer(tapGest)
@@ -51,6 +52,7 @@ class OTP2Controller: UIViewController {
         //tapGest.addTarget(self, action: #selector(resendCode(_:)))
         continueBtn.layer.cornerRadius = continueBtn.frame.width/24
         mobileNumber.placeholder = "Phone No"
+        mobileNumber.isUserInteractionEnabled = false
         mobileNumber.titleFont = UIFont(name: "Poppins-SemiBold", size: 12)!
         mobileNumber.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
         mobileNumber.title = "Phone No"
@@ -83,6 +85,27 @@ class OTP2Controller: UIViewController {
             PhoneAuthProvider.provider().verifyPhoneNumber(self.mobileNumber.text!, uiDelegate: nil) { (verificationID, error) in
                 if let error = error {
                     print("errresend",error.localizedDescription)
+                    if error.localizedDescription == "The interaction was cancelled by the user."{
+                        self.mainMssg.text = "Pls complete the recaptcha"
+                        self.topMssg.text = "Incomplete"
+                        self.actionBtn.titleLabel?.text = "Try Again"
+                        UIView.animate(withDuration: 0.5) {
+                            self.popupParent.alpha = 1.0
+                            self.popupParent.isUserInteractionEnabled = true
+                            self.bodyPop.alpha = 1
+                            self.bodyPop.isUserInteractionEnabled = true
+                        }
+                    }else{
+                        self.mainMssg.text = "You seem to have lost Internet Connection"
+                        self.topMssg.text = "Connectivity"
+                        self.actionBtn.titleLabel?.text = "Try Again"
+                        UIView.animate(withDuration: 0.5) {
+                            self.popupParent.alpha = 1.0
+                            self.popupParent.isUserInteractionEnabled = true
+                            self.bodyPop.alpha = 1
+                            self.bodyPop.isUserInteractionEnabled = true
+                        }
+                    }
                   return
                 }
                 gesture.isEnabled = false
@@ -115,7 +138,15 @@ class OTP2Controller: UIViewController {
         }
    }
            
-           @IBAction func Next(_ sender: Any) {
+    @IBAction func backSign(_ sender: Any) {
+        dismiss(animated: true) {
+            UserDefaults.standard.removeObject(forKey: "phone")
+            UserDefaults.standard.removeObject(forKey: "code")
+            publicVars.mobileNumber = ""
+        }
+    }
+    
+    @IBAction func Next(_ sender: Any) {
                guard OTP.text! != "" else{
                    print("no otp entered, handle error")//handle this by showing a message or smth
                    return

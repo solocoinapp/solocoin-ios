@@ -34,8 +34,8 @@ class ThirdViewController: UIViewController {
         infoText.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15).isActive = true
         nextButton.topAnchor.constraint(equalTo: infoText.bottomAnchor, constant: 8).isActive = true*/
         solocoinImage.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height/16).isActive = true
-        solocoinImage.heightAnchor.constraint(equalToConstant: view.frame.height/12).isActive = true
-        solocoinImage.widthAnchor.constraint(equalToConstant: view.frame.width/6).isActive = true
+        solocoinImage.heightAnchor.constraint(equalToConstant: view.frame.height/8).isActive = true
+        solocoinImage.widthAnchor.constraint(equalToConstant: view.frame.width/4).isActive = true
         solocoinImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         mainpic.topAnchor.constraint(equalTo: solocoinImage.bottomAnchor, constant: view.frame.height/12).isActive = true
         mainpic.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true

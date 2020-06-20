@@ -142,7 +142,6 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 present(vc,animated: true)
     }
     @IBAction func acceptPop(_ sender: Any) {
-        UIView.animate(withDuration: 0.5) {
             UIView.animate(withDuration: 0.5) {
                 self.popupParent.alpha = 0
                 self.popupParent.isUserInteractionEnabled = false
@@ -173,7 +172,6 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
                     }
                 }
             }
-        }
     }
     @IBAction func cancelPop(_ sender: Any) {
         UIView.animate(withDuration: 0.5) {
