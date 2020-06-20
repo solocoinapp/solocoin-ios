@@ -83,6 +83,8 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //newuser uncheck
+        UserDefaults.standard.set("yay", forKey: "check")
         
         //blur it out
         let blurEffect = UIBlurEffect(style: .extraLight)
