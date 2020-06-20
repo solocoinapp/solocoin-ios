@@ -19,7 +19,6 @@ class Geofencing: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -34,6 +33,13 @@ class Geofencing: UIViewController {
         guard let geoFenceRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2DMake(userLatitude!, userLongitude!), radius: 200, identifier: "home") else {return}
 
             locationManager.startMonitoring(for: geoFenceRegion)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 0.5) {
+            self.navigationController?.isNavigationBarHidden = false
+            self.tabBarController?.tabBar.isHidden = true
+        }
     }
     
     func showAlert(title: String, message: String) {

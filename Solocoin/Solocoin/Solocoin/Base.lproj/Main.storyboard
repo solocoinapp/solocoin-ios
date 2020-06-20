@@ -249,7 +249,7 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="5Jq-y0-Jlc" kind="relationship" relationship="viewControllers" id="WIe-4M-YVs"/>
+                        <segue destination="tZ7-4P-krm" kind="relationship" relationship="viewControllers" id="WIe-4M-YVs"/>
                         <segue destination="imi-9z-lpv" kind="relationship" relationship="viewControllers" id="oSy-cI-C9v"/>
                         <segue destination="moj-7w-w4e" kind="relationship" relationship="viewControllers" id="xVG-8K-FcD"/>
                         <segue destination="5Pc-xg-JC9" kind="relationship" relationship="viewControllers" id="Frf-vu-ZVI"/>
@@ -1428,16 +1428,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KU3-jC-J5L"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="tabHome" id="Hcz-5F-cp7">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
-                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
                     <navigationItem key="navigationItem" id="qKh-ak-KBM"/>
                     <connections>
                         <outlet property="answer1" destination="gUR-oY-UOF" id="60g-dG-AyC"/>
@@ -1456,7 +1446,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMS-O0-ojF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5947.826086956522" y="409.82142857142856"/>
+            <point key="canvasLocation" x="6818.8405797101459" y="615.40178571428567"/>
         </scene>
         <!--WalletsPage-->
         <scene sceneID="7BI-XZ-LaI">
@@ -1979,12 +1969,15 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coins in Wallet       " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dku-RF-6Aj">
-                                        <rect key="frame" x="16.666666666666657" y="75" width="153.66666666666666" height="24"/>
+                                        <rect key="frame" x="0.0" y="75" width="170.33333333333334" height="24"/>
                                         <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="17"/>
                                         <color key="textColor" red="0.062745098040000002" green="0.12549019610000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="dku-RF-6Aj" firstAttribute="centerX" secondItem="8ct-17-XaV" secondAttribute="centerX" id="XWT-By-GeV"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -2027,7 +2020,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XbP-SA-BS8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6979.7101449275369" y="370.98214285714283"/>
+            <point key="canvasLocation" x="7889.8550724637689" y="370.98214285714283"/>
         </scene>
         <!--OfferDetails-->
         <scene sceneID="2N9-xA-Mz4">
@@ -2066,7 +2059,7 @@
                                     <constraint firstAttribute="width" constant="175" id="sga-ao-8Jd"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Earn coins by redeeming coupons" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TpL-Ij-ncL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Earn coins by redeeming coupons" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TpL-Ij-ncL">
                                 <rect key="frame" x="183" y="315" width="211" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="sfs-oZ-Zp3"/>
@@ -2306,7 +2299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VI3-e7-Hm7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6979.7101449275369" y="1255.5803571428571"/>
+            <point key="canvasLocation" x="7889.8550724637689" y="1255.5803571428571"/>
         </scene>
         <!--Error View Controller-->
         <scene sceneID="Xlx-lT-lbK">
@@ -2348,7 +2341,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vwm-Gc-VXQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8269.5652173913059" y="1076.7857142857142"/>
+            <point key="canvasLocation" x="9179.7101449275378" y="1076.7857142857142"/>
         </scene>
         <!--BadgesPage-->
         <scene sceneID="3HU-R3-sPz">
@@ -2513,7 +2506,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming soon!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f5A-Te-FYP">
-                                                    <rect key="frame" x="121" y="19" width="121" height="24"/>
+                                                    <rect key="frame" x="121" y="23" width="106.33333333333331" height="20"/>
                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -2535,7 +2528,7 @@
                                             <rect key="frame" x="0.0" y="138" width="414" height="99"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="206 coins away!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtL-NG-2ff">
-                                                    <rect key="frame" x="146" y="0.0" width="121.33333333333331" height="22.333333333333332"/>
+                                                    <rect key="frame" x="146" y="0.0" width="108.33333333333331" height="22.333333333333332"/>
                                                     <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -2559,7 +2552,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Level 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vt-I8-mRd">
-                                                                    <rect key="frame" x="0.6666666666666714" y="20.333333333333314" width="53.333333333333336" height="24.333333333333329"/>
+                                                                    <rect key="frame" x="0.3333333333333286" y="20.333333333333314" width="54.333333333333336" height="24.333333333333329"/>
                                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                                     <color key="textColor" red="0.062745098040000002" green="0.12549019610000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -2581,7 +2574,7 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Level 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YST-vU-onr">
-                                                                    <rect key="frame" x="0.0" y="20.333333333333314" width="57.333333333333336" height="24.333333333333329"/>
+                                                                    <rect key="frame" x="1.6666666666666856" y="20.333333333333314" width="54.333333333333336" height="24.333333333333329"/>
                                                                     <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
                                                                     <color key="textColor" red="0.062745098040000002" green="0.12549019610000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -2889,7 +2882,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HOg-Xs-ioF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7631.884057971015" y="370.98214285714283"/>
+            <point key="canvasLocation" x="8542.0289855072479" y="370.98214285714283"/>
         </scene>
         <!--Profile-->
         <scene sceneID="1j6-6m-vIj">
@@ -3095,18 +3088,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="As9-JI-clz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8363.7681159420299" y="370.98214285714283"/>
+            <point key="canvasLocation" x="9273.9130434782619" y="370.98214285714283"/>
         </scene>
-        <!--Geofencing-->
+        <!--Map-->
         <scene sceneID="BMY-P6-XlU">
             <objects>
                 <viewController id="sgM-gK-4LN" customClass="Geofencing" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bpx-cP-1XI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="satellite" showsUserLocation="YES" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k17-AT-6Zj">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <gestureRecognizers/>
                             </mapView>
                         </subviews>
@@ -3119,7 +3112,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fyg-ek-a5J"/>
                     </view>
-                    <navigationItem key="navigationItem" id="S4J-F7-TS2"/>
+                    <navigationItem key="navigationItem" title="Map" id="S4J-F7-TS2"/>
                     <connections>
                         <outlet property="GeoFencing" destination="k17-AT-6Zj" id="q2v-A2-pFU"/>
                     </connections>
@@ -3184,14 +3177,53 @@
             </objects>
             <point key="canvasLocation" x="2036" y="440"/>
         </scene>
+        <!--Home-->
+        <scene sceneID="Dhk-w3-aXz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tZ7-4P-krm" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="tabHome" id="Hcz-5F-cp7">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="unselectedItemTintColor">
+                                <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Pq-Ze-u0Z">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.22352941179999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.94094575209999998" green="0.31665625920000001" blue="0.41335150770000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5Jq-y0-Jlc" kind="relationship" relationship="rootViewController" id="mqy-Zs-gQ7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vKK-JJ-Zjq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5908.6956521739139" y="615.40178571428567"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Xz4-Q5-4Az"/>
         <segue reference="DoF-mq-kLh"/>
         <segue reference="bMB-IM-AnA"/>
-        <segue reference="LP3-O8-iS6"/>
+        <segue reference="k7i-Dz-bR0"/>
         <segue reference="Cbw-OK-sEN"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.062745098040000002" green="0.12549019610000001" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <image name="Amazon" width="588" height="340"/>
         <image name="Chief" width="278" height="254"/>

@@ -84,6 +84,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //newuser uncheck
+        self.navigationController?.isNavigationBarHidden = true
         UserDefaults.standard.set("yay", forKey: "check")
         
         //blur it out
@@ -240,6 +241,10 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         //get from api
+        UIView.animate(withDuration: 0.5) {
+            self.navigationController?.isNavigationBarHidden = true
+            self.tabBarController?.tabBar.isHidden = false
+        }
         obtainDaily()
         obtainWeekly()
         //obtainLeaderBoard()
