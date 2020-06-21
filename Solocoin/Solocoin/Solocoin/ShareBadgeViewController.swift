@@ -40,11 +40,19 @@ class ShareBadgeViewController: UIViewController {
     }
 
     @IBAction func shareAward(_ sender: Any) {
-            let text = """
+            /*let text = """
     I just earned \(badgeName.text) on SoloCoin app which rewards you based on your location from home, mall, store and parks. Earn real world rewards with solocoins. Challenge friends and achieve milestones and badges like me.
             
             Download the App Now!
-    """
+    """*/
+        let text = """
+        I am saving the world by using Solocoin App to engage in social-distancing and earning rewards for it.
+        Download the App and start earning exciting reward while you stay at home!
+        Android:
+        \(String(describing: URL(string: "https://play.google.com/store/apps/details?id=app.solocoin.solocoin")))
+        AppStore:
+        \(String(describing: URL(string: "https://www.solocoin.app")))
+"""
             let vc = UIActivityViewController(activityItems: [text], applicationActivities: [])
             present(vc,animated: true)
         }

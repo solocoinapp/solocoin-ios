@@ -235,7 +235,9 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         let font = UIFont(name: "Poppins-SemiBold", size: 23)
        // let titleTextAttribute = [NSAttributedString.Key.foregroundColor: UIColor.init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)]
         dailyWeekly.setTitleTextAttributes([NSAttributedString.Key.font: font,NSAttributedString.Key.foregroundColor: UIColor.init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)], for: .normal)
-        userUpdate()
+        obtainProfileInfo{
+            self.userUpdate()
+        }
         
     }
     
@@ -248,7 +250,6 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         obtainDaily()
         obtainWeekly()
         //obtainLeaderBoard()
-        obtainProfileInfo()
         //obtainRewards()
     }
     
@@ -503,7 +504,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         qtask.resume()
     }
     
-    func obtainProfileInfo(){
+    func obtainProfileInfo(completion:@escaping ()->()){
         let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user/profile")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
@@ -556,6 +557,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             }else{
                 print("error",error?.localizedDescription)
             }
+            completion()
         }
         qtask.resume()
         
