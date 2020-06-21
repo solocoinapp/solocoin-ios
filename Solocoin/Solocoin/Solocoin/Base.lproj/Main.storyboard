@@ -1049,7 +1049,7 @@
         <!--Home Page-->
         <scene sceneID="JDH-30-jLD">
             <objects>
-                <viewController modalTransitionStyle="partialCurl" id="5Jq-y0-Jlc" userLabel="Home Page" customClass="HomePage1" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomePage" modalTransitionStyle="partialCurl" id="5Jq-y0-Jlc" userLabel="Home Page" customClass="HomePage1" customModule="Solocoin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e7w-CF-7X6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

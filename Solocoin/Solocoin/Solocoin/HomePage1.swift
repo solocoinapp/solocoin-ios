@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import CoreLocation
+import UserNotifications
 
 class HomePage1: UIViewController, CLLocationManagerDelegate {
     
@@ -77,6 +78,8 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     
     //blur
     var blurredEffectView :UIVisualEffectView!
+    
+    var a = 0
    
     
     //MARK: - FUNCTIONS
@@ -133,53 +136,59 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             let nowloc = publicVars.newloc
             let homeloc = publicVars.homeloc
             let diff = self.getBearingBetweenTwoPoints(point1: homeloc, point2: nowloc)
-            if diff > 20{
-                let content = ["session":["type":"away"]]
-                let jsonEncoder = JSONEncoder()
-                if let jsonData = try? jsonEncoder.encode(content),
-                    let jsonString = String(data: jsonData, encoding: .utf8) {
-                    print(jsonString)
-                    request.httpBody = jsonData
-                    let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                        if error == nil{
-                            if let response = response as? HTTPURLResponse {
-                                print("loc Response HTTP Status code: \(response.statusCode)")
-                                if let data = data{
-                                    if let json = try? JSONSerialization.jsonObject(with: data, options: []){
-                                        print("location resp",json)
+            if self.a==0{
+                if diff > 20{
+                    let content = ["session":["type":"away"]]
+                    let jsonEncoder = JSONEncoder()
+                    if let jsonData = try? jsonEncoder.encode(content),
+                        let jsonString = String(data: jsonData, encoding: .utf8) {
+                        print(jsonString)
+                        request.httpBody = jsonData
+                        let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                            if error == nil{
+                                if let response = response as? HTTPURLResponse {
+                                    print("loc Response HTTP Status code: \(response.statusCode)")
+                                    if let data = data{
+                                        if let json = try? JSONSerialization.jsonObject(with: data, options: []){
+                                            print("location resp",json)
+                                        }
+                                    }
+                                }
+                            }else{
+                                print("no internet connection or smthgn lol, handle this with popup")
+                            }
+                        }
+                        qtask.resume()
+                        print("less",diff)
+                    }
+                }else{
+                    let content = ["session":["type":"home"]]
+                    let jsonEncoder = JSONEncoder()
+                    if let jsonData = try? jsonEncoder.encode(content),
+                        let jsonString = String(data: jsonData, encoding: .utf8) {
+                        print(jsonString)
+                        request.httpBody = jsonData
+                        let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                            if error == nil{
+                                if let response = response as? HTTPURLResponse {
+                                    print("loc Response HTTP Status code: \(response.statusCode)")
+                                    if let data = data{
+                                        if let json = try? JSONSerialization.jsonObject(with: data, options: []){
+                                            print("location resp",json)
+                                        }
                                     }
                                 }
                             }
-                        }else{
-                            print("no internet connection or smthgn lol, handle this with popup")
                         }
+                        qtask.resume()
+                        print("more")
                     }
-                    qtask.resume()
-                    print("less",diff)
                 }
+                self.a+=1
             }else{
-                let content = ["session":["type":"home"]]
-                let jsonEncoder = JSONEncoder()
-                if let jsonData = try? jsonEncoder.encode(content),
-                    let jsonString = String(data: jsonData, encoding: .utf8) {
-                    print(jsonString)
-                    request.httpBody = jsonData
-                    let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-                        if error == nil{
-                            if let response = response as? HTTPURLResponse {
-                                print("loc Response HTTP Status code: \(response.statusCode)")
-                                if let data = data{
-                                    if let json = try? JSONSerialization.jsonObject(with: data, options: []){
-                                        print("location resp",json)
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    qtask.resume()
-                    print("more")
-                }
+                self.showNotification(title: "Solocoin Check-In", message: "Please click on the notification to confirm your presence")
             }
+            
             
             
         }
@@ -251,6 +260,48 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         obtainWeekly()
         //obtainLeaderBoard()
         //obtainRewards()
+    }
+    
+    func sendUpdate(){
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/sessions/ping")!
+        var request = URLRequest(url: url)
+        // Specify HTTP Method to use
+        request.httpMethod = "POST"
+        //sepcifying header
+        let authtoken = "Token \(UserDefaults.standard.string(forKey: "authtoken")!)"
+        print("a",authtoken)
+        request.addValue(authtoken, forHTTPHeaderField: "Authorization")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //let nowloc = UserDefaults.standard.object(forKey: "nowloc") as! CLLocation
+        let nowloc = publicVars.newloc
+        let homeloc = publicVars.homeloc
+        let diff = self.getBearingBetweenTwoPoints(point1: homeloc, point2: nowloc)
+        if diff > 20{
+        let content = ["session":["type":"away"]]
+        let jsonEncoder = JSONEncoder()
+        if let jsonData = try? jsonEncoder.encode(content),
+            let jsonString = String(data: jsonData, encoding: .utf8) {
+            print(jsonString)
+            request.httpBody = jsonData
+            let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if error == nil{
+                    if let response = response as? HTTPURLResponse {
+                        print("loc Response HTTP Status code: \(response.statusCode)")
+                        if let data = data{
+                            if let json = try? JSONSerialization.jsonObject(with: data, options: []){
+                                print("location resp",json)
+                            }
+                        }
+                    }
+                }else{
+                    print("no internet connection or smthgn lol, handle this with popup")
+                }
+            }
+            qtask.resume()
+            print("less",diff)
+        }
+        }
+        a=0
     }
     
     func setErorrMssg(){
@@ -817,6 +868,15 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         
         return (r*c*1000) // in meters
         
+    }
+    
+    func showNotification(title: String, message: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = message
+        content.sound = .default
+        let request = UNNotificationRequest(identifier: "notif", content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
 }

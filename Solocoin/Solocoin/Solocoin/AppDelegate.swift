@@ -10,9 +10,11 @@ import UIKit
 import CoreData
 import Firebase
 import FirebaseAuth
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    let window = UIWindow()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -79,5 +81,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate{
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if  let conversationVC = storyboard.instantiateViewController(withIdentifier: "HomePage") as? HomePage1,
+            let tabBarController = self.window.rootViewController as? UITabBarController,
+            let navController = tabBarController.selectedViewController as? UINavigationController {
+            conversationVC.sendUpdate()
+                // we can modify variable of the new view controller using notification data
+                // (eg: title of notification)
+                // you can access custom data of the push notification by using userInfo property
+                // response.notification.request.content.userInfo
+            navController.pushViewController(conversationVC, animated: true)
+        }
+        
+        // tell the app that we have finished processing the user’s action / response
+        completionHandler()
+    }
 }
 
