@@ -193,8 +193,8 @@ class OTP2Controller: UIViewController {
                                                     let auth_token = object["auth_token"] as! String
                                                     UserDefaults.standard.set(auth_token,forKey: "authtoken")
                                                     //perform segue to dahsboard
-                                                    let username = object["name"] as! String
-                                                    UserDefaults.standard.set(username, forKey: "username")
+                                                    /*let username = object["name"] as! String
+                                                    UserDefaults.standard.set(username, forKey: "username")*/
                                                     guard let lat = object["lat"] as? CLLocationDegrees else{
                                                         print("nope lat")
                                                         return
