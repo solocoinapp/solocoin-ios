@@ -26,6 +26,7 @@
 		68D2ED7C245B3FAA00F39655 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */; };
 		F50950F3249902E7002C2C3D /* NetWorkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50950F2249902E7002C2C3D /* NetWorkCheck.swift */; };
 		F50950F524994F3E002C2C3D /* errorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50950F424994F3E002C2C3D /* errorViewController.swift */; };
+		F5145FDF24A228B5007BFED8 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5145FDE24A228B5007BFED8 /* ScoreView.swift */; };
 		F53DA2A5248378B7005FE377 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53DA2A4248378B7005FE377 /* GoogleService-Info.plist */; };
 		F53DA2A72483A9EF005FE377 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DA2A62483A9EF005FE377 /* OfferCollectionViewCell.swift */; };
 		F53DA2AB2483D94C005FE377 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */; };
@@ -54,6 +55,8 @@
 		F54329BE2490B0900083EED2 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F54329AC2490B0900083EED2 /* Poppins-SemiBold.ttf */; };
 		F54329BF2490B0900083EED2 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F54329AD2490B0900083EED2 /* Poppins-Italic.ttf */; };
 		F54329C02490B0900083EED2 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F54329AE2490B0900083EED2 /* Poppins-MediumItalic.ttf */; };
+		F548B69324A09AF300A4F728 /* ScoreBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F548B69224A09AF300A4F728 /* ScoreBoardViewController.swift */; };
+		F548B69524A09C8F00A4F728 /* ScoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F548B69424A09C8F00A4F728 /* ScoreCollectionViewCell.swift */; };
 		F553016F24914FC80036C2B8 /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F553016E24914FC80036C2B8 /* CollectionReusableView.swift */; };
 		F55597122496927100DBE6B8 /* LeaderBoardTempVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */; };
 		F5A0B4FC24954B7000BFCC2B /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */; };
@@ -86,6 +89,7 @@
 		68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		F50950F2249902E7002C2C3D /* NetWorkCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkCheck.swift; sourceTree = "<group>"; };
 		F50950F424994F3E002C2C3D /* errorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = errorViewController.swift; sourceTree = "<group>"; };
+		F5145FDE24A228B5007BFED8 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		F53DA2A4248378B7005FE377 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F53DA2A62483A9EF005FE377 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailsViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 		F54329AC2490B0900083EED2 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		F54329AD2490B0900083EED2 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
 		F54329AE2490B0900083EED2 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+		F548B69224A09AF300A4F728 /* ScoreBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardViewController.swift; sourceTree = "<group>"; };
+		F548B69424A09C8F00A4F728 /* ScoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		F553016E24914FC80036C2B8 /* CollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardTempVC.swift; sourceTree = "<group>"; };
 		F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
@@ -160,6 +166,9 @@
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
 				68872A142468CC70005348B4 /* UIViewExtension.swift */,
 				68B1D8762453ACDC007ECC01 /* Main.storyboard */,
+				F5145FDE24A228B5007BFED8 /* ScoreView.swift */,
+				F548B69224A09AF300A4F728 /* ScoreBoardViewController.swift */,
+				F548B69424A09C8F00A4F728 /* ScoreCollectionViewCell.swift */,
 				F50950F424994F3E002C2C3D /* errorViewController.swift */,
 				F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */,
 				F542F1B72493FC340089CB83 /* WelcomeViewController.swift */,
@@ -381,6 +390,7 @@
 				F53DF2C62485545700030373 /* ShareBadgeViewController.swift in Sources */,
 				68B1D8712453ACDC007ECC01 /* AppDelegate.swift in Sources */,
 				68B1D8D324565FD8007ECC01 /* HomePage1.swift in Sources */,
+				F548B69324A09AF300A4F728 /* ScoreBoardViewController.swift in Sources */,
 				68B1D8732453ACDC007ECC01 /* SceneDelegate.swift in Sources */,
 				F5CB66DB24826DC4005BF70D /* LeaderBoardViewController.swift in Sources */,
 				68213D1B2457FD1E008B30A1 /* PermissionsController.swift in Sources */,
@@ -397,7 +407,9 @@
 				F5D66FC92475A1EC00476863 /* MenuTBController.swift in Sources */,
 				68B1D8D124551A5E007ECC01 /* PublicVars.swift in Sources */,
 				F5CB66DD2482865E005BF70D /* WalletViewController.swift in Sources */,
+				F548B69524A09C8F00A4F728 /* ScoreCollectionViewCell.swift in Sources */,
 				68B1D87B2453ACDC007ECC01 /* Solocoin.xcdatamodeld in Sources */,
+				F5145FDF24A228B5007BFED8 /* ScoreView.swift in Sources */,
 				F542F1B42493DF7C0089CB83 /* ThirdViewController.swift in Sources */,
 				F55597122496927100DBE6B8 /* LeaderBoardTempVC.swift in Sources */,
 				68B1D8882453B4BA007ECC01 /* LandingPagesController.swift in Sources */,

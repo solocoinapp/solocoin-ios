@@ -25,6 +25,7 @@ class CollectionReusableViewHeader: UICollectionReusableView {
     @IBOutlet weak var Level2: UILabel!
     @IBOutlet weak var Level1: UILabel!
     @IBOutlet weak var levelProgress: UIProgressView!
+    @IBOutlet weak var scoreView: UIView!
     //@IBOutlet weak var leaderBoardHeader: UILabel!
     @IBOutlet weak var leaderBoardSec: UIImageView!
     /*@IBOutlet weak var filledProgressBar: UIImageView!
