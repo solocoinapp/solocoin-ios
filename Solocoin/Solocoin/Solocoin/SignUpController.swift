@@ -20,11 +20,31 @@ class SignUpController: UIViewController,UITextFieldDelegate {
     
     //@IBOutlet weak var signUpBirth: UIDatePicker!
     
+    //popup
+    @IBOutlet weak var popupParent: UIView!
+    @IBOutlet weak var bodyPop: UIView!
+    @IBOutlet weak var topMssg: UILabel!
+    @IBOutlet weak var mainMssg: UILabel!
+    @IBOutlet weak var actionBtn: UIButton!
+    @IBOutlet weak var createBtn: UIButton!
+    
+    @IBOutlet weak var declaration: UITextView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //signUpGender.selectedSegmentIndex = 0
-        //publicVars.genderSignUp = signUpGender.titleForSegment(at: 0) ?? "error"
+        createBtn.layer.cornerRadius = createBtn.frame.width/30
+        //tandc and pp
+        declaration.isSelectable = true
+        let attributedString = NSMutableAttributedString(string: "By creating an account you agree to our Terms of Service and Privacy Policy")
+        attributedString.addAttribute(.link, value: "https://www.solocoin.app/terms-and-conditions/", range: NSRange(location: 40, length: 16))
+        attributedString.addAttribute(.link, value: "https://www.solocoin.app/privacy-policy/", range: NSRange(location: 61, length: 14))
+        attributedString.addAttribute(.foregroundColor, value: UIColor.gray, range: NSRange(location: 0, length: 75))
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .center
+        attributedString.addAttribute(.paragraphStyle, value: paragraph, range: NSRange(location: 0, length: 75))
+        declaration.attributedText = attributedString
+        
         let endEditing = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(endEditing)
         fullName.placeholder = "Fullname"
@@ -33,9 +53,21 @@ class SignUpController: UIViewController,UITextFieldDelegate {
         fullName.title = "Fullname"
         fullName.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
         self.fullName.delegate = self
+        popupParent.alpha = 0
+               popupParent.isUserInteractionEnabled = false
+               actionBtn.layer.cornerRadius = actionBtn.frame.width/25
+               popupParent.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 0.7)
         
+        NetworkManager.isReachable { (_) in
+            self.topMssg.text = "Connectivity"
+            self.mainMssg.text = "No internet Connection"
+        }
     }
     
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL)
+        return false
+    }
     /*@IBAction func genderClicked(_ sender: Any) {
         publicVars.hasGender = true
         publicVars.whichGenderSegment = signUpGender.selectedSegmentIndex
@@ -140,6 +172,7 @@ class SignUpController: UIViewController,UITextFieldDelegate {
                     }
                 }else{
                     print("error",error?.localizedDescription)
+                    self.showPopup()
                 }
                 
             }
@@ -149,7 +182,35 @@ class SignUpController: UIViewController,UITextFieldDelegate {
         // SEGUE
        // performSegue(withIdentifier: "permissionSegue", sender: self)
     }
-
+    
+    func showPopup(){
+        //self.mainMssg.text = "Verify the mobile number \(self.mobileNumber.selectedCountry!.phoneCode + mobileNumber.text!) and confirm"
+        UIView.animate(withDuration: 0.5) {
+            self.popupParent.alpha = 1.0
+            self.popupParent.isUserInteractionEnabled = true
+            self.bodyPop.alpha = 1
+            self.bodyPop.isUserInteractionEnabled = true
+        }
+    }
+    
+    @IBAction func cancelAct(_ sender: Any) {
+        UIView.animate(withDuration: 0.5) {
+                self.popupParent.alpha = 0
+                self.popupParent.isUserInteractionEnabled = false
+                self.bodyPop.alpha = 0
+                self.bodyPop.isUserInteractionEnabled = false
+            }
+        }
+    
+    @IBAction func actionAct(_ sender: Any) {
+        UIView.animate(withDuration: 0.5) {
+                self.popupParent.alpha = 0
+                self.popupParent.isUserInteractionEnabled = false
+                self.bodyPop.alpha = 0
+                self.bodyPop.isUserInteractionEnabled = false
+            }
+        }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
     

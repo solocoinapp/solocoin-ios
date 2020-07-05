@@ -10,6 +10,7 @@ import UIKit
 import UserNotifications
 import CoreLocation
 import MapKit
+import UserNotifications
 
 class PermissionsController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -24,6 +25,24 @@ class PermissionsController: UIViewController, MKMapViewDelegate, CLLocationMana
     var locationObtained = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            if granted {
+                print("ye we got permission")
+                DispatchQueue.main.async {
+                    self.confBtn.isHidden = false
+                    self.confBtn.isUserInteractionEnabled = true
+                }
+                
+            } else {
+                print("umm no notifi")
+                DispatchQueue.main.async {
+                    self.confBtn.isHidden = true
+                    self.confBtn.isUserInteractionEnabled = false
+                }
+                
+            }
+        }
         let tapGest = UITapGestureRecognizer(target: self, action: #selector(reload(_:)))
         reload.addGestureRecognizer(tapGest)
         reload.isUserInteractionEnabled = true
@@ -47,11 +66,20 @@ class PermissionsController: UIViewController, MKMapViewDelegate, CLLocationMana
             }else{
                 self.reload.transform = CGAffineTransform(rotationAngle: 2*(.pi))
             }
+            
+            //self.reload.transform = CGAffineTransform(rotationAngle: 2*(.pi))
         }
+        
         determineCurrentLocation()
     }
     
-
+    /*@IBAction func locationAllowed(_ sender: Any) {
+        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
+        
+    }*/
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error - locationManager: \(error.localizedDescription)")
     }
@@ -109,27 +137,34 @@ class PermissionsController: UIViewController, MKMapViewDelegate, CLLocationMana
     @IBAction func notificationAllowed(_ sender: Any) {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound,]) { (granted, error) in
-    
+            if granted{
+                self.confBtn.isHidden = false
+                self.confBtn.isUserInteractionEnabled = true
+                let content = UNMutableNotificationContent()
+                content.title = "Notifications like this"
+                content.body = "This is how notifications will come from SoloCoin"
+                
+                let date = Date().addingTimeInterval(0)
+                
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
+                
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                
+                let uuidString = UUID().uuidString
+                
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                
+                center.add(request) { (error) in
+                    // Check the error parameter
+                }
+            }else{
+                self.confBtn.isHidden = true
+                self.confBtn.isUserInteractionEnabled = false
+            }
         }
-        if publicVars.showNotifications == true {
-        let content = UNMutableNotificationContent()
-        content.title = "Notifications like this"
-        content.body = "This is how notifications will come from SoloCoin"
+        /*if publicVars.showNotifications == true {
         
-        let date = Date().addingTimeInterval(0)
-        
-        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: date)
-        
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        
-        let uuidString = UUID().uuidString
-        
-        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-        
-        center.add(request) { (error) in
-            // Check the error parameter
-        }
-        }
+        }*/
         
     }
     

@@ -43,7 +43,7 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
         profileTableView.delegate = self
         profileTableView.dataSource = self
         profileTableView.separatorColor = UIColor.init(red: 240/255, green: 81/255, blue: 105/255, alpha: 1)
-        profileTableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        profileTableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         // Do any additional setup after loading the view.
         profileTableView.tableFooterView = UIView()
     }
@@ -66,7 +66,7 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
         case 1:
             cell.indximage.image = UIImage(systemName: "checkmark.circle.fill")
         case 2:
-            cell.indximage.image = UIImage(systemName: "envelope.fill")
+            cell.indximage.image = UIImage(systemName: "bookmark.fill")
         case 3:
             cell.indximage.image = UIImage(systemName: "arrowshape.turn.up.left.2.fill")
         default:
@@ -142,7 +142,6 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
                 present(vc,animated: true)
     }
     @IBAction func acceptPop(_ sender: Any) {
-        UIView.animate(withDuration: 0.5) {
             UIView.animate(withDuration: 0.5) {
                 self.popupParent.alpha = 0
                 self.popupParent.isUserInteractionEnabled = false
@@ -173,7 +172,6 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
                     }
                 }
             }
-        }
     }
     @IBAction func cancelPop(_ sender: Any) {
         UIView.animate(withDuration: 0.5) {

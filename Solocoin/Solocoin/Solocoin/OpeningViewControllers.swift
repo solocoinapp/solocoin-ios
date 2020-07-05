@@ -23,14 +23,22 @@ class FirstOpeningViewControllers: UIViewController {
         infoText.translatesAutoresizingMaskIntoConstraints = false
         nextButton.translatesAutoresizingMaskIntoConstraints = false
         skip.translatesAutoresizingMaskIntoConstraints = false
+        //usercheck
+        if UserDefaults.standard.string(forKey: "check") == nil{
+            skip.isUserInteractionEnabled = false
+            skip.isHidden = true
+        }else{
+            skip.isUserInteractionEnabled = true
+            skip.isHidden = false
+        }
         // Do any additional setup after loading the view.
         setLayout()
         nextButton.layer.cornerRadius = nextButton.frame.width/20
     }
     func setLayout(){
         solocoinImage.topAnchor.constraint(equalTo: view.topAnchor, constant: view.frame.height/10).isActive = true
-        solocoinImage.heightAnchor.constraint(equalToConstant: view.frame.height/12).isActive = true
-        solocoinImage.widthAnchor.constraint(equalToConstant: view.frame.width/6).isActive = true
+        solocoinImage.heightAnchor.constraint(equalToConstant: view.frame.height/8).isActive = true
+        solocoinImage.widthAnchor.constraint(equalToConstant: view.frame.width/4).isActive = true
         solocoinImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         mainpic.topAnchor.constraint(equalTo: solocoinImage.bottomAnchor, constant: view.frame.height/15).isActive = true
         mainpic.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0).isActive = true

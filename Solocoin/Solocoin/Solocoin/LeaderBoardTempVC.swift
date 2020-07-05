@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 import CRRefresh
+import Reachability
 
 class LeaderBoardVC: UIViewController{
     
@@ -31,6 +32,12 @@ class LeaderBoardVC: UIViewController{
     }
     //var collectionView: UICollectionView!
     
+    //stacks
+    
+    @IBOutlet weak var stack3: UIStackView!
+    @IBOutlet weak var stack2: UIStackView!
+    @IBOutlet weak var stack1: UIStackView!
+    //
     @IBOutlet weak var mainCollectionView: UICollectionView!
     @IBOutlet weak var headerSec: UILabel!
     //var topStuff = CollectionReusableViewHeader()
@@ -78,6 +85,9 @@ class LeaderBoardVC: UIViewController{
         super.viewDidLoad()
         //touchCell.addTarget(self, action: #selector(cellSelected(_:)))
         //mainCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createCustomLayout())
+        NetworkManager.isUnreachable { (_) in
+            self.performSegue(withIdentifier: "errorPage", sender: nil)
+        }
         self.mainCollectionView.delegate = self
         self.mainCollectionView.backgroundColor = .clear
         self.mainCollectionView.addSubview(self.refreshControl)
@@ -96,13 +106,18 @@ class LeaderBoardVC: UIViewController{
                         if i==0{
                             self.currentLevel = 1
                             DispatchQueue.main.async {
-                                self.badgesUnlockedNo.text = "\(1)"
+                                self.badgesUnlockedNo.text = "  1"
                             }
                             break
                         }
                         self.currentLevel = (self.levelInfo[i]["level"] as! Int)-1
                         DispatchQueue.main.async {
-                            self.badgesUnlockedNo.text = "\((self.levelInfo[i]["level"] as! Int)-1)"
+                            if ((self.levelInfo[i]["level"] as! Int)-1)%10 != 0{
+                                self.badgesUnlockedNo.text = " \((self.levelInfo[i]["level"] as! Int)-1)"
+                            }else{
+                                self.badgesUnlockedNo.text = " \((self.levelInfo[i]["level"] as! Int)-1)"
+                            }
+                            
                         }
                         break
                     }
@@ -110,15 +125,16 @@ class LeaderBoardVC: UIViewController{
                 DispatchQueue.main.async {
                     //self.putImages(levels: self.currentLevels)
                     if self.currentLevel == 13{
-                        self.coinsLeft.text = "Congratulations! Levels Complete!"
+                        self.coinsLeft.text = "Congratulations!"
                         self.bigCoinsLeft.text = "You've finished all levels!"
                     }else{
-                        self.coinsLeft.text = "\(self.levelCoins[self.currentLevel-1]-self.totalCoinsEarned) coins to move to the next level!"
+                        self.coinsLeft.text = "\(self.levelCoins[self.currentLevel-1]-self.totalCoinsEarned) coins away!"
                         self.bigCoinsLeft.text = "\(self.levelCoins[self.currentLevel-1]-self.totalCoinsEarned) coins to move to the next level!"
                     }
                     self.crnLevel.text = "Level \(self.currentLevel)"
                     self.setLevelProgress {
-                        self.finalizeProgressbar()
+                        print("done progress")
+                        //self.finalizeProgressbar()
                     }
                     self.mainCollectionView.reloadData()
                 }
@@ -126,9 +142,11 @@ class LeaderBoardVC: UIViewController{
         }
     }
     
-    /*override func viewDidAppear(_ animated: Bool) {
-        
-    }*/
+    override func viewDidAppear(_ animated: Bool) {
+        NetworkManager.isUnreachable { (_) in
+            self.performSegue(withIdentifier: "errorPage", sender: nil)
+        }
+    }
     
     
     /*func putImages(levels: [[String:String]]){
@@ -143,13 +161,13 @@ class LeaderBoardVC: UIViewController{
     func setLevelProgress(completion:()->()){
         self.levelProgress.setProgress(0, animated: false)
         print("coins",self.levelCoins[self.currentLevel-1])
-        if self.currentLevel == 1{
+        /*if self.currentLevel == 1{
             let diff = 1-((Float(self.levelCoins[0]-self.totalCoinsEarned))/Float(self.levelCoins[0]))
             let progress = Float(1/4)+(Float(diff)/Float(4))
-            self.levelProgress.setProgress(progress, animated: true)
+            self.levelProgress.setProgress(0.25+progress, animated: true)
             self.Level2.textColor = .white
             self.Level3.textColor = .white
-            self.circle1.tintColor = .white
+            self.circle1.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
             self.circle2.tintColor = .white
             self.circle3.tintColor = .white
         }else if self.currentLevel == 13{
@@ -208,13 +226,84 @@ class LeaderBoardVC: UIViewController{
                 self.Level3.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
                 self.circle3.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
             }
+        }*/
+        if self.currentLevel != self.levelInfo.count{
+            let left = Float((self.levelInfo[self.currentLevel]["points"] as! Int)-self.totalCoinsEarned)/Float((self.levelInfo[self.currentLevel]["points"] as! Int)-(self.levelInfo[self.currentLevel-1]["points"] as! Int))
+            if self.currentLevel%3==1{
+                let toFill = 0.25+(left/4.0)
+                self.levelProgress.setProgress(toFill, animated: true)
+                self.levelProgress.setProgress(1.0, animated: true)
+                self.circle1.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+                self.circle2.tintColor = .white
+                self.circle3.tintColor = .white
+                self.Level1.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+                self.Level2.textColor = .white
+                self.Level3.textColor = .white
+                self.Level1.text = "Level \(self.currentLevel)"
+                self.Level2.text = "Level \(self.currentLevel+1)"
+                self.Level3.text = "Level \(self.currentLevel+2)"
+            }else if self.currentLevel%3 == 2{
+                let toFill = 0.5+(left/4.0)
+                self.levelProgress.setProgress(toFill, animated: true)
+                self.levelProgress.setProgress(1.0, animated: true)
+                self.circle1.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+                self.circle2.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+                self.circle3.tintColor = .white
+                self.Level1.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+                self.Level2.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+                self.Level3.textColor = .white
+                self.Level1.text = "Level \(self.currentLevel-1)"
+                self.Level2.text = "Level \(self.currentLevel-2)"
+                self.Level3.text = "Level \(self.currentLevel+1)"
+            }else{
+                if ((self.levelInfo[self.currentLevel]["points"] as! Int)-self.totalCoinsEarned) > (((self.levelInfo[self.currentLevel]["points"] as! Int)-(self.levelInfo[self.currentLevel-1]["points"] as! Int))/2){
+                    let diff = ((self.levelInfo[self.currentLevel]["points"] as! Int)-self.totalCoinsEarned) - (((self.levelInfo[self.currentLevel]["points"] as! Int)-(self.levelInfo[self.currentLevel-1]["points"] as! Int))/2)
+                    let left = Float(diff)/Float((((self.levelInfo[self.currentLevel]["points"] as! Int)-(self.levelInfo[self.currentLevel-1]["points"] as! Int))/2))
+                    let toFill = left/4.0
+                    self.levelProgress.setProgress(toFill,animated: true)
+                    self.circle1.tintColor = .white
+                    self.circle2.tintColor = .white
+                    self.circle3.tintColor = .white
+                    self.Level1.textColor = .white
+                    self.Level2.textColor = .white
+                    self.Level3.textColor = .white
+                    self.Level1.text = "Level \(self.currentLevel+1)"
+                    self.Level2.text = "Level \(self.currentLevel+2)"
+                    self.Level3.text = "Level \(self.currentLevel+3)"
+                    
+                }else{
+                    let toFill = 0.75+(left/8.0)
+                    self.levelProgress.setProgress(toFill, animated: true)
+                    self.circle1.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+                    self.circle2.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+                    self.circle3.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+                    self.Level1.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+                    self.Level2.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+                    self.Level3.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+                    self.Level1.text = "Level \(self.currentLevel-2)"
+                    self.Level2.text = "Level \(self.currentLevel-1)"
+                    self.Level3.text = "Level \(self.currentLevel)"
+                }
+            }
+        }else{
+            self.levelProgress.setProgress(1.0, animated: true)
+            self.circle1.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+            self.circle2.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+            self.circle3.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+            self.Level1.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+            self.Level2.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+            self.Level3.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+            self.Level1.text = "Level \(self.currentLevel-2)"
+            self.Level2.text = "Level \(self.currentLevel-1)"
+            self.Level3.text = "Level \(self.currentLevel)"
         }
+        
         completion()
     }
-    func finalizeProgressbar(){
+    /*func finalizeProgressbar(){
         //function to show empty progressBar if filled and not in final Level
         //Might need to modify this according to its working
-        guard self.currentLevel != 12 else {return}
+        guard self.currentLevel != self.levelInfo.count else {return}
         if self.levelProgress.progress == Float(1){
             self.levelProgress.setProgress(0, animated: false)
             self.Level1.text = "Level \(self.currentLevel+1)"
@@ -226,8 +315,9 @@ class LeaderBoardVC: UIViewController{
             self.circle1.tintColor = .white
             self.Level3.textColor = .white
             self.circle3.tintColor = .white
+            let left = Float((self.levelInfo[self.currentLevel]["points"] as! Int)-self.totalCoinsEarned)/Float((self.levelInfo[self.currentLevel]["points"] as! Int)-(self.levelInfo[self.currentLevel-1]["points"] as! Int))
         }
-    }
+    }*/
     
     func obtainBadges(completion:@escaping () -> ()){
         self.levelInfo.removeAll()
@@ -273,11 +363,14 @@ class LeaderBoardVC: UIViewController{
                 }
             }else{
                 print("eroor",error?.localizedDescription)
+                self.performSegue(withIdentifier: "errorPage", sender: nil)
             }
         }
         qtask.resume()
         
     }
+    
+    
     
     func setView(level: Int,image: String,enabling: Bool){
         if enabling{
@@ -301,6 +394,11 @@ class LeaderBoardVC: UIViewController{
         } else {
             newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
         }
+        
+        
+        
+        
+        
 
         // This is the rect that we've calculated out and this is what is actually used below
         let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
@@ -328,7 +426,7 @@ class LeaderBoardVC: UIViewController{
                                                        subitem: item, count: 2)
         //group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .estimated(375))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .estimated(511))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         //4
         let section = NSCollectionLayoutSection(group: group)
@@ -377,11 +475,6 @@ class LeaderBoardVC: UIViewController{
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "badgeCell", for: indexPath) as? BadgeCollectionViewCell{
                 if self.levelInfo.count != 0{
                     cell.badgeImageView.backgroundColor = .init(red: 239/255, green: 238/255, blue: 241/255, alpha: 1)
-                    /*guard var badgeImage = UIImage(named: self.levels[(indexPath.section*2)+indexPath.row]["\((indexPath.section*2)+indexPath.row)"]!) else {
-                        print("no image")
-                        return UICollectionViewCell()
-                    }
-                    cell.badgeImageView.image = badgeImage*/
                     switch ((indexPath.section*2)+indexPath.row){
                     case 0:
                         let badgeImage = self.levels[(indexPath.section*2)+indexPath.row]["\((indexPath.section*2)+indexPath.row)"]!
@@ -417,30 +510,7 @@ class LeaderBoardVC: UIViewController{
                     }
                     cell.badgeImageView.image = badgeImage
                     cell.clickEnabled = false
-                    /*if ((indexPath.section*2)+indexPath.row+1)>self.currentLevel{
-                        print(indexPath.section,indexPath.row,self.currentLevels.count)
-                        cell.blurEffect()
-                        cell.clickEnabled = false
-                    }*/
                 }
-                /*if self.currentLevels.count != 0{
-                    cell.badgeImageView.backgroundColor = .init(red: 239/255, green: 238/255, blue: 241/255, alpha: 1)
-                    guard let badgeImage = UIImage(named: self.levels[(indexPath.section*2)+indexPath.row+1]["\((indexPath.section*2)+indexPath.row+1)"]!) else {
-                        print("no image")
-                        return UICollectionViewCell()
-                    }
-                    let newImage = self.resizeImage(image: badgeImage, targetSize: CGSize(width: badgeImage.size.width*3, height: badgeImage.size.height*3))
-                    cell.badgeImageView.image = newImage
-                    /*cell.badgeImageView.image = UIImage(named: self.levels[(indexPath.section*2)+indexPath.row+1]["\((indexPath.section*2)+indexPath.row+1)"]!)*/
-                    print((indexPath.section*2)+indexPath.row+1,(self.currentLevels.count))
-                    cell.clickEnabled = true
-                    //put equal to for test
-                    if ((indexPath.section*2)+indexPath.row+1) > (self.currentLevels.count-1){
-                        print(indexPath.section,indexPath.row,self.currentLevels.count)
-                        cell.blurEffect()
-                        cell.clickEnabled = false
-                    }
-                }*/
                 if self.levelInfo.count == 0{
                     cell.levelName.text = ""
                     cell.level.text = ""
@@ -477,7 +547,12 @@ class LeaderBoardVC: UIViewController{
                     headerView.Level2.adjustsFontSizeToFitWidth = true
                     headerView.Level1.adjustsFontSizeToFitWidth = true
                     headerView.Level3.adjustsFontSizeToFitWidth = true
+                    headerView.awardsUnlocked.adjustsFontSizeToFitWidth = true
+                    //changes:
+                    /*headerView.emptyProgress.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+                    headerView.filledProgressBar.mask = headerView.emptyProgress*/
                     self.badgesUnlockedNo = headerView.badgesUnlockedNo
+                    //headerView.badgesUnlockedNo.adjustsFontSizeToFitWidth = true
                     self.circle1 = headerView.circle1
                     self.circle2 = headerView.circle2
                     self.circle3 = headerView.circle3
