@@ -38,7 +38,7 @@ class OfferDetailsViewController: UIViewController {
         let company = offer["company"]!
         finalNote.text = "Please note for any clarification, the final discretion lies with the official staff at \(company)"
         if offer["imgurl"] != nil && offer["imgurl"] != ""{
-            let url = URL(string: "https://solocoin.herokuapp.com\(offer["imgrul"]!)")
+            let url = URL(string: "https://prod.solocoin.app/\(offer["imgrul"]!)")
             offerImage.sd_setImage(with: url) { (image, error, cache, url) in
                 if error == nil{
                     print("got image")
@@ -60,7 +60,7 @@ class OfferDetailsViewController: UIViewController {
         
     }
     func getReward(completion:@escaping ()->()){
-        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user/redeem_rewards")!
+        let url = URL(string: "https://prod.solocoin.app/api/v1/user/redeem_rewards")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "POST"

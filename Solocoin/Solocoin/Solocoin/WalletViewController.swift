@@ -46,7 +46,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
     var offers: [[String:String]] = []
     var collectionView: UICollectionView!
     var notAvailable = false
-    let headLink = "https://solocoin.herokuapp.com"
+    let headLink = "https://prod.solocoin.app"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,7 +131,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     /*func obtainRewards(completion: ()->()){
-        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/rewards_sponsors")!
+        let url = URL(string: "https://prod.solocoin.app/api/v1/rewards_sponsors")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "GET"
@@ -202,7 +202,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.offersWithCateg.removeAll()
         self.categories.removeAll()
         self.catSet.removeAll()
-        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/rewards_sponsors")!
+        let url = URL(string: "https://prod.solocoin.app/api/v1/rewards_sponsors")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "GET"
