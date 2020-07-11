@@ -96,7 +96,7 @@ class SignUpController: UIViewController,UITextFieldDelegate {
         //signUpBirth.maximumDate = calendar.date(byAdding: components, to: currentDate)
         
         //API
-        let url = URL(string: "https://prod.solocoin.app/api/v1/callbacks/mobile_sign_up")!
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/callbacks/mobile_sign_up")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "POST"

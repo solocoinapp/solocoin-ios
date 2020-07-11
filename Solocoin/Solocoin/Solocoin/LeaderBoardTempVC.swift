@@ -54,7 +54,7 @@ class LeaderBoardVC: UIViewController{
     var Level2 = UILabel()
     var Level1 = UILabel()
     var levelProgress = UIProgressView()
-    let headLink = "https://prod.solocoin.app"
+    let headLink = "https://solocoin.herokuapp.com"
    // var leaderBoardHeader = UILabel()
     var leaderBoardSec = UIImageView()
     var levels = [["0":"defaultBadge"],
@@ -336,7 +336,7 @@ class LeaderBoardVC: UIViewController{
     func obtainBadges(completion:@escaping () -> ()){
         self.levelInfo.removeAll()
         var levels = [Int]()
-        let url = URL(string: "https://prod.solocoin.app/api/v1/user/badges")!
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user/badges")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "GET"
@@ -408,12 +408,6 @@ class LeaderBoardVC: UIViewController{
         } else {
             newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
         }
-        
-        
-        
-        
-        
-
         // This is the rect that we've calculated out and this is what is actually used below
         let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
 

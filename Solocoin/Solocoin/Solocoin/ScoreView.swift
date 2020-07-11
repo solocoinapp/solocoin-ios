@@ -107,7 +107,7 @@ class ScoreView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func obtainLeaderboard(completion:@escaping () -> ()){
-        let url = URL(string: "https://prod.solocoin.app/api/v1/leaderboard")!
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/leaderboard")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "GET"
