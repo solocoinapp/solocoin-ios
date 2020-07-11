@@ -301,7 +301,7 @@ class OTP2Controller: UIViewController {
                     }
                     //self.idtoken = idToken!
                     self.isIncorrect.isHidden = true
-                    let url = URL(string: "https://prod.solocoin.app/api/v1/callbacks/mobile_login")!
+                    let url = URL(string: "https://solocoin.herokuapp.com/api/v1/callbacks/mobile_login")!
                     var request = URLRequest(url: url)
                     // Specify HTTP Method to use
                     request.httpMethod = "POST"

@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import CoreLocation
 import UserNotifications
+import SDWebImage
 
 class HomePage1: UIViewController, CLLocationManagerDelegate {
     
@@ -83,6 +84,8 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     
     var a = 0
    
+    //scratchcards
+    var scratchList = [[String:Any]]()
     
     //MARK: - FUNCTIONS
     
@@ -125,7 +128,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         
         Timer.scheduledTimer(withTimeInterval: 900, repeats: true) { timer in
             print("again")
-            let url = URL(string: "https://prod.solocoin.app/api/v1/sessions/ping")!
+            let url = URL(string: "https://solocoin.herokuapp.com/api/v1/sessions/ping")!
             var request = URLRequest(url: url)
             // Specify HTTP Method to use
             request.httpMethod = "POST"
@@ -246,8 +249,10 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCustomLayout())
         //self.collectionView.delegate = self
         self.collectionView.backgroundColor = .clear
+        collectionView.delegate = self
+        collectionView.dataSource = self
        //self.collectionView.dataSource = self
-        self.collectionView.register(OfferCollectionViewCell.self, forCellWithReuseIdentifier: "offerCell")
+        self.collectionView.register(BadgeCollectionViewCell.self, forCellWithReuseIdentifier: "scratchCell")
         configureCollectionView()
         
         //let font = UIFont.systemFont(ofSize: 23)
@@ -269,6 +274,10 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         }
         obtainDaily()
         obtainWeekly()
+        getScratch{
+            print("done")
+            self.collectionView.reloadData()
+        }
         //obtainLeaderBoard()
         //obtainRewards()
     }
@@ -289,32 +298,34 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     
     
     func createCustomLayout() -> UICollectionViewLayout {
-        print("even")
-        let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-
-                  let leadingItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
-                  leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-                  
-                  let leadingGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
-                  let leadingGroup = NSCollectionLayoutGroup.vertical(layoutSize: leadingGroupSize, subitem: leadingItem, count: 1)
-                  
-                  let containerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),  heightDimension: .fractionalWidth(0.3))
-                  
-                  let containerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: containerGroupSize, subitems: [leadingGroup])
+        //2
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         
-                  
-                  let section = NSCollectionLayoutSection(group: containerGroup)
-                  section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-                  section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0)
-                  
-                  return section
-              }
-              return layout
-       
+        //3
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .fractionalWidth(0.5))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitem: item, count: 2)
+        //group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        //4
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        //5
+        let spacing = CGFloat(20)
+        group.interItemSpacing = .fixed(spacing)
+        section.interGroupSpacing = spacing
+        
+        //6
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
     
     func sendUpdate(){
-        let url = URL(string: "https://prod.solocoin.app/api/v1/sessions/ping")!
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/sessions/ping")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "POST"
@@ -392,8 +403,66 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         print("Failed to find user's location: \(error.localizedDescription)")
     }
     
+    func getScratch(completion:@escaping () -> ()){
+        self.scratchList.removeAll()
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/rewards_sponsors/scratch_cards")!
+        var request = URLRequest(url: url)
+        // Specify HTTP Method to use
+        request.httpMethod = "GET"
+        //sepcifying header
+        let authtoken = "Token \(UserDefaults.standard.string(forKey: "authtoken")!)"
+        request.addValue(authtoken, forHTTPHeaderField: "Authorization")
+        let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error == nil{
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                    print("Response HTTP Status code: \(response.statusCode)")
+                    if response.statusCode == 200{
+                        if let data = data{
+                        if let json = try? JSONSerialization.jsonObject(with: data, options: []){
+                            print("B",json)
+                            if let object = json as? [[String:AnyObject]]{
+                                for card in object{
+                                    let id = card["id"] as! Int
+                                    let name = card["offer_name"] as! String
+                                    let amount = card["offer_amount"] as! Int
+                                    let company = card["company_name"] as! String
+                                    let tandc = card["terms_and_conditions"] as! String
+                                    let coins = card["coins"] as? Int ?? 0
+                                    let code = card["coupon_code"] as? String ?? "nil"
+                                    let logoUrl = card["brand_logo_url"] as! String
+                                    let category = card["category"] as! [String: Any]
+                                    let cat = category["name"] as! String
+                                    self.scratchList.append(["id":id,"company":company,"offer_name":name,"offer_amount":amount,"tandc":tandc,"coins":coins,"coupon_code":code,"imgurl":logoUrl,"category":cat])
+                                    /*null detection
+                                     if let img = badge["badge_image_url"] as? NSNull{
+                                        self.levelInfo.append(["level":level,"points":min_coins,"name":name,"oneline":oneline,"imgurl":"null"])
+                                    }else{
+                                        let imgurl = badge["badge_image_url"] as! String
+                                        self.levelInfo.append(["level":level,"points":min_coins,"name":name,"oneline":oneline,"imgurl":imgurl])
+                                    }*/
+                                    
+                                completion()
+                            }
+                        }
+                        }
+                    }
+                    
+                    }else{
+                        print("scratch error")
+                        /*print("eroor",error?.localizedDescription)
+                        self.performSegue(withIdentifier: "errorPage", sender: nil)*/
+                    }
+            }else{
+                print("scratch error")
+            }
+        }
+        }
+        qtask.resume()
+    }
+    
     func userUpdate(){
-        let url = URL(string: "https://prod.solocoin.app/api/v1/user/update")!
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user/update")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "POST"
@@ -422,7 +491,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     }
     
     func obtainWeekly(){
-        let url = URL(string: "https://prod.solocoin.app/api/v1/questions/weekly")!
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/questions/weekly")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "GET"
@@ -507,7 +576,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     }
     
     func obtainDaily(){
-        let url = URL(string: "https://prod.solocoin.app/api/v1/questions/daily")!
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/questions/daily")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "GET"
@@ -607,7 +676,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     }
     
     func obtainProfileInfo(completion:@escaping ()->()){
-        let url = URL(string: "https://prod.solocoin.app/api/v1/user/profile")!
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user/profile")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "GET"
@@ -790,7 +859,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     }*/
     @objc func optionPressed(_ sender: UITapGestureRecognizer){
         
-        let url = URL(string: "https://prod.solocoin.app/api/v1/user_questions_answers")!
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user_questions_answers")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "POST"
@@ -945,13 +1014,40 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
 }
 
 extension HomePage1: UICollectionViewDelegate,UICollectionViewDataSource{
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if self.scratchList.count.isMultiple(of: 2){
+            return self.scratchList.count/2
+        }else{
+            return (self.scratchList.count/2)+1
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        if self.scratchList.count.isMultiple(of: 2){
+            return 2
+        }else{
+            if section == self.scratchList.count/2{
+                return 1
+            }else{
+                return 2
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        if let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "scratchCell", for: indexPath) as? BadgeCollectionViewCell{
+            cell.badgeImageView.sd_setImage(with: URL(string: "https://solocoin.herokuapp.com/\(self.scratchList[indexPath.section*2 + indexPath.row]["imgurl"] as! String)")) { (image, error, cache, url) in
+                if error == nil{
+                    print("got card image")
+                }else{
+                    print("putting in default card image")
+                    
+                }
+                cell.levelName.text = self.scratchList[indexPath.section*2 + indexPath.row]["company"] as! String
+                cell.level.text = self.scratchList[indexPath.section*2 + indexPath.row]["coins"] as! String
+            }
+        }
+        return UICollectionViewCell()
     }
-    
     
 }
