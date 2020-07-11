@@ -10,11 +10,13 @@ import UIKit
 
 class ShareBadgeViewController: UIViewController {
 
+    @IBOutlet weak var navBarMain: UINavigationBar!
     @IBOutlet weak var level: UILabel!
     @IBOutlet weak var badgeImage: UIImageView!
     @IBOutlet weak var badgeName: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.title = ""
         level.text = UserDefaults.standard.string(forKey: "level")
         badgeName.text = UserDefaults.standard.string(forKey: "badgeName")
         badgeName.adjustsFontSizeToFitWidth = true

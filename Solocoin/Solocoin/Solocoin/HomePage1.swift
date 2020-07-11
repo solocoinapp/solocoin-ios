@@ -50,6 +50,8 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var answer4: UILabel!
     
+    var collectionView: UICollectionView!
+    
     //MARK: - DATA
     
     //var answerButtons: [UIButton]!
@@ -123,7 +125,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         
         Timer.scheduledTimer(withTimeInterval: 900, repeats: true) { timer in
             print("again")
-            let url = URL(string: "https://solocoin.herokuapp.com/api/v1/sessions/ping")!
+            let url = URL(string: "https://prod.solocoin.app/api/v1/sessions/ping")!
             var request = URLRequest(url: url)
             // Specify HTTP Method to use
             request.httpMethod = "POST"
@@ -240,11 +242,20 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         
         dailyWeekly.selectedSegmentIndex = 0
         
+        //collectionView Stuff
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCustomLayout())
+        //self.collectionView.delegate = self
+        self.collectionView.backgroundColor = .clear
+       //self.collectionView.dataSource = self
+        self.collectionView.register(OfferCollectionViewCell.self, forCellWithReuseIdentifier: "offerCell")
+        configureCollectionView()
+        
         //let font = UIFont.systemFont(ofSize: 23)
         let font = UIFont(name: "Poppins-SemiBold", size: 23)
        // let titleTextAttribute = [NSAttributedString.Key.foregroundColor: UIColor.init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)]
         dailyWeekly.setTitleTextAttributes([NSAttributedString.Key.font: font,NSAttributedString.Key.foregroundColor: UIColor.init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)], for: .normal)
         obtainProfileInfo{
+            print("profile done")
             self.userUpdate()
         }
         
@@ -262,8 +273,48 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         //obtainRewards()
     }
     
+    
+    func configureCollectionView() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(collectionView)
+        
+        NSLayoutConstraint.activate([
+            self.collectionView.topAnchor.constraint(equalTo: self.participate.bottomAnchor, constant: 10),
+            //self.collectionView.heightAnchor.constraint(equalToConstant: view.frame.height/1.3),
+            self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.collectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            self.collectionView.rightAnchor.constraint(equalTo: self.view.rightAnchor)
+        ])
+    }
+    
+    
+    func createCustomLayout() -> UICollectionViewLayout {
+        print("even")
+        let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+
+                  let leadingItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
+                  leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+                  
+                  let leadingGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
+                  let leadingGroup = NSCollectionLayoutGroup.vertical(layoutSize: leadingGroupSize, subitem: leadingItem, count: 1)
+                  
+                  let containerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),  heightDimension: .fractionalWidth(0.3))
+                  
+                  let containerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: containerGroupSize, subitems: [leadingGroup])
+        
+                  
+                  let section = NSCollectionLayoutSection(group: containerGroup)
+                  section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                  section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0)
+                  
+                  return section
+              }
+              return layout
+       
+    }
+    
     func sendUpdate(){
-        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/sessions/ping")!
+        let url = URL(string: "https://prod.solocoin.app/api/v1/sessions/ping")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "POST"
@@ -342,7 +393,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     }
     
     func userUpdate(){
-        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user/update")!
+        let url = URL(string: "https://prod.solocoin.app/api/v1/user/update")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "POST"
@@ -351,7 +402,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         print("a",authtoken)
         request.addValue(authtoken, forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let content = ["user":["name": UserDefaults.standard.string(forKey: "username")!,"mobile":UserDefaults.standard.string(forKey: "phone")!,"lat":"\(publicVars.homeloc.coordinate.latitude)",
+        let content = ["user":["name": publicVars.username,"mobile":UserDefaults.standard.string(forKey: "phone")!,"lat":"\(publicVars.homeloc.coordinate.latitude)",
             "lang":"\(publicVars.homeloc.coordinate.longitude)"]]//UserDefaults.standard.string(forKey: "long")]]
         let jsonEncoder = JSONEncoder()
         if let jsonData = try? jsonEncoder.encode(content),
@@ -371,7 +422,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     }
     
     func obtainWeekly(){
-        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/questions/weekly")!
+        let url = URL(string: "https://prod.solocoin.app/api/v1/questions/weekly")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "GET"
@@ -456,7 +507,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     }
     
     func obtainDaily(){
-        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/questions/daily")!
+        let url = URL(string: "https://prod.solocoin.app/api/v1/questions/daily")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "GET"
@@ -556,7 +607,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     }
     
     func obtainProfileInfo(completion:@escaping ()->()){
-        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user/profile")!
+        let url = URL(string: "https://prod.solocoin.app/api/v1/user/profile")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "GET"
@@ -573,6 +624,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                         print("j",json)
                         if let object = json as? [String:AnyObject]{
                             let name = object["name"] as! String
+                            publicVars.username = name
                             UserDefaults.standard.set(name,forKey: "name")
                             let pic = object["profile_picture_url"] as! String
                             UserDefaults.standard.set(pic,forKey: "pic")
@@ -581,6 +633,17 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                             }else if let wallet_balance = object["wallet_balance"] as? Int{
                                 UserDefaults.standard.set("\(wallet_balance)",forKey: "wallet")
                             }
+                            guard let lat = object["lat"] as? NSString else{
+                                print(object["lat"])
+                                print("nope lat")
+                                return
+                            }
+                            guard let lang = object["lng"] as? NSString else {
+                                print("nope lang")
+                               return
+                            }
+                            let location = CLLocation(latitude: CLLocationDegrees(exactly: lat.doubleValue)!, longitude: CLLocationDegrees(exactly: lang.doubleValue)!)
+                            publicVars.homeloc = location
                             let home_duration_in_seconds = object["home_duration_in_seconds"] as! Int
                             UserDefaults.standard.set(home_duration_in_seconds,forKey: "time")
                             let duration = Int(home_duration_in_seconds)
@@ -727,7 +790,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     }*/
     @objc func optionPressed(_ sender: UITapGestureRecognizer){
         
-        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user_questions_answers")!
+        let url = URL(string: "https://prod.solocoin.app/api/v1/user_questions_answers")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "POST"
@@ -878,5 +941,17 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         let request = UNNotificationRequest(identifier: "notif", content: content, trigger: nil)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
+    
+}
+
+extension HomePage1: UICollectionViewDelegate,UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
+    }
+    
     
 }

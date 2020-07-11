@@ -39,7 +39,7 @@ class ScoreView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
         leaderLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
         leaderLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: 8).isActive = true
         leaderLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
-        leaderLabel.heightAnchor.constraint(equalToConstant: frame.width/9).isActive = true
+        leaderLabel.heightAnchor.constraint(equalToConstant: frame.width/12).isActive = true
         addSubview(leaderLabel)
         scoreCollection = UICollectionView(frame: .zero, collectionViewLayout: createRowLayout())
         self.scoreCollection.dataSource = self
@@ -107,7 +107,7 @@ class ScoreView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func obtainLeaderboard(completion:@escaping () -> ()){
-        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/leaderboard")!
+        let url = URL(string: "https://prod.solocoin.app/api/v1/leaderboard")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "GET"

@@ -37,6 +37,8 @@ class ScoreCollectionViewCell: UICollectionViewCell {
     self.layer.shadowRadius = 2.0
     self.layer.shadowOpacity = 0.5
     self.layer.masksToBounds = false
+    rankLabel.adjustsFontSizeToFitWidth = true
+    nameLabel.adjustsFontSizeToFitWidth = true
     countryImage.contentMode = .scaleAspectFit
     addSubview(rankLabel)
     addSubview(nameLabel)
