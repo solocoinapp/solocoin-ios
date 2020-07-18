@@ -19,7 +19,7 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
     var success = true
     
     //var profileSettings = ["Profile", "Rewards History", "Invite", "Permissions", "Privacy Policy", "Terms & Conditions"]
-    var profileSettings = ["Invite", "Privacy Policy", "Terms & Conditions","Logout"]
+    var profileSettings = ["Invite", "Privacy Policy", "Terms & Conditions","User Guide", "Logout"]
 //    let profileImages: [UIImage] = [#imageLiteral(resourceName: "PeopleIcon"), #imageLiteral(resourceName: "EmailIcon"), #imageLiteral(resourceName: "PermissionIcon"), #imageLiteral(resourceName: "PrivacyPolicyIcon.png"), #imageLiteral(resourceName: "TermsAndConditionsIcon")]
     
     //popup
@@ -68,6 +68,8 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
         case 2:
             cell.indximage.image = UIImage(systemName: "bookmark.fill")
         case 3:
+            cell.indximage.image = UIImage(systemName: "book.fill")
+        case 4:
             cell.indximage.image = UIImage(systemName: "arrowshape.turn.up.left.2.fill")
         default:
             print("nilcell")

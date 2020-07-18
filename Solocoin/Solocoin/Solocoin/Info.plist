@@ -2,50 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>SoloCoin needs your location for you to use the app</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>SoloCoin needs your location for you to use the app</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Poppins-Black.ttf</string>
-	</array>
-	<key>Item16</key>
-	<string>Poppins-Italic.ttf</string>
-	<key>Item17</key>
-	<string>Poppins-MeidumItalic.ttf</string>
-	<key>Item15</key>
-	<string>Poppins-SemiBold.ttf</string>
-	<key>Item14</key>
-	<string>Poppins-Thin.ttf</string>
-	<key>Item13</key>
-	<string>Poppins-Bold.ttf</string>
-	<key>Item12</key>
-	<string>Poppins-LightItalic.ttf</string>
-	<key>Item11</key>
-	<string>Poppins-Regular.ttf</string>
-	<key>Item10</key>
-	<string>Poppins-BlackItalic.ttf</string>
-	<key>Item9</key>
-	<string>Poppins-ExtraBold.ttf</string>
-	<key>Item8</key>
-	<string>Poppins-ExtraBoldItalic.ttf</string>
-	<key>Item7</key>
-	<string>Poppins-SemiBoldItalic.ttf</string>
-	<key>Item6</key>
-	<string>Poppins-Medium.ttf</string>
-	<key>Item5</key>
-	<string>Poppins-Light.ttf</string>
-	<key>Item4</key>
-	<string>Poppins-BoldItalic.ttf</string>
-	<key>Item3</key>
-	<string>Poppins-ExtraLightItalic.ttf</string>
-	<key>Item2</key>
-	<string>Poppins-ThinItalic.ttf</string>
-	<key>Item0</key>
-	<string>Poppins-Black.ttf</string>
-	<key>Item1</key>
-	<string>Poppins-ExtraLight.ttf</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -66,17 +22,60 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.667382448546-81f1mt2migqlc6q2pdliacg43icqec2m</string>
-			</array>
+			<array/>
 		</dict>
+		<dict/>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>Item0</key>
+	<string>Poppins-Black.ttf</string>
+	<key>Item1</key>
+	<string>Poppins-ExtraLight.ttf</string>
+	<key>Item10</key>
+	<string>Poppins-BlackItalic.ttf</string>
+	<key>Item11</key>
+	<string>Poppins-Regular.ttf</string>
+	<key>Item12</key>
+	<string>Poppins-LightItalic.ttf</string>
+	<key>Item13</key>
+	<string>Poppins-Bold.ttf</string>
+	<key>Item14</key>
+	<string>Poppins-Thin.ttf</string>
+	<key>Item15</key>
+	<string>Poppins-SemiBold.ttf</string>
+	<key>Item16</key>
+	<string>Poppins-Italic.ttf</string>
+	<key>Item17</key>
+	<string>Poppins-MeidumItalic.ttf</string>
+	<key>Item2</key>
+	<string>Poppins-ThinItalic.ttf</string>
+	<key>Item3</key>
+	<string>Poppins-ExtraLightItalic.ttf</string>
+	<key>Item4</key>
+	<string>Poppins-BoldItalic.ttf</string>
+	<key>Item5</key>
+	<string>Poppins-Light.ttf</string>
+	<key>Item6</key>
+	<string>Poppins-Medium.ttf</string>
+	<key>Item7</key>
+	<string>Poppins-SemiBoldItalic.ttf</string>
+	<key>Item8</key>
+	<string>Poppins-ExtraBoldItalic.ttf</string>
+	<key>Item9</key>
+	<string>Poppins-ExtraBold.ttf</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>SoloCoin needs your location for you to use the app</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>SoloCoin needs your location for you to use the app</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>SoloCoin needs your location for you to use the app</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Poppins-Black.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
