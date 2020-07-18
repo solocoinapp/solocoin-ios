@@ -23,7 +23,7 @@ class OfferDetailsViewController: UIViewController {
     @IBOutlet weak var finalNote: UILabel!
     @IBOutlet weak var offerImage: UIImageView!
     @IBOutlet weak var coins: UILabel!
-    var offer:[String:String] = UserDefaults.standard.dictionary(forKey: "offerDict")! as! [String:String]
+    var offer:[String:Any] = UserDefaults.standard.dictionary(forKey: "offerDict")! as! [String:Any]
     override func viewDidLoad() {
         super.viewDidLoad()
         popupParent.alpha = 0
@@ -32,12 +32,18 @@ class OfferDetailsViewController: UIViewController {
         popupParent.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 0.7)
         // Do any additional setup after loading the view.
         claimBtn.layer.cornerRadius = claimBtn.frame.width/30
-        category.text = "Category: \(offer["category"]!)"
-        tandc.text = offer["terms"]
-        coins.text = " \(offer["coins"]!) coins"
-        let company = offer["company"]!
+        category.text = "Category: \(offer["category"] as! String)"
+        tandc.text = offer["terms"] as! String
+        tandc.adjustsFontSizeToFitWidth = true
+        if (offer["coins"]! as? Int) != nil{
+            coins.text = " \(offer["coins"]! as! Int) coins"
+        }else{
+            coins.text = " \(offer["coins"]! as! String) coins"
+        }
+        
+        let company = offer["company"] as! String
         finalNote.text = "Please note for any clarification, the final discretion lies with the official staff at \(company)"
-        if offer["imgurl"] != nil && offer["imgurl"] != ""{
+        if (offer["imgurl"] as! String) != nil && (offer["imgurl"] as! String) != ""{
             let url = URL(string: "https://solocoin.herokuapp.com/\(offer["imgrul"]!)")
             offerImage.sd_setImage(with: url) { (image, error, cache, url) in
                 if error == nil{
@@ -69,7 +75,7 @@ class OfferDetailsViewController: UIViewController {
         request.addValue(authtoken, forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let content = [
-            "rewards_sponsor_id": offer["id"]
+            "rewards_sponsor_id": offer["id"] as! Int
         ]
         let jsonEncoder = JSONEncoder()
         if let jsonData = try? jsonEncoder.encode(content),
@@ -79,7 +85,7 @@ class OfferDetailsViewController: UIViewController {
             let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if error == nil{
                     let pasteboard = UIPasteboard.general
-                    pasteboard.string = self.offer["coupon_code"]!
+                    pasteboard.string = self.offer["coupon_code"] as! String
                     if let response = response as? HTTPURLResponse {
                         print("Response HTTP Status code: \(response.statusCode)")
                         if let json = try? JSONSerialization.jsonObject(with: data!, options: []){

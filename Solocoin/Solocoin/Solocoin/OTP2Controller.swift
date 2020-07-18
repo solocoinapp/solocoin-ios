@@ -63,6 +63,8 @@ class OTP2Controller: UIViewController {
         mobileNumber.text! = publicVars.mobileNumber
         //mobileNumber.isEnabled = false
         //mobileNumber.isUserInteractionEnabled = false
+        self.actionBtn.titleLabel?.font = UIFont(name: "Poppins-SemiBold", size: 20)
+        self.actionBtn.titleLabel?.adjustsFontSizeToFitWidth = true
         OTP.configure()
         OTP.didEnterLastDigit = { [weak self] code in
             print(code)
