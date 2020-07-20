@@ -66,7 +66,7 @@ class SecondViewController: UIViewController {
         infoText.topAnchor.constraint(equalTo: mainpic.bottomAnchor, constant: 8).isActive = true
         infoText.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15).isActive = true
         infoText.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15).isActive = true
-        nextButton.topAnchor.constraint(equalTo: infoText.bottomAnchor, constant: view.frame.height/15).isActive = true
+        /*nextButton.topAnchor.constraint(equalTo: infoText.bottomAnchor, constant: view.frame.height/15).isActive = true
         nextButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
         nextButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8).isActive = true
         nextButton.heightAnchor.constraint(equalToConstant: view.frame.height/13).isActive = true
@@ -74,7 +74,17 @@ class SecondViewController: UIViewController {
         skip.topAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: 8).isActive = true
         skip.widthAnchor.constraint(equalToConstant: nextButton.frame.width/6).isActive = true
         skip.heightAnchor.constraint(equalToConstant: nextButton.frame.height/1.5).isActive = true
+        skip.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true*/
+        skip.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10).isActive = true
+        skip.widthAnchor.constraint(equalToConstant: nextButton.frame.width/6).isActive = true
+        skip.heightAnchor.constraint(equalToConstant: nextButton.frame.height/1.5).isActive = true
         skip.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        nextButton.bottomAnchor.constraint(equalTo: skip.topAnchor, constant: -8).isActive = true
+        nextButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
+        nextButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8).isActive = true
+        nextButton.heightAnchor.constraint(equalToConstant: view.frame.height/13).isActive = true
+        nextButton.topAnchor.constraint(greaterThanOrEqualTo: infoText.bottomAnchor, constant: view.frame.height/15).isActive = true
            
        }
 

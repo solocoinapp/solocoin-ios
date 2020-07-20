@@ -55,6 +55,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
         exclMark.isHidden = true
         errorMssg.isHighlighted = true
         chooseBtn.titleLabel?.text = ""
+        tableView.backgroundColor = .white
         //change this maybe
         categoriesSegment.isUserInteractionEnabled = false
         // Do any additional setup after loading the view.
@@ -106,7 +107,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
         self.view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            self.collectionView.topAnchor.constraint(equalTo: self.categoriesSegment.bottomAnchor, constant: 10),
+            self.collectionView.topAnchor.constraint(equalTo: self.chooseBtn.bottomAnchor, constant: 0),
             //self.collectionView.heightAnchor.constraint(equalToConstant: view.frame.height/1.3),
             self.collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             self.collectionView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
@@ -269,7 +270,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                                 guard self.categories.count != 0 else {return}
                                 self.chooseBtn.backgroundColor = .init(red: 247/255, green: 57/255, blue: 90/255, alpha: 1)
                                 self.chooseBtn.titleLabel?.adjustsFontSizeToFitWidth = true
-                                self.chooseBtn.setTitle(self.categories[0], for: .normal)
+                                self.chooseBtn.setTitle("\(self.categories[0])", for: .normal)
                                 //self.chooseBtn.titleLabel?.text = self.categories[0]
                                 self.currrentCateg = self.offersWithCateg[self.categories[0]]!
                                 self.tableView.reloadData()
@@ -277,17 +278,22 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                                 self.collectionView.collectionViewLayout = self.createCustomLayout()
                             }
                         }else{
-                            self.errorMssg.text = "No offers are available at the moment"
+                            DispatchQueue.main.async{
+                                self.errorMssg.text = "No offers are available at the moment"
+                                self.errorMssg.adjustsFontSizeToFitWidth = true
+                                self.errorMssg.isHidden = false
+                                self.exclMark.isHidden = false
+                                self.notAvailable = true
+                            }
+                        }
+                    }else{
+                        DispatchQueue.main.async{
+                            self.errorMssg.text = "Some error occurred.."
                             self.errorMssg.adjustsFontSizeToFitWidth = true
                             self.errorMssg.isHidden = false
                             self.exclMark.isHidden = false
-                            self.notAvailable = true
                         }
-                    }else{
-                        self.errorMssg.text = "Some error occurred.."
-                        self.errorMssg.adjustsFontSizeToFitWidth = true
-                        self.errorMssg.isHidden = false
-                        self.exclMark.isHidden = false
+                        
                         }
                 }
             }
@@ -525,7 +531,9 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource{
         if categories.count == 0{
             return UITableViewCell()
         }else{
-            cell.textLabel?.text = self.categories[indexPath.row]
+            cell.backgroundColor = .white
+            cell.contentView.backgroundColor = .clear
+            cell.textLabel?.text = "\(self.categories[indexPath.row])"
             cell.textLabel?.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
             cell.textLabel?.font = UIFont(name: "Poppins-SemiBold", size: 18)
             let selectedView = UIView(frame: cell.frame)
@@ -540,7 +548,7 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.chooseBtn.setTitle(self.categories[indexPath.row], for: .normal)
+        self.chooseBtn.setTitle("\(self.categories[indexPath.row])", for: .normal)
         //self.chooseBtn.titleLabel?.text = self.categories[indexPath.row]
         self.currrentCateg = self.offersWithCateg[self.categories[indexPath.row]]!
         self.collectionView.collectionViewLayout = self.createCustomLayout()

@@ -28,7 +28,7 @@ class BadgeCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell(){
-        self.contentView.layer.cornerRadius = 12
+        self.contentView.layer.cornerRadius = frame.width/20
         self.contentView.layer.borderWidth = 1.0
         self.contentView.layer.borderColor = UIColor.clear.cgColor
         self.contentView.layer.masksToBounds = true
@@ -74,7 +74,8 @@ class BadgeCollectionViewCell: UICollectionViewCell {
         badgeImageView.image = UIImage(named: "Amazon")
         badgeImageView.contentMode = .scaleAspectFill
         badgeImageView.clipsToBounds = true
-        addSubview(badgeImageView)
+        badgeImageView.layer.masksToBounds = true
+        contentView.addSubview(badgeImageView)
         badgeImageView.backgroundColor = .init(red: 239/255, green: 238/255, blue: 241/255, alpha: 1)
         //badgeImageView.layer.cornerRadius = 20
         badgeImageView.contentMode = .scaleAspectFill

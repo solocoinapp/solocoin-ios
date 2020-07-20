@@ -45,11 +45,18 @@ class ThirdViewController: UIViewController {
         infoText.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15).isActive = true
         infoText.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15).isActive = true
         infoText.heightAnchor.constraint(equalToConstant: mainpic.frame.height/3).isActive = true
-        nextButton.topAnchor.constraint(equalTo: infoText.bottomAnchor, constant: view.frame.height/15).isActive = true
+        /*nextButton.topAnchor.constraint(equalTo: infoText.bottomAnchor, constant: view.frame.height/15).isActive = true
         //nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.frame.height/17).isActive  = true
         nextButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
         nextButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8).isActive = true
+        nextButton.heightAnchor.constraint(equalToConstant: view.frame.height/13).isActive = true*/
+        
+       
+        nextButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 8).isActive = true
+        nextButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8).isActive = true
         nextButton.heightAnchor.constraint(equalToConstant: view.frame.height/13).isActive = true
+        nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(nextButton.frame.height/1.5 + 8)).isActive = true
+        nextButton.topAnchor.constraint(greaterThanOrEqualTo: infoText.bottomAnchor, constant: view.frame.height/15).isActive = true
     }
     /*
     // MARK: - Navigation

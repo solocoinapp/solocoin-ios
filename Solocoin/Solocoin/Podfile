@@ -7,10 +7,12 @@ target 'Solocoin' do
 
   # Pods for Solocoin
 pod 'Firebase'
+pod 'Firebase/Messaging'
 pod 'Firebase/Auth'
 pod "FlagPhoneNumber", :git => 'https://github.com/ecomparer/FlagPhoneNumber.git'
 pod 'SkyFloatingLabelTextField'
 pod 'SDWebImage'
 pod 'CRRefresh'
 pod 'ReachabilitySwift'
+pod "SkeletonView"
 end

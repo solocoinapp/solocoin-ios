@@ -60,12 +60,16 @@ class OTPController: UIViewController {
         mobileNumber.translatesAutoresizingMaskIntoConstraints = false
         mssg.translatesAutoresizingMaskIntoConstraints = false
         nextBtn.translatesAutoresizingMaskIntoConstraints = false
+        mobileNumber.addBottomBorder()
+        mobileNumber.textAlignment = .justified
         //setLayout()
         //setting popip
         popupParent.alpha = 0
         popupParent.isUserInteractionEnabled = false
         actionBtn.layer.cornerRadius = actionBtn.frame.width/25
         popupParent.backgroundColor = .init(red: 0, green: 0, blue: 0, alpha: 0.7)
+
+        overrideUserInterfaceStyle = .light
             
         }
         
@@ -228,3 +232,13 @@ class OTPController: UIViewController {
             print(name, dialCode, code)
         }
     }
+
+extension UITextField {
+    func addBottomBorder(){
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0, y: self.frame.size.height - 1, width: self.frame.size.width, height: 1)
+        bottomLine.backgroundColor = UIColor.init(red: 255/255, green: 36/255, blue: 72/255, alpha: 1).cgColor
+        borderStyle = .none
+        layer.addSublayer(bottomLine)
+    }
+}

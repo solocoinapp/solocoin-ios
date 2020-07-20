@@ -101,6 +101,11 @@ class ScoreView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
             cell.countryLabel.text = persons[indexPath.row]["cc"]!.uppercased()
             cell.nameLabel.text = persons[indexPath.row]["name"]!
             cell.rankLabel.text = "#\(persons[indexPath.row]["rank"]!)"
+            cell.backgroundColor = .init(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
+            cell.rankLabel.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+            cell.nameLabel.textColor = .init(red: 247/255, green: 57/255, blue: 90/255, alpha: 1)
+            cell.countryLabel.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
+            cell.coinsLabel.textColor = .init(red: 247/255, green: 57/255, blue: 90/255, alpha: 1)
         }
         return cell
         
