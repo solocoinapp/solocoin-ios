@@ -557,6 +557,8 @@ class LeaderBoardVC: UIViewController{
                     headerView.Level1.adjustsFontSizeToFitWidth = true
                     headerView.Level3.adjustsFontSizeToFitWidth = true
                     headerView.awardsUnlocked.adjustsFontSizeToFitWidth = true
+                    
+                    headerView.badgesHeading.adjustsFontSizeToFitWidth = true
                     //changes:
                     /*headerView.emptyProgress.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
                     headerView.filledProgressBar.mask = headerView.emptyProgress*/

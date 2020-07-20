@@ -46,6 +46,8 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
         profileTableView.separatorInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         // Do any additional setup after loading the view.
         profileTableView.tableFooterView = UIView()
+        profileTableView.tableFooterView?.backgroundColor = .white
+        profileTableView.backgroundColor = .clear
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,6 +91,8 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
             print("")
             goURl(type: 1)
         case 3:
+            goURl(type: 2)
+        case 4:
             print("")
             showPopup()
         default:
@@ -125,6 +129,10 @@ class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource 
             }
         case 1:
             if let url = self.turl {
+                UIApplication.shared.open(url)
+            }
+        case 2:
+            if let url = URL(string: "https://www.solocoin.app/app-guide/"){
                 UIApplication.shared.open(url)
             }
         default:

@@ -4,15 +4,18 @@
 //
 //  Created by Vamsi Sistla on 4/26/20.
 //  Copyright © 2020 Solocoin. All rights reserved.
-//
+//remember to change nope lat and nope lang for prod
 
 import UIKit
 import FirebaseAuth
 import CoreLocation
 import UserNotifications
 import SDWebImage
+import SkeletonView
+//import GLScratchCard
 
-class HomePage1: UIViewController, CLLocationManagerDelegate {
+class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDelegate {
+    
     
     //MARK: - IBOUTLETS
     /*@IBOutlet weak*/ var participate: UILabel!
@@ -26,6 +29,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     /*@IBOutlet weak*/ var inviteHeader: UIView!
     
     /*@IBOutlet weak*/ var distancing_time: UILabel!
+    var distancingMsg = ""
     
     ///*@IBOutlet*/ var languageOptions: [UIButton]!
 
@@ -91,27 +95,47 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
    
     //scratchcards
     var scratchList = [[String:Any]]()
+    var controller = GLScratchCardController()
+    
+    var currentScratch = [String: Any]()
     
     //MARK: - FUNCTIONS
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //newuser uncheck
+        self.collectionView.backgroundColor = .clear
+        collectionView.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
+         //collectionView.dataSource = self
+        //self.collectionView.dataSource = self
+        self.collectionView.register(scratchCollectionViewCell.self, forCellWithReuseIdentifier: "scratchCell")
+        self.collectionView.register(PlaceHolderScratchCardCollectionViewCell.self, forCellWithReuseIdentifier: "noScratch")
+        self.collectionView.collectionViewLayout = createCustomLayout()
+        self.configureDataSource()
+        configureCollectionView()
+        
         self.navigationController?.isNavigationBarHidden = true
         UserDefaults.standard.set("yay", forKey: "check")
         getScratch{
             print("done")
             DispatchQueue.main.async {
+                print("sds")
+                
+                self.blurredEffectView.removeFromSuperview()
+                self.collectionView.collectionViewLayout = self.createCustomLayout()
                 self.collectionView.reloadData()
-                self.configureDataSource()
+                //self.collectionView.scrollToItem(at: <#T##IndexPath#>, at: <#T##UICollectionView.ScrollPosition#>, animated: <#T##Bool#>)
+                //self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                //self.configureDataSource()
             }
             
         }
         //blur it out
-        /*let blurEffect = UIBlurEffect(style: .extraLight)
+        let blurEffect = UIBlurEffect(style: .extraLight)
         blurredEffectView = UIVisualEffectView(effect: blurEffect)
         blurredEffectView.frame = view.bounds
-        view.addSubview(blurredEffectView)*/
+        view.addSubview(blurredEffectView)
         
         //set error handlers
         /*answer1.adjustsFontSizeToFitWidth = true
@@ -205,7 +229,60 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                 }
                 self.a+=1
             }else{
-                self.showNotification(title: "Solocoin Check-In", message: "Please click on the notification to confirm your presence")
+                if UIApplication.shared.applicationState == .active{
+                    if diff > 20{
+                        let content = ["session":["type":"away"]]
+                        print("sess",content)
+                        let jsonEncoder = JSONEncoder()
+                        if let jsonData = try? jsonEncoder.encode(content),
+                            let jsonString = String(data: jsonData, encoding: .utf8) {
+                            print(jsonString)
+                            request.httpBody = jsonData
+                            let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                                if error == nil{
+                                    if let response = response as? HTTPURLResponse {
+                                        print("loc Response HTTP Status code: \(response.statusCode)")
+                                        if let data = data{
+                                            if let json = try? JSONSerialization.jsonObject(with: data, options: []){
+                                                print("location resp",json)
+                                            }
+                                        }
+                                    }
+                                }else{
+                                    print("no internet connection or smthgn lol, handle this with popup")
+                                }
+                            }
+                            qtask.resume()
+                            print("less",diff)
+                        }
+                    }else{
+                        let content = ["session":["type":"home"]]
+                        print("sess",content)
+                        let jsonEncoder = JSONEncoder()
+                        if let jsonData = try? jsonEncoder.encode(content),
+                            let jsonString = String(data: jsonData, encoding: .utf8) {
+                            print(jsonString)
+                            request.httpBody = jsonData
+                            let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                                if error == nil{
+                                    if let response = response as? HTTPURLResponse {
+                                        print("loc Response HTTP Status code: \(response.statusCode)")
+                                        if let data = data{
+                                            if let json = try? JSONSerialization.jsonObject(with: data, options: []){
+                                                print("location resp",json)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            qtask.resume()
+                            print("more")
+                        }
+                    }
+                }else{
+                    self.showNotification(title: "Solocoin Check-In", message: "Please click on the notification to confirm your presence")
+                }
+               
             }
             
             
@@ -262,14 +339,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         //collectionView Stuff
         //collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCustomLayout())
         //self.collectionView.delegate = self
-        self.collectionView.backgroundColor = .clear
-        collectionView.delegate = self
-        collectionView.showsVerticalScrollIndicator = false
-        //collectionView.dataSource = self
-       //self.collectionView.dataSource = self
-        self.collectionView.register(BadgeCollectionViewCell.self, forCellWithReuseIdentifier: "scratchCell")
-        self.collectionView.collectionViewLayout = createCustomLayout()
-        configureCollectionView()
+        
         //configureDataSource()
         
         //let font = UIFont.systemFont(ofSize: 23)
@@ -281,7 +351,6 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             print("profile done")
             self.userUpdate()
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -314,34 +383,71 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
     
     
     func createCustomLayout() -> UICollectionViewLayout {
-        //2
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4),
-                                              heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         
-        //3
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .fractionalWidth(0.5))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
-                                                       subitem: item, count: 2)
-        //group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
-        //4
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .estimated(642))
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-        section.boundarySupplementaryItems = [sectionHeader]
-        
-        //5
-        let spacing = CGFloat(20)
-        group.interItemSpacing = .fixed(spacing)
-        section.interGroupSpacing = spacing
-        
-        //6
-        let layout = UICollectionViewCompositionalLayout(section: section)
-        return layout
+        if self.scratchList.count == 0{
+            print("noe")
+            let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+
+                      let leadingItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
+                      leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+                      
+                let leadingGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(0.08))
+                      let leadingGroup = NSCollectionLayoutGroup.vertical(layoutSize: leadingGroupSize, subitem: leadingItem, count: 1)
+                      
+                      let containerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),  heightDimension: .fractionalWidth(0.3))
+                      
+                      let containerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: containerGroupSize, subitems: [leadingGroup])
+            
+                      
+                      /*let section = NSCollectionLayoutSection(group: containerGroup)
+                      section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                      section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0)*/
+                     let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .estimated(642))
+                     let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+                     
+                     let section = NSCollectionLayoutSection(group: leadingGroup)
+                     section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+                     section.boundarySupplementaryItems = [sectionHeader]
+                     
+                     //5
+                     let spacing = CGFloat(20)
+                     leadingGroup.interItemSpacing = .fixed(spacing)
+                     section.interGroupSpacing = spacing
+                      
+                      return section
+                  }
+                  return layout
+        }else{
+            print("many availabel")
+            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4),
+                                                  heightDimension: .fractionalHeight(1.0))
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+            
+            //3
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .fractionalWidth(0.5))
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                           subitem: item, count: 2)
+            //group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+            //4
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .estimated(642))
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+            
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+            section.boundarySupplementaryItems = [sectionHeader]
+            
+            //5
+            let spacing = CGFloat(20)
+            group.interItemSpacing = .fixed(spacing)
+            section.interGroupSpacing = spacing
+            
+            //6
+            let layout = UICollectionViewCompositionalLayout(section: section)
+            return layout
+        }
+       return UICollectionViewLayout()
     }
     
     func sendUpdate(){
@@ -382,6 +488,29 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             qtask.resume()
             print("less",diff)
         }
+        }else{
+            let content = ["session":["type":"home"]]
+            print("sess",content)
+            let jsonEncoder = JSONEncoder()
+            if let jsonData = try? jsonEncoder.encode(content),
+                let jsonString = String(data: jsonData, encoding: .utf8) {
+                print(jsonString)
+                request.httpBody = jsonData
+                let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                    if error == nil{
+                        if let response = response as? HTTPURLResponse {
+                            print("loc Response HTTP Status code: \(response.statusCode)")
+                            if let data = data{
+                                if let json = try? JSONSerialization.jsonObject(with: data, options: []){
+                                    print("location resp",json)
+                                }
+                            }
+                        }
+                    }
+                }
+                qtask.resume()
+                print("more")
+            }
         }
         a=0
     }
@@ -462,8 +591,8 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                                         self.levelInfo.append(["level":level,"points":min_coins,"name":name,"oneline":oneline,"imgurl":imgurl])
                                     }*/
                                     
-                                completion()
                             }
+                            completion()
                         }
                         }
                     }
@@ -501,7 +630,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if error == nil{
                     if let response = response as? HTTPURLResponse {
-                        print("loc Response HTTP Status code: \(response.statusCode)")
+                        print(" update loc Response HTTP Status code: \(response.statusCode)")
                     }
                 }
             }
@@ -539,7 +668,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                             }else if let wallet_balance = object["wallet_balance"] as? Int{
                                 UserDefaults.standard.set("\(wallet_balance)",forKey: "wallet")
                             }
-                            guard let lat = object["lat"] as? NSString else{
+                            /*guard let lat = object["lat"] as? NSString else{
                                 print(object["lat"])
                                 print("nope lat")
                                 return
@@ -547,7 +676,9 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                             guard let lang = object["lng"] as? NSString else {
                                 print("nope lang")
                                return
-                            }
+                            }*/
+                            let lat = object["lat"] as? NSString ?? "37.785834"
+                            let lang = object["lng"] as? NSString ?? "-122.406417"
                             let location = CLLocation(latitude: CLLocationDegrees(exactly: lat.doubleValue)!, longitude: CLLocationDegrees(exactly: lang.doubleValue)!)
                             publicVars.homeloc = location
                             let home_duration_in_seconds = object["home_duration_in_seconds"] as! Int
@@ -559,6 +690,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                                 let message = "\(hours)h : \(minutes)m"
                                 DispatchQueue.main.async {
                                     self.distancing_time.text = message
+                                    //self.distancingMsg = message
                                 }
                             }else{
                                 let days = duration/86400
@@ -567,6 +699,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                                 let message = "\(days)d \(hours)h \(minutes)m"
                                 DispatchQueue.main.async {
                                     self.distancing_time.text = message
+                                    //self.distancingMsg = message
                                 }
                             }
                             
@@ -801,24 +934,31 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
             
             guard self.scratchList.count != 0 else {
                 print("mo scratch cards")
-                return UICollectionViewCell()
+                guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: "noScratch", for: indexPath) as? PlaceHolderScratchCardCollectionViewCell else{
+                    print("no extra cell?")
+                    return UICollectionViewCell()
+                }
+                cell.setup()
+                return cell
             }
             
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "scratchCell", for: indexPath) as? BadgeCollectionViewCell else{
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "scratchCell", for: indexPath) as? scratchCollectionViewCell else{
                 print("no cell?")
                 return UICollectionViewCell()
             }
-                cell.badgeImageView.sd_setImage(with: URL(string: "https://solocoin.herokuapp.com/\(self.scratchList[indexPath.section*2 + indexPath.row]["imgurl"] as! String)")) { (image, error, cache, url) in
+            cell.setup()
+                /*cell.scratchTemp.sd_setImage(with: URL(string: "https://solocoin.herokuapp.com/\(self.scratchList[indexPath.section*2 + indexPath.row]["imgurl"] as! String)")) { (image, error, cache, url) in
                     if error == nil{
                         print("got card image")
                     }else{
-                        cell.badgeImageView.image = UIImage(named: "scratch")!
+                        cell.scratchTemp.image = UIImage(named: "scratch")!
                         print("putting in default card image")
                         
                     }
-                    cell.levelName.text = self.scratchList[indexPath.section*2 + indexPath.row]["company"] as! String
-                    cell.level.text = "\(self.scratchList[indexPath.section*2 + indexPath.row]["coins"] as! Int)"
-                }
+                    /*cell.levelName.text = self.scratchList[indexPath.section*2 + indexPath.row]["company"] as! String
+                    cell.level.text = "\(self.scratchList[indexPath.section*2 + indexPath.row]["coins"] as! Int)"*/
+                }*/
+            cell.scratchTemp.image = UIImage(named: "scratch")!
                 return cell
         }
         
@@ -837,6 +977,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
                         for: indexPath) as? HomeCollectionReusableView else { fatalError("Cannot create new supplementary") }
                     
                     headerView.setup()
+                    self.distancing_time = headerView.distancing_time
                     
                     /*self.answer1 = headerView.answer1
                     self.answer2 = headerView.answer2
@@ -919,7 +1060,11 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         // initial data
         var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
         snapshot.appendSections([.main])
-        snapshot.appendItems(Array(0..<self.scratchList.count))
+        if self.scratchList.count == 0{
+            snapshot.appendItems(Array(0..<1))
+        }else{
+            snapshot.appendItems(Array(0..<self.scratchList.count))
+        }
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
@@ -1159,7 +1304,17 @@ class HomePage1: UIViewController, CLLocationManagerDelegate {
         content.body = message
         content.sound = .default
         let request = UNNotificationRequest(identifier: "notif", content: content, trigger: nil)
+        print("solocoin-noti")
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
+    func didCloseButtonPressed(sender: UIButton) {
+        controller.didCloseButtonPressed(sender: sender)
+    }
+    
+    func didDoneButtonPressed(sender: UIButton) {
+        UserDefaults.standard.set(self.currentScratch, forKey: "offerDict")
+        self.performSegue(withIdentifier: "showScratch", sender: nil)
     }
     
 }
@@ -1208,9 +1363,56 @@ extension HomePage1: UICollectionViewDelegate{
         return UICollectionViewCell()
     }*/
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let scratch = self.scratchList[2*indexPath.section + indexPath.row]
-        UserDefaults.standard.set(scratch, forKey: "offerDict")
-        self.performSegue(withIdentifier: "showScratch", sender: nil)
+        if self.scratchList.count == 0{
+            print("nocardsds")
+        }else{
+            /*let scratch = self.scratchList[2*indexPath.section + indexPath.row]
+            UserDefaults.standard.set(scratch, forKey: "offerDict")
+            self.performSegue(withIdentifier: "showScratch", sender: nil)*/
+            let x = UIImageView()
+            x.sd_setImage(with: URL(string: self.scratchList[2*indexPath.section + indexPath.row]["imgurl"] as! String)) { (image, error, cahce, url) in
+                self.currentScratch = self.scratchList[2*indexPath.section + indexPath.row]
+                if error == nil{
+                    print("starting scratch")
+                    /*self.controller.scratchCardView.doneButtonTitle = "Gift to a friend"
+                    self.controller.scratchCardView.scratchCardTitle = "Earn up to ₹1,0000"
+                    self.controller.scratchCardView.scratchCardSubTitle = "From Google Pay \nEarned for paying \nGokul"*/
+                    
+                    self.controller.scratchCardView.afterScratchDoneButtonTitle = "Details"
+                    self.controller.scratchCardView.afterScratchTitle = "Congratulations"
+                    self.controller.scratchCardView.afterScratchSubTitle = "₹ \(self.currentScratch["offer_amount"])"
+                    //self.controller.scratchCardView.afterScratchSubTitle = "Expect payment within a week."
+                    
+                    self.controller.scratchCardView.addDelegate(delegate: self)
+                    self.controller.scratchCardView.bottomLayerView = UIImageView(image: image!)
+                    self.controller.scratchCardView.topLayerImage = UIImage(named:"scratch")!
+                    
+                    self.controller.scratchCardView.scratchCardImageView.lineWidth = 50
+                    self.controller.scratchCardView.scratchCardImageView.lineType = .round
+                    self.controller.presentScratchController()
+                }else{
+                    print("startin wo pic")
+                    /*self.controller.scratchCardView.doneButtonTitle = "Gift to a friend"
+                    self.controller.scratchCardView.scratchCardTitle = "Earn up to ₹1,0000"
+                    self.controller.scratchCardView.scratchCardSubTitle = "From Google Pay \nEarned for paying \nGokul"*/
+                    
+                    self.controller.scratchCardView.afterScratchDoneButtonTitle = "Details"
+                    self.controller.scratchCardView.afterScratchTitle = "Congratulations"
+                    self.controller.scratchCardView.afterScratchSubTitle = "₹ \(self.currentScratch["offer_amount"])"
+                    
+                    self.controller.scratchCardView.addDelegate(delegate: self)
+                    self.controller.scratchCardView.bottomLayerView = UIImageView(image: UIImage(named: "ScratchCard")!)
+                    self.controller.scratchCardView.topLayerImage = UIImage(named:"scratch")!
+                    self.controller.scratchCardView.scratchCardImageView.lineWidth = 50
+                    self.controller.scratchCardView.scratchCardImageView.lineType = .round
+                    self.controller.presentScratchController()
+                }
+                
+            }
+            
+            
+            
+        }
     }
     
 }

@@ -28,6 +28,7 @@ class CollectionReusableViewHeader: UICollectionReusableView {
     @IBOutlet weak var scoreView: UIView!
     //@IBOutlet weak var leaderBoardHeader: UILabel!
     @IBOutlet weak var leaderBoardSec: UIImageView!
+    @IBOutlet weak var badgesHeading: UILabel!
     /*@IBOutlet weak var filledProgressBar: UIImageView!
     var emptyProgress = UIImageView(image: UIImage(named: "emptyProgress")!)*/
     
