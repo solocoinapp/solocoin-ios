@@ -7,8 +7,10 @@
 
 import UIKit
 
+
 let application = UIApplication.shared
 let keyWindow = UIApplication.shared.keyWindow
+var control = 0
 
 /// Main controller that contains Scratch UI
 open class GLScratchCardController: NSObject {
@@ -73,6 +75,41 @@ extension GLScratchCardController: GLScratchCarImageViewDelegate {
     }
     
     public func didScratchEnded() {
+        
+        if control == 0{
+            let confettiView = SAConfettiView(frame: scratchCardView.bounds)
+            scratchCardView.insertSubview(confettiView, belowSubview: scratchCardView.doneButton)
+            confettiView.isUserInteractionEnabled = false
+            confettiView.type = .image(UIImage(named: "triangle")!)
+            confettiView.colors = [UIColor.red, UIColor.green, UIColor.blue]
+            confettiView.startConfetti()
+            Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { (timer) in
+                print("timer hit")
+                confettiView.stopConfetti()
+                confettiView.stopConfetti()
+                confettiView.stopConfetti()
+                confettiView.stopConfetti()
+                confettiView.stopConfetti()
+                confettiView.stopConfetti()
+                confettiView.stopConfetti()
+                confettiView.removeFromSuperview()
+            }
+            control+=1
+        }
+        
+        
+        /*Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { (timer) in
+            print("timer hit")
+            confettiView.stopConfetti()
+            confettiView.stopConfetti()
+            confettiView.stopConfetti()
+            confettiView.stopConfetti()
+            confettiView.stopConfetti()
+            confettiView.stopConfetti()
+            confettiView.stopConfetti()
+            confettiView.removeFromSuperview()
+        }*/
+        
         scratchCardView.doneButton.isHidden = scratchCardView.afterScratchDoneButtonTitle == ""
         scratchCardView.scratchCardTitleLabel.isHidden = false
         scratchCardView.scratchCardSubTitleLabel.isHidden = false
