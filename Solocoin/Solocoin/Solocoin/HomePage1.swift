@@ -17,6 +17,8 @@ import SkeletonView
 class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDelegate {
     
     
+    
+    
     //MARK: - IBOUTLETS
     /*@IBOutlet weak*/ var participate: UILabel!
     
@@ -582,7 +584,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
                                     let logoUrl = card["brand_logo_url"] as! String
                                     let category = card["category"] as! [String: Any]
                                     let cat = category["name"] as! String
-                                    self.scratchList.append(["id":id,"company":company,"offer_name":name,"offer_amount":amount,"terms":tandc,"coins":coins,"coupon_code":code,"imgurl":logoUrl,"category":cat])
+                                    self.scratchList.append(["id":"\(id)","company":company,"offer_name":name,"offer_amount":amount,"terms":tandc,"coins":coins,"coupon_code":code,"imgurl":logoUrl,"category":cat])
                                     /*null detection
                                      if let img = badge["badge_image_url"] as? NSNull{
                                         self.levelInfo.append(["level":level,"points":min_coins,"name":name,"oneline":oneline,"imgurl":"null"])
@@ -1317,6 +1319,20 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
         self.performSegue(withIdentifier: "showScratch", sender: nil)
     }
     
+    /*func scratchpercentageDidChange(value: Float) {
+        print("scratching")
+    }
+    
+    func didScratchStarted() {
+        print("scratchStarted")
+    }
+    
+    func didScratchEnded() {
+        
+        
+    }
+    */
+    
 }
 
 extension HomePage1: UICollectionViewDelegate{
@@ -1398,7 +1414,7 @@ extension HomePage1: UICollectionViewDelegate{
                     
                     self.controller.scratchCardView.afterScratchDoneButtonTitle = "Details"
                     self.controller.scratchCardView.afterScratchTitle = "Congratulations"
-                    self.controller.scratchCardView.afterScratchSubTitle = "₹ \(self.currentScratch["offer_amount"])"
+                    self.controller.scratchCardView.afterScratchSubTitle = "₹ \(self.currentScratch["offer_amount"] as! Int)"
                     
                     self.controller.scratchCardView.addDelegate(delegate: self)
                     self.controller.scratchCardView.bottomLayerView = UIImageView(image: UIImage(named: "ScratchCard")!)

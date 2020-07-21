@@ -75,7 +75,7 @@ class OfferDetailsViewController: UIViewController {
         request.addValue(authtoken, forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let content = [
-            "rewards_sponsor_id": offer["id"] as! Int
+            "rewards_sponsor_id": offer["id"] as! String
         ]
         let jsonEncoder = JSONEncoder()
         if let jsonData = try? jsonEncoder.encode(content),
@@ -94,6 +94,11 @@ class OfferDetailsViewController: UIViewController {
                                 if object["error"] != nil{
                                     DispatchQueue.main.async {
                                         self.mainMssg.text = "You have already redeemed this coupon"
+                                        self.mainMssg.adjustsFontSizeToFitWidth = true
+                                    }
+                                }else{
+                                   DispatchQueue.main.async {
+                                        self.mainMssg.text = "Couponcode has been copied to clipboard"
                                         self.mainMssg.adjustsFontSizeToFitWidth = true
                                     }
                                 }
