@@ -398,7 +398,6 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
             return
         }
         request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let content = ["token": notiKey]
         print("noti",content)
         let jsonEncoder = JSONEncoder()
