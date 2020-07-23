@@ -101,16 +101,29 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
     
     var currentScratch = [String: Any]()
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+                     #selector(handleRefresh(_:)),
+                                 for: .valueChanged)
+        refreshControl.tintColor = .init(red: 247/255, green: 57/255, blue: 90/255, alpha: 1)
+        refreshControl.backgroundColor = UIColor.clear
+        
+        return refreshControl
+    }()
+    
     //MARK: - FUNCTIONS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //newuser uncheck
         self.collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.showsVerticalScrollIndicator = false
          //collectionView.dataSource = self
         //self.collectionView.dataSource = self
+        self.collectionView.addSubview(self.refreshControl)
         self.collectionView.register(scratchCollectionViewCell.self, forCellWithReuseIdentifier: "scratchCell")
         self.collectionView.register(PlaceHolderScratchCardCollectionViewCell.self, forCellWithReuseIdentifier: "noScratch")
         self.collectionView.collectionViewLayout = createCustomLayout()
@@ -139,6 +152,9 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
         blurredEffectView.frame = view.bounds
         view.addSubview(blurredEffectView)
         
+        self.sendUpdate()
+        self.startCheckin()
+        
         //set error handlers
         /*answer1.adjustsFontSizeToFitWidth = true
         answer2.adjustsFontSizeToFitWidth = true
@@ -163,8 +179,8 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
         inviteHeader.borderWidth = 5
         inviteHeader
             .borderColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)*/
-        
-        Timer.scheduledTimer(withTimeInterval: 900, repeats: true) { timer in
+        //main here
+        /*Timer.scheduledTimer(withTimeInterval: 900, repeats: true) { timer in
             print("again")
             let url = URL(string: "https://solocoin.herokuapp.com/api/v1/sessions/ping")!
             var request = URLRequest(url: url)
@@ -282,14 +298,15 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
                         }
                     }
                 }else{
-                    self.showNotification(title: "Solocoin Check-In", message: "Please click on the notification to confirm your presence")
+                    //self.showNotification(title: "Solocoin Check-In", message: "Please click on the notification to confirm your presence")
+                    self.makeManyNotifications()
                 }
                
             }
             
             
             
-        }
+        }*/
         
         manager.delegate = self
         manager.requestAlwaysAuthorization()
@@ -357,9 +374,13 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
     
     override func viewDidAppear(_ animated: Bool) {
         //get from api
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UIView.animate(withDuration: 0.5) {
             self.navigationController?.isNavigationBarHidden = true
             self.tabBarController?.tabBar.isHidden = false
+        }
+        obtainProfileInfo {
+            print("updated")
         }
         //obtainDaily()
         //obtainWeekly()
@@ -368,6 +389,38 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
         //obtainRewards()
     }
     
+    func startCheckin(){
+        let url = URL(string: "https://solocoin-checkin.herokuapp.com/api/v1/getNotification")!
+        var request = URLRequest(url: url)
+        // Specify HTTP Method to use
+        guard let notiKey = UserDefaults.standard.string(forKey: "fcmkey") as? String else{
+            print("not supported")
+            return
+        }
+        request.httpMethod = "POST"
+        let content = ["token": notiKey]
+        print("noti",content)
+        let jsonEncoder = JSONEncoder()
+        if let jsonData = try? jsonEncoder.encode(content),
+            let jsonString = String(data: jsonData, encoding: .utf8) {
+            print(jsonString)
+            request.timeoutInterval = 20
+            request.httpBody = jsonData
+            let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if error != nil{
+                    print("error in fcm",error?.localizedDescription)
+                }
+            }
+            qtask.resume()
+        }
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.obtainProfileInfo {
+            print("reloaded refresh control")
+            refreshControl.endRefreshing()
+        }
+    }
     
     func configureCollectionView() {
         print("configure empty")
@@ -453,6 +506,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
     }
     
     func sendUpdate(){
+        print("hit noti")
         let url = URL(string: "https://solocoin.herokuapp.com/api/v1/sessions/ping")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
@@ -1317,6 +1371,20 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
     func didDoneButtonPressed(sender: UIButton) {
         UserDefaults.standard.set(self.currentScratch, forKey: "offerDict")
         self.performSegue(withIdentifier: "showScratch", sender: nil)
+    }
+    
+    func makeManyNotifications(){
+        let center = UNUserNotificationCenter.current()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Solocoin Check-In"
+        content.body = "Please click on the notification to confirm your presence"
+        content.sound = .default
+        content.categoryIdentifier = "checking-notification"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 900, repeats: true)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        center.add(request)
     }
     
     /*func scratchpercentageDidChange(value: Float) {

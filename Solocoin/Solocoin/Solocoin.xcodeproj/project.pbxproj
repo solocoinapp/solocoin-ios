@@ -33,11 +33,11 @@
 		F516F97624C774BC00BB5EF7 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = F516F96F24C774BC00BB5EF7 /* triangle.png */; };
 		F516F97724C774BC00BB5EF7 /* diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = F516F97024C774BC00BB5EF7 /* diamond.png */; };
 		F516F97824C774BC00BB5EF7 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = F516F97124C774BC00BB5EF7 /* star.png */; };
+		F516F97A24C8118000BB5EF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F516F97924C8118000BB5EF7 /* GoogleService-Info.plist */; };
 		F53DA2A72483A9EF005FE377 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DA2A62483A9EF005FE377 /* OfferCollectionViewCell.swift */; };
 		F53DA2AB2483D94C005FE377 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */; };
 		F53DF2C42485279100030373 /* BadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DF2C32485279100030373 /* BadgeCollectionViewCell.swift */; };
 		F53DF2C62485545700030373 /* ShareBadgeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DF2C52485545600030373 /* ShareBadgeViewController.swift */; };
-		F53FC90524C3229B00250140 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F53FC90424C3229B00250140 /* GoogleService-Info.plist */; };
 		F53FFD6824C5F0D60083272A /* GLScratchCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53FFD5F24C5F0D50083272A /* GLScratchCardController.swift */; };
 		F53FFD6924C5F0D60083272A /* GLScratchCardImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53FFD6024C5F0D50083272A /* GLScratchCardImageView.swift */; };
 		F53FFD6A24C5F0D60083272A /* GLScratchCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F53FFD6124C5F0D50083272A /* GLScratchCardView.xib */; };
@@ -112,12 +112,12 @@
 		F516F96F24C774BC00BB5EF7 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
 		F516F97024C774BC00BB5EF7 /* diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamond.png; sourceTree = "<group>"; };
 		F516F97124C774BC00BB5EF7 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
+		F516F97924C8118000BB5EF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F53DA2A62483A9EF005FE377 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailsViewController.swift; sourceTree = "<group>"; };
 		F53DF2C32485279100030373 /* BadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionViewCell.swift; sourceTree = "<group>"; };
 		F53DF2C52485545600030373 /* ShareBadgeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBadgeViewController.swift; sourceTree = "<group>"; };
 		F53FC90124C22C1A00250140 /* Solocoin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Solocoin.entitlements; sourceTree = "<group>"; };
-		F53FC90424C3229B00250140 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F53FFD5F24C5F0D50083272A /* GLScratchCardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLScratchCardController.swift; sourceTree = "<group>"; };
 		F53FFD6024C5F0D50083272A /* GLScratchCardImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GLScratchCardImageView.swift; sourceTree = "<group>"; };
 		F53FFD6124C5F0D50083272A /* GLScratchCardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLScratchCardView.xib; sourceTree = "<group>"; };
@@ -233,8 +233,8 @@
 				F5CB66DC2482865E005BF70D /* WalletViewController.swift */,
 				68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */,
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
+				F516F97924C8118000BB5EF7 /* GoogleService-Info.plist */,
 				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
-				F53FC90424C3229B00250140 /* GoogleService-Info.plist */,
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
 				68B1D8812453ACDE007ECC01 /* Info.plist */,
 				68B1D8792453ACDC007ECC01 /* Solocoin.xcdatamodeld */,
@@ -420,6 +420,7 @@
 				F54329BF2490B0900083EED2 /* Poppins-Italic.ttf in Resources */,
 				F516F95624C7682500BB5EF7 /* GoogleService-Info.plist in Resources */,
 				F54329BA2490B0900083EED2 /* Poppins-LightItalic.ttf in Resources */,
+				F516F97A24C8118000BB5EF7 /* GoogleService-Info.plist in Resources */,
 				F54329B02490B0900083EED2 /* Poppins-ThinItalic.ttf in Resources */,
 				F54329B82490B0900083EED2 /* Poppins-BlackItalic.ttf in Resources */,
 				F54329B92490B0900083EED2 /* Poppins-Regular.ttf in Resources */,
@@ -431,7 +432,6 @@
 				68B1D8782453ACDC007ECC01 /* Main.storyboard in Resources */,
 				F54329B22490B0900083EED2 /* Poppins-BoldItalic.ttf in Resources */,
 				F53FFD6E24C5F0D60083272A /* .gitkeep in Resources */,
-				F53FC90524C3229B00250140 /* GoogleService-Info.plist in Resources */,
 				F516F97724C774BC00BB5EF7 /* diamond.png in Resources */,
 				F53FFD6A24C5F0D60083272A /* GLScratchCardView.xib in Resources */,
 				F54329B42490B0900083EED2 /* Poppins-Medium.ttf in Resources */,

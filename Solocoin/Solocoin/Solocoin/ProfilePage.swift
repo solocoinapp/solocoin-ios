@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 class ProfilePage: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
