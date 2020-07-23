@@ -27,7 +27,6 @@
 		F50950F3249902E7002C2C3D /* NetWorkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50950F2249902E7002C2C3D /* NetWorkCheck.swift */; };
 		F50950F524994F3E002C2C3D /* errorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50950F424994F3E002C2C3D /* errorViewController.swift */; };
 		F5145FDF24A228B5007BFED8 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5145FDE24A228B5007BFED8 /* ScoreView.swift */; };
-		F516F95624C7682500BB5EF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F516F95524C7682500BB5EF7 /* GoogleService-Info.plist */; };
 		F516F97224C774BC00BB5EF7 /* SAConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F516F96A24C774BC00BB5EF7 /* SAConfettiView.swift */; };
 		F516F97424C774BC00BB5EF7 /* confetti.png in Resources */ = {isa = PBXBuildFile; fileRef = F516F96D24C774BC00BB5EF7 /* confetti.png */; };
 		F516F97624C774BC00BB5EF7 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = F516F96F24C774BC00BB5EF7 /* triangle.png */; };
@@ -106,7 +105,6 @@
 		F50950F2249902E7002C2C3D /* NetWorkCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkCheck.swift; sourceTree = "<group>"; };
 		F50950F424994F3E002C2C3D /* errorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = errorViewController.swift; sourceTree = "<group>"; };
 		F5145FDE24A228B5007BFED8 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
-		F516F95524C7682500BB5EF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F516F96A24C774BC00BB5EF7 /* SAConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAConfettiView.swift; sourceTree = "<group>"; };
 		F516F96D24C774BC00BB5EF7 /* confetti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confetti.png; sourceTree = "<group>"; };
 		F516F96F24C774BC00BB5EF7 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
@@ -228,7 +226,6 @@
 				F541A5ED24C0CD2F00946529 /* HomeCollectionReusableView.swift */,
 				68B1D8D224565FD8007ECC01 /* HomePage1.swift */,
 				F53FFD7024C5F2580083272A /* scratchCollectionViewCell.swift */,
-				F516F95524C7682500BB5EF7 /* GoogleService-Info.plist */,
 				F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */,
 				F5CB66DC2482865E005BF70D /* WalletViewController.swift */,
 				68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */,
@@ -418,7 +415,6 @@
 				68B1D8802453ACDE007ECC01 /* LaunchScreen.storyboard in Resources */,
 				F54329BC2490B0900083EED2 /* Poppins-Black.ttf in Resources */,
 				F54329BF2490B0900083EED2 /* Poppins-Italic.ttf in Resources */,
-				F516F95624C7682500BB5EF7 /* GoogleService-Info.plist in Resources */,
 				F54329BA2490B0900083EED2 /* Poppins-LightItalic.ttf in Resources */,
 				F516F97A24C8118000BB5EF7 /* GoogleService-Info.plist in Resources */,
 				F54329B02490B0900083EED2 /* Poppins-ThinItalic.ttf in Resources */,
