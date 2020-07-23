@@ -27,12 +27,6 @@
 		F50950F3249902E7002C2C3D /* NetWorkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50950F2249902E7002C2C3D /* NetWorkCheck.swift */; };
 		F50950F524994F3E002C2C3D /* errorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50950F424994F3E002C2C3D /* errorViewController.swift */; };
 		F5145FDF24A228B5007BFED8 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5145FDE24A228B5007BFED8 /* ScoreView.swift */; };
-		F516F97224C774BC00BB5EF7 /* SAConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F516F96A24C774BC00BB5EF7 /* SAConfettiView.swift */; };
-		F516F97424C774BC00BB5EF7 /* confetti.png in Resources */ = {isa = PBXBuildFile; fileRef = F516F96D24C774BC00BB5EF7 /* confetti.png */; };
-		F516F97624C774BC00BB5EF7 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = F516F96F24C774BC00BB5EF7 /* triangle.png */; };
-		F516F97724C774BC00BB5EF7 /* diamond.png in Resources */ = {isa = PBXBuildFile; fileRef = F516F97024C774BC00BB5EF7 /* diamond.png */; };
-		F516F97824C774BC00BB5EF7 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = F516F97124C774BC00BB5EF7 /* star.png */; };
-		F516F97A24C8118000BB5EF7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F516F97924C8118000BB5EF7 /* GoogleService-Info.plist */; };
 		F53DA2A72483A9EF005FE377 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DA2A62483A9EF005FE377 /* OfferCollectionViewCell.swift */; };
 		F53DA2AB2483D94C005FE377 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */; };
 		F53DF2C42485279100030373 /* BadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DF2C32485279100030373 /* BadgeCollectionViewCell.swift */; };
@@ -72,6 +66,7 @@
 		F5452D5324C4AA7700A35990 /* PlaceHolderScratchCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5452D5224C4AA7700A35990 /* PlaceHolderScratchCardCollectionViewCell.swift */; };
 		F548B69324A09AF300A4F728 /* ScoreBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F548B69224A09AF300A4F728 /* ScoreBoardViewController.swift */; };
 		F548B69524A09C8F00A4F728 /* ScoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F548B69424A09C8F00A4F728 /* ScoreCollectionViewCell.swift */; };
+		F54BD05424CA3B7600A7CF5D /* SAConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BD05324CA3B7600A7CF5D /* SAConfettiView.swift */; };
 		F553016F24914FC80036C2B8 /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F553016E24914FC80036C2B8 /* CollectionReusableView.swift */; };
 		F55597122496927100DBE6B8 /* LeaderBoardTempVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */; };
 		F5A0B4FC24954B7000BFCC2B /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */; };
@@ -105,12 +100,6 @@
 		F50950F2249902E7002C2C3D /* NetWorkCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkCheck.swift; sourceTree = "<group>"; };
 		F50950F424994F3E002C2C3D /* errorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = errorViewController.swift; sourceTree = "<group>"; };
 		F5145FDE24A228B5007BFED8 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
-		F516F96A24C774BC00BB5EF7 /* SAConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAConfettiView.swift; sourceTree = "<group>"; };
-		F516F96D24C774BC00BB5EF7 /* confetti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confetti.png; sourceTree = "<group>"; };
-		F516F96F24C774BC00BB5EF7 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
-		F516F97024C774BC00BB5EF7 /* diamond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = diamond.png; sourceTree = "<group>"; };
-		F516F97124C774BC00BB5EF7 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
-		F516F97924C8118000BB5EF7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F53DA2A62483A9EF005FE377 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailsViewController.swift; sourceTree = "<group>"; };
 		F53DF2C32485279100030373 /* BadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -151,6 +140,7 @@
 		F5452D5224C4AA7700A35990 /* PlaceHolderScratchCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderScratchCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		F548B69224A09AF300A4F728 /* ScoreBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardViewController.swift; sourceTree = "<group>"; };
 		F548B69424A09C8F00A4F728 /* ScoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		F54BD05324CA3B7600A7CF5D /* SAConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAConfettiView.swift; sourceTree = "<group>"; };
 		F553016E24914FC80036C2B8 /* CollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardTempVC.swift; sourceTree = "<group>"; };
 		F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
@@ -193,9 +183,9 @@
 			isa = PBXGroup;
 			children = (
 				F53FC90124C22C1A00250140 /* Solocoin.entitlements */,
-				F516F96824C774BC00BB5EF7 /* SAConfettiView */,
 				F53FFD5D24C5F0D50083272A /* GLScratchCard */,
 				F543299C2490B0900083EED2 /* font */,
+				F54BD05324CA3B7600A7CF5D /* SAConfettiView.swift */,
 				68B1D8702453ACDC007ECC01 /* AppDelegate.swift */,
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
 				68872A142468CC70005348B4 /* UIViewExtension.swift */,
@@ -230,7 +220,6 @@
 				F5CB66DC2482865E005BF70D /* WalletViewController.swift */,
 				68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */,
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
-				F516F97924C8118000BB5EF7 /* GoogleService-Info.plist */,
 				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
 				68B1D8812453ACDE007ECC01 /* Info.plist */,
@@ -256,35 +245,6 @@
 				4A2330E3827520B4D0032661 /* Pods-Solocoin.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		F516F96824C774BC00BB5EF7 /* SAConfettiView */ = {
-			isa = PBXGroup;
-			children = (
-				F516F96924C774BC00BB5EF7 /* Classes */,
-				F516F96C24C774BC00BB5EF7 /* Assets */,
-			);
-			name = SAConfettiView;
-			path = "../../../../../Downloads/SAConfettiView-master/SAConfettiView";
-			sourceTree = "<group>";
-		};
-		F516F96924C774BC00BB5EF7 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				F516F96A24C774BC00BB5EF7 /* SAConfettiView.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		F516F96C24C774BC00BB5EF7 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				F516F96D24C774BC00BB5EF7 /* confetti.png */,
-				F516F96F24C774BC00BB5EF7 /* triangle.png */,
-				F516F97024C774BC00BB5EF7 /* diamond.png */,
-				F516F97124C774BC00BB5EF7 /* star.png */,
-			);
-			path = Assets;
 			sourceTree = "<group>";
 		};
 		F53FFD5D24C5F0D50083272A /* GLScratchCard */ = {
@@ -404,31 +364,26 @@
 			files = (
 				F54329BD2490B0900083EED2 /* Poppins-Thin.ttf in Resources */,
 				F54329C02490B0900083EED2 /* Poppins-MediumItalic.ttf in Resources */,
-				F516F97424C774BC00BB5EF7 /* confetti.png in Resources */,
 				F54329B62490B0900083EED2 /* Poppins-ExtraBoldItalic.ttf in Resources */,
 				F54329B52490B0900083EED2 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				F54329AF2490B0900083EED2 /* Poppins-ExtraLight.ttf in Resources */,
 				F54329B32490B0900083EED2 /* Poppins-Light.ttf in Resources */,
-				F516F97624C774BC00BB5EF7 /* triangle.png in Resources */,
 				F54329BE2490B0900083EED2 /* Poppins-SemiBold.ttf in Resources */,
 				F54329B12490B0900083EED2 /* Poppins-ExtraLightItalic.ttf in Resources */,
 				68B1D8802453ACDE007ECC01 /* LaunchScreen.storyboard in Resources */,
 				F54329BC2490B0900083EED2 /* Poppins-Black.ttf in Resources */,
 				F54329BF2490B0900083EED2 /* Poppins-Italic.ttf in Resources */,
 				F54329BA2490B0900083EED2 /* Poppins-LightItalic.ttf in Resources */,
-				F516F97A24C8118000BB5EF7 /* GoogleService-Info.plist in Resources */,
 				F54329B02490B0900083EED2 /* Poppins-ThinItalic.ttf in Resources */,
 				F54329B82490B0900083EED2 /* Poppins-BlackItalic.ttf in Resources */,
 				F54329B92490B0900083EED2 /* Poppins-Regular.ttf in Resources */,
 				F53FFD6F24C5F0D60083272A /* glscratch_close.png in Resources */,
 				68B1D87D2453ACDE007ECC01 /* Assets.xcassets in Resources */,
-				F516F97824C774BC00BB5EF7 /* star.png in Resources */,
 				F54329BB2490B0900083EED2 /* Poppins-Bold.ttf in Resources */,
 				F53FFD6C24C5F0D60083272A /* scratch_image_new.png in Resources */,
 				68B1D8782453ACDC007ECC01 /* Main.storyboard in Resources */,
 				F54329B22490B0900083EED2 /* Poppins-BoldItalic.ttf in Resources */,
 				F53FFD6E24C5F0D60083272A /* .gitkeep in Resources */,
-				F516F97724C774BC00BB5EF7 /* diamond.png in Resources */,
 				F53FFD6A24C5F0D60083272A /* GLScratchCardView.xib in Resources */,
 				F54329B42490B0900083EED2 /* Poppins-Medium.ttf in Resources */,
 				F54329B72490B0900083EED2 /* Poppins-ExtraBold.ttf in Resources */,
@@ -518,7 +473,7 @@
 				F5CB66DD2482865E005BF70D /* WalletViewController.swift in Sources */,
 				F548B69524A09C8F00A4F728 /* ScoreCollectionViewCell.swift in Sources */,
 				F5452D5324C4AA7700A35990 /* PlaceHolderScratchCardCollectionViewCell.swift in Sources */,
-				F516F97224C774BC00BB5EF7 /* SAConfettiView.swift in Sources */,
+				F54BD05424CA3B7600A7CF5D /* SAConfettiView.swift in Sources */,
 				68B1D87B2453ACDC007ECC01 /* Solocoin.xcdatamodeld in Sources */,
 				F5145FDF24A228B5007BFED8 /* ScoreView.swift in Sources */,
 				F542F1B42493DF7C0089CB83 /* ThirdViewController.swift in Sources */,
