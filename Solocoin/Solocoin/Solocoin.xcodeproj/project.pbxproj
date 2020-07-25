@@ -73,6 +73,7 @@
 		F5CB66DB24826DC4005BF70D /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */; };
 		F5CB66DD2482865E005BF70D /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CB66DC2482865E005BF70D /* WalletViewController.swift */; };
 		F5D66FC92475A1EC00476863 /* MenuTBController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D66FC82475A1EC00476863 /* MenuTBController.swift */; };
+		F5EFF39524CAF51900FD9CE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5EFF39424CAF51400FD9CE1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -147,6 +148,7 @@
 		F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
 		F5CB66DC2482865E005BF70D /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		F5D66FC82475A1EC00476863 /* MenuTBController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTBController.swift; sourceTree = "<group>"; };
+		F5EFF39424CAF51400FD9CE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +222,7 @@
 				F5CB66DC2482865E005BF70D /* WalletViewController.swift */,
 				68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */,
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
+				F5EFF39424CAF51400FD9CE1 /* GoogleService-Info.plist */,
 				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
 				68B1D8812453ACDE007ECC01 /* Info.plist */,
@@ -375,6 +378,7 @@
 				F54329BF2490B0900083EED2 /* Poppins-Italic.ttf in Resources */,
 				F54329BA2490B0900083EED2 /* Poppins-LightItalic.ttf in Resources */,
 				F54329B02490B0900083EED2 /* Poppins-ThinItalic.ttf in Resources */,
+				F5EFF39524CAF51900FD9CE1 /* GoogleService-Info.plist in Resources */,
 				F54329B82490B0900083EED2 /* Poppins-BlackItalic.ttf in Resources */,
 				F54329B92490B0900083EED2 /* Poppins-Regular.ttf in Resources */,
 				F53FFD6F24C5F0D60083272A /* glscratch_close.png in Resources */,

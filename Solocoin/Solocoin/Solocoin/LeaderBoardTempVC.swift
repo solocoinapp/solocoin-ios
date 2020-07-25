@@ -228,7 +228,8 @@ class LeaderBoardVC: UIViewController{
             }
         }*/
         if self.currentLevel != self.levelInfo.count{
-            let left = Float((self.levelInfo[self.currentLevel]["points"] as! Int)-self.totalCoinsEarned)/Float((self.levelInfo[self.currentLevel]["points"] as! Int)-(self.levelInfo[self.currentLevel-1]["points"] as! Int))
+            //let left = Float((self.levelInfo[self.currentLevel]["points"] as! Int)-self.totalCoinsEarned)/Float((self.levelInfo[self.currentLevel]["points"] as! Int)-(self.levelInfo[self.currentLevel-1]["points"] as! Int))
+            let left = Float((self.totalCoinsEarned-self.levelInfo[self.currentLevel-1]["points"] as! Int))/Float((self.levelInfo[self.currentLevel]["points"] as! Int)-(self.levelInfo[self.currentLevel-1]["points"] as! Int))
             if self.currentLevel == 1{
                 let toFill = (left/4.0)
                 self.levelProgress.setProgress(toFill, animated: true)
