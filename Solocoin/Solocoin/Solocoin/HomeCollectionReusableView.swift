@@ -117,10 +117,10 @@ class HomeCollectionReusableView: UICollectionReusableView {
        self.questionView.shadowColor = .gray
        self.questionView.shadowRadius = 8
        self.questionView.shadowOffset = CGSize(width: 0, height: 2.0)
-       let blurEffect = UIBlurEffect(style: .extraLight)
+       /*let blurEffect = UIBlurEffect(style: .extraLight)
        blurredEffectView = UIVisualEffectView(effect: blurEffect)
        blurredEffectView.frame = self.bounds
-       self.addSubview(blurredEffectView)
+       self.addSubview(blurredEffectView)*/
        obtainDaily()
        obtainWeekly()
        let font = UIFont(name: "Poppins-SemiBold", size: 23)
@@ -165,6 +165,29 @@ class HomeCollectionReusableView: UICollectionReusableView {
                         if let object = json as? [String:AnyObject]{
                             let ans = object["answers"] as! [[String:AnyObject]]
                             var indx=0
+                            guard ans.count == 4 else {
+                                DispatchQueue.main.async {
+                                    self.question.isHidden = true
+                                    self.answer1.isHidden = true
+                                    self.answer2.isHidden = true
+                                    self.answer3.isHidden = true
+                                    self.answer4.isHidden = true
+                                    self.exclMark.isHidden = false
+                                    self.errorMssg.isHidden = false
+                                    self.setErorrMssg()
+                                    self.errorMssg.text = "Some error occurred...."
+                                    self.errorMssg.adjustsFontSizeToFitWidth = true
+                                    self.exclMark.alpha = 0
+                                    self.errorMssg.alpha = 0
+                                    UIView.animate(withDuration: 2) {
+                                        self.exclMark.alpha = 1
+                                        self.errorMssg.alpha = 1
+                                        
+                                    }
+                                    self.erroDaily = true
+                                }
+                                return
+                            }
                             for ques in ans{
                                 let answer = ques["name"] as! String
                                 let id = ques["id"] as! Int
@@ -257,6 +280,29 @@ class HomeCollectionReusableView: UICollectionReusableView {
                         if let object = json as? [String:AnyObject]{
                             let ans = object["answers"] as! [[String:AnyObject]]
                             var indx=0
+                            guard ans.count == 4 else {
+                                DispatchQueue.main.async {
+                                    self.question.isHidden = true
+                                    self.answer1.isHidden = true
+                                    self.answer2.isHidden = true
+                                    self.answer3.isHidden = true
+                                    self.answer4.isHidden = true
+                                    self.exclMark.isHidden = false
+                                    self.errorMssg.isHidden = false
+                                    self.setErorrMssg()
+                                    self.errorMssg.text = "Some error occurred...."
+                                    self.errorMssg.adjustsFontSizeToFitWidth = true
+                                    self.exclMark.alpha = 0
+                                    self.errorMssg.alpha = 0
+                                    UIView.animate(withDuration: 2) {
+                                        self.exclMark.alpha = 1
+                                        self.errorMssg.alpha = 1
+                                        
+                                    }
+                                    self.erroDaily = true
+                                }
+                                return
+                            }
                             for ques in ans{
                                 let answer = ques["name"] as! String
                                 let id = ques["id"] as! Int
@@ -332,12 +378,8 @@ class HomeCollectionReusableView: UICollectionReusableView {
                         self.errorMssg.alpha = 1
                         
                     }
-                    
                     self.erroDaily = true
                 }
-            }
-            DispatchQueue.main.async{
-                self.blurredEffectView.removeFromSuperview()
             }
         }
         qtask.resume()
@@ -451,7 +493,7 @@ class HomeCollectionReusableView: UICollectionReusableView {
                    
                    //self.exclMark.image = UIImage(named: "ic_landing_2")
                    //self.exclMark.contentMode = .scaleAspectFill
-                   self.erroDaily = true
+                   self.errorWeekly = true
                }
                 return
             }

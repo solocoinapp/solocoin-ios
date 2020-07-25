@@ -110,76 +110,66 @@ class OTPController: UIViewController {
             }
          }
         @IBAction func sendConfirm(_ sender: Any) {
-            if self.actionBtn.titleLabel!.text == "Connectivity" {
-                UIView.animate(withDuration: 0.5) {
+            self.mainMssg.text = "Verify the mobile number \(self.mobileNumber.selectedCountry!.phoneCode + self.mobileNumber.text!) and confirm"
+            UIView.animate(withDuration: 0.5) {
                 self.popupParent.alpha = 0
                 self.popupParent.isUserInteractionEnabled = false
                 self.bodyPop.alpha = 0
                 self.bodyPop.isUserInteractionEnabled = false
-                self.view.reloadInputViews()
+                print(self.mobileNumber.text!)
+                UserDefaults.standard.set(self.mobileNumber.text!,forKey: "phone")
+                guard let _ = self.mobileNumber else {
+                    return
                 }
-            }else{
-                self.mainMssg.text = "Verify the mobile number \(self.mobileNumber.selectedCountry!.phoneCode + mobileNumber.text!) and confirm"
-                UIView.animate(withDuration: 0.5) {
-                    self.popupParent.alpha = 0
-                    self.popupParent.isUserInteractionEnabled = false
-                    self.bodyPop.alpha = 0
-                    self.bodyPop.isUserInteractionEnabled = false
-                    print(self.mobileNumber.text!)
-                    UserDefaults.standard.set(self.mobileNumber.text!,forKey: "phone")
-                    guard let _ = self.mobileNumber else {
-                        return
+                self.phone = ""
+                for chr in self.mobileNumber.text!{
+                    if chr != " " && chr != "-"{
+                        self.phone+=String(chr)
                     }
-                    
-                    for chr in self.mobileNumber.text!{
-                        if chr != " " && chr != "-"{
-                            self.phone+=String(chr)
-                        }
-                    }
-                    UserDefaults.standard.set(self.phone,forKey: "phone")
-                    UserDefaults.standard.set(self.mobileNumber.selectedCountry?.phoneCode,forKey: "code")
-                    print("c",self.mobileNumber.selectedCountry?.phoneCode,"p",self.phone)
-                    var realno = self.mobileNumber.selectedCountry!.phoneCode+self.phone
-                    
-                    publicVars.mobileNumber = realno
-                    if self.isValidMobile(phone: publicVars.mobileNumber) == true {
-                        //from firebase doc, we're verifying the phone number here and getting the provate veri code from firebase
-                        PhoneAuthProvider.provider().verifyPhoneNumber(realno, uiDelegate: nil) { (verificationID, error) in
-                          if let error = error {
-                            //self.showMessagePrompt(error.localizedDescription) //error handling function, just printing it to console for now
-                            if error.localizedDescription == "The interaction was cancelled by the user."{
-                                self.mainMssg.text = "Pls complete the recaptcha"
-                                self.topMssg.text = "Incomplete"
-                                self.actionBtn.titleLabel?.text = "Try Again"
-                                UIView.animate(withDuration: 0.5) {
-                                    self.popupParent.alpha = 1.0
-                                    self.popupParent.isUserInteractionEnabled = true
-                                    self.bodyPop.alpha = 1
-                                    self.bodyPop.isUserInteractionEnabled = true
-                                }
-                            }else{
-                                self.mainMssg.text = "You seem to have lost Internet Connection"
-                                self.topMssg.text = "Connectivity"
-                                self.actionBtn.titleLabel?.text = "Try Again"
-                                UIView.animate(withDuration: 0.5) {
-                                    self.popupParent.alpha = 1.0
-                                    self.popupParent.isUserInteractionEnabled = true
-                                    self.bodyPop.alpha = 1
-                                    self.bodyPop.isUserInteractionEnabled = true
-                                }
+                }
+                UserDefaults.standard.set(self.phone,forKey: "phone")
+                UserDefaults.standard.set(self.mobileNumber.selectedCountry?.phoneCode,forKey: "code")
+                print("c",self.mobileNumber.selectedCountry?.phoneCode,"p",self.phone)
+                var realno = self.mobileNumber.selectedCountry!.phoneCode+self.phone
+                
+                publicVars.mobileNumber = realno
+                if self.isValidMobile(phone: publicVars.mobileNumber) == true {
+                    //from firebase doc, we're verifying the phone number here and getting the provate veri code from firebase
+                    PhoneAuthProvider.provider().verifyPhoneNumber(realno, uiDelegate: nil) { (verificationID, error) in
+                      if let error = error {
+                        //self.showMessagePrompt(error.localizedDescription) //error handling function, just printing it to console for now
+                        if error.localizedDescription == "The interaction was cancelled by the user."{
+                            self.mainMssg.text = "Pls complete the recaptcha"
+                            self.topMssg.text = "Incomplete"
+                            self.actionBtn.titleLabel?.text = "Try Again"
+                            UIView.animate(withDuration: 0.5) {
+                                self.popupParent.alpha = 1.0
+                                self.popupParent.isUserInteractionEnabled = true
+                                self.bodyPop.alpha = 1
+                                self.bodyPop.isUserInteractionEnabled = true
                             }
-                            
-                            print("error",error.localizedDescription)
-                            return
-                          }
-                          // Sign in using the verificationID and the code sent to the user
-                          // ...
-                            UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                            self.performSegue(withIdentifier: "OTP2", sender: self)
+                        }else{
+                            self.mainMssg.text = "You seem to have lost Internet Connection"
+                            self.topMssg.text = "Connectivity"
+                            self.actionBtn.titleLabel?.text = "Try Again"
+                            UIView.animate(withDuration: 0.5) {
+                                self.popupParent.alpha = 1.0
+                                self.popupParent.isUserInteractionEnabled = true
+                                self.bodyPop.alpha = 1
+                                self.bodyPop.isUserInteractionEnabled = true
+                            }
                         }
+                        
+                        print("error",error.localizedDescription)
+                        return
+                      }
+                      // Sign in using the verificationID and the code sent to the user
+                      // ...
+                        UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+                        self.performSegue(withIdentifier: "OTP2", sender: self)
                     }
                 }
-                }
+            }
         }
     @IBAction func cancelPop(_ sender: Any) {
             UIView.animate(withDuration: 0.5) {
