@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import Firebase
+import FirebaseAuth
 
 class HomeCollectionReusableView: UICollectionReusableView {
         
@@ -26,8 +27,9 @@ class HomeCollectionReusableView: UICollectionReusableView {
     
     //@IBOutlet var languageOptions: [UIButton]!
 
-    @IBOutlet weak var dailyWeekly: UISegmentedControl!
+    //@IBOutlet weak var dailyWeekly: UISegmentedControl!
     
+    @IBOutlet weak var dailyWeekly: QuizSegControl!
     //MARK: Question/Answer
 
     @IBOutlet weak var question: UILabel!
@@ -70,6 +72,9 @@ class HomeCollectionReusableView: UICollectionReusableView {
     var blurredEffectView :UIVisualEffectView!
     
     func setup(){
+        dailyWeekly.layoutSubviews()
+        question.numberOfLines = 0
+        //question.adjustsFontSizeToFitWidth = true
         let currentUser = Auth.auth().currentUser
         currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
           if let error = error {
@@ -80,10 +85,12 @@ class HomeCollectionReusableView: UICollectionReusableView {
             UserDefaults.standard.set(self.id_token,forKey: "idtoken")
         }
         scratcHeader.adjustsFontSizeToFitWidth = true
-        dailyWeekly.selectedSegmentTintColor = .white
+        dailyWeekly.selectedSegmentTintColor = UIColor.init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
         uuid=UserDefaults.standard.string(forKey: "uuid")!
-        self.questionView.borderWidth = 2
-        self.questionView.borderColor = .init(red: 205/255, green: 210/255, blue: 218/255, alpha: 1)
+        //self.questionView.borderWidth = 2
+        self.shadowColor = .black
+        self.shadowRadius = 2
+        //self.questionView.borderColor = .init(red: 205/255, green: 210/255, blue: 218/255, alpha: 1)
         //participate.cornerRadius = 30
         self.participate.layer.cornerRadius = self.participate.frame.width/23
         self.participate.layer.masksToBounds = true
@@ -92,6 +99,22 @@ class HomeCollectionReusableView: UICollectionReusableView {
        self.answerLayouts(answer: self.answer2)
        self.answerLayouts(answer: self.answer3)
        self.answerLayouts(answer: self.answer4)
+        
+        self.answer1.layer.cornerRadius = self.answer1.frame.width/18
+        self.answer2.layer.cornerRadius = self.answer2.frame.width/18
+        self.answer3.layer.cornerRadius = self.answer3.frame.width/18
+        self.answer4.layer.cornerRadius = self.answer4.frame.width/18
+        
+        self.answer1.cornerRadius = self.answer1.frame.width/18
+        self.answer2.cornerRadius = self.answer2.frame.width/18
+        self.answer3.cornerRadius = self.answer3.frame.width/18
+        self.answer4.cornerRadius = self.answer4.frame.width/18
+        
+        self.answer1.layer.masksToBounds = true
+        self.answer2.layer.masksToBounds = true
+        self.answer3.layer.masksToBounds = true
+        self.answer4.layer.masksToBounds = true
+        
        let tap1 = UITapGestureRecognizer(target: self, action: #selector(self.optionPressed(_:)))
        self.answer1.addGestureRecognizer(tap1)
        self.answer1.isUserInteractionEnabled = true
@@ -111,29 +134,31 @@ class HomeCollectionReusableView: UICollectionReusableView {
        self.answer4.adjustsFontSizeToFitWidth = true
        self.exclMark.isHidden = true
        self.errorMssg.isHidden = true
-       self.questionView.cornerRadius = self.questionView.frame.width/25
-       self.dailyWeekly.layer.cornerRadius = self.questionView.frame.width/25
+        self.questionView.cornerRadius = self.questionView.frame.width/25//self.questionView.frame.width/25
+       //self.dailyWeekly.layer.cornerRadius = self.questionView.frame.width/25
        self.questionView.shadowColor = .gray
        self.questionView.shadowRadius = 8
        self.questionView.shadowOffset = CGSize(width: 0, height: 2.0)
-       let blurEffect = UIBlurEffect(style: .extraLight)
+       /*let blurEffect = UIBlurEffect(style: .extraLight)
        blurredEffectView = UIVisualEffectView(effect: blurEffect)
        blurredEffectView.frame = self.bounds
-       self.addSubview(blurredEffectView)
+       self.addSubview(blurredEffectView)*/
        obtainDaily()
        obtainWeekly()
-       let font = UIFont(name: "Poppins-SemiBold", size: 23)
-                          self.dailyWeekly.selectedSegmentIndex = 0
-                          self.dailyWeekly.setTitleTextAttributes([NSAttributedString.Key.font: font,NSAttributedString.Key.foregroundColor: UIColor.init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)], for: .normal)
+       let font = UIFont(name: "Poppins-SemiBold", size: 15)
+        self.dailyWeekly.selectedSegmentIndex = 0
+        self.dailyWeekly.setTitleTextAttributes([NSAttributedString.Key.font: font,NSAttributedString.Key.foregroundColor: UIColor.init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)], for: .normal)
+        self.dailyWeekly.setTitleTextAttributes([NSAttributedString.Key.font: font,NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
     }
     
     func answerLayouts(answer: UILabel) {
         answer.layer.borderColor = UIColor.systemGray4.cgColor
         answer.layer.borderWidth = 1.0
-        answer.layer.cornerRadius = 5.0
+        //answer.layer.cornerRadius = 5.0
     }
     
     func obtainWeekly(){
+        errorWeekly = false
         let url = URL(string: "https://solocoin.herokuapp.com/api/v1/questions/weekly")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
@@ -164,6 +189,30 @@ class HomeCollectionReusableView: UICollectionReusableView {
                         if let object = json as? [String:AnyObject]{
                             let ans = object["answers"] as! [[String:AnyObject]]
                             var indx=0
+                            guard ans.count == 4 else {
+                                print("weekly more than4")
+                                DispatchQueue.main.async {
+                                    self.question.isHidden = true
+                                    self.answer1.isHidden = true
+                                    self.answer2.isHidden = true
+                                    self.answer3.isHidden = true
+                                    self.answer4.isHidden = true
+                                    self.exclMark.isHidden = false
+                                    self.errorMssg.isHidden = false
+                                    self.setErorrMssg()
+                                    self.errorMssg.text = "Some error occurred...."
+                                    self.errorMssg.adjustsFontSizeToFitWidth = true
+                                    self.exclMark.alpha = 0
+                                    self.errorMssg.alpha = 0
+                                    UIView.animate(withDuration: 2) {
+                                        self.exclMark.alpha = 1
+                                        self.errorMssg.alpha = 1
+                                        
+                                    }
+                                    self.erroDaily = true
+                                }
+                                return
+                            }
                             for ques in ans{
                                 let answer = ques["name"] as! String
                                 let id = ques["id"] as! Int
@@ -181,7 +230,9 @@ class HomeCollectionReusableView: UICollectionReusableView {
                             
                         }
                     }else{
-                        DispatchQueue.main.async {
+                        print("weekly unable to convert")
+                        self.errorWeekly = true
+                        /*DispatchQueue.main.async {
                             /*self.question.isHidden = true
                             self.answer1.isHidden = true
                             self.answer2.isHidden = true
@@ -194,8 +245,8 @@ class HomeCollectionReusableView: UICollectionReusableView {
                                 self.errorMssg.text = "You've Answered this Weeks Questions!"
                                 self.errorMssg.adjustsFontSizeToFitWidth = true
                             }*/
-                            self.errorWeekly = true
-                        }
+                            
+                        }*/
                         }
                     }
                 }
@@ -227,6 +278,7 @@ class HomeCollectionReusableView: UICollectionReusableView {
     }
     
     func obtainDaily(){
+        erroDaily = false
         let url = URL(string: "https://solocoin.herokuapp.com/api/v1/questions/daily")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
@@ -256,6 +308,30 @@ class HomeCollectionReusableView: UICollectionReusableView {
                         if let object = json as? [String:AnyObject]{
                             let ans = object["answers"] as! [[String:AnyObject]]
                             var indx=0
+                            guard ans.count == 4 else {
+                                print("nono not 4")
+                                DispatchQueue.main.async {
+                                    self.question.isHidden = true
+                                    self.answer1.isHidden = true
+                                    self.answer2.isHidden = true
+                                    self.answer3.isHidden = true
+                                    self.answer4.isHidden = true
+                                    self.exclMark.isHidden = false
+                                    self.errorMssg.isHidden = false
+                                    self.setErorrMssg()
+                                    self.errorMssg.text = "Some error occurred...."
+                                    self.errorMssg.adjustsFontSizeToFitWidth = true
+                                    self.exclMark.alpha = 0
+                                    self.errorMssg.alpha = 0
+                                    UIView.animate(withDuration: 2) {
+                                        self.exclMark.alpha = 1
+                                        self.errorMssg.alpha = 1
+                                        
+                                    }
+                                    self.erroDaily = true
+                                }
+                                return
+                            }
                             for ques in ans{
                                 let answer = ques["name"] as! String
                                 let id = ques["id"] as! Int
@@ -271,11 +347,11 @@ class HomeCollectionReusableView: UICollectionReusableView {
                             self.dailyQuestion = object["name"] as! String
                             self.idDaily = object["id"] as! Int
                             DispatchQueue.main.async {
-                                self.question.text = "Q. \(self.dailyQuestion)"
-                                self.answer1.text = " A. \(self.answers[0]["name"]!)"
-                                self.answer2.text = " B. \(self.answers[1]["name"]!)"
-                                self.answer3.text = " C. \(self.answers[2]["name"]!)"
-                                self.answer4.text = " D. \(self.answers[3]["name"]!)"
+                                self.question.text = "\(self.dailyQuestion)"
+                                self.answer1.text = "   A. \(self.answers[0]["name"]!)"
+                                self.answer2.text = "   B. \(self.answers[1]["name"]!)"
+                                self.answer3.text = "   C. \(self.answers[2]["name"]!)"
+                                self.answer4.text = "   D. \(self.answers[3]["name"]!)"
                                 
                                 self.answerLayouts(answer: self.answer1)
                                 self.answerLayouts(answer: self.answer2)
@@ -297,7 +373,7 @@ class HomeCollectionReusableView: UICollectionReusableView {
                             self.setErorrMssg()
                             self.exclMark.alpha = 0
                             self.errorMssg.alpha = 0
-                            self.errorMssg.text = "You've Answered Todays Questions!"
+                            self.errorMssg.text = "No more Questions for Today"
                             self.errorMssg.adjustsFontSizeToFitWidth = true
                             UIView.animate(withDuration: 2) {
                                 self.exclMark.alpha = 1
@@ -312,7 +388,7 @@ class HomeCollectionReusableView: UICollectionReusableView {
                     }
                 }
             }else{
-                print("error",error?.localizedDescription)
+                print("error daily",error?.localizedDescription)
                 DispatchQueue.main.async {
                     self.question.isHidden = true
                     self.answer1.isHidden = true
@@ -331,12 +407,8 @@ class HomeCollectionReusableView: UICollectionReusableView {
                         self.errorMssg.alpha = 1
                         
                     }
-                    
                     self.erroDaily = true
                 }
-            }
-            DispatchQueue.main.async{
-                self.blurredEffectView.removeFromSuperview()
             }
         }
         qtask.resume()
@@ -384,8 +456,8 @@ class HomeCollectionReusableView: UICollectionReusableView {
             errorMssg.isHidden = true
         if dailyWeekly.selectedSegmentIndex == 0 {
             guard erroDaily == false else {
+                print("in daily triggered")
                 DispatchQueue.main.async {
-                    
                     self.question.isHidden = true
                     self.answer1.isHidden = true
                     self.answer2.isHidden = true
@@ -394,14 +466,13 @@ class HomeCollectionReusableView: UICollectionReusableView {
                     self.exclMark.isHidden = false
                     self.errorMssg.isHidden = false
                     self.setErorrMssg()
-                    self.errorMssg.text = "You've Answered Todays Questions!"
+                    self.errorMssg.text = "No more questions for today"
                     self.errorMssg.adjustsFontSizeToFitWidth = true
                     self.exclMark.alpha = 0
                     self.errorMssg.alpha = 0
                     UIView.animate(withDuration: 2) {
                         self.exclMark.alpha = 1
                         self.errorMssg.alpha = 1
-                        
                     }
                     
                     //self.exclMark.image = UIImage(named: "ic_landing_2")
@@ -415,11 +486,11 @@ class HomeCollectionReusableView: UICollectionReusableView {
             answer3.setTitle("  C. Continue as usual", for: .normal)
             answer4.setTitle("  D. No clue", for: .normal)*/
             
-            question.text = "Q \(dailyQuestion)"
-            answer1.text = "  A \(answers[0]["name"] ?? "cudnt get ans")"
-            answer2.text = "  B \(answers[1]["name"] ?? "cudnt get ans")"
-            answer3.text = "  C \(answers[2]["name"] ?? "cudnt get ans")"
-            answer4.text = "  D \(answers[3]["name"] ?? "cudnt get ans")"
+            question.text = "\(dailyQuestion)"
+            answer1.text = "    A \(answers[0]["name"] ?? "cudnt get ans")"
+            answer2.text = "    B \(answers[1]["name"] ?? "cudnt get ans")"
+            answer3.text = "    C \(answers[2]["name"] ?? "cudnt get ans")"
+            answer4.text = "    D \(answers[3]["name"] ?? "cudnt get ans")"
             
             answerLayouts(answer: answer1)
             answerLayouts(answer: answer2)
@@ -440,7 +511,7 @@ class HomeCollectionReusableView: UICollectionReusableView {
                 self.exclMark.isHidden = false
                 self.errorMssg.isHidden = false
                 self.setErorrMssg()
-                self.errorMssg.text = "You've Answered this Week's Questions!"
+                self.errorMssg.text = "No more questions for this week"
                 self.errorMssg.adjustsFontSizeToFitWidth = true
                 UIView.animate(withDuration: 2) {
                     self.exclMark.alpha = 1
@@ -450,7 +521,7 @@ class HomeCollectionReusableView: UICollectionReusableView {
                    
                    //self.exclMark.image = UIImage(named: "ic_landing_2")
                    //self.exclMark.contentMode = .scaleAspectFill
-                   self.erroDaily = true
+                   self.errorWeekly = true
                }
                 return
             }
@@ -467,11 +538,11 @@ class HomeCollectionReusableView: UICollectionReusableView {
             answer3.setTitle("  C. For 15 seconds without soap", for: .normal)
             answer4.setTitle("  D. I shouldn't - it wastes water", for: .normal)*/
             
-            question.text = "Q \(weeklyQuestion)"
-            answer1.text = "  A \(weeklyAnswers[0]["name"] ?? "cudnt get ans")"
-            answer2.text = "  B \(weeklyAnswers[1]["name"] ?? "cudnt get ans")"
-            answer3.text = "  C \(weeklyAnswers[2]["name"] ?? "cudnt get ans")"
-            answer4.text = "  D \(weeklyAnswers[3]["name"] ?? "cudnt get ans")"
+            question.text = "\(weeklyQuestion)"
+            answer1.text = "    A \(weeklyAnswers[0]["name"] ?? "cudnt get ans")"
+            answer2.text = "    B \(weeklyAnswers[1]["name"] ?? "cudnt get ans")"
+            answer3.text = "    C \(weeklyAnswers[2]["name"] ?? "cudnt get ans")"
+            answer4.text = "    D \(weeklyAnswers[3]["name"] ?? "cudnt get ans")"
             
             answerLayouts(answer: answer1)
             answerLayouts(answer: answer2)
@@ -531,7 +602,6 @@ class HomeCollectionReusableView: UICollectionReusableView {
                                 print("Response HTTP Status code: \(response.statusCode)")
                                 if response.statusCode == 201{
                                     print("correct Answer sent!")
-                                   
                                 }else{
                                     DispatchQueue.main.async {
                                         self.question.isHidden = true

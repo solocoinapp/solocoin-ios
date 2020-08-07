@@ -19,6 +19,7 @@ open class FPNCountryListViewController: UITableViewController, UISearchResultsU
 
 	override open func viewDidLoad() {
 		super.viewDidLoad()
+		let backButton = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.goingBack(_:)))
 		let attrs = [NSAttributedString.Key.foregroundColor: UIColor.init(red: 240/255, green: 81/255, blue: 105/255, alpha: 1), NSAttributedString.Key.font: UIFont(name: "Poppins-SemiBold", size: 20)!]
 		tableView.tableFooterView = UIView()
 		tableView.tableFooterView?.backgroundColor = .white
@@ -33,6 +34,7 @@ open class FPNCountryListViewController: UITableViewController, UISearchResultsU
         	self.navigationController?.navigationBar.isTranslucent = false
 		self.navigationController?.navigationBar.barTintColor = .white
 		tableView.backgroundView?.backgroundColor = .white
+		self.navigationItem.leftBarButtonItem = backButton
 		initSearchBarController()
 	}
 	
@@ -84,6 +86,10 @@ open class FPNCountryListViewController: UITableViewController, UISearchResultsU
 		}
 		definesPresentationContext = true
 	}
+	
+	@objc func goingBack(_ sender: Any){
+        self.dismiss(animated: true, completion: nil)
+    }
 
 	private func getItem(at indexPath: IndexPath) -> FPNCountry {
 		if searchController.isActive && results != nil && results!.count > 0 {

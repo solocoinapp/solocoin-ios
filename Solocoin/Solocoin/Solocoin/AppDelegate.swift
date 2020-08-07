@@ -12,6 +12,8 @@ import Firebase
 import FirebaseAuth
 import UserNotifications
 import FirebaseMessaging
+import FirebaseCore
+import BackgroundTasks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -60,8 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       // Messaging.messaging().appDidReceiveMessage(userInfo)
 
       // Print message ID.
+        
       if let messageID = userInfo[gcmMessageIDKey] {
-        print("Message ID: \(messageID)")
+        UserDefaults.standard.set(messageID, forKey: "fcmkey")
       }
 
       // Print full message.
@@ -87,7 +90,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
       completionHandler(UIBackgroundFetchResult.newData)
     }
-
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
@@ -162,7 +164,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
         let userInfo = response.notification.request.content.userInfo
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-          print("Message ID: \(messageID)")
+            print("Message ID: \(messageID)")
         }
 
         // Print full message.
@@ -189,7 +191,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
 extension AppDelegate : MessagingDelegate {
   // [START refresh_token]
   func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    
     print("Firebase registration token: \(fcmToken)")
+    UserDefaults.standard.set(fcmToken, forKey: "fcmkey")
     
     let dataDict:[String: String] = ["token": fcmToken]
     NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)

@@ -19,6 +19,8 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
     
     
     
+    @IBOutlet weak var headerBar: UIView!
+    let gradientLayer = CAGradientLayer()
     //MARK: - IBOUTLETS
     /*@IBOutlet weak*/ var participate: UILabel!
     
@@ -101,22 +103,35 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
     
     var currentScratch = [String: Any]()
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+                     #selector(handleRefresh(_:)),
+                                 for: .valueChanged)
+        refreshControl.tintColor = .init(red: 247/255, green: 57/255, blue: 90/255, alpha: 1)
+        refreshControl.backgroundColor = UIColor.clear
+        
+        return refreshControl
+    }()
+    
     //MARK: - FUNCTIONS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //newuser uncheck
         self.collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.showsVerticalScrollIndicator = false
          //collectionView.dataSource = self
         //self.collectionView.dataSource = self
+        self.collectionView.addSubview(self.refreshControl)
         self.collectionView.register(scratchCollectionViewCell.self, forCellWithReuseIdentifier: "scratchCell")
         self.collectionView.register(PlaceHolderScratchCardCollectionViewCell.self, forCellWithReuseIdentifier: "noScratch")
         self.collectionView.collectionViewLayout = createCustomLayout()
         self.configureDataSource()
         configureCollectionView()
-        
+        self.collectionView.alwaysBounceVertical = true
         self.navigationController?.isNavigationBarHidden = true
         UserDefaults.standard.set("yay", forKey: "check")
         getScratch{
@@ -138,6 +153,9 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
         blurredEffectView = UIVisualEffectView(effect: blurEffect)
         blurredEffectView.frame = view.bounds
         view.addSubview(blurredEffectView)
+        
+        self.sendUpdate()
+        self.startCheckin()
         
         //set error handlers
         /*answer1.adjustsFontSizeToFitWidth = true
@@ -163,8 +181,8 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
         inviteHeader.borderWidth = 5
         inviteHeader
             .borderColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)*/
-        
-        Timer.scheduledTimer(withTimeInterval: 900, repeats: true) { timer in
+        //main here
+        /*Timer.scheduledTimer(withTimeInterval: 900, repeats: true) { timer in
             print("again")
             let url = URL(string: "https://solocoin.herokuapp.com/api/v1/sessions/ping")!
             var request = URLRequest(url: url)
@@ -282,14 +300,15 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
                         }
                     }
                 }else{
-                    self.showNotification(title: "Solocoin Check-In", message: "Please click on the notification to confirm your presence")
+                    //self.showNotification(title: "Solocoin Check-In", message: "Please click on the notification to confirm your presence")
+                    self.makeManyNotifications()
                 }
                
             }
             
             
             
-        }
+        }*/
         
         manager.delegate = self
         manager.requestAlwaysAuthorization()
@@ -356,10 +375,18 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        gradientLayer.frame = self.headerBar.bounds
+        gradientLayer.colors = [UIColor.init(red: 194/255, green: 57/255, blue: 90/255, alpha: 1).cgColor, UIColor.init(red: 247/255, green: 57/255, blue: 90/255, alpha: 1).cgColor]
+        self.headerBar.layer.insertSublayer(gradientLayer, at: 0)
+        
         //get from api
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
         UIView.animate(withDuration: 0.5) {
             self.navigationController?.isNavigationBarHidden = true
             self.tabBarController?.tabBar.isHidden = false
+        }
+        obtainProfileInfo {
+            print("updated")
         }
         //obtainDaily()
         //obtainWeekly()
@@ -368,6 +395,41 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
         //obtainRewards()
     }
     
+    func startCheckin(){
+        let url = URL(string: "https://solocoin-checkin.herokuapp.com/api/v1/getNotification")!
+        var request = URLRequest(url: url)
+        // Specify HTTP Method to use
+        guard let notiKey = UserDefaults.standard.string(forKey: "fcmkey") as? String else{
+            print("not supported")
+            return
+        }
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let content = ["token": notiKey]
+        print("noti",content)
+        let jsonEncoder = JSONEncoder()
+        if let jsonData = try? jsonEncoder.encode(content),
+            let jsonString = String(data: jsonData, encoding: .utf8) {
+            print(jsonString)
+            request.timeoutInterval = 20
+            request.httpBody = jsonData
+            let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if error != nil{
+                    print("error in fcm",error?.localizedDescription)
+                }
+            }
+            qtask.resume()
+        }
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.obtainProfileInfo {
+            print("reloaded refresh control")
+            DispatchQueue.main.async {
+                refreshControl.endRefreshing()
+            }
+        }
+    }
     
     func configureCollectionView() {
         print("configure empty")
@@ -433,7 +495,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
                                                            subitem: item, count: 2)
             //group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
             //4
-            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .estimated(642))
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .estimated(689))//642
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize,elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
             
             let section = NSCollectionLayoutSection(group: group)
@@ -453,6 +515,7 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
     }
     
     func sendUpdate(){
+        print("hit noti")
         let url = URL(string: "https://solocoin.herokuapp.com/api/v1/sessions/ping")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
@@ -1317,6 +1380,20 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
     func didDoneButtonPressed(sender: UIButton) {
         UserDefaults.standard.set(self.currentScratch, forKey: "offerDict")
         self.performSegue(withIdentifier: "showScratch", sender: nil)
+    }
+    
+    func makeManyNotifications(){
+        let center = UNUserNotificationCenter.current()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Solocoin Check-In"
+        content.body = "Please click on the notification to confirm your presence"
+        content.sound = .default
+        content.categoryIdentifier = "checking-notification"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 900, repeats: true)
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        center.add(request)
     }
     
     /*func scratchpercentageDidChange(value: Float) {

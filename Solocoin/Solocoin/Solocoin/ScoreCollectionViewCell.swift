@@ -74,8 +74,8 @@ class ScoreCollectionViewCell: UICollectionViewCell {
     countryLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
     countryLabel.leftAnchor.constraint(equalTo: countryImage.rightAnchor, constant: 8).isActive = true
     countryLabel.widthAnchor.constraint(equalToConstant: contentView.frame.width/12).isActive = true
-    coinsLabel.leftAnchor.constraint(equalTo: countryLabel.rightAnchor, constant: 10).isActive = true
-    coinsLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 10).isActive = true
+    coinsLabel.leftAnchor.constraint(equalTo: countryLabel.rightAnchor, constant: 0).isActive = true
+    coinsLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5).isActive = true
     coinsLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant:8).isActive = true
     coinsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
    }

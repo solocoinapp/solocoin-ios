@@ -110,16 +110,7 @@ class OTPController: UIViewController {
             }
          }
         @IBAction func sendConfirm(_ sender: Any) {
-            if self.actionBtn.titleLabel!.text == "Connectivity" {
-                UIView.animate(withDuration: 0.5) {
-                self.popupParent.alpha = 0
-                self.popupParent.isUserInteractionEnabled = false
-                self.bodyPop.alpha = 0
-                self.bodyPop.isUserInteractionEnabled = false
-                self.view.reloadInputViews()
-                }
-            }else{
-                self.mainMssg.text = "Verify the mobile number \(self.mobileNumber.selectedCountry!.phoneCode + mobileNumber.text!) and confirm"
+                self.mainMssg.text = "Verify the mobile number \(self.mobileNumber.selectedCountry!.phoneCode + self.mobileNumber.text!) and confirm"
                 UIView.animate(withDuration: 0.5) {
                     self.popupParent.alpha = 0
                     self.popupParent.isUserInteractionEnabled = false
@@ -130,7 +121,7 @@ class OTPController: UIViewController {
                     guard let _ = self.mobileNumber else {
                         return
                     }
-                    
+                    self.phone = ""
                     for chr in self.mobileNumber.text!{
                         if chr != " " && chr != "-"{
                             self.phone+=String(chr)
@@ -179,7 +170,8 @@ class OTPController: UIViewController {
                         }
                     }
                 }
-                }
+
+            
         }
     @IBAction func cancelPop(_ sender: Any) {
             UIView.animate(withDuration: 0.5) {

@@ -86,6 +86,7 @@ class ScoreView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "scoreCell", for: indexPath) as! ScoreCollectionViewCell
         if self.rankMain-1 == indexPath.row{
             cell.coinsLabel.text = "\(self.personRank["wb"]!) coins"
+            cell.coinsLabel.adjustsFontSizeToFitWidth = true
             cell.countryImage.image = UIImage(named: personRank["cc"]!.uppercased()) ?? UIImage(named: "Flipkart")!
             cell.countryLabel.text = personRank["cc"]!.uppercased()
             cell.nameLabel.text = personRank["name"]!
@@ -97,6 +98,7 @@ class ScoreView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
             cell.coinsLabel.textColor = .white
         }else{
             cell.coinsLabel.text = "\(persons[indexPath.row]["wb"]!) coins"
+            cell.coinsLabel.adjustsFontSizeToFitWidth = true
             cell.countryImage.image = UIImage(named: persons[indexPath.row]["cc"]!.uppercased()) ?? UIImage(named: "Flipkart")!
             cell.countryLabel.text = persons[indexPath.row]["cc"]!.uppercased()
             cell.nameLabel.text = persons[indexPath.row]["name"]!
@@ -136,7 +138,8 @@ class ScoreView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
                                 let id = userInfo["id"] as! Int
                                 let name = userInfo["name"] as! String
                                 let cc = userInfo["country_code"] as? String ?? "US"
-                                let wb = userInfo["wallet_balance"] as? Int ?? 0
+                                //let wb = userInfo["wallet_balance"] as? String ?? "0"
+                                let wb = (userInfo["wallet_balance"] as? NSString ?? "0").integerValue
                                 let rank = userInfo["wb_rank"] as! Int
                                 self.personRank = ["id":"\(id)","name":name,"cc":cc,"wb":"\(wb)","rank":"\(rank)"]
                              guard let leaderBoard = object["top_users"] as? [[String: Any]] else {return}
@@ -144,9 +147,9 @@ class ScoreView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
                                  let id = person["id"] as! Int
                                  let name = person["name"] as! String
                                  let cc = person["country_code"] as? String ?? "US"
-                                 let wb = person["wallet_balance"] as? Int ?? 0
+                                 let wb = (person["wallet_balance"] as? NSString ?? "0").integerValue
                                  let rank = person["wb_rank"] as! Int
-                                 self.persons.append(["id":"\(id)","name":name,"cc":cc,"wb":"\(wb)","rank":"\(rank)"])
+                                self.persons.append(["id":"\(id)","name":name,"cc":cc,"wb":"\(wb)","rank":"\(rank)"])
                              }
                              completion()
                             }

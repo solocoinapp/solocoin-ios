@@ -9,7 +9,8 @@
 import UIKit
 import SDWebImage
 import CRRefresh
-import Reachability
+import Network
+//import Reachability
 
 class LeaderBoardVC: UIViewController{
     
@@ -30,10 +31,12 @@ class LeaderBoardVC: UIViewController{
     enum Section {
         case main
     }
+    let monitor = NWPathMonitor()
     //var collectionView: UICollectionView!
-    
+    let gradientLayer = CAGradientLayer()
     //stacks
     
+    @IBOutlet weak var headerBar: UIView!
     @IBOutlet weak var stack3: UIStackView!
     @IBOutlet weak var stack2: UIStackView!
     @IBOutlet weak var stack1: UIStackView!
@@ -72,7 +75,7 @@ class LeaderBoardVC: UIViewController{
     ["12":"Artboard11"],
     ["13":"Artboard13"]]
     let levelNames = [["Alpha Warrior",1000],["Beta Warrior",2500],["Omega Warrior",5000],["Chief Warrior",10000],["Ultimate Warrior",25000],["Supreme Warrior",50000],["Master",100000],["Grand Master",250000],["Ultimate Master",500000],["Supreme Master",1000000],["Universe God",5000000],["Mutliverse God",2500000]]
-    let levelCoins:[Int] = [1000,2300,5000,10000,25000,50000,100000,250000,500000,1000000,2500000,5000000]
+    let levelCoins:[Int] = [1000,2500,5000,10000,25000,50000,100000,250000,500000,1000000,2500000,5000000]
     var currentLevels:[[String:String]] = []
     
     
@@ -85,9 +88,23 @@ class LeaderBoardVC: UIViewController{
         super.viewDidLoad()
         //touchCell.addTarget(self, action: #selector(cellSelected(_:)))
         //mainCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createCustomLayout())
-        NetworkManager.isUnreachable { (_) in
+        /*NetworkManager.isUnreachable { (_) in
             self.performSegue(withIdentifier: "errorPage", sender: nil)
+        }*/
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                print("We're connected!")
+            } else {
+                print("No connection.")
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "errorPage", sender: nil)
+                }
+                
+            }
         }
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
+
         self.mainCollectionView.delegate = self
         self.mainCollectionView.backgroundColor = .clear
         self.mainCollectionView.addSubview(self.refreshControl)
@@ -102,6 +119,7 @@ class LeaderBoardVC: UIViewController{
             self.sortBadges {
                 for i in 0..<self.levelInfo.count{
                     print("totalconi",self.totalCoinsEarned)
+                    print("order",self.levelInfo)
                     if (self.levelInfo[i]["points"] as! Int) > self.totalCoinsEarned{
                         if i==0{
                             self.currentLevel = 1
@@ -117,7 +135,6 @@ class LeaderBoardVC: UIViewController{
                             }else{
                                 self.badgesUnlockedNo.text = " \((self.levelInfo[i]["level"] as! Int)-1)"
                             }
-                            
                         }
                         break
                     }
@@ -128,8 +145,8 @@ class LeaderBoardVC: UIViewController{
                         self.coinsLeft.text = "Congratulations!"
                         self.bigCoinsLeft.text = "You've finished all levels!"
                     }else{
-                        self.coinsLeft.text = "\(self.levelCoins[self.currentLevel-1]-self.totalCoinsEarned) coins away!"
-                        self.bigCoinsLeft.text = "\(self.levelCoins[self.currentLevel-1]-self.totalCoinsEarned) coins to move to the next level!"
+                        self.coinsLeft.text = "\((self.levelInfo[self.currentLevel]["points"] as? Int ?? 0)-self.totalCoinsEarned) coins away!"
+                        self.bigCoinsLeft.text = "\((self.levelInfo[self.currentLevel]["points"] as? Int ?? 0)-self.totalCoinsEarned) coins to move to the next level!"
                     }
                     self.crnLevel.text = "Level \(self.currentLevel)"
                     self.setLevelProgress {
@@ -143,9 +160,21 @@ class LeaderBoardVC: UIViewController{
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        NetworkManager.isUnreachable { (_) in
-            self.performSegue(withIdentifier: "errorPage", sender: nil)
+        gradientLayer.frame = self.headerBar.bounds
+        gradientLayer.colors = [UIColor.init(red: 194/255, green: 57/255, blue: 90/255, alpha: 1).cgColor, UIColor.init(red: 247/255, green: 57/255, blue: 90/255, alpha: 1).cgColor]
+        self.headerBar.layer.insertSublayer(gradientLayer, at: 0)
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                print("We're connected!")
+            } else {
+                print("No connection.")
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "errorPage", sender: nil)
+                }
+            }
         }
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
     }
     
     
@@ -160,7 +189,8 @@ class LeaderBoardVC: UIViewController{
     
     func setLevelProgress(completion:()->()){
         self.levelProgress.setProgress(0, animated: false)
-        print("coins",self.levelCoins[self.currentLevel-1])
+        //print("coins",self.levelCoins[self.currentLevel-1])
+        print("coins",self.levelInfo[self.currentLevel-1]["points"])
         /*if self.currentLevel == 1{
             let diff = 1-((Float(self.levelCoins[0]-self.totalCoinsEarned))/Float(self.levelCoins[0]))
             let progress = Float(1/4)+(Float(diff)/Float(4))
@@ -228,9 +258,10 @@ class LeaderBoardVC: UIViewController{
             }
         }*/
         if self.currentLevel != self.levelInfo.count{
-            let left = Float((self.levelInfo[self.currentLevel]["points"] as! Int)-self.totalCoinsEarned)/Float((self.levelInfo[self.currentLevel]["points"] as! Int)-(self.levelInfo[self.currentLevel-1]["points"] as! Int))
+            //let left = Float((self.levelInfo[self.currentLevel]["points"] as! Int)-self.totalCoinsEarned)/Float((self.levelInfo[self.currentLevel]["points"] as! Int)-(self.levelInfo[self.currentLevel-1]["points"] as! Int))
+            let left = Float((self.totalCoinsEarned-(self.levelInfo[self.currentLevel-1]["points"] as! Int)))/Float((self.levelInfo[self.currentLevel]["points"] as! Int)-(self.levelInfo[self.currentLevel-1]["points"] as! Int))
             if self.currentLevel == 1{
-                let toFill = (left/4.0)
+                let toFill = 0.25+(left/4.0)//let toFill = (left/4.0)
                 self.levelProgress.setProgress(toFill, animated: true)
                 //self.levelProgress.setProgress(1.0, animated: true)
                 self.circle1.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
@@ -259,7 +290,7 @@ class LeaderBoardVC: UIViewController{
             }else if self.currentLevel%3 == 2{
                 let toFill = 0.5+(left/4.0)
                 self.levelProgress.setProgress(toFill, animated: true)
-                self.levelProgress.setProgress(1.0, animated: true)
+                //self.levelProgress.setProgress(1.0, animated: true)
                 self.circle1.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
                 self.circle2.tintColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
                 self.circle3.tintColor = .white
@@ -267,7 +298,7 @@ class LeaderBoardVC: UIViewController{
                 self.Level2.textColor = .init(red: 16/255, green: 32/255, blue: 90/255, alpha: 1)
                 self.Level3.textColor = .white
                 self.Level1.text = "Level \(self.currentLevel-1)"
-                self.Level2.text = "Level \(self.currentLevel-2)"
+                self.Level2.text = "Level \(self.currentLevel)"
                 self.Level3.text = "Level \(self.currentLevel+1)"
             }else{
                 if ((self.levelInfo[self.currentLevel]["points"] as! Int)-self.totalCoinsEarned) > (((self.levelInfo[self.currentLevel]["points"] as! Int)-(self.levelInfo[self.currentLevel-1]["points"] as! Int))/2){
@@ -351,7 +382,7 @@ class LeaderBoardVC: UIViewController{
                     if response.statusCode == 200{
                         if let data = data{
                         if let json = try? JSONSerialization.jsonObject(with: data, options: []){
-                            print("B",json)
+                            print("Badges",json)
                             if let object = json as? [String:AnyObject]{
                                 let coins_earned = object["total_earned_coins"] as! Int
                                 self.totalCoinsEarned = coins_earned
@@ -370,14 +401,18 @@ class LeaderBoardVC: UIViewController{
                                 }
                                 completion()
                             }
-                        }
+                        }else{
+                            print("dint get badges")
+                            }
                         }
                     }
                     
                 }
             }else{
                 print("eroor",error?.localizedDescription)
-                self.performSegue(withIdentifier: "errorPage", sender: nil)
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "errorPage", sender: nil)
+                }
             }
         }
         qtask.resume()
@@ -424,8 +459,8 @@ class LeaderBoardVC: UIViewController{
         //2
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4),
                                               heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        let item = NSCollectionLayoutItem(layoutSize: itemSize) // 0.4 and 1.0
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 10, bottom: 10, trailing: 5)
         
         //3
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -488,6 +523,17 @@ class LeaderBoardVC: UIViewController{
                         let badgeImage = self.levels[(indexPath.section*2)+indexPath.row]["\((indexPath.section*2)+indexPath.row)"]!
                         print(badgeImage)
                         cell.badgeImageView.image = UIImage(named: badgeImage)
+                        cell.badgeImageView.contentMode = .scaleAspectFill
+                        if ((indexPath.section*2)+indexPath.row+1)>self.currentLevel{
+                            //print("plpl",indexPath.section,indexPath.row,self.currentLevel)
+                            print((indexPath.section*2)+indexPath.row+1,self.currentLevel)
+                            cell.blurEffect(status: true)
+                            cell.clickEnabled = false
+                        }else{
+                            cell.blurEffect(status: false)
+                            cell.clickEnabled = true
+                            print(indexPath.section,indexPath.row,"oui")
+                        }
                     default:
                         let url = self.headLink+(self.levelInfo[(indexPath.section*2)+indexPath.row]["imgurl"] as! String)
                         self.levels[(indexPath.section*2)+indexPath.row]["\((indexPath.section*2)+indexPath.row)"] = url
@@ -498,9 +544,19 @@ class LeaderBoardVC: UIViewController{
                             }else{
                                 print("error in image",error?.localizedDescription)
                             }
+                            if ((indexPath.section*2)+indexPath.row+1)>self.currentLevel{
+                                //print("plpl",indexPath.section,indexPath.row,self.currentLevel)
+                                print((indexPath.section*2)+indexPath.row+1,self.currentLevel)
+                                cell.blurEffect(status: true)
+                                cell.clickEnabled = false
+                            }else{
+                                cell.blurEffect(status: false)
+                                cell.clickEnabled = true
+                                print(indexPath.section,indexPath.row,"oui")
+                            }
                         }
                     }
-                    cell.clickEnabled = false
+                    /*cell.clickEnabled = false
                     if ((indexPath.section*2)+indexPath.row+1)>self.currentLevel{
                         //print("plpl",indexPath.section,indexPath.row,self.currentLevel)
                         print((indexPath.section*2)+indexPath.row+1,self.currentLevel)
@@ -510,7 +566,7 @@ class LeaderBoardVC: UIViewController{
                         cell.blurEffect(status: false)
                         cell.clickEnabled = true
                         print(indexPath.section,indexPath.row,"oui")
-                    }
+                    }*/
                 }else{
                     cell.badgeImageView.backgroundColor = .init(red: 239/255, green: 238/255, blue: 241/255, alpha: 1)
                     guard let badgeImage = UIImage(named:"defaultBadge") as? UIImage else {
@@ -591,8 +647,88 @@ class LeaderBoardVC: UIViewController{
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.mainCollectionView.reloadData()
+        
+        //self.mainCollectionView.reloadData()
+        getUpdatedInfo {
+            for i in 0..<self.levelInfo.count{
+                print("totalconi",self.totalCoinsEarned)
+                print("order",self.levelInfo)
+                if (self.levelInfo[i]["points"] as! Int) > self.totalCoinsEarned{
+                    if i==0{
+                        self.currentLevel = 1
+                        DispatchQueue.main.async {
+                            self.badgesUnlockedNo.text = "  1"
+                        }
+                        break
+                    }
+                    self.currentLevel = (self.levelInfo[i]["level"] as! Int)-1
+                    DispatchQueue.main.async {
+                        if ((self.levelInfo[i]["level"] as! Int)-1)%10 != 0{
+                            self.badgesUnlockedNo.text = " \((self.levelInfo[i]["level"] as! Int)-1)"
+                        }else{
+                            self.badgesUnlockedNo.text = " \((self.levelInfo[i]["level"] as! Int)-1)"
+                        }
+                        
+                    }
+                    break
+                }
+            }
+            DispatchQueue.main.async {
+                //self.putImages(levels: self.currentLevels)
+                if self.currentLevel == 13{
+                    self.coinsLeft.text = "Congratulations!"
+                    self.bigCoinsLeft.text = "You've finished all levels!"
+                }else{
+                    self.coinsLeft.text = "\((self.levelInfo[self.currentLevel]["points"] as? Int ?? 0)-self.totalCoinsEarned) coins away!"
+                    self.bigCoinsLeft.text = "\((self.levelInfo[self.currentLevel]["points"] as? Int ?? 0)-self.totalCoinsEarned) coins to move to the next level!"
+                }
+                self.crnLevel.text = "Level \(self.currentLevel)"
+                self.setLevelProgress {
+                    print("done progress")
+                    //self.finalizeProgressbar()
+                }
+                self.mainCollectionView.reloadData()
+            }
+        }
         refreshControl.endRefreshing()
+    }
+    
+    func getUpdatedInfo(completion:@escaping () -> ()){
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/user/badges")!
+        var request = URLRequest(url: url)
+        // Specify HTTP Method to use
+        request.httpMethod = "GET"
+        //sepcifying header
+        let authtoken = "Bearer \(UserDefaults.standard.string(forKey: "authtoken")!)"
+        request.addValue(authtoken, forHTTPHeaderField: "Authorization")
+        let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error == nil{
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                    print("Response HTTP Status code: \(response.statusCode)")
+                    if response.statusCode == 200{
+                        if let data = data{
+                        if let json = try? JSONSerialization.jsonObject(with: data, options: []){
+                            print("Badges",json)
+                            if let object = json as? [String:AnyObject]{
+                                let coins_earned = object["total_earned_coins"] as! Int
+                                self.totalCoinsEarned = coins_earned
+                                completion()
+                            }
+                        }else{
+                            print("dint get badges")
+                            self.performSegue(withIdentifier: "errorPage", sender: nil)
+                            }
+                        }
+                    }
+                    
+                }
+            }else{
+                print("eroor",error?.localizedDescription)
+                self.performSegue(withIdentifier: "errorPage", sender: nil)
+            }
+        }
+        qtask.resume()
     }
 }
 

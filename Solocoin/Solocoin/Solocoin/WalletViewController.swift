@@ -26,17 +26,18 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         return refreshControl
     }()
-
+    let gradientLayer = CAGradientLayer()
+    @IBOutlet weak var headerBar: UIView!
     @IBOutlet weak var categoriesSegment: UISegmentedControl!
     @IBOutlet weak var errorMssg: UILabel!
     @IBOutlet weak var exclMark: UIImageView!
     @IBOutlet weak var headerStack: UIStackView!
     @IBOutlet weak var coins: UILabel!
     
-    @IBOutlet weak var chooseBtn: UIButton!
+    @IBOutlet weak var chooseBtn: DropDownButton!
     let transparentView = UIView()
     let tableView = UITableView()
-    var selectedButton = UIButton()
+    var selectedButton = DropDownButton()
     //
     var catSet = Set<String>()
     var categories = [String]()
@@ -55,6 +56,8 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
         exclMark.isHidden = true
         errorMssg.isHighlighted = true
         chooseBtn.titleLabel?.text = ""
+        chooseBtn.titleLabel?.textAlignment = .left
+        chooseBtn.imageView?.image = UIImage(systemName: "arrowtriangle.down.fill")!
         tableView.backgroundColor = .white
         //change this maybe
         categoriesSegment.isUserInteractionEnabled = false
@@ -73,6 +76,9 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        gradientLayer.frame = self.headerBar.bounds
+        gradientLayer.colors = [UIColor.init(red: 194/255, green: 57/255, blue: 90/255, alpha: 1).cgColor, UIColor.init(red: 247/255, green: 57/255, blue: 90/255, alpha: 1).cgColor]
+        self.headerBar.layer.insertSublayer(gradientLayer, at: 0)
         coins.text = UserDefaults.standard.string(forKey: "wallet")
         obtainRewards {
             print("completed")
@@ -132,7 +138,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     /*func obtainRewards(completion: ()->()){
-        let url = URL(string: "https://prod.solocoin.app/api/v1/rewards_sponsors")!
+        let url = URL(string: "https://solocoin.herokuapp.com/api/v1/rewards_sponsors")!
         var request = URLRequest(url: url)
         // Specify HTTP Method to use
         request.httpMethod = "GET"
@@ -350,23 +356,30 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                     cell.altText.text = self.currrentCateg[(2*indexPath.section)+indexPath.row]["company"]
                     cell.cashText.text = "₹ \(self.currrentCateg[(2*indexPath.section)+indexPath.row]["amount"]!)"
                     cell.coinsText.text = "\(self.currrentCateg[(2*indexPath.section)+indexPath.row]["coins"]!) coins"
+                    //let sample = UIImage(named: "sampleComp")!
+                    //cell.addImage(comp: sample)
                     cell.removeImage()
                     
                 case "null":
                     cell.altText.text = self.currrentCateg[(2*indexPath.section)+indexPath.row]["company"]
                     cell.cashText.text = "₹ \(self.currrentCateg[(2*indexPath.section)+indexPath.row]["amount"]!)"
                     cell.coinsText.text = "\(self.currrentCateg[(2*indexPath.section)+indexPath.row]["coins"]!) coins"
+                    //let sample = UIImage(named: "sampleComp")!
+                    //cell.addImage(comp: sample)
                     cell.removeImage()
                 default:
                     cell.offerImageView.sd_setImage(with: URL(string: self.headLink+self.currrentCateg[(2*indexPath.section)+indexPath.row]["imgurl"]!)) { (image, error, cache, urlGiven) in
-                        if error == nil{
+                        if error != nil{
                             print("success wallet")
                             cell.altText.text = self.currrentCateg[(2*indexPath.section)+indexPath.row]["company"]
                             cell.cashText.text = "₹ \(self.currrentCateg[(2*indexPath.section)+indexPath.row]["amount"]!)"
                             cell.coinsText.text = "\(self.currrentCateg[(2*indexPath.section)+indexPath.row]["coins"]!) coins"
                             cell.removeImage()
                         }else{
-                            cell.addImage()
+                            cell.altText.text = self.currrentCateg[(2*indexPath.section)+indexPath.row]["company"]
+                            cell.cashText.text = "₹ \(self.currrentCateg[(2*indexPath.section)+indexPath.row]["amount"]!)"
+                            cell.coinsText.text = "\(self.currrentCateg[(2*indexPath.section)+indexPath.row]["coins"]!) coins"
+                            cell.addImage(comp: image!)
                             print("wallet",error?.localizedDescription)
                         }
                     }
@@ -388,14 +401,17 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                     cell.removeImage()
                 default:
                     cell.offerImageView.sd_setImage(with: URL(string: self.headLink+self.currrentCateg[(2*indexPath.section)+indexPath.row]["imgurl"]!)) { (image, error, cache, urlGiven) in
-                        if error == nil{
+                        if error != nil{
                             print("success wallet")
                             cell.altText.text = self.currrentCateg[(2*indexPath.section)+indexPath.row]["company"]
                             cell.cashText.text = "₹ \(self.currrentCateg[(2*indexPath.section)+indexPath.row]["amount"]!)"
                             cell.coinsText.text = "\(self.currrentCateg[(2*indexPath.section)+indexPath.row]["coins"]!) coins"
                             cell.removeImage()
                         }else{
-                            cell.addImage()
+                            cell.altText.text = self.currrentCateg[(2*indexPath.section)+indexPath.row]["company"]
+                            cell.cashText.text = "₹ \(self.currrentCateg[(2*indexPath.section)+indexPath.row]["amount"]!)"
+                            cell.coinsText.text = "\(self.currrentCateg[(2*indexPath.section)+indexPath.row]["coins"]!) coins"
+                            cell.addImage(comp: image!)
                             print("wallet",error?.localizedDescription)
                         }
                     }
@@ -416,7 +432,27 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func createCustomLayout() -> UICollectionViewLayout {
         print("called")
-        if currrentCateg.count%2==0{
+        let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+
+                  let leadingItem = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: NSCollectionLayoutDimension.fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0)))
+                  leadingItem.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+                  
+                  let leadingGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
+                  let leadingGroup = NSCollectionLayoutGroup.vertical(layoutSize: leadingGroupSize, subitem: leadingItem, count: 1)
+                  
+                  let containerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),  heightDimension: .fractionalWidth(0.3))
+                  
+                  let containerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: containerGroupSize, subitems: [leadingGroup])
+        
+                  
+                  let section = NSCollectionLayoutSection(group: containerGroup)
+                  section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                  section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 0, trailing: 0)
+                  
+                  return section
+              }
+              return layout
+        /*if currrentCateg.count%2==0{
             print("even")
             let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
 
@@ -438,8 +474,8 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                       return section
                   }
                   return layout
-        }
-        print("hmm ye")
+        }*/
+        /*print("hmm ye")
         let layout = UICollectionViewCompositionalLayout { (section: Int, environment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             if section == self.numberOfSections(in: self.collectionView)-1{
                 print("ye")
@@ -478,7 +514,7 @@ class WalletViewController: UIViewController, UICollectionViewDelegate, UICollec
                           
                           return section
             }
-              }
+              }*/
               return layout
         }
     
@@ -549,6 +585,8 @@ extension WalletViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.chooseBtn.setTitle("\(self.categories[indexPath.row])", for: .normal)
+        chooseBtn.titleLabel?.textAlignment = .left
+        chooseBtn.imageView?.image = UIImage(systemName: "arrowtriangle.down.fill")!
         //self.chooseBtn.titleLabel?.text = self.categories[indexPath.row]
         self.currrentCateg = self.offersWithCateg[self.categories[indexPath.row]]!
         self.collectionView.collectionViewLayout = self.createCustomLayout()

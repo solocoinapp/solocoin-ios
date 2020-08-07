@@ -84,20 +84,26 @@ class OfferDetailsViewController: UIViewController {
             request.httpBody = jsonData
             let qtask = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if error == nil{
-                    let pasteboard = UIPasteboard.general
-                    pasteboard.string = self.offer["coupon_code"] as! String
+                    
                     if let response = response as? HTTPURLResponse {
                         print("Response HTTP Status code: \(response.statusCode)")
                         if let json = try? JSONSerialization.jsonObject(with: data!, options: []){
-                            print("j",json)
+                            print("coupon",json)
                             if let object = json as? [String:AnyObject]{
                                 if object["error"] != nil{
                                     DispatchQueue.main.async {
-                                        self.mainMssg.text = "You have already redeemed this coupon"
-                                        self.mainMssg.adjustsFontSizeToFitWidth = true
+                                        if object["error"] as! String == "Insufficient coins"{
+                                            self.mainMssg.text = "You dont have sufficient coins to redeem"
+                                            self.mainMssg.adjustsFontSizeToFitWidth = true
+                                        }else{
+                                            self.mainMssg.text = "You have already redeemed this coupon"
+                                            self.mainMssg.adjustsFontSizeToFitWidth = true
+                                        }
                                     }
                                 }else{
                                    DispatchQueue.main.async {
+                                        let pasteboard = UIPasteboard.general
+                                        pasteboard.string = self.offer["coupon_code"] as! String
                                         self.mainMssg.text = "Couponcode has been copied to clipboard"
                                         self.mainMssg.adjustsFontSizeToFitWidth = true
                                     }
@@ -141,6 +147,10 @@ class OfferDetailsViewController: UIViewController {
         }) { (check) in
             self.dismiss(animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func goBacklol(sender: AnyObject){
+        dismiss(animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation
