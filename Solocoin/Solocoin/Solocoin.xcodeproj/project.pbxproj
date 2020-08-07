@@ -31,7 +31,10 @@
 		F50950F3249902E7002C2C3D /* NetWorkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50950F2249902E7002C2C3D /* NetWorkCheck.swift */; };
 		F50950F524994F3E002C2C3D /* errorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50950F424994F3E002C2C3D /* errorViewController.swift */; };
 		F5145FDF24A228B5007BFED8 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5145FDE24A228B5007BFED8 /* ScoreView.swift */; };
+<<<<<<< HEAD
 		F516F97C24C812EC00BB5EF7 /* SAConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F516F97B24C812EB00BB5EF7 /* SAConfettiView.swift */; };
+=======
+>>>>>>> f2e90162d12ca63c5b3aaa6241539a6a3e2302c2
 		F53DA2A72483A9EF005FE377 /* OfferCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DA2A62483A9EF005FE377 /* OfferCollectionViewCell.swift */; };
 		F53DA2AB2483D94C005FE377 /* OfferDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */; };
 		F53DF2C42485279100030373 /* BadgeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DF2C32485279100030373 /* BadgeCollectionViewCell.swift */; };
@@ -71,13 +74,18 @@
 		F5452D5324C4AA7700A35990 /* PlaceHolderScratchCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5452D5224C4AA7700A35990 /* PlaceHolderScratchCardCollectionViewCell.swift */; };
 		F548B69324A09AF300A4F728 /* ScoreBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F548B69224A09AF300A4F728 /* ScoreBoardViewController.swift */; };
 		F548B69524A09C8F00A4F728 /* ScoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F548B69424A09C8F00A4F728 /* ScoreCollectionViewCell.swift */; };
+		F54BD05424CA3B7600A7CF5D /* SAConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54BD05324CA3B7600A7CF5D /* SAConfettiView.swift */; };
 		F553016F24914FC80036C2B8 /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F553016E24914FC80036C2B8 /* CollectionReusableView.swift */; };
 		F55597122496927100DBE6B8 /* LeaderBoardTempVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */; };
 		F5A0B4FC24954B7000BFCC2B /* OTPTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */; };
 		F5CB66DB24826DC4005BF70D /* LeaderBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */; };
 		F5CB66DD2482865E005BF70D /* WalletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5CB66DC2482865E005BF70D /* WalletViewController.swift */; };
 		F5D66FC92475A1EC00476863 /* MenuTBController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D66FC82475A1EC00476863 /* MenuTBController.swift */; };
+<<<<<<< HEAD
 		F5EFF39724CB0A2100FD9CE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5EFF39624CB0A2000FD9CE1 /* GoogleService-Info.plist */; };
+=======
+		F5EFF39524CAF51900FD9CE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5EFF39424CAF51400FD9CE1 /* GoogleService-Info.plist */; };
+>>>>>>> f2e90162d12ca63c5b3aaa6241539a6a3e2302c2
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,7 +117,10 @@
 		F50950F2249902E7002C2C3D /* NetWorkCheck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkCheck.swift; sourceTree = "<group>"; };
 		F50950F424994F3E002C2C3D /* errorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = errorViewController.swift; sourceTree = "<group>"; };
 		F5145FDE24A228B5007BFED8 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		F516F97B24C812EB00BB5EF7 /* SAConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAConfettiView.swift; sourceTree = "<group>"; };
+=======
+>>>>>>> f2e90162d12ca63c5b3aaa6241539a6a3e2302c2
 		F53DA2A62483A9EF005FE377 /* OfferCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCollectionViewCell.swift; sourceTree = "<group>"; };
 		F53DA2AA2483D94C005FE377 /* OfferDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailsViewController.swift; sourceTree = "<group>"; };
 		F53DF2C32485279100030373 /* BadgeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -150,13 +161,18 @@
 		F5452D5224C4AA7700A35990 /* PlaceHolderScratchCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderScratchCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		F548B69224A09AF300A4F728 /* ScoreBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoardViewController.swift; sourceTree = "<group>"; };
 		F548B69424A09C8F00A4F728 /* ScoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		F54BD05324CA3B7600A7CF5D /* SAConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAConfettiView.swift; sourceTree = "<group>"; };
 		F553016E24914FC80036C2B8 /* CollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		F55597112496927100DBE6B8 /* LeaderBoardTempVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardTempVC.swift; sourceTree = "<group>"; };
 		F5A0B4FB24954B7000BFCC2B /* OTPTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPTextField.swift; sourceTree = "<group>"; };
 		F5CB66DA24826DC4005BF70D /* LeaderBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderBoardViewController.swift; sourceTree = "<group>"; };
 		F5CB66DC2482865E005BF70D /* WalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
 		F5D66FC82475A1EC00476863 /* MenuTBController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTBController.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		F5EFF39624CB0A2000FD9CE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+=======
+		F5EFF39424CAF51400FD9CE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+>>>>>>> f2e90162d12ca63c5b3aaa6241539a6a3e2302c2
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +211,7 @@
 				F53FC90124C22C1A00250140 /* Solocoin.entitlements */,
 				F53FFD5D24C5F0D50083272A /* GLScratchCard */,
 				F543299C2490B0900083EED2 /* font */,
+				F54BD05324CA3B7600A7CF5D /* SAConfettiView.swift */,
 				68B1D8702453ACDC007ECC01 /* AppDelegate.swift */,
 				68B1D8722453ACDC007ECC01 /* SceneDelegate.swift */,
 				68872A142468CC70005348B4 /* UIViewExtension.swift */,
@@ -234,7 +251,11 @@
 				68D2ED7B245B3FAA00F39655 /* ProfilePage.swift */,
 				F5025A8C24DDDB0A00C45532 /* GetCoinsViewController.swift */,
 				68B1D87C2453ACDE007ECC01 /* Assets.xcassets */,
+<<<<<<< HEAD
 				F5EFF39624CB0A2000FD9CE1 /* GoogleService-Info.plist */,
+=======
+				F5EFF39424CAF51400FD9CE1 /* GoogleService-Info.plist */,
+>>>>>>> f2e90162d12ca63c5b3aaa6241539a6a3e2302c2
 				68B1D8D024551A5E007ECC01 /* PublicVars.swift */,
 				68B1D87E2453ACDE007ECC01 /* LaunchScreen.storyboard */,
 				68B1D8812453ACDE007ECC01 /* Info.plist */,
@@ -390,7 +411,11 @@
 				F54329BF2490B0900083EED2 /* Poppins-Italic.ttf in Resources */,
 				F54329BA2490B0900083EED2 /* Poppins-LightItalic.ttf in Resources */,
 				F54329B02490B0900083EED2 /* Poppins-ThinItalic.ttf in Resources */,
+<<<<<<< HEAD
 				F5EFF39724CB0A2100FD9CE1 /* GoogleService-Info.plist in Resources */,
+=======
+				F5EFF39524CAF51900FD9CE1 /* GoogleService-Info.plist in Resources */,
+>>>>>>> f2e90162d12ca63c5b3aaa6241539a6a3e2302c2
 				F54329B82490B0900083EED2 /* Poppins-BlackItalic.ttf in Resources */,
 				F54329B92490B0900083EED2 /* Poppins-Regular.ttf in Resources */,
 				F53FFD6F24C5F0D60083272A /* glscratch_close.png in Resources */,
@@ -491,8 +516,12 @@
 				F5CB66DD2482865E005BF70D /* WalletViewController.swift in Sources */,
 				F548B69524A09C8F00A4F728 /* ScoreCollectionViewCell.swift in Sources */,
 				F5452D5324C4AA7700A35990 /* PlaceHolderScratchCardCollectionViewCell.swift in Sources */,
+<<<<<<< HEAD
 				F516F97C24C812EC00BB5EF7 /* SAConfettiView.swift in Sources */,
 				F5025A8924DDC30400C45532 /* DropDownButton.swift in Sources */,
+=======
+				F54BD05424CA3B7600A7CF5D /* SAConfettiView.swift in Sources */,
+>>>>>>> f2e90162d12ca63c5b3aaa6241539a6a3e2302c2
 				68B1D87B2453ACDC007ECC01 /* Solocoin.xcdatamodeld in Sources */,
 				F5145FDF24A228B5007BFED8 /* ScoreView.swift in Sources */,
 				F542F1B42493DF7C0089CB83 /* ThirdViewController.swift in Sources */,

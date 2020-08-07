@@ -404,7 +404,10 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
             return
         }
         request.httpMethod = "POST"
+<<<<<<< HEAD
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+=======
+>>>>>>> f2e90162d12ca63c5b3aaa6241539a6a3e2302c2
         let content = ["token": notiKey]
         print("noti",content)
         let jsonEncoder = JSONEncoder()
@@ -425,9 +428,13 @@ class HomePage1: UIViewController, CLLocationManagerDelegate, GLScratchCardDeleg
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         self.obtainProfileInfo {
             print("reloaded refresh control")
+<<<<<<< HEAD
             DispatchQueue.main.async {
                 refreshControl.endRefreshing()
             }
+=======
+            refreshControl.endRefreshing()
+>>>>>>> f2e90162d12ca63c5b3aaa6241539a6a3e2302c2
         }
     }
     

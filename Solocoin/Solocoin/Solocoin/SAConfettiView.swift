@@ -65,7 +65,10 @@ public class SAConfettiView: UIView {
 
     public func stopConfetti() {
         emitter?.birthRate = 0
+<<<<<<< HEAD
         emitter.removeFromSuperlayer()
+=======
+>>>>>>> f2e90162d12ca63c5b3aaa6241539a6a3e2302c2
         active = false
     }
 
@@ -100,7 +103,10 @@ public class SAConfettiView: UIView {
     }
 
     func confettiWithColor(color: UIColor) -> CAEmitterCell {
+<<<<<<< HEAD
         print("bam confetti")
+=======
+>>>>>>> f2e90162d12ca63c5b3aaa6241539a6a3e2302c2
         let confetti = CAEmitterCell()
         confetti.birthRate = 6.0 * intensity
         confetti.lifetime = 14.0 * intensity
